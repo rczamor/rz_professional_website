@@ -1,55 +1,42 @@
 const projects = [
   {
-    title: "AI Research Engine for GTM Teams",
-    company: "Spade AI (Grandstage)",
-    role: "Co-Founder, Head of Product & Growth",
+    title: "AI Market Insights System",
+    company: "Spade AI (Grandstage Inc.)",
     description:
-      "Developed the first AI research engine for GTM teams—think Perplexity AI, purpose-built for B2B marketing data. Led the entire product lifecycle including discovery, vision and strategy, roadmap, prototyping, testing, and team management across UX, data science, and full-stack engineering.",
-    results: [
-      "Scaled to 90 B2B companies in 3 months",
-      "$0 customer acquisition cost",
-      "End-to-end product lifecycle ownership",
-    ],
-    tags: ["AI/ML", "B2B SaaS", "Product Strategy", "Growth"],
+      "Developed the first AI research engine for GTM teams—think Perplexity AI, purpose-built for B2B marketing data. Led the entire product lifecycle: discovery, vision and strategy, roadmap, prototyping, testing, and team management across UX, data science, and full-stack engineering. Partnered with engineers and data scientists on technical architecture, LLM evaluations, data sourcing, and specifications. Orchestrated go-to-market execution, including content marketing, sales outreach, demos, deal closing, and customer onboarding. Maintained close engagement throughout the customer lifecycle, translating feedback into enhancements and new features.",
+    result: "Result: scaled to 90 B2B companies in 3 months with $0 CAC.",
   },
   {
-    title: "AI-Powered Political Data Platform",
-    company: "Confidential",
-    role: "Product & GTM Executive",
+    title: "AI-Powered Data Platform",
+    company: "Helm Labs",
     description:
-      "Served as Product and GTM executive for an AI-powered data platform and marketing tools for political and public affairs professionals. Delivered insights into the likelihood of approximately 200 million Americans supporting key issues. Defined product strategy and a long-term roadmap to integrate five acquired products into a unified enterprise platform.",
-    results: [
-      "$3.25M in sales pipeline generated",
-      "14x increase in partner ACV",
-      "Six-figure pilot projects closed",
-    ],
-    tags: ["AI/ML", "Political Tech", "Enterprise", "GTM Strategy"],
+      "Served as Product and GTM executive for an AI-powered data platform and marketing tools for political and public affairs professionals, delivering insights into the likelihood of approximately 200 million Americans supporting key issues. Conducted market research and competitive analysis to uncover customer needs and differentiation opportunities. Defined product strategy, requirements, and a long-term roadmap to integrate five acquired products into a unified enterprise platform. Built and executed GTM strategy across sales, customer experience, and partnerships, while managing two product pods to design and deliver the new platform.",
+    result:
+      "Results: Generated $3.25M in sales pipeline, increased partner ACV 14x, and closed six-figure pilot projects.",
+  },
+  {
+    title: "Growth Engines",
+    company: "IBM Cloud & Watson",
+    description:
+      "Built personalized digital experiences and applications to drive growth in lead generation, trial conversion, and product adoption. Led end-to-end product development from discovery through launch. Secured seven- and eight-figure investments from the C-suite. Rolled out and enabled growth tools (CDP, lifecycle marketing platform, and product analytics) for marketing teams worldwide. Designed e-nurture and onboarding applications and patterns adopted enterprise-wide.",
+    result:
+      "Results: Increased trial registrations by 31%, generated eight figures in marketing-qualified pipeline, boosted trial conversion by 30%, and lifted customer spend by 10%.",
   },
   {
     title: "Digital Experience Platform",
-    company: "Johnson & Johnson",
-    role: "Product Lead",
+    company: "The Well by Northwell Health",
     description:
-      "Led the revamp of Johnson & Johnson's digital experience platform, powering 1,000+ consumer product websites. Applied a hypothesis-driven approach, ran strategy sprints with product and engineering leadership, directed Dual-Track Scrum sprints to prototype and validate new features, and served as on-site product owner.",
-    results: [
-      "Powered 1,000+ consumer product websites",
-      "Cut time-to-market from months to <4 weeks",
-      "Saved millions in operational costs",
-    ],
-    tags: ["Enterprise", "Digital Experience", "CPG", "Scrum"],
+      "Transformed how one of the largest U.S. healthcare systems engaged patients beyond scheduled visits. Led executives in defining product vision, strategy, and long-term roadmap. Partnered with UX and engineering to shape requirements, prototype editorial content experiences, and deliver the platform as in-house product lead.",
+    result:
+      "Outcome: Kept thousands of patients connected to Northwell Health through personalized lifestyle content.",
   },
   {
-    title: "Enterprise CX Tools",
-    company: "Multiple Clients",
-    role: "Product Leader",
+    title: "Digital Experience Platform",
+    company: "Johnson & Johnson Consumer Products",
     description:
-      "Shipped CX tools enabling customer service in digital and social channels for Bank of America, Cigna Healthcare, and Reddit. Delivered enterprise digital experience platforms powering news delivery to millions for PBS and Al Jazeera.",
-    results: [
-      "Cut customer response times",
-      "Increased satisfaction scores",
-      "Delivered news to millions of users",
-    ],
-    tags: ["CX", "Finance", "Healthcare", "Media"],
+      "Led the revamp of Johnson & Johnson's digital experience platform, powering 1,000+ consumer product websites. Applied a hypothesis-driven approach, running a strategy sprint with product and engineering leadership to surface key enhancements and platform issues. Directed Dual-Track Scrum sprints to prototype and validate new features, resolve critical challenges, and guide technical requirements. Served as on-site product owner, leading agile development and collaborating closely with J&J teams. Drove stakeholder onboarding through clear communications and training.",
+    result:
+      "Results: Cut website time-to-market from months to under four weeks, saving millions in operational costs.",
   },
 ];
 
@@ -57,55 +44,15 @@ export default function Portfolio() {
   return (
     <section id="portfolio" className="py-24 px-6">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">Portfolio</h2>
-        <div className="w-16 h-1 bg-accent mb-10 rounded-full" />
-
-        <div className="space-y-8">
-          {projects.map((project) => (
-            <div
-              key={project.title}
-              className="bg-card-bg border border-card-border rounded-xl p-8 hover:border-accent/30 transition-colors"
-            >
-              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-4">
-                <div>
-                  <h3 className="text-xl font-bold">{project.title}</h3>
-                  <p className="text-accent text-sm font-medium">
-                    {project.company} · {project.role}
-                  </p>
-                </div>
-              </div>
-
-              <p className="text-muted leading-relaxed mb-6">
+        <div className="space-y-16">
+          {projects.map((project, index) => (
+            <div key={index}>
+              <h3 className="text-2xl md:text-3xl font-light mb-1">{project.title}</h3>
+              <p className="text-accent font-medium mb-4">{project.company}</p>
+              <p className="text-foreground/80 leading-relaxed mb-3">
                 {project.description}
               </p>
-
-              <div className="mb-6">
-                <h4 className="text-sm font-semibold uppercase tracking-wider text-foreground/70 mb-3">
-                  Key Results
-                </h4>
-                <ul className="space-y-1.5">
-                  {project.results.map((result) => (
-                    <li
-                      key={result}
-                      className="flex items-start gap-2 text-sm text-muted"
-                    >
-                      <span className="text-accent mt-0.5">&#10003;</span>
-                      <span>{result}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1 text-xs font-medium rounded-full bg-accent/10 text-accent border border-accent/20"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+              <p className="text-foreground font-medium">{project.result}</p>
             </div>
           ))}
         </div>

@@ -2,20 +2,18 @@ export default function Contact() {
   return (
     <section id="contact" className="py-24 px-6">
       <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">Get in Touch</h2>
-        <div className="w-16 h-1 bg-accent mb-10 rounded-full mx-auto" />
-
-        <p className="text-muted text-lg leading-relaxed max-w-2xl mx-auto mb-10">
-          I&apos;m always open to discussing new opportunities, partnerships, or
-          interesting projects. Please include details on the job description,
-          hiring timeline, and budget/salary for your project or role.
+        <h2 className="text-3xl md:text-4xl font-light mb-2">Want to work with me?</h2>
+        <p className="text-xl md:text-2xl font-medium mb-4">How can I help you?</p>
+        <p className="text-muted text-base leading-relaxed max-w-2xl mx-auto mb-10">
+          Please include details on the job description, hiring timeline, and budget/salary
+          for your project or role. I will get back to you ASAP.
         </p>
 
         <a
           href="mailto:hello@richezamor.com"
-          className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-accent text-white font-medium hover:bg-accent-hover transition-colors"
+          className="inline-flex items-center justify-center px-10 py-3 rounded-full bg-foreground text-background font-medium hover:bg-foreground/80 transition-colors text-base"
         >
-          Send Me an Email
+          Contact Rich&eacute;
         </a>
 
         <div className="mt-16 flex justify-center gap-8">

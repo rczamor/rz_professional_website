@@ -1,15 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Riche Zamor: Product & Growth Leader | I Build Intelligent GTM & CX Platforms",
+  title: "Riché Zamor | VP of Product — Building AI-Native Data & Intelligence Platforms",
   description:
-    "Riche Zamor is a seasoned product leader who builds AI-powered GTM, CX, and Growth systems to empower marketing, sales, and customer success teams.",
+    "Riché Zamor is a VP of Product and AI Context Layers Architect who builds AI-native data & intelligence platforms across startups and enterprises.",
   openGraph: {
-    title: "Riche Zamor: Product & Growth Leader",
+    title: "Riché Zamor | VP of Product",
     description:
-      "I build AI-powered GTM, CX, and Growth systems to empower marketing, sales, and customer success teams.",
+      "Building AI-Native Data & Intelligence Platforms. AI Context Layers Architect.",
     type: "website",
     url: "https://richezamor.com",
   },
