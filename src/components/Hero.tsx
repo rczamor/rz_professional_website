@@ -1,71 +1,69 @@
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden">
-      {/* Diagonal grid background pattern */}
-      <div
-        className="absolute inset-0 opacity-[0.08]"
-        style={{
-          backgroundImage:
-            "linear-gradient(45deg, #999 1px, transparent 1px), linear-gradient(-45deg, #999 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-        }}
-      />
+    <section id="hero" className="pt-32 pb-24 px-6">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+          {/* Left content */}
+          <div className="lg:col-span-2">
+            <div className="flex items-center gap-3 mb-8">
+              <span className="inline-block w-2 h-2 rounded-full bg-accent" />
+              <span className="text-accent text-xs font-medium tracking-[0.2em] uppercase">
+                01 / System Architecture
+              </span>
+              <span className="h-px flex-1 bg-card-border" />
+            </div>
 
-      <div className="relative max-w-4xl mx-auto text-center">
-        <h1 className="text-5xl sm:text-6xl md:text-7xl font-light leading-tight tracking-tight mb-4">
-          Hi, I&apos;m Rich&eacute;!
-        </h1>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-foreground/80 mb-6">
-          VP of Product
-        </h2>
-        <h3 className="text-xl sm:text-2xl md:text-3xl font-medium text-foreground/90 mb-4">
-          Building AI-Native Data &amp; Intelligence Platforms
-        </h3>
-        <h4 className="text-lg sm:text-xl md:text-2xl font-light text-foreground/70 mb-10">
-          AI Context Layers Architect
-        </h4>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight mb-8">
+              VP Product | I build the{" "}
+              <span className="text-accent">context layer</span> that makes AI
+              actually remember.
+            </h1>
 
-        <div className="max-w-3xl mx-auto text-left space-y-4 text-foreground/80 text-base md:text-lg leading-relaxed mb-12">
-          <p>
-            I turn raw AI models into reliable, context-rich intelligence and decision engines
-            for product and GTM teams.
-          </p>
-          <p>
-            At Suzy I rewired a legacy survey company into an AI-native Decision
-            Intelligence Platform in six weeks. Earlier I co-founded Grandstage and shipped
-            a proprietary RAG + vector-search answer engine that delivered $0 CAC and
-            300% growth.
-          </p>
-          <p>
-            Models get smarter monthly. Context Layers = the new moat.
-          </p>
+            <p className="text-muted text-lg md:text-xl leading-relaxed max-w-2xl mb-12">
+              Engineering cognitive continuity for the next generation of
+              intelligent systems. Transforming raw data into persistent memory
+              architectures that scale.
+            </p>
+
+            {/* Stats */}
+            <div className="flex gap-12">
+              <div>
+                <div className="text-3xl md:text-4xl font-bold">10+</div>
+                <div className="text-xs text-muted tracking-[0.15em] uppercase mt-1">
+                  Years Experience
+                </div>
+              </div>
+              <div>
+                <div className="text-3xl md:text-4xl font-bold">200+</div>
+                <div className="text-xs text-muted tracking-[0.15em] uppercase mt-1">
+                  Products Launched
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right side - status card */}
+          <div className="hidden lg:block">
+            <div className="bg-card-bg border border-card-border rounded-xl p-1 overflow-hidden">
+              <div className="aspect-[4/5] bg-gradient-to-br from-card-border to-background rounded-lg flex items-center justify-center">
+                <div className="text-center p-6">
+                  <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-card-border/50 flex items-center justify-center">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-accent">
+                      <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                      <circle cx="12" cy="7" r="4" />
+                    </svg>
+                  </div>
+                  <div className="text-xs tracking-[0.2em] uppercase text-muted mb-1">
+                    Status
+                  </div>
+                  <div className="text-sm text-foreground/80">
+                    Currently building AI-native decision intelligence at scale.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-
-        {/* Inline navigation links */}
-        <div className="flex flex-wrap justify-center items-center gap-x-2 gap-y-2 mb-8 text-sm font-semibold tracking-widest uppercase">
-          <a href="#about" className="text-accent hover:text-accent-hover transition-colors">
-            More About Me
-          </a>
-          <span className="text-muted">|</span>
-          <a href="#skills" className="text-accent hover:text-accent-hover transition-colors">
-            My Skills
-          </a>
-          <span className="text-muted">|</span>
-          <a href="#portfolio" className="text-accent hover:text-accent-hover transition-colors">
-            Portfolio
-          </a>
-          <span className="text-muted">|</span>
-          <a href="#side-projects" className="text-accent hover:text-accent-hover transition-colors">
-            Side Projects
-          </a>
-        </div>
-
-        <a
-          href="#contact"
-          className="inline-flex items-center justify-center px-10 py-3 rounded-full bg-foreground text-background font-medium hover:bg-foreground/80 transition-colors text-base"
-        >
-          Contact me
-        </a>
       </div>
     </section>
   );
