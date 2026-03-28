@@ -5,7 +5,7 @@
   --foreground: #f0f0f0;
   --accent: #00e0c0;
   --accent-hover: #00c8a8;
-  --muted: #888888;
+  --muted: #999999;
   --card-bg: #141414;
   --card-border: #252525;
   --pink: #e040a0;
@@ -36,4 +36,32 @@ html {
 ::selection {
   background-color: var(--accent);
   color: #0a0a0a;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.card-hover {
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.card-hover:hover {
+  border-color: rgba(0, 224, 192, 0.3);
+  transform: translateY(-2px);
 }

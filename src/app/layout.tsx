@@ -1,17 +1,15 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { metaContent } from "@/content/meta";
 
 export const metadata: Metadata = {
-  title:
-    "Riché Zamor | VP of Product — Building AI-Native Intelligence Platforms",
-  description:
-    "Riché Zamor is a VP of Product who builds AI-native data & intelligence platforms. Specializing in Context Layers, RAG systems, and decision intelligence.",
+  title: metaContent.title,
+  description: metaContent.description,
   openGraph: {
-    title: "Riché Zamor | VP of Product",
-    description:
-      "Building AI-Native Intelligence Platforms. Context Layers Architect.",
+    title: metaContent.ogTitle,
+    description: metaContent.ogDescription,
     type: "website",
-    url: "https://richezamor.com",
+    url: metaContent.siteUrl,
   },
 };
 
@@ -23,6 +21,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="antialiased">
       <body className="min-h-screen bg-background text-foreground">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(metaContent.jsonLd),
+          }}
+        />
         {children}
       </body>
     </html>
