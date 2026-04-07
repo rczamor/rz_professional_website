@@ -2862,7 +2862,7 @@ footer {
 .testimonials {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 120px clamp(24px, 5vw, 80px);
+  padding: 40px clamp(24px, 5vw, 80px) 120px;
 }
 .carousel {
   position: relative;
