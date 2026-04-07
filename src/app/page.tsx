@@ -42,7 +42,7 @@ export default function Home() {
     description:
       "Building AI products that turn raw data into decision-ready context.",
     sameAs: [
-      "https://linkedin.com/in/richezamor",
+      "https://linkedin.com/in/richezamorjr",
       "https://twitter.com/richezamor",
       "https://github.com/rczamor",
     ],
@@ -74,6 +74,9 @@ export default function Home() {
               I transform how organizations use data, intelligence, and AI to
               make decisions. The architecture most teams skip — turning raw data
               into decision-ready <dfn title="The practice of designing informational environments for AI systems">context</dfn> — is the problem I keep solving.
+            </p>
+            <p className="hero-plain">
+              In plain English: I help companies make their AI products smarter by organizing information better.
             </p>
 
             <div className="hero-stats">
