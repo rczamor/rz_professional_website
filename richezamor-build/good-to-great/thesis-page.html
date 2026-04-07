@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="night">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Is Not Context — Riché Zamor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+/* ===== THEME VARIABLES ===== */
+:root {
+  --bg-primary:#050508;--bg-secondary:#0a0a0f;--bg-card:#0f0f16;--bg-card-hover:#141420;
+  --border-subtle:rgba(255,255,255,.06);--border-hover:rgba(255,255,255,.12);
+  --text-primary:#f0f0f5;--text-secondary:rgba(240,240,245,.6);--text-tertiary:rgba(240,240,245,.35);
+  --accent:#7B7FE4;--accent-dim:rgba(123,127,228,.15);--accent-glow:rgba(123,127,228,.08);
+  --accent-secondary:#7c5cfc;--accent-secondary-dim:rgba(124,92,252,.12);
+  --font-heading:'Bricolage Grotesque',-apple-system,BlinkMacSystemFont,sans-serif;
+  --font-sans:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+}
+html[data-theme="day"] {
+  --bg-primary:#f8f8fa;--bg-secondary:#f0f0f4;--bg-card:#ffffff;--bg-card-hover:#f2f2f5;
+  --border-subtle:rgba(0,0,0,.07);--border-hover:rgba(0,0,0,.14);
+  --text-primary:#0c0c14;--text-secondary:rgba(12,12,20,.55);--text-tertiary:rgba(12,12,20,.28);
+  --accent:#6366B8;--accent-dim:rgba(99,102,184,.07);--accent-glow:rgba(99,102,184,.04);
+  --accent-secondary:#6c5ce7;--accent-secondary-dim:rgba(108,92,231,.08);
+}
+html[data-theme="dawn"] {
+  --bg-primary:#f5f0ea;--bg-secondary:#ede7df;--bg-card:#fdfaf6;--bg-card-hover:#f0ebe3;
+  --border-subtle:rgba(120,80,40,.08);--border-hover:rgba(120,80,40,.15);
+  --text-primary:#1a1410;--text-secondary:rgba(26,20,16,.55);--text-tertiary:rgba(26,20,16,.3);
+  --accent:#c47a28;--accent-dim:rgba(196,122,40,.08);--accent-glow:rgba(196,122,40,.04);
+  --accent-secondary:#d4792a;--accent-secondary-dim:rgba(212,121,42,.08);
+}
+html[data-theme="dusk"] {
+  --bg-primary:#12101a;--bg-secondary:#1a1726;--bg-card:#1a1726;--bg-card-hover:#201d2e;
+  --border-subtle:rgba(180,160,220,.08);--border-hover:rgba(180,160,220,.15);
+  --text-primary:#ddd8e8;--text-secondary:rgba(221,216,232,.55);--text-tertiary:rgba(221,216,232,.3);
+  --accent:#b07cc8;--accent-dim:rgba(176,124,200,.1);--accent-glow:rgba(176,124,200,.05);
+  --accent-secondary:#d07ce0;--accent-secondary-dim:rgba(208,124,224,.1);
+}
+
+body {
+  font-family:var(--font-sans);
+  background:var(--bg-primary);
+  color:var(--text-primary);
+  transition: background 1.2s cubic-bezier(0.4, 0, 0.2, 1), color 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.container { max-width:800px; margin:0 auto; padding:0 clamp(24px, 5vw, 80px); }
+.container-wide { max-width:1200px; margin:0 auto; padding:0 clamp(24px, 5vw, 80px); }
+
+/* Theme toggle */
+.demo-toggle {
+  position:fixed;top:16px;right:16px;z-index:100;
+  padding:8px 16px;border-radius:8px;border:1px solid var(--border-subtle);
+  background:var(--bg-card);color:var(--text-secondary);font-family:var(--font-mono);
+  font-size:11px;cursor:pointer;letter-spacing:1px;text-transform:uppercase;
+}
+.demo-toggle:hover{border-color:var(--border-hover);color:var(--text-primary)}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== HERO ===== */
+.thesis-hero {
+  padding: 160px 0 80px;
+  text-align: center;
+  position: relative;
+}
+
+.thesis-hero-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+
+.thesis-hero h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(40px, 6vw, 64px);
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  line-height: 1.05;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+}
+
+.thesis-hero-subtitle {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ===== SECTION DIVIDERS ===== */
+.section-divider {
+  width: 48px;
+  height: 1px;
+  background: var(--border-hover);
+  margin: 80px auto;
+}
+
+/* ===== PROSE SECTIONS ===== */
+.thesis-section {
+  padding: 0 0 20px;
+}
+
+.thesis-section h2 {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  color: var(--text-primary);
+  margin-bottom: 28px;
+}
+
+.thesis-section p {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
+.thesis-section p em {
+  color: var(--text-primary);
+  font-style: italic;
+}
+
+.thesis-section p strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* ===== FIVE STEPS — FULL ANIMATED SECTION ===== */
+.steps-section {
+  padding: 80px 0;
+}
+
+.steps-intro h2 {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.steps-intro p {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 48px;
+}
+
+/* Animated step cards */
+.steps-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.step-card {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 24px;
+  padding: 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+}
+
+.step-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--accent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.step-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-hover);
+  transform: translateX(4px);
+}
+.step-card:hover::before { opacity: 1; }
+
+.step-card-num {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-dim);
+  flex-shrink: 0;
+  transition: all 0.35s;
+}
+
+.step-card:hover .step-card-num {
+  background: var(--accent);
+  color: #ffffff;
+  box-shadow: 0 0 24px var(--accent-dim);
+}
+
+.step-card-content h3 {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.step-card-content p {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Scroll-triggered stagger animation */
+.step-card.reveal {
+  opacity: 0;
+  transform: translateY(24px) translateX(-8px);
+}
+.step-card.reveal.visible {
+  opacity: 1;
+  transform: translateY(0) translateX(0);
+}
+.step-card:nth-child(1) { transition-delay: 0s; }
+.step-card:nth-child(2) { transition-delay: 0.08s; }
+.step-card:nth-child(3) { transition-delay: 0.16s; }
+.step-card:nth-child(4) { transition-delay: 0.24s; }
+.step-card:nth-child(5) { transition-delay: 0.32s; }
+
+/* ===== CONVERGENCE CALLOUT ===== */
+.convergence-box {
+  margin: 48px 0 0;
+  padding: 40px;
+  background: var(--accent-dim);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  border-left: 3px solid var(--accent);
+}
+.convergence-box p {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin: 0;
+}
+.convergence-box p strong {
+  color: var(--text-primary);
+}
+
+/* ===== STAT CALLOUTS ===== */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 48px 0;
+}
+.stat-card {
+  padding: 28px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  text-align: center;
+}
+.stat-card-value {
+  font-family: var(--font-heading);
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-card-label {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: var(--text-tertiary);
+  line-height: 1.4;
+}
+
+/* ===== PROOF / WHAT I'VE BUILT ===== */
+.proof-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 40px 0;
+}
+
+.proof-card {
+  padding: 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  transition: all 0.3s;
+}
+.proof-card:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-card-hover);
+}
+
+.proof-card-company {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.proof-card p {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* ===== CTA BOX ===== */
+.cta-box {
+  position: relative;
+  background: #0a0a0f;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 24px;
+  padding: 80px 60px;
+  text-align: center;
+  margin: 80px 0;
+  overflow: hidden;
+}
+.cta-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-secondary), var(--accent));
+  opacity: 0.6;
+}
+.cta-box::after {
+  content: '';
+  position: absolute;
+  top: -80px; left: 50%;
+  transform: translateX(-50%);
+  width: 500px; height: 300px;
+  background: radial-gradient(ellipse at center, var(--accent-glow) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cta-box h2 {
+  font-family: var(--font-heading);
+  font-size: 32px;
+  font-weight: 800;
+  color: #f0f0f5;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+.cta-box p {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(240,240,245,.6);
+  max-width: 500px;
+  margin: 0 auto 32px;
+  position: relative;
+  z-index: 1;
+}
+.cta-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s;
+}
+.cta-btn.primary {
+  background: var(--accent);
+  color: #ffffff;
+}
+.cta-btn.primary:hover { filter: brightness(1.1); transform: translateY(-1px); }
+.cta-btn.secondary {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.15);
+  color: #f0f0f5;
+}
+.cta-btn.secondary:hover { border-color: rgba(255,255,255,.3); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .proof-grid { grid-template-columns: 1fr; }
+  .stat-row { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .thesis-hero { padding: 120px 0 60px; }
+  .thesis-section h2 { font-size: 24px; }
+  .step-card { grid-template-columns: 44px 1fr; gap: 16px; padding: 24px; }
+  .step-card-num { width: 44px; height: 44px; font-size: 15px; }
+  .cta-box { padding: 56px 32px; border-radius: 16px; }
+  .cta-buttons { flex-direction: column; align-items: center; }
+}
+</style>
+</head>
+<body>
+
+<button class="demo-toggle" onclick="toggleTheme()">Toggle Theme</button>
+
+<!-- ===== HERO ===== -->
+<div class="container">
+  <section class="thesis-hero">
+    <div class="thesis-hero-label">The Thesis</div>
+    <h1>Data Is Not Context.</h1>
+    <p class="thesis-hero-subtitle">The five-step process most AI systems skip — and why it determines whether your product is mediocre or exceptional.</p>
+  </section>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ===== SECTION 1: THE PROBLEM ===== -->
+<div class="container">
+  <section class="thesis-section reveal">
+    <h2>The Problem</h2>
+    <p>Most AI systems treat data and context as the same thing.</p>
+    <p>They chunk documents. Embed them. Store them in a vector database. Retrieve the top-k results at query time. Ship the output.</p>
+    <p><strong>This is not context. This is data retrieval with a similarity score.</strong></p>
+    <p>The result is predictable: hallucinations, irrelevant responses, context windows stuffed with noise, and products that feel impressive in a demo but collapse under real-world conditions. Research has consistently shown that LLM performance degrades non-uniformly as you add more context — even on simple tasks. Information positioned in the middle of the context window sees 20%+ accuracy drops. Most models fall below 50% accuracy well before they hit their advertised context limits.</p>
+    <p>More context is not better context. And most of what's being retrieved was never actually <em>context</em> to begin with.</p>
+  </section>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ===== SECTION 2: THE FIVE STEPS ===== -->
+<div class="container">
+  <section class="steps-section">
+    <div class="steps-intro reveal">
+      <h2>The Five Steps</h2>
+      <p>Context must be actively generated from data. Not retrieved. <strong>Generated.</strong></p>
+      <p>There are five steps to this process. Most AI systems skip four of them.</p>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step-card reveal">
+        <div class="step-card-num">01</div>
+        <div class="step-card-content">
+          <h3>Curation</h3>
+          <p>Not everything is worth processing. Intelligent filtering at the intake level determines whether downstream steps operate on signal or noise. What sources matter? What's fresh? What's relevant to the goals of this system? Curation is the decision about what enters the pipeline at all.</p>
+        </div>
+      </div>
+
+      <div class="step-card reveal">
+        <div class="step-card-num">02</div>
+        <div class="step-card-content">
+          <h3>Synthesis</h3>
+          <p>The active processing step — classifying inputs, extracting insights, combining information across sources, and producing understanding that no single document contained. It's the difference between storing an article and understanding what the article means in the context of everything else the system knows.</p>
+        </div>
+      </div>
+
+      <div class="step-card reveal">
+        <div class="step-card-num">03</div>
+        <div class="step-card-content">
+          <h3>Consolidation</h3>
+          <p>The periodic, background process of replaying accumulated knowledge to find cross-cutting patterns, merge redundant information, prune stale or contradicted facts, and extract higher-order insights. This is what the brain does during sleep — hippocampal replay at 5–20x compression, schema extraction, synaptic pruning.</p>
+        </div>
+      </div>
+
+      <div class="step-card reveal">
+        <div class="step-card-num">04</div>
+        <div class="step-card-content">
+          <h3>Prioritization</h3>
+          <p>Ranking information by goal-awareness. What does the system need to decide? What context is most relevant to that specific decision? Compression without goal-awareness is just making data smaller. Prioritization makes it actionable.</p>
+        </div>
+      </div>
+
+      <div class="step-card reveal">
+        <div class="step-card-num">05</div>
+        <div class="step-card-content">
+          <h3>Intelligent Storage</h3>
+          <p>Storing insights with priority-aware indexing so that high-value consolidated knowledge is rapidly retrievable while lower-priority information decays gracefully. The storage layer itself reflects the importance of what was learned, not just its recency or embedding similarity.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="convergence-box reveal">
+      <p>This isn't a theoretical framework. It's grounded in how intelligence works. <strong>The brain doesn't dump raw sensory data into working memory.</strong> It curates attention, synthesizes inputs into schemas, consolidates during sleep, prioritizes by relevance to current goals, and stores memories with varying strength based on their importance. The science — from cognitive psychology to information theory to decision science — converges on one principle: <strong>the bottleneck is never how much context you have. It's how well that context has been generated for the decision at hand.</strong></p>
+    </div>
+  </section>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ===== SECTION 3: LESS CONTEXT, BETTER DECISIONS ===== -->
+<div class="container">
+  <section class="thesis-section reveal">
+    <h2>Less Context, Better Decisions</h2>
+    <p>The AI industry's race toward larger context windows misunderstands the problem. The bottleneck is not how much context you can fit. It's how well that context has been selected and compressed for the decision at hand.</p>
+    <p><strong>Expert decision-makers don't process more information than novices. They process less — and they process the right things.</strong></p>
+    <p>Research on ecological rationality showed that simple heuristics using minimal cues match or outperform complex statistical models under real-world uncertainty. Expert cardiologists process fewer diagnostic dimensions than less experienced physicians. Fireground commanders used explicit option comparison less than 5% of the time — they recognized the pattern and acted.</p>
+  </section>
+
+  <div class="stat-row reveal">
+    <div class="stat-card">
+      <div class="stat-card-value">20%+</div>
+      <div class="stat-card-label">Accuracy drop for mid-window context in LLMs</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-value">30–60%</div>
+      <div class="stat-card-label">Effective context window vs. advertised maximum</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-value">65%</div>
+      <div class="stat-card-label">Enterprise AI failures from context drift or memory loss</div>
+    </div>
+  </div>
+
+  <section class="thesis-section reveal">
+    <p>The question is not "how do we fit more in?" It's <strong>"how do we build systems that know precisely what to leave out?"</strong></p>
+  </section>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ===== SECTION 4: CONTEXT ARCHITECTURE IS PRODUCT STRATEGY ===== -->
+<div class="container">
+  <section class="thesis-section reveal">
+    <h2>Context Architecture Is Product Strategy</h2>
+    <p>How you architect context determines your product's quality, defensibility, and unit economics. This is not a plumbing decision — it's the most consequential product strategy decision in any AI system.</p>
+    <p>Companies like Glean have built multi-billion dollar valuations on context layers, not model capability. No formal framework exists for measuring context quality pre-inference, modeling context ROI, or defining cost-per-decision metrics.</p>
+    <p><strong>The companies that figure this out will own the next era of AI products.</strong> The ones that don't will keep swapping models every quarter and wondering why their outputs haven't improved.</p>
+  </section>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ===== SECTION 5: WHAT I'VE BUILT ===== -->
+<div class="container">
+  <section class="thesis-section reveal">
+    <h2>What I've Built</h2>
+    <p>I'm not making this argument from the sidelines.</p>
+  </section>
+
+  <div class="proof-grid">
+    <div class="proof-card reveal">
+      <div class="proof-card-company">Suzy</div>
+      <p>Led the transformation from consumer survey platform to Decision Engine — an enterprise product that synthesizes fragmented marketing intelligence into decisions the organization can act on. The platform's three capabilities map directly to the five-step framework. Shipped in six weeks.</p>
+    </div>
+    <div class="proof-card reveal">
+      <div class="proof-card-company">Grandstage</div>
+      <p>Built a context system for market intelligence that fused 10,000+ data sources into synthesized, goal-ranked context. Scaled to 90 B2B companies in 3 months at $0 CAC — a hierarchical relevance model lifted retention from 50% to 80%.</p>
+    </div>
+    <div class="proof-card reveal">
+      <div class="proof-card-company">Helm Labs</div>
+      <p>Generated $3.25M in pipeline before the product launched by selling the vision of how data about 200 million Americans should be curated, prioritized, and presented to decision-makers. The pipeline was built on context architecture as a value proposition.</p>
+    </div>
+    <div class="proof-card reveal">
+      <div class="proof-card-company">IBM</div>
+      <p>Millions in revenue from personalized context systems — e-nurture streams, onboarding flows, and recommendation engines that answered one question: what does this specific customer need to see, right now, to make a decision?</p>
+    </div>
+  </div>
+
+  <section class="thesis-section reveal">
+    <p><strong>Right now,</strong> I'm building Sia — a personal knowledge system that demonstrates the exact five-step architecture I advocate for. It curates from dozens of sources, synthesizes at ingest time, runs consolidation agents every six hours, prioritizes by goal-awareness, and stores with intelligent indexing. Building it is the proof.</p>
+  </section>
+</div>
+
+<!-- ===== CTA BOX ===== -->
+<div class="container-wide">
+  <div class="cta-box reveal">
+    <h2>Want to go deeper?</h2>
+    <p>I write about context architecture, AI product strategy, and the lessons from building these systems. If you're working on this problem — as a founder, product leader, or engineer — I'd like to hear from you.</p>
+    <div class="cta-buttons">
+      <a href="https://linkedin.com/in/richezamorjr/" class="cta-btn primary">Follow me on LinkedIn <span class="material-symbols-outlined" style="font-size:18px">arrow_forward</span></a>
+      <a href="/contact" class="cta-btn secondary">Get in touch <span class="material-symbols-outlined" style="font-size:18px">arrow_forward</span></a>
+    </div>
+  </div>
+</div>
+
+<div style="height: 80px;"></div>
+
+<script>
+// Theme toggle
+const themes = ['night', 'dawn', 'day', 'dusk'];
+let idx = 0;
+function toggleTheme() {
+  idx = (idx + 1) % themes.length;
+  document.documentElement.setAttribute('data-theme', themes[idx]);
+}
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

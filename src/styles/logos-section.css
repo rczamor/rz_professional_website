@@ -1,0 +1,225 @@
+/* ===== LOGOS SECTION ===== */
+
+.validation {
+  padding: 80px 0;
+  text-align: center;
+}
+
+.validation-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 48px;
+}
+
+/* Logo filter: theme-aware monochrome treatment */
+.logo-grid {
+  --logo-filter: brightness(0) invert(1);
+  --logo-opacity: 0.4;
+  --logo-opacity-hover: 0.85;
+}
+
+html[data-theme="day"] .logo-grid,
+html[data-theme="dawn"] .logo-grid {
+  --logo-filter: brightness(0);
+  --logo-opacity: 0.35;
+  --logo-opacity-hover: 0.75;
+}
+
+/* Logo grid */
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.logo-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 36px 32px;
+  background: var(--bg-primary);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  min-height: 100px;
+}
+
+.logo-cell:hover {
+  background: var(--bg-card);
+}
+
+/* SVG logos inside cells */
+.logo-cell .logo-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 140px;
+  height: 44px;
+  filter: var(--logo-filter);
+  opacity: var(--logo-opacity);
+  transition: opacity 0.35s, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Force all SVGs to fit their container */
+.logo-cell .logo-wrap svg {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 140px;
+  max-height: 44px;
+  object-fit: contain;
+}
+
+/* Wide logos */
+.logo-cell .logo-wrap.w { width: 160px; height: 36px; }
+.logo-cell .logo-wrap.w svg { max-width: 160px; max-height: 36px; }
+
+/* Square / icon logos */
+.logo-cell .logo-wrap.sq { width: 90px; height: 90px; }
+.logo-cell .logo-wrap.sq svg,
+.logo-cell .logo-wrap.sq img { max-width: 90px; max-height: 90px; }
+
+/* Large square logos */
+.logo-cell .logo-wrap.sq-lg { width: 110px; height: 110px; }
+.logo-cell .logo-wrap.sq-lg svg,
+.logo-cell .logo-wrap.sq-lg img { max-width: 110px; max-height: 110px; }
+
+/* Extra-large square logos */
+.logo-cell .logo-wrap.sq-xl { width: 140px; height: 140px; }
+.logo-cell .logo-wrap.sq-xl svg,
+.logo-cell .logo-wrap.sq-xl img { max-width: 140px; max-height: 140px; }
+
+/* Full-width logos */
+.logo-cell .logo-wrap.full { width: 200px; height: 160px; }
+.logo-cell .logo-wrap.full svg,
+.logo-cell .logo-wrap.full img { max-width: 200px; max-height: 160px; }
+
+/* External image logos */
+.logo-cell .logo-wrap img {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain;
+}
+
+/* On hover, logos fade out to reveal overlay */
+.logo-cell:hover .logo-wrap {
+  opacity: 0;
+  transform: none;
+}
+
+/* Text-based logo fallbacks */
+.logo-text {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 32px;
+  letter-spacing: -0.5px;
+  color: var(--text-primary);
+  white-space: nowrap;
+  user-select: none;
+  filter: var(--logo-filter);
+  opacity: var(--logo-opacity);
+  transition: opacity 0.35s, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.logo-cell:hover .logo-text {
+  opacity: 0;
+  transform: none;
+}
+
+/* Hover overlay with company info */
+.logo-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-card);
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 2;
+  padding: 16px 12px;
+  text-align: center;
+}
+.logo-cell:hover .logo-overlay { opacity: 1; }
+
+.logo-overlay-name {
+  font-family: var(--heading);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: -0.2px;
+  color: var(--text-primary);
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+.logo-overlay-desc {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0.2px;
+  color: var(--text-secondary);
+  line-height: 1.35;
+}
+
+/* Accent glow on hover */
+.logo-cell::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, var(--accent-glow) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.35s;
+  pointer-events: none;
+  z-index: 1;
+}
+.logo-cell:hover::after { opacity: 1; }
+
+/* Statement cell — spans 2 columns at bottom right */
+.logo-cell.statement-cell {
+  grid-column: span 2;
+  padding: 32px 40px;
+  text-align: left;
+}
+.logo-cell.statement-cell:hover {
+  background: var(--bg-primary);
+}
+.logo-cell.statement-cell::after {
+  display: none;
+}
+.statement-text {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--text-tertiary);
+  line-height: 1.5;
+  letter-spacing: 0.1px;
+  margin: 0;
+}
+.statement-text span {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .logo-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 600px) {
+  .logo-grid { grid-template-columns: repeat(2, 1fr); }
+  .logo-cell { padding: 28px 20px; min-height: 80px; }
+  .logo-cell .logo-wrap { width: 100px; height: 32px; }
+  .logo-cell .logo-wrap svg { max-width: 100px; max-height: 32px; }
+  .logo-cell .logo-wrap.w { width: 120px; height: 28px; }
+  .logo-cell .logo-wrap.sq { width: 40px; height: 40px; }
+  .logo-cell .logo-wrap.sq-lg { width: 56px; height: 56px; }
+  .logo-cell .logo-wrap.sq-xl { width: 70px; height: 70px; }
+  .logo-cell .logo-wrap.full { width: 100px; height: 80px; }
+}

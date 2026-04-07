@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="night">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Projects and prototypes by Riché Zamor. Building in the open — context architecture tools, AI experiments, and more.">
+<meta property="og:title" content="Projects & Prototypes — Riché Zamor">
+<meta property="og:description" content="Building in the open — context architecture tools, AI experiments, and prototypes.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://richezamor.com/projects">
+<meta property="og:image" content="https://richezamor.com/og-image.png">
+<meta property="og:site_name" content="Riché Zamor">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@richezamor">
+<meta name="twitter:title" content="Projects & Prototypes — Riché Zamor">
+<meta name="twitter:description" content="Building in the open — context architecture tools and AI experiments.">
+<meta name="twitter:image" content="https://richezamor.com/og-image.png">
+<link rel="canonical" href="https://richezamor.com/projects">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%237B7FE4'/><text x='50' y='68' font-family='system-ui' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>R</text></svg>">
+<title>Projects & Prototypes — Riché Zamor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<style>
+/* ========== RESET & BASE ========== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg-primary: #050508;
+  --bg-secondary: #0a0a0f;
+  --bg-card: #0f0f16;
+  --bg-card-hover: #141420;
+  --border-subtle: rgba(255,255,255,0.06);
+  --border-hover: rgba(255,255,255,0.12);
+  --text-primary: #f0f0f5;
+  --text-secondary: rgba(240,240,245,0.6);
+  --text-tertiary: rgba(240,240,245,0.35);
+  --accent: #7B7FE4;
+  --accent-dim: rgba(123,127,228,0.15);
+  --accent-glow: rgba(123,127,228,0.08);
+  --accent-secondary: #7c5cfc;
+  --accent-secondary-dim: rgba(124,92,252,0.12);
+  --nav-bg: rgba(5,5,8,0.6);
+  --nav-bg-scroll: rgba(5,5,8,0.85);
+  --font-heading: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html[data-theme="day"] {
+  --bg-primary: #f8f8fa; --bg-secondary: #f0f0f4; --bg-card: #ffffff; --bg-card-hover: #f2f2f5;
+  --border-subtle: rgba(0,0,0,0.07); --border-hover: rgba(0,0,0,0.14);
+  --text-primary: #0c0c14; --text-secondary: rgba(12,12,20,0.55); --text-tertiary: rgba(12,12,20,0.28);
+  --accent: #6366B8; --accent-dim: rgba(99,102,184,0.07); --accent-glow: rgba(99,102,184,0.04);
+  --accent-secondary: #6c5ce7; --accent-secondary-dim: rgba(108,92,231,0.08);
+  --nav-bg: rgba(248,248,250,0.7); --nav-bg-scroll: rgba(248,248,250,0.92);
+}
+html[data-theme="dawn"] {
+  --bg-primary: #f5f0ea; --bg-secondary: #ede7df; --bg-card: #fdfaf6; --bg-card-hover: #f0ebe3;
+  --border-subtle: rgba(120,80,40,0.08); --border-hover: rgba(120,80,40,0.15);
+  --text-primary: #1a1410; --text-secondary: rgba(26,20,16,0.55); --text-tertiary: rgba(26,20,16,0.3);
+  --accent: #c47a28; --accent-dim: rgba(196,122,40,0.08); --accent-glow: rgba(196,122,40,0.04);
+  --accent-secondary: #d4792a; --accent-secondary-dim: rgba(212,121,42,0.08);
+  --nav-bg: rgba(245,240,234,0.7); --nav-bg-scroll: rgba(245,240,234,0.92);
+}
+html[data-theme="dusk"] {
+  --bg-primary: #12101a; --bg-secondary: #1a1726; --bg-card: #1a1726; --bg-card-hover: #201d2e;
+  --border-subtle: rgba(180,160,220,0.08); --border-hover: rgba(180,160,220,0.15);
+  --text-primary: #ddd8e8; --text-secondary: rgba(221,216,232,0.55); --text-tertiary: rgba(221,216,232,0.3);
+  --accent: #b07cc8; --accent-dim: rgba(176,124,200,0.1); --accent-glow: rgba(176,124,200,0.05);
+  --accent-secondary: #d07ce0; --accent-secondary-dim: rgba(208,124,224,0.1);
+  --nav-bg: rgba(18,16,26,0.7); --nav-bg-scroll: rgba(18,16,26,0.92);
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: var(--font-sans); background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; transition: background 1.2s cubic-bezier(0.4,0,0.2,1), color 1.2s cubic-bezier(0.4,0,0.2,1); }
+a { color: inherit; text-decoration: none; }
+h1, h2, h3 { font-family: var(--font-heading); }
+
+.ambient-bg { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.ambient-bg::before { content: ''; position: absolute; top: -30%; left: -10%; width: 60vw; height: 60vw; background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%); animation: ambientFloat 20s ease-in-out infinite; opacity: 0.4; }
+.ambient-bg::after { content: ''; position: absolute; bottom: -20%; right: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, var(--accent-secondary-dim) 0%, transparent 70%); animation: ambientFloat 25s ease-in-out infinite reverse; opacity: 0.35; }
+@keyframes ambientFloat { 0%, 100% { transform: translate(0, 0) scale(1); } 33% { transform: translate(5%, -8%) scale(1.1); } 66% { transform: translate(-3%, 5%) scale(0.95); } }
+
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 clamp(24px, 5vw, 80px); height: 72px; display: flex; align-items: center; justify-content: space-between; background: var(--nav-bg); backdrop-filter: blur(20px) saturate(1.2); -webkit-backdrop-filter: blur(20px) saturate(1.2); border-bottom: 1px solid var(--border-subtle); transition: background 0.3s; }
+nav.scrolled { background: var(--nav-bg-scroll); }
+.nav-logo { font-family: var(--font-heading); font-size: 15px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text-primary); }
+.nav-logo span { color: var(--accent); }
+.nav-right { display: flex; align-items: center; gap: 28px; }
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links a { font-size: 13px; font-weight: 500; color: var(--text-secondary); letter-spacing: 0.3px; transition: color 0.2s; position: relative; }
+.nav-links a:hover { color: var(--text-primary); }
+.nav-links a.active { color: var(--accent); }
+.nav-links a.active::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px; background: var(--accent); }
+.nav-cta { font-size: 13px !important; font-weight: 600 !important; color: #ffffff !important; background: var(--accent) !important; padding: 10px 24px; border: none; border-radius: 8px; transition: all 0.2s !important; }
+.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(123,127,228,0.3); }
+.theme-toggle { width: 36px; height: 36px; border-radius: 50%; background: var(--accent-dim); border: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; font-size: 16px; }
+.theme-toggle:hover { border-color: var(--border-hover); }
+.nav-social { display: flex; align-items: center; gap: 12px; }
+.nav-social a { display: flex; align-items: center; justify-content: center; color: var(--text-tertiary); transition: color 0.2s; }
+.nav-social a:hover { color: var(--text-primary); }
+.nav-social svg { width: 18px; height: 18px; fill: currentColor; }
+.theme-phase { font-family: var(--font-mono); font-size: 10px; font-weight: 500; color: var(--text-tertiary); letter-spacing: 0.5px; text-transform: uppercase; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 clamp(24px, 5vw, 80px); position: relative; z-index: 1; }
+section { padding: 120px 0; position: relative; }
+
+.hero { min-height: auto; display: flex; align-items: center; padding: 160px 0 80px; }
+.hero-content { max-width: 800px; }
+.hero h1 { font-size: clamp(48px, 6vw, 72px); font-weight: 800; line-height: 1.05; letter-spacing: -2px; margin-bottom: 28px; opacity: 0; animation: fadeUp 0.6s 0.35s forwards; }
+.hero-description { font-size: 18px; line-height: 1.7; color: var(--text-secondary); max-width: 640px; margin-bottom: 44px; opacity: 0; animation: fadeUp 0.6s 0.5s forwards; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+.section-label { font-family: var(--font-mono); font-size: 12px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+
+.projects-section { border-top: 1px solid var(--border-subtle); }
+.projects-intro { max-width: 700px; margin-bottom: 64px; }
+.projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.projects-grid.featured { margin-bottom: 40px; }
+
+.project-card.featured { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; padding: 48px; background: var(--bg-card); border: 2px solid var(--accent); border-radius: 16px; transition: all 0.3s; position: relative; overflow: hidden; }
+.project-card.featured::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); }
+.project-card.featured:hover { background: var(--bg-card-hover); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(123,127,228,0.2); }
+.featured-visual { display: flex; align-items: center; justify-content: center; height: 320px; background: linear-gradient(135deg, var(--accent-dim), var(--accent-secondary-dim)); border-radius: 12px; font-size: 64px; }
+.project-card.featured h3 { font-size: 32px; font-weight: 800; letter-spacing: -1px; margin-bottom: 12px; }
+.project-card.featured .project-status { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; background: var(--accent-dim); border: 1px solid var(--accent); border-radius: 6px; font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+.project-card.featured .project-status::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.project-card.featured p { font-size: 16px; line-height: 1.8; color: var(--text-secondary); margin-bottom: 24px; }
+.featured-link { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600; color: var(--accent); transition: gap 0.2s; }
+.featured-link:hover { gap: 14px; }
+
+.project-card { padding: 32px; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 16px; transition: all 0.3s; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+.project-card::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, var(--accent), var(--accent-secondary)); opacity: 0; transition: opacity 0.3s; }
+.project-card:hover { border-color: var(--border-hover); background: var(--bg-card-hover); transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.12); }
+.project-card:hover::before { opacity: 1; }
+.project-card h3 { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 12px; }
+.project-status { display: inline-flex; align-items: center; gap: 6px; width: fit-content; padding: 6px 12px; background: var(--accent-dim); border: 1px solid rgba(123,127,228,0.3); border-radius: 6px; font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+.project-status::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+.project-status.prototype { background: var(--accent-secondary-dim); border-color: rgba(124,92,252,0.3); color: var(--accent-secondary); }
+.project-status.prototype::before { background: var(--accent-secondary); }
+.project-description { font-size: 15px; line-height: 1.7; color: var(--text-secondary); margin-bottom: 20px; flex-grow: 1; }
+.project-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--accent); transition: gap 0.2s; }
+.project-link:hover { gap: 10px; }
+.project-link.external::after { content: '↗'; font-size: 14px; }
+
+.cta-section { text-align: center; }
+.cta-box { background: #0a0a0f; border: 1px solid rgba(255,255,255,0.08); border-radius: 24px; padding: 80px 60px; position: relative; overflow: hidden; }
+.cta-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #7B7FE4, #7c5cfc); }
+.cta-box::after { content: ''; position: absolute; top: 0; right: 0; width: 400px; height: 400px; background: radial-gradient(circle, rgba(123,127,228,0.1) 0%, transparent 70%); pointer-events: none; }
+.cta-section h2 { font-size: 28px; font-weight: 700; margin-bottom: 28px; color: var(--text-primary); position: relative; z-index: 1; }
+.cta-section p { font-size: 16px; color: var(--text-primary); margin-bottom: 32px; max-width: 600px; margin-left: auto; margin-right: auto; position: relative; z-index: 1; }
+.cta-link { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600; color: var(--accent); transition: gap 0.2s; position: relative; z-index: 1; }
+.cta-link:hover { gap: 14px; }
+
+footer { border-top: 1px solid var(--border-subtle); padding: 64px 0; background: var(--bg-secondary); }
+.footer-content { display: flex; justify-content: space-between; align-items: center; }
+.footer-brand { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--text-tertiary); }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { font-size: 13px; color: var(--text-tertiary); transition: color 0.2s; }
+.footer-links a:hover { color: var(--text-secondary); }
+
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 1024px) { .project-card.featured { grid-template-columns: 1fr; gap: 32px; } .featured-visual { order: -1; } }
+@media (max-width: 768px) { .projects-grid { grid-template-columns: 1fr; } .project-card.featured { padding: 32px; } .project-card.featured h3 { font-size: 24px; } .nav-links { display: none; } .theme-phase { display: none; } section { padding: 80px 0; } .footer-content { flex-direction: column; gap: 32px; text-align: center; } }
+
+/* ===== CHATBOT WIDGET STYLES ===== */
+.chatbot-widget {
+  --chatbot-accent: var(--accent, #7B7FE4);
+  --chatbot-accent-dim: var(--accent-dim, rgba(123,127,228,0.15));
+  --chatbot-accent-glow: var(--accent-glow, rgba(123,127,228,0.08));
+  --chatbot-bg-dark: #0a0a0f;
+  --chatbot-bg-card: #0f0f16;
+  --chatbot-text-primary: #f0f0f5;
+  --chatbot-text-secondary: rgba(240,240,245,0.6);
+  --chatbot-text-tertiary: rgba(240,240,245,0.35);
+  --chatbot-border: rgba(255,255,255,0.08);
+  --chatbot-font-heading: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, sans-serif;
+  --chatbot-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --chatbot-font-mono: 'JetBrains Mono', monospace;
+}
+
+.chatbot-widget * {
+  box-sizing: border-box;
+}
+
+/* Floating Button */
+.chatbot-button {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--chatbot-accent);
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  box-shadow: 0 0 20px var(--chatbot-accent-glow), 0 4px 12px rgba(0,0,0,0.3);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  font-size: 24px;
+  animation: chatbot-pulse 3s ease-in-out infinite;
+}
+
+.chatbot-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 30px var(--chatbot-accent-glow), 0 6px 20px rgba(0,0,0,0.4);
+}
+
+.chatbot-button:active {
+  transform: scale(0.95);
+}
+
+@keyframes chatbot-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px var(--chatbot-accent-glow), 0 4px 12px rgba(0,0,0,0.3);
+  }
+  50% {
+    box-shadow: 0 0 35px var(--chatbot-accent-glow), 0 4px 12px rgba(0,0,0,0.3);
+  }
+}
+
+/* Chat Panel */
+.chatbot-panel {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 400px;
+  height: 600px;
+  max-height: 80vh;
+  background: var(--chatbot-bg-dark);
+  border: 1px solid var(--chatbot-border);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  z-index: 999;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.chatbot-panel.open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+/* Panel Header */
+.chatbot-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--chatbot-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(180deg, rgba(123,127,228,0.08) 0%, transparent 100%);
+  border-radius: 20px 20px 0 0;
+  position: relative;
+  z-index: 10;
+}
+
+.chatbot-title {
+  font-family: var(--chatbot-font-heading);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--chatbot-text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chatbot-beta-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 6px;
+  background: var(--chatbot-accent-dim);
+  color: var(--chatbot-accent);
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.chatbot-close {
+  background: none;
+  border: none;
+  color: var(--chatbot-text-secondary);
+  cursor: pointer;
+  font-size: 20px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.chatbot-close:hover {
+  color: var(--chatbot-text-primary);
+}
+
+/* Messages Container */
+.chatbot-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  scroll-behavior: smooth;
+}
+
+.chatbot-messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chatbot-messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chatbot-messages::-webkit-scrollbar-thumb {
+  background: var(--chatbot-border);
+  border-radius: 3px;
+}
+
+.chatbot-messages::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+/* Message Bubble */
+.chatbot-message {
+  display: flex;
+  gap: 8px;
+  animation: chatbot-fade-in 0.3s ease-out;
+}
+
+@keyframes chatbot-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chatbot-message.user {
+  justify-content: flex-end;
+}
+
+.chatbot-message.bot {
+  justify-content: flex-start;
+}
+
+.chatbot-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--chatbot-accent-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--chatbot-accent);
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.chatbot-bubble {
+  max-width: 75%;
+  padding: 12px 16px;
+  border-radius: 16px;
+  font-family: var(--chatbot-font-sans);
+  font-size: 14px;
+  line-height: 1.4;
+  word-wrap: break-word;
+}
+
+.chatbot-message.user .chatbot-bubble {
+  background: var(--chatbot-accent);
+  color: white;
+  border-radius: 16px 16px 4px 16px;
+}
+
+.chatbot-message.bot .chatbot-bubble {
+  background: var(--chatbot-bg-card);
+  color: var(--chatbot-text-primary);
+  border-radius: 16px 16px 16px 4px;
+}
+
+/* Typing Indicator */
+.chatbot-typing {
+  display: flex;
+  gap: 4px;
+  padding: 12px 16px;
+  background: var(--chatbot-bg-card);
+  border-radius: 16px 16px 16px 4px;
+  width: fit-content;
+}
+
+.chatbot-typing-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--chatbot-text-secondary);
+  animation: chatbot-typing 1.4s infinite;
+}
+
+.chatbot-typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.chatbot-typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes chatbot-typing {
+  0%, 60%, 100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-8px);
+  }
+}
+
+/* Source Citations */
+.chatbot-sources {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  font-size: 12px;
+}
+
+.chatbot-source-button {
+  background: none;
+  border: none;
+  color: var(--chatbot-text-tertiary);
+  cursor: pointer;
+  font-family: var(--chatbot-font-mono);
+  padding: 0;
+  text-align: left;
+  transition: color 0.2s;
+  width: 100%;
+  text-decoration: underline;
+  text-decoration-color: rgba(255,255,255,0.1);
+}
+
+.chatbot-source-button:hover {
+  color: var(--chatbot-text-secondary);
+  text-decoration-color: rgba(255,255,255,0.3);
+}
+
+.chatbot-source-expanded {
+  margin-top: 4px;
+  padding: 8px;
+  background: rgba(123,127,228,0.06);
+  border-left: 2px solid var(--chatbot-accent);
+  border-radius: 4px;
+  font-family: var(--chatbot-font-mono);
+  font-size: 11px;
+  color: var(--chatbot-text-secondary);
+}
+
+/* Welcome State */
+.chatbot-welcome {
+  text-align: center;
+  color: var(--chatbot-text-secondary);
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.chatbot-suggestions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.chatbot-suggestion {
+  background: var(--chatbot-bg-card);
+  border: 1px solid var(--chatbot-border);
+  color: var(--chatbot-text-primary);
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: var(--chatbot-font-sans);
+  text-align: left;
+}
+
+.chatbot-suggestion:hover {
+  background: var(--chatbot-accent-dim);
+  border-color: var(--chatbot-accent);
+  color: var(--chatbot-accent);
+}
+
+.chatbot-suggestion:active {
+  transform: scale(0.98);
+}
+
+/* Input Area */
+.chatbot-input-area {
+  padding: 12px;
+  border-top: 1px solid var(--chatbot-border);
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.chatbot-input-field {
+  flex: 1;
+  background: var(--chatbot-bg-card);
+  border: none;
+  color: var(--chatbot-text-primary);
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-family: var(--chatbot-font-sans);
+  font-size: 14px;
+  resize: none;
+  max-height: 100px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.chatbot-input-field::placeholder {
+  color: var(--chatbot-text-tertiary);
+}
+
+.chatbot-input-field:focus {
+  outline: none;
+  background: var(--chatbot-bg-card);
+  box-shadow: inset 0 0 0 1px var(--chatbot-accent);
+}
+
+.chatbot-send-btn {
+  background: var(--chatbot-accent);
+  border: none;
+  color: white;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.chatbot-send-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(123,127,228,0.3);
+}
+
+.chatbot-send-btn:active {
+  transform: scale(0.95);
+}
+
+.chatbot-send-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Notify CTA */
+.chatbot-notify-section {
+  margin-top: 12px;
+  padding: 12px;
+  background: var(--chatbot-accent-dim);
+  border-radius: 8px;
+  display: flex;
+  gap: 8px;
+}
+
+.chatbot-notify-input {
+  flex: 1;
+  background: var(--chatbot-bg-card);
+  border: none;
+  color: var(--chatbot-text-primary);
+  padding: 8px 10px;
+  border-radius: 4px;
+  font-family: var(--chatbot-font-sans);
+  font-size: 12px;
+}
+
+.chatbot-notify-input::placeholder {
+  color: var(--chatbot-text-tertiary);
+}
+
+.chatbot-notify-input:focus {
+  outline: none;
+  background: var(--chatbot-bg-card);
+  box-shadow: inset 0 0 0 1px var(--chatbot-accent);
+}
+
+.chatbot-notify-btn {
+  background: var(--chatbot-accent);
+  border: none;
+  color: white;
+  padding: 8px 10px;
+  border-radius: 4px;
+  font-family: var(--chatbot-font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.chatbot-notify-btn:hover {
+  transform: scale(1.05);
+}
+
+.chatbot-notify-btn:active {
+  transform: scale(0.95);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .chatbot-panel {
+    width: calc(100vw - 32px);
+    height: calc(100vh - 100px);
+    bottom: 16px;
+    right: 16px;
+  }
+
+  .chatbot-bubble {
+    max-width: 85%;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="ambient-bg"></div>
+
+<nav>
+  <div class="nav-logo">Riché<span>.</span>Zamor</div>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/thesis">Thesis</a>
+      <a href="/work">Work</a>
+      <a href="/about">About</a>
+      <a href="/projects" class="active">Projects</a>
+      <a href="/thinking">Thinking</a>
+    </div>
+    <div class="nav-social">
+      <a href="https://linkedin.com/in/richezamorjr/" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+      <a href="https://x.com/richezamor" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="https://github.com/rczamor" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+    </div>
+    <span class="theme-phase" id="phase-label">night</span>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">🌙</button>
+    <a href="/contact" class="nav-cta">Get in Touch</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <h1>Side Projects & Prototypes</h1>
+      <p class="hero-description">Things I build to learn, test ideas, and scratch itches.</p>
+    </div>
+  </div>
+</section>
+
+<section class="projects-section">
+  <div class="container">
+    <div class="projects-intro reveal">
+      <div class="section-label">Featured Project</div>
+    </div>
+
+    <div class="projects-grid featured">
+      <div class="project-card featured reveal">
+        <div>
+          <h3>Sia</h3>
+          <div class="project-status">In Development</div>
+          <p>A personal knowledge system demonstrating the five-step context generation architecture I advocate for. Curates from Feedly and other sources, synthesizes at ingest time, runs consolidation agents every six hours, prioritizes by goal-awareness, and stores with intelligent indexing. Built with FastAPI, Neon Postgres + pgvector, Ollama, and Langfuse. This is the proof of the thesis.</p>
+          <a href="#" class="featured-link">Learn more <span>→</span></a>
+        </div>
+        <div class="featured-visual">🧠</div>
+      </div>
+    </div>
+
+    <div class="projects-intro reveal">
+      <div class="section-label">Other Projects</div>
+    </div>
+
+    <div class="projects-grid reveal">
+      <div class="project-card">
+        <h3>Ascend</h3>
+        <div class="project-status">Live</div>
+        <p class="project-description">A career growth SaaS product built entirely with AI coding tools. No hand-written code. Total cost: &lt;$500 vs. ~$200K per product in the Grandstage era.</p>
+        <a href="https://ascend.careers" target="_blank" class="project-link external">ascend.careers</a>
+      </div>
+      <div class="project-card">
+        <h3>Blocade</h3>
+        <div class="project-status">Live</div>
+        <p class="project-description">A political fundraising system for local campaigns. Streamlined tools for grassroots campaign finance and donor management.</p>
+        <a href="https://blocade.app" target="_blank" class="project-link external">blocade.app</a>
+      </div>
+      <div class="project-card">
+        <h3>AI Topic Trend Analyzer</h3>
+        <div class="project-status prototype">Prototype</div>
+        <p class="project-description">Analyzes trending topics and patterns in AI discourse. Real-time tracking of emerging themes, terminology, and community focus areas.</p>
+        <a href="https://ai-topic-analyzer.replit.app" target="_blank" class="project-link external">View Prototype</a>
+      </div>
+      <div class="project-card">
+        <h3>Hubspot AI Dashboard</h3>
+        <div class="project-status prototype">Prototype</div>
+        <p class="project-description">AI-powered onboarding and analytics dashboard for HubSpot. Demonstrates intelligent context generation for customer success.</p>
+        <a href="https://hubspot-ai-onboarding.replit.app" target="_blank" class="project-link external">View Prototype</a>
+      </div>
+      <div class="project-card">
+        <h3>AI Onboarding Assistant</h3>
+        <div class="project-status prototype">Prototype</div>
+        <p class="project-description">Intelligent onboarding system that adapts to user context and behavior. Demonstrates personalized context generation at scale.</p>
+      </div>
+      <div class="project-card">
+        <h3>Ploppy</h3>
+        <div class="project-status">Project</div>
+        <p class="project-description">Analyze NYC political contribution data. Tools for understanding political finance patterns and contributor networks in New York City.</p>
+      </div>
+      <div class="project-card">
+        <h3>Recipe Remix</h3>
+        <div class="project-status">Live</div>
+        <p class="project-description">Because sometimes you just want to build something fun. A creative cooking tool that remixes and reimagines recipes.</p>
+        <a href="https://recipe-remix.app" target="_blank" class="project-link external">recipe-remix.app</a>
+      </div>
+    </div>
+
+    <div class="cta-section reveal" style="margin-top: 80px; padding-top: 80px;">
+      <div class="cta-box">
+        <h2>Explore the code</h2>
+        <p>Many of these projects are open-source or available on my GitHub. Check out the latest work, fork experiments, or contribute.</p>
+        <a href="https://github.com/rczamor" target="_blank" class="cta-link">View my GitHub <span>→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-brand">© Riché Zamor 2026</div>
+      <div class="footer-links">
+        <a href="https://linkedin.com/in/richezamorjr/" target="_blank">LinkedIn</a>
+        <a href="https://x.com/richezamor" target="_blank">X</a>
+        <a href="https://github.com/rczamor" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="chatbot-widget">
+  <!-- Floating Button -->
+  <button class="chatbot-button" aria-label="Open chat" title="Chat with Riché">
+    <span class="material-symbols-outlined">smart_toy</span>
+  </button>
+
+  <!-- Chat Panel -->
+  <div class="chatbot-panel">
+    <!-- Header -->
+    <div class="chatbot-header">
+      <div class="chatbot-title">
+        Context Layer Engine
+        <span class="chatbot-beta-badge">beta</span>
+      </div>
+      <button class="chatbot-close" aria-label="Close chat">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+
+    <!-- Messages -->
+    <div class="chatbot-messages"></div>
+
+    <!-- Input -->
+    <div class="chatbot-input-area">
+      <input
+        type="text"
+        class="chatbot-input-field"
+        placeholder="Ask me anything..."
+        aria-label="Message input"
+      />
+      <button class="chatbot-send-btn" aria-label="Send message">
+        <span class="material-symbols-outlined">send</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+const themes = ['night','dawn','day','dusk'];
+const icons = { night: '🌙', dawn: '🌅', day: '☀️', dusk: '🌆' };
+function getAutoTheme() { const h = new Date().getHours(), m = new Date().getMinutes(), t = h + m / 60; if (t >= 5.5 && t < 8) return 'dawn'; if (t >= 8 && t < 17) return 'day'; if (t >= 17 && t < 20) return 'dusk'; return 'night'; }
+let userOverride = null;
+function applyTheme(theme) { document.documentElement.setAttribute('data-theme', theme); document.getElementById('theme-toggle').textContent = icons[theme]; document.getElementById('phase-label').textContent = theme; }
+function autoUpdate() { if (!userOverride) applyTheme(getAutoTheme()); }
+autoUpdate(); setInterval(autoUpdate, 60000);
+document.getElementById('theme-toggle').addEventListener('click', () => { if (!userOverride) { const c = getAutoTheme(); const i = themes.indexOf(c); userOverride = themes[(i + 1) % themes.length]; } else { const i = themes.indexOf(userOverride); const n = (i + 1) % themes.length; if (themes[n] === getAutoTheme()) { userOverride = null; applyTheme(getAutoTheme()); return; } userOverride = themes[n]; } applyTheme(userOverride); });
+const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+window.addEventListener('scroll', () => { document.querySelector('nav').classList.toggle('scrolled', scrollY > 80); }, { passive: true });
+
+/* ===== CHATBOT WIDGET ENGINE ===== */
+(function() {
+  const widget = document.querySelector('.chatbot-widget');
+  const button = document.querySelector('.chatbot-button');
+  const panel = document.querySelector('.chatbot-panel');
+  const messagesContainer = document.querySelector('.chatbot-messages');
+  const inputField = document.querySelector('.chatbot-input-field');
+  const sendBtn = document.querySelector('.chatbot-send-btn');
+  const closeBtn = document.querySelector('.chatbot-close');
+
+  // State
+  let messages = [];
+  let isFirstMessage = true;
+
+  // Toggle panel
+  function togglePanel() {
+    panel.classList.toggle('open');
+    if (panel.classList.contains('open')) {
+      inputField.focus();
+    }
+  }
+
+  // Add event listeners
+  button.addEventListener('click', togglePanel);
+  closeBtn.addEventListener('click', () => panel.classList.remove('open'));
+
+  // Close on escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && panel.classList.contains('open')) {
+      panel.classList.remove('open');
+    }
+  });
+
+  // Close on outside click
+  document.addEventListener('click', (e) => {
+    if (!widget.contains(e.target) && panel.classList.contains('open')) {
+      panel.classList.remove('open');
+    }
+  });
+
+  // Render welcome message on first open
+  function renderWelcome() {
+    if (isFirstMessage) {
+      const welcomeMsg = document.createElement('div');
+      welcomeMsg.className = 'chatbot-message bot';
+      welcomeMsg.innerHTML = `
+        <div class="chatbot-avatar">
+          <span class="material-symbols-outlined">psychology</span>
+        </div>
+        <div style="flex: 1;">
+          <div class="chatbot-bubble">
+            Hi! I'm Riché's Context Layer Engine — an AI grounded in his knowledge base, writing, and frameworks. Ask me about context architecture, AI product strategy, or Riché's work.
+          </div>
+          <div class="chatbot-suggestions">
+            <button class="chatbot-suggestion">What is context architecture?</button>
+            <button class="chatbot-suggestion">Tell me about the thesis</button>
+            <button class="chatbot-suggestion">What's Riché's background?</button>
+          </div>
+        </div>
+      `;
+      messagesContainer.appendChild(welcomeMsg);
+
+      // Suggestion handlers
+      welcomeMsg.querySelectorAll('.chatbot-suggestion').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          sendMessage(btn.textContent.trim());
+        });
+      });
+
+      isFirstMessage = false;
+      scrollToBottom();
+    }
+  }
+
+  // Send message
+  function sendMessage(text) {
+    if (!text.trim()) return;
+
+    // Render welcome if first message
+    if (isFirstMessage) {
+      renderWelcome();
+    }
+
+    // Add user message
+    const userMsg = document.createElement('div');
+    userMsg.className = 'chatbot-message user';
+    userMsg.innerHTML = `
+      <div class="chatbot-bubble">${escapeHtml(text)}</div>
+    `;
+    messagesContainer.appendChild(userMsg);
+    messages.push({ role: 'user', content: text });
+
+    // Clear input
+    inputField.value = '';
+    inputField.style.height = 'auto';
+    scrollToBottom();
+
+    // Disable send while processing
+    sendBtn.disabled = true;
+    inputField.disabled = true;
+
+    // Show typing indicator
+    const typingMsg = document.createElement('div');
+    typingMsg.className = 'chatbot-message bot';
+    typingMsg.innerHTML = `
+      <div class="chatbot-avatar">
+        <span class="material-symbols-outlined">psychology</span>
+      </div>
+      <div class="chatbot-typing">
+        <div class="chatbot-typing-dot"></div>
+        <div class="chatbot-typing-dot"></div>
+        <div class="chatbot-typing-dot"></div>
+      </div>
+    `;
+    messagesContainer.appendChild(typingMsg);
+    scrollToBottom();
+
+    // Simulate response delay (1.5s)
+    setTimeout(() => {
+      typingMsg.remove();
+
+      // Add bot response
+      const botMsg = document.createElement('div');
+      botMsg.className = 'chatbot-message bot';
+      botMsg.innerHTML = `
+        <div class="chatbot-avatar">
+          <span class="material-symbols-outlined">psychology</span>
+        </div>
+        <div style="flex: 1;">
+          <div class="chatbot-bubble">
+            The Context Layer Engine is currently in development. In the meantime, you can explore Riché's <a href="/thesis" style="color: var(--chatbot-accent); text-decoration: underline;">thesis</a>, <a href="/work" style="color: var(--chatbot-accent); text-decoration: underline;">work history</a>, or <a href="/contact" style="color: var(--chatbot-accent); text-decoration: underline;">get in touch</a> directly.
+          </div>
+          <div class="chatbot-notify-section">
+            <input
+              type="email"
+              class="chatbot-notify-input"
+              placeholder="your@email.com"
+              aria-label="Email for notification"
+            />
+            <button class="chatbot-notify-btn">Notify me</button>
+          </div>
+        </div>
+      `;
+      messagesContainer.appendChild(botMsg);
+
+      // Notify button handler
+      const notifyBtn = botMsg.querySelector('.chatbot-notify-btn');
+      const notifyInput = botMsg.querySelector('.chatbot-notify-input');
+
+      notifyBtn.addEventListener('click', () => {
+        const email = notifyInput.value.trim();
+        if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          notifyBtn.textContent = 'Thanks!';
+          notifyBtn.disabled = true;
+          notifyInput.disabled = true;
+          notifyInput.value = '';
+          setTimeout(() => {
+            botMsg.remove();
+          }, 2000);
+        } else {
+          notifyInput.style.boxShadow = 'inset 0 0 0 1px #ff6b6b';
+        }
+      });
+
+      notifyInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          notifyBtn.click();
+        }
+      });
+
+      messages.push({ role: 'bot', content: 'pre-launch' });
+
+      // Re-enable input
+      sendBtn.disabled = false;
+      inputField.disabled = false;
+      inputField.focus();
+      scrollToBottom();
+    }, 1500);
+  }
+
+  // Input handlers
+  inputField.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage(inputField.value);
+    }
+  });
+
+  inputField.addEventListener('input', () => {
+    inputField.style.height = 'auto';
+    inputField.style.height = Math.min(inputField.scrollHeight, 100) + 'px';
+  });
+
+  sendBtn.addEventListener('click', () => {
+    sendMessage(inputField.value);
+  });
+
+  // Auto-scroll to bottom
+  function scrollToBottom() {
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }
+
+  // Escape HTML
+  function escapeHtml(text) {
+    const map = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#039;',
+    };
+    return text.replace(/[&<>"']/g, (m) => map[m]);
+  }
+
+  // Render initial welcome on first interaction
+  button.addEventListener('click', () => {
+    if (panel.classList.contains('open') && isFirstMessage) {
+      renderWelcome();
+    }
+  });
+})();
+</script>
+</body>
+</html>

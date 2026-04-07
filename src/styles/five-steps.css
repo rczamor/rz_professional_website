@@ -1,0 +1,324 @@
+/* ===== THESIS TEASER — TWO-COLUMN LAYOUT ===== */
+.thesis-teaser {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.thesis-teaser-text {
+  max-width: 480px;
+}
+
+.thesis-teaser-text .thesis-body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
+.thesis-teaser-text .thesis-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+  transition: gap 0.3s;
+}
+.thesis-teaser-text .thesis-link:hover {
+  gap: 12px;
+}
+
+.thesis-teaser-widget {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 900px) {
+  .thesis-teaser {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .thesis-teaser-widget {
+    justify-content: center;
+  }
+}
+
+/* ===== FIVE-STEP PIPELINE CARD ===== */
+
+.pipe-wrapper {
+  width: 580px;
+  max-width: 100%;
+}
+
+/* Card shell */
+.pipe {
+  position: relative;
+  border-radius: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+}
+.pipe::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #7B7FE4, #7c5cfc, #a082ff);
+  z-index: 5;
+}
+
+/* Background canvas for ambient particles */
+.pipe > canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.pipe-inner {
+  position: relative;
+  z-index: 1;
+  padding: 36px 28px 24px;
+}
+
+.pipe-title {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+/* ===== STAGES ===== */
+.stages {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stage {
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background glow on active */
+.stage::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  opacity: 0;
+  transition: opacity 0.5s;
+  pointer-events: none;
+}
+.stage.active::before { opacity: 1; }
+
+.stage:nth-child(1)::before { background: radial-gradient(ellipse at 15% 30%, rgba(123,127,228,0.10) 0%, transparent 70%); }
+.stage:nth-child(2)::before { background: radial-gradient(ellipse at 15% 30%, rgba(100,110,230,0.08) 0%, transparent 70%); }
+.stage:nth-child(3)::before { background: radial-gradient(ellipse at 15% 30%, rgba(124,92,252,0.08) 0%, transparent 70%); }
+.stage:nth-child(4)::before { background: radial-gradient(ellipse at 15% 30%, rgba(140,110,255,0.08) 0%, transparent 70%); }
+.stage:nth-child(5)::before { background: radial-gradient(ellipse at 15% 30%, rgba(160,130,255,0.10) 0%, transparent 70%); }
+
+/* Stage header row */
+.stage-row {
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 18px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Node */
+.node {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.node-num {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 700;
+  z-index: 1;
+}
+/* Outer ring */
+.node::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: 18px;
+  border: 1.5px solid transparent;
+  opacity: 0;
+  transform: scale(0.75);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.stage.active .node { transform: scale(1.1); }
+.stage.active .node::after { opacity: 1; transform: scale(1); }
+
+/* Per-stage node colors */
+.stage:nth-child(1) .node { background: rgba(123,127,228,0.12); }
+.stage:nth-child(1) .node-num { color: #7B7FE4; }
+.stage:nth-child(1) .node::after { border-color: rgba(123,127,228,0.25); }
+
+.stage:nth-child(2) .node { background: rgba(100,110,230,0.10); }
+.stage:nth-child(2) .node-num { color: rgba(100,110,230,0.9); }
+.stage:nth-child(2) .node::after { border-color: rgba(100,110,230,0.2); }
+
+.stage:nth-child(3) .node { background: rgba(124,92,252,0.12); }
+.stage:nth-child(3) .node-num { color: #7c5cfc; }
+.stage:nth-child(3) .node::after { border-color: rgba(124,92,252,0.25); }
+
+.stage:nth-child(4) .node { background: rgba(140,110,255,0.12); }
+.stage:nth-child(4) .node-num { color: rgba(140,110,255,0.95); }
+.stage:nth-child(4) .node::after { border-color: rgba(140,110,255,0.25); }
+
+.stage:nth-child(5) .node { background: rgba(160,130,255,0.15); }
+.stage:nth-child(5) .node-num { color: rgba(160,130,255,0.95); }
+.stage:nth-child(5) .node::after { border-color: rgba(160,130,255,0.3); }
+
+/* Info */
+.stage .info { z-index: 1; }
+.label-row { display: flex; align-items: baseline; gap: 10px; }
+
+.stage .name {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  transition: color 0.3s;
+}
+.stage.active .name { color: #fff; }
+
+.stage .tag {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 4px;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.stage.active .tag { opacity: 1; transform: translateX(0); }
+
+.stage:nth-child(1) .tag { background: rgba(123,127,228,0.12); color: #7B7FE4; }
+.stage:nth-child(2) .tag { background: rgba(100,110,230,0.10); color: rgba(100,110,230,0.9); }
+.stage:nth-child(3) .tag { background: rgba(124,92,252,0.10); color: #7c5cfc; }
+.stage:nth-child(4) .tag { background: rgba(140,110,255,0.10); color: rgba(140,110,255,0.95); }
+.stage:nth-child(5) .tag { background: rgba(160,130,255,0.12); color: rgba(160,130,255,0.95); }
+
+.stage .desc {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-tertiary);
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s 0.05s, margin 0.4s;
+  margin-top: 0;
+}
+.stage.active .desc {
+  max-height: 50px;
+  opacity: 1;
+  margin-top: 6px;
+}
+
+/* ===== ANIMATION CANVAS (per stage) ===== */
+.stage-anim {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s 0.1s, padding 0.5s;
+  padding: 0 18px;
+  position: relative;
+  z-index: 1;
+}
+.stage.active .stage-anim {
+  max-height: 160px;
+  opacity: 1;
+  padding: 0 18px 16px;
+}
+
+.stage-anim canvas {
+  width: 100%;
+  height: 120px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.015);
+  border: 1px solid rgba(255,255,255,0.04);
+  display: block;
+}
+
+/* ===== SKIP CALLOUT ===== */
+.skip {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  text-align: center;
+  margin-top: 18px;
+  padding: 13px 20px;
+  background: rgba(123,127,228,0.03);
+  border: 1px dashed rgba(123,127,228,0.12);
+  border-radius: 12px;
+  letter-spacing: 0.3px;
+  z-index: 1;
+  position: relative;
+  transition: all 0.3s;
+}
+.skip:hover {
+  border-color: rgba(123,127,228,0.25);
+  background: rgba(123,127,228,0.06);
+}
+.skip em { color: var(--accent); font-style: normal; font-weight: 700; }
+
+/* Progress pips */
+.pips {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-top: 14px;
+  position: relative;
+  z-index: 1;
+}
+.pip {
+  width: 32px;
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(255,255,255,0.06);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+.pip.on { background: var(--accent); box-shadow: 0 0 8px rgba(123,127,228,0.4); }
+.pip:nth-child(3).on { background: #7c5cfc; box-shadow: 0 0 8px rgba(124,92,252,0.4); }
+.pip:nth-child(4).on { background: rgba(140,110,255,0.9); box-shadow: 0 0 8px rgba(140,110,255,0.4); }
+.pip:nth-child(5).on { background: rgba(160,130,255,0.9); box-shadow: 0 0 8px rgba(160,130,255,0.4); }
+
+@media (max-width: 560px) {
+  .pipe-inner { padding: 28px 14px 18px; }
+  .stage-row { grid-template-columns: 40px 1fr; gap: 12px; padding: 14px 12px; }
+  .node { width: 40px; height: 40px; border-radius: 10px; }
+  .stage .name { font-size: 14px; }
+  .stage-anim canvas { height: 100px; }
+}

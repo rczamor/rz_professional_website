@@ -1,0 +1,2114 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="night">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Riché Zamor — VP of Product, 2x founder, and context architect. Building AI products that turn raw data into decision-ready context.">
+<meta property="og:title" content="Riché Zamor — VP of Product. 2x Founder. Context Architect.">
+<meta property="og:description" content="Building AI products that turn raw data into decision-ready context. The architecture most teams skip is the problem I keep solving.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://richezamor.com/">
+<meta property="og:image" content="https://richezamor.com/og-image.png">
+<meta property="og:site_name" content="Riché Zamor">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@richezamor">
+<meta name="twitter:title" content="Riché Zamor — VP of Product. 2x Founder. Context Architect.">
+<meta name="twitter:description" content="Building AI products that turn raw data into decision-ready context.">
+<meta name="twitter:image" content="https://richezamor.com/og-image.png">
+<link rel="canonical" href="https://richezamor.com/">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%237B7FE4'/><text x='50' y='68' font-family='system-ui' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>R</text></svg>">
+<title>Riché Zamor — VP of Product. 2x Founder. Context Architect.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<style>
+/* ========== RESET & BASE ========== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  /* Night (default) */
+  --bg-primary: #050508;
+  --bg-secondary: #0a0a0f;
+  --bg-card: #0f0f16;
+  --bg-card-hover: #141420;
+  --border-subtle: rgba(255,255,255,0.06);
+  --border-hover: rgba(255,255,255,0.12);
+  --text-primary: #f0f0f5;
+  --text-secondary: rgba(240,240,245,0.6);
+  --text-tertiary: rgba(240,240,245,0.35);
+  --accent: #7B7FE4;
+  --accent-dim: rgba(123,127,228,0.15);
+  --accent-glow: rgba(123,127,228,0.08);
+  --accent-secondary: #7c5cfc;
+  --accent-secondary-dim: rgba(124,92,252,0.12);
+  --canvas-particle: rgba(123,127,228,0.5);
+  --canvas-line: rgba(123,127,228,0.06);
+  --nav-bg: rgba(5,5,8,0.6);
+  --nav-bg-scroll: rgba(5,5,8,0.85);
+  --shadow: 0 0 0 transparent;
+  --shadow-h: 0 0 0 transparent;
+  --font-heading: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html[data-theme="day"] {
+  --bg-primary: #f8f8fa;
+  --bg-secondary: #f0f0f4;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f2f2f5;
+  --border-subtle: rgba(0,0,0,0.07);
+  --border-hover: rgba(0,0,0,0.14);
+  --text-primary: #0c0c14;
+  --text-secondary: rgba(12,12,20,0.55);
+  --text-tertiary: rgba(12,12,20,0.28);
+  --accent: #6366B8;
+  --accent-dim: rgba(99,102,184,0.07);
+  --accent-glow: rgba(99,102,184,0.04);
+  --accent-secondary: #6c5ce7;
+  --accent-secondary-dim: rgba(108,92,231,0.08);
+  --canvas-particle: rgba(99,102,184,0.4);
+  --canvas-line: rgba(99,102,184,0.05);
+  --nav-bg: rgba(248,248,250,0.7);
+  --nav-bg-scroll: rgba(248,248,250,0.92);
+  --shadow: 0 1px 3px rgba(0,0,0,0.04);
+  --shadow-h: 0 6px 24px rgba(0,0,0,0.07);
+}
+
+html[data-theme="dawn"] {
+  --bg-primary: #f5f0ea;
+  --bg-secondary: #ede7df;
+  --bg-card: #fdfaf6;
+  --bg-card-hover: #f0ebe3;
+  --border-subtle: rgba(120,80,40,0.08);
+  --border-hover: rgba(120,80,40,0.15);
+  --text-primary: #1a1410;
+  --text-secondary: rgba(26,20,16,0.55);
+  --text-tertiary: rgba(26,20,16,0.3);
+  --accent: #c47a28;
+  --accent-dim: rgba(196,122,40,0.08);
+  --accent-glow: rgba(196,122,40,0.04);
+  --accent-secondary: #d4792a;
+  --accent-secondary-dim: rgba(212,121,42,0.08);
+  --canvas-particle: rgba(196,122,40,0.35);
+  --canvas-line: rgba(196,122,40,0.05);
+  --nav-bg: rgba(245,240,234,0.7);
+  --nav-bg-scroll: rgba(245,240,234,0.92);
+  --shadow: 0 1px 3px rgba(100,60,20,0.05);
+  --shadow-h: 0 6px 24px rgba(100,60,20,0.08);
+}
+
+html[data-theme="dusk"] {
+  --bg-primary: #12101a;
+  --bg-secondary: #1a1726;
+  --bg-card: #1a1726;
+  --bg-card-hover: #201d2e;
+  --border-subtle: rgba(180,160,220,0.08);
+  --border-hover: rgba(180,160,220,0.15);
+  --text-primary: #ddd8e8;
+  --text-secondary: rgba(221,216,232,0.55);
+  --text-tertiary: rgba(221,216,232,0.3);
+  --accent: #b07cc8;
+  --accent-dim: rgba(176,124,200,0.1);
+  --accent-glow: rgba(176,124,200,0.05);
+  --accent-secondary: #d07ce0;
+  --accent-secondary-dim: rgba(208,124,224,0.1);
+  --canvas-particle: rgba(176,124,200,0.45);
+  --canvas-line: rgba(176,124,200,0.06);
+  --nav-bg: rgba(18,16,26,0.7);
+  --nav-bg-scroll: rgba(18,16,26,0.92);
+  --shadow: 0 0 0 transparent;
+  --shadow-h: 0 0 0 transparent;
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  transition: background 1.2s cubic-bezier(0.4,0,0.2,1), color 1.2s cubic-bezier(0.4,0,0.2,1);
+}
+
+a { color: inherit; text-decoration: none; }
+h1, h2, h3 { font-family: var(--font-heading); }
+
+/* ========== AMBIENT BACKGROUND ========== */
+.ambient-bg {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.ambient-bg::before {
+  content: '';
+  position: absolute;
+  top: -30%; left: -10%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  opacity: 0.4;
+  animation: ambientFloat 20s ease-in-out infinite;
+}
+.ambient-bg::after {
+  content: '';
+  position: absolute;
+  bottom: -20%; right: -10%;
+  width: 50vw; height: 50vw;
+  background: radial-gradient(circle, var(--accent-secondary-dim) 0%, transparent 70%);
+  opacity: 0.35;
+  animation: ambientFloat 25s ease-in-out infinite reverse;
+}
+@keyframes ambientFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(5%, -8%) scale(1.1); }
+  66% { transform: translate(-3%, 5%) scale(0.95); }
+}
+
+/* ========== NAV ========== */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 0 clamp(24px, 5vw, 80px);
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--nav-bg);
+  backdrop-filter: blur(20px) saturate(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+  border-bottom: 1px solid var(--border-subtle);
+  transition: background 0.3s;
+}
+nav.scrolled { background: var(--nav-bg-scroll); }
+.nav-logo {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-primary);
+}
+.nav-logo span { color: var(--accent); }
+.nav-right { display: flex; align-items: center; gap: 28px; }
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  letter-spacing: 0.3px;
+  transition: color 0.2s;
+  position: relative;
+}
+.nav-links a:hover { color: var(--text-primary); }
+.nav-links a.active { color: var(--accent); }
+.nav-links a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0; right: 0;
+  height: 1px;
+  background: var(--accent);
+}
+.nav-cta {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #ffffff !important;
+  background: var(--accent) !important;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 8px;
+  transition: all 0.25s !important;
+}
+.nav-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(123,127,228,0.3);
+}
+.theme-toggle {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--accent-dim); border: 1px solid var(--border-subtle);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all 0.3s; font-size: 16px;
+}
+.theme-toggle:hover { border-color: var(--border-hover); }
+.nav-social { display: flex; align-items: center; gap: 12px; }
+.nav-social a { display: flex; align-items: center; justify-content: center; color: var(--text-tertiary); transition: color 0.2s; }
+.nav-social a:hover { color: var(--text-primary); }
+.nav-social svg { width: 18px; height: 18px; fill: currentColor; }
+.theme-phase {
+  font-family: var(--font-mono);
+  font-size: 10px; font-weight: 500;
+  color: var(--text-tertiary); letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* ========== LAYOUT ========== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 5vw, 80px);
+  position: relative;
+  z-index: 1;
+}
+
+section {
+  padding: 120px 0;
+  position: relative;
+}
+
+/* ========== HERO ========== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 72px;
+  position: relative;
+  overflow: hidden;
+}
+#hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+.hero-content { max-width: 800px; position: relative; z-index: 1; }
+.hero h1 {
+  font-size: clamp(48px, 6vw, 80px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -2px;
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeUp 0.6s 0.35s forwards;
+}
+.hero h1 .highlight {
+  background: linear-gradient(135deg, var(--accent) 0%, #9B9EF0 50%, var(--accent-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-description {
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  max-width: 640px;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeUp 0.6s 0.5s forwards;
+}
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 720px;
+  margin-bottom: 44px;
+  opacity: 0;
+  animation: fadeUp 0.6s 0.6s forwards;
+}
+.hero-stat {
+  padding: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  transition: all 0.3s;
+}
+.hero-stat:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-card-hover);
+}
+.hero-stat-value {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--accent);
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+.hero-stat-label {
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--text-tertiary);
+}
+.hero-stat-org {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-top: 8px;
+}
+@media (max-width: 768px) {
+  .hero-stats { grid-template-columns: repeat(2, 1fr); }
+}
+.hero-ctas {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.6s 0.7s forwards;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========== BUTTONS ========== */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: #ffffff;
+  background: var(--accent);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.15) 100%);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(123,127,228,0.3); }
+.btn-primary:hover::before { opacity: 1; }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: var(--text-primary);
+  background: transparent;
+  border: 1px solid var(--border-hover);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.btn-secondary:hover {
+  border-color: var(--text-secondary);
+  background: rgba(255,255,255,0.03);
+  transform: translateY(-2px);
+}
+
+/* ========== SECTION HEADERS ========== */
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.section-title {
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+  margin-bottom: 20px;
+}
+.section-subtitle {
+  font-size: 18px;
+  color: var(--text-secondary);
+  max-width: 600px;
+  line-height: 1.7;
+}
+
+/* ========== THESIS TEASER ========== */
+.thesis-section {
+  border-top: 1px solid var(--border-subtle);
+}
+.thesis-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.thesis-visual {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  padding: 48px 40px;
+}
+.thesis-visual::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+}
+.flow-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  text-align: center;
+  margin-bottom: 32px;
+}
+.context-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+}
+.flow-step {
+  width: 100%;
+  padding: 20px 24px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  border-left: 3px solid transparent;
+  transition: all 0.3s;
+}
+.flow-step:hover {
+  padding-left: 32px;
+}
+.flow-step .step-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.flow-step:nth-child(1) { color: var(--accent); border-left-color: var(--accent); }
+.flow-step:nth-child(1) .step-num { background: rgba(123,127,228,0.15); color: var(--accent); }
+.flow-step:nth-child(2) { color: var(--accent); border-left-color: rgba(123,127,228,0.7); }
+.flow-step:nth-child(2) .step-num { background: rgba(123,127,228,0.12); color: var(--accent); }
+.flow-step:nth-child(3) { color: rgba(100,80,220,0.9); border-left-color: rgba(100,80,220,0.6); }
+.flow-step:nth-child(3) .step-num { background: rgba(124,92,252,0.12); color: var(--accent-secondary); }
+.flow-step:nth-child(4) { color: var(--accent-secondary); border-left-color: var(--accent-secondary); }
+.flow-step:nth-child(4) .step-num { background: rgba(124,92,252,0.15); color: var(--accent-secondary); }
+.flow-step:nth-child(5) { color: rgba(160,130,255,0.9); border-left-color: rgba(160,130,255,0.7); }
+.flow-step:nth-child(5) .step-num { background: rgba(124,92,252,0.18); color: rgba(160,130,255,0.9); }
+.flow-skip {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  text-align: center;
+  margin-top: 24px;
+  padding: 14px;
+  border: 1px dashed var(--border-hover);
+  border-radius: 10px;
+  letter-spacing: 0.5px;
+}
+.flow-skip em {
+  color: var(--accent);
+  font-style: normal;
+  font-weight: 700;
+}
+.thesis-content .section-title .em {
+  font-style: italic;
+  color: var(--accent);
+}
+.thesis-body {
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+}
+.thesis-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--accent);
+  transition: gap 0.2s;
+}
+.thesis-link:hover { gap: 14px; }
+
+/* ========== WHAT I DO ========== */
+.capabilities-section {
+  border-top: 1px solid var(--border-subtle);
+}
+.capabilities-intro {
+  max-width: 700px;
+  margin-bottom: 64px;
+}
+.capabilities-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.capability-card {
+  padding: 40px 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.capability-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--accent), var(--accent-secondary));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.capability-card::after {
+  content: '';
+  position: absolute;
+  top: -50%; right: -50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+.capability-card:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-card-hover);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+}
+.capability-card:hover::before { opacity: 1; }
+.capability-card:hover::after { opacity: 1; }
+.capability-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  font-size: 20px;
+}
+.capability-card:nth-child(1) .capability-icon {
+  background: var(--accent-dim);
+  color: var(--accent);
+}
+.capability-card:nth-child(2) .capability-icon {
+  background: var(--accent-secondary-dim);
+  color: var(--accent-secondary);
+}
+.capability-card:nth-child(3) .capability-icon {
+  background: rgba(255,180,60,0.12);
+  color: #ffb43c;
+}
+.capability-icon .material-symbols-outlined {
+  font-size: 28px;
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+.capability-card h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  letter-spacing: -0.3px;
+}
+.capability-card p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+/* ========== SELECT WORK ========== */
+.work-section {
+  border-top: 1px solid var(--border-subtle);
+}
+.work-intro {
+  max-width: 700px;
+  margin-bottom: 64px;
+}
+.work-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.work-card {
+  display: grid;
+  grid-template-columns: 240px 1fr auto;
+  gap: 40px;
+  align-items: start;
+  padding: 40px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-left: 3px solid var(--border-subtle);
+  border-radius: 16px;
+  transition: all 0.3s;
+  cursor: pointer;
+  position: relative;
+}
+.work-card:hover {
+  border-color: var(--border-hover);
+  border-left-color: var(--accent);
+  background: var(--bg-card-hover);
+  transform: translateX(4px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+}
+.work-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.work-company {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+.work-role {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--accent);
+  font-family: var(--font-mono);
+}
+.work-card-body p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+.work-metric {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  min-width: 160px;
+}
+.work-metric-value {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.work-metric-label {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  text-align: right;
+  font-family: var(--font-mono);
+  letter-spacing: 0.5px;
+}
+.work-cta {
+  text-align: center;
+  margin-top: 40px;
+}
+
+/* ========== SOCIAL PROOF (in hero) ========== */
+.hero-proof-bar {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border-subtle);
+  opacity: 0;
+  animation: fadeUp 0.6s 0.85s forwards;
+}
+.proof-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 16px;
+}
+.proof-logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+.proof-logos span {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  padding: 6px 14px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.proof-logos span:hover {
+  color: var(--text-secondary);
+  border-color: var(--border-hover);
+  background: var(--accent-glow);
+}
+
+/* ========== WHY ME ========== */
+.why-section {
+  border-top: 1px solid var(--border-subtle);
+}
+.why-intro {
+  max-width: 700px;
+  margin-bottom: 64px;
+}
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.why-card {
+  padding: 40px 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.why-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--accent), var(--accent-secondary));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.why-card:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-card-hover);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+}
+.why-card:hover::before { opacity: 1; }
+.why-number {
+  font-family: var(--font-mono);
+  font-size: 48px;
+  font-weight: 800;
+  color: rgba(255,255,255,0.04);
+  position: absolute;
+  top: 20px; right: 28px;
+  line-height: 1;
+}
+.why-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  letter-spacing: -0.3px;
+  line-height: 1.3;
+}
+.why-card p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+/* ========== CTA / FOOTER ========== */
+.cta-section {
+  border-top: none;
+  text-align: center;
+  padding: 0 0 120px;
+}
+.cta-box {
+  background: #0a0a0f;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 24px;
+  padding: 80px 60px;
+  position: relative;
+  overflow: hidden;
+}
+.cta-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+}
+.cta-box::after {
+  content: '';
+  position: absolute;
+  top: -40%; left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 60%;
+  background: radial-gradient(ellipse, rgba(123,127,228,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-section .section-title {
+  max-width: 600px;
+  margin: 0 auto 20px;
+  color: #f0f0f5;
+}
+.cta-section .section-subtitle {
+  max-width: 520px;
+  margin: 0 auto 40px;
+  color: rgba(240,240,245,0.6);
+}
+.cta-section .section-label {
+  color: #7B7FE4;
+}
+.cta-section .btn-primary {
+  color: #ffffff;
+  background: #7B7FE4;
+}
+.cta-section .section-title .highlight {
+  background: linear-gradient(135deg, #7B7FE4, #7c5cfc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+footer {
+  border-top: 1px solid var(--border-subtle);
+  padding: 40px 0;
+}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-brand {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+.footer-links {
+  display: flex;
+  gap: 24px;
+}
+.footer-links a {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--text-secondary); }
+.footer-copy {
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+/* ========== SCROLL REVEAL ========== */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 1024px) {
+  .thesis-grid { grid-template-columns: 1fr; gap: 48px; }
+  .thesis-visual { padding: 32px 24px; }
+  .work-card { grid-template-columns: 1fr; gap: 16px; }
+  .work-metric { align-items: flex-start; flex-direction: row; gap: 12px; }
+  .work-metric-label { text-align: left; }
+}
+  /* ===== CHATBOT WIDGET STYLES ===== */
+  .chatbot-widget {
+    --chatbot-accent: var(--accent, #7B7FE4);
+    --chatbot-accent-dim: var(--accent-dim, rgba(123,127,228,0.15));
+    --chatbot-accent-glow: var(--accent-glow, rgba(123,127,228,0.08));
+    --chatbot-bg-dark: #0a0a0f;
+    --chatbot-bg-card: #0f0f16;
+    --chatbot-text-primary: #f0f0f5;
+    --chatbot-text-secondary: rgba(240,240,245,0.6);
+    --chatbot-text-tertiary: rgba(240,240,245,0.35);
+    --chatbot-border: rgba(255,255,255,0.08);
+    --chatbot-font-heading: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, sans-serif;
+    --chatbot-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --chatbot-font-mono: 'JetBrains Mono', monospace;
+  }
+
+  .chatbot-widget * {
+    box-sizing: border-box;
+  }
+
+  /* Floating Button */
+  .chatbot-button {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--chatbot-accent);
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    box-shadow: 0 0 20px var(--chatbot-accent-glow), 0 4px 12px rgba(0,0,0,0.3);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    font-size: 24px;
+    animation: chatbot-pulse 3s ease-in-out infinite;
+  }
+
+  .chatbot-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px var(--chatbot-accent-glow), 0 6px 20px rgba(0,0,0,0.4);
+  }
+
+  .chatbot-button:active {
+    transform: scale(0.95);
+  }
+
+  @keyframes chatbot-pulse {
+    0%, 100% {
+      box-shadow: 0 0 20px var(--chatbot-accent-glow), 0 4px 12px rgba(0,0,0,0.3);
+    }
+    50% {
+      box-shadow: 0 0 35px var(--chatbot-accent-glow), 0 4px 12px rgba(0,0,0,0.3);
+    }
+  }
+
+  /* Chat Panel */
+  .chatbot-panel {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 400px;
+    height: 600px;
+    max-height: 80vh;
+    background: var(--chatbot-bg-dark);
+    border: 1px solid var(--chatbot-border);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    z-index: 999;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .chatbot-panel.open {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+
+  /* Panel Header */
+  .chatbot-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--chatbot-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(180deg, rgba(123,127,228,0.08) 0%, transparent 100%);
+    border-radius: 20px 20px 0 0;
+    position: relative;
+    z-index: 10;
+  }
+
+  .chatbot-title {
+    font-family: var(--chatbot-font-heading);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--chatbot-text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .chatbot-beta-badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 6px;
+    background: var(--chatbot-accent-dim);
+    color: var(--chatbot-accent);
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .chatbot-close {
+    background: none;
+    border: none;
+    color: var(--chatbot-text-secondary);
+    cursor: pointer;
+    font-size: 20px;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+
+  .chatbot-close:hover {
+    color: var(--chatbot-text-primary);
+  }
+
+  /* Messages Container */
+  .chatbot-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    scroll-behavior: smooth;
+  }
+
+  .chatbot-messages::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .chatbot-messages::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .chatbot-messages::-webkit-scrollbar-thumb {
+    background: var(--chatbot-border);
+    border-radius: 3px;
+  }
+
+  .chatbot-messages::-webkit-scrollbar-thumb:hover {
+    background: rgba(255,255,255,0.15);
+  }
+
+  /* Message Bubble */
+  .chatbot-message {
+    display: flex;
+    gap: 8px;
+    animation: chatbot-fade-in 0.3s ease-out;
+  }
+
+  @keyframes chatbot-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .chatbot-message.user {
+    justify-content: flex-end;
+  }
+
+  .chatbot-message.bot {
+    justify-content: flex-start;
+  }
+
+  .chatbot-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--chatbot-accent-dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--chatbot-accent);
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .chatbot-bubble {
+    max-width: 75%;
+    padding: 12px 16px;
+    border-radius: 16px;
+    font-family: var(--chatbot-font-sans);
+    font-size: 14px;
+    line-height: 1.4;
+    word-wrap: break-word;
+  }
+
+  .chatbot-message.user .chatbot-bubble {
+    background: var(--chatbot-accent);
+    color: white;
+    border-radius: 16px 16px 4px 16px;
+  }
+
+  .chatbot-message.bot .chatbot-bubble {
+    background: var(--chatbot-bg-card);
+    color: var(--chatbot-text-primary);
+    border-radius: 16px 16px 16px 4px;
+  }
+
+  /* Typing Indicator */
+  .chatbot-typing {
+    display: flex;
+    gap: 4px;
+    padding: 12px 16px;
+    background: var(--chatbot-bg-card);
+    border-radius: 16px 16px 16px 4px;
+    width: fit-content;
+  }
+
+  .chatbot-typing-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--chatbot-text-secondary);
+    animation: chatbot-typing 1.4s infinite;
+  }
+
+  .chatbot-typing-dot:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .chatbot-typing-dot:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes chatbot-typing {
+    0%, 60%, 100% {
+      opacity: 0.3;
+      transform: translateY(0);
+    }
+    30% {
+      opacity: 1;
+      transform: translateY(-8px);
+    }
+  }
+
+  /* Source Citations */
+  .chatbot-sources {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    font-size: 12px;
+  }
+
+  .chatbot-source-button {
+    background: none;
+    border: none;
+    color: var(--chatbot-text-tertiary);
+    cursor: pointer;
+    font-family: var(--chatbot-font-mono);
+    padding: 0;
+    text-align: left;
+    transition: color 0.2s;
+    width: 100%;
+    text-decoration: underline;
+    text-decoration-color: rgba(255,255,255,0.1);
+  }
+
+  .chatbot-source-button:hover {
+    color: var(--chatbot-text-secondary);
+    text-decoration-color: rgba(255,255,255,0.3);
+  }
+
+  .chatbot-source-expanded {
+    margin-top: 4px;
+    padding: 8px;
+    background: rgba(123,127,228,0.06);
+    border-left: 2px solid var(--chatbot-accent);
+    border-radius: 4px;
+    font-family: var(--chatbot-font-mono);
+    font-size: 11px;
+    color: var(--chatbot-text-secondary);
+  }
+
+  /* Welcome State */
+  .chatbot-welcome {
+    text-align: center;
+    color: var(--chatbot-text-secondary);
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+
+  .chatbot-suggestions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .chatbot-suggestion {
+    background: var(--chatbot-bg-card);
+    border: 1px solid var(--chatbot-border);
+    color: var(--chatbot-text-primary);
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: var(--chatbot-font-sans);
+    text-align: left;
+  }
+
+  .chatbot-suggestion:hover {
+    background: var(--chatbot-accent-dim);
+    border-color: var(--chatbot-accent);
+    color: var(--chatbot-accent);
+  }
+
+  .chatbot-suggestion:active {
+    transform: scale(0.98);
+  }
+
+  /* Input Area */
+  .chatbot-input-area {
+    padding: 12px;
+    border-top: 1px solid var(--chatbot-border);
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+  }
+
+  .chatbot-input-field {
+    flex: 1;
+    background: var(--chatbot-bg-card);
+    border: none;
+    color: var(--chatbot-text-primary);
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-family: var(--chatbot-font-sans);
+    font-size: 14px;
+    resize: none;
+    max-height: 100px;
+    line-height: 1.4;
+  }
+
+  .chatbot-input-field::placeholder {
+    color: var(--chatbot-text-tertiary);
+  }
+
+  .chatbot-input-field:focus {
+    outline: none;
+    background: var(--chatbot-bg-card);
+    box-shadow: inset 0 0 0 1px var(--chatbot-accent);
+  }
+
+  .chatbot-send-btn {
+    background: var(--chatbot-accent);
+    border: none;
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .chatbot-send-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(123,127,228,0.3);
+  }
+
+  .chatbot-send-btn:active {
+    transform: scale(0.95);
+  }
+
+  .chatbot-send-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* Notify CTA */
+  .chatbot-notify-section {
+    margin-top: 12px;
+    padding: 12px;
+    background: var(--chatbot-accent-dim);
+    border-radius: 8px;
+    display: flex;
+    gap: 8px;
+  }
+
+  .chatbot-notify-input {
+    flex: 1;
+    background: var(--chatbot-bg-card);
+    border: none;
+    color: var(--chatbot-text-primary);
+    padding: 8px 10px;
+    border-radius: 4px;
+    font-family: var(--chatbot-font-sans);
+    font-size: 12px;
+  }
+
+  .chatbot-notify-input::placeholder {
+    color: var(--chatbot-text-tertiary);
+  }
+
+  .chatbot-notify-input:focus {
+    outline: none;
+    background: var(--chatbot-bg-card);
+    box-shadow: inset 0 0 0 1px var(--chatbot-accent);
+  }
+
+  .chatbot-notify-btn {
+    background: var(--chatbot-accent);
+    border: none;
+    color: white;
+    padding: 8px 10px;
+    border-radius: 4px;
+    font-family: var(--chatbot-font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .chatbot-notify-btn:hover {
+    transform: scale(1.05);
+  }
+
+  .chatbot-notify-btn:active {
+    transform: scale(0.95);
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .chatbot-panel {
+      width: calc(100vw - 32px);
+      height: calc(100vh - 100px);
+      bottom: 16px;
+      right: 16px;
+    }
+
+    .chatbot-bubble {
+      max-width: 85%;
+    }
+  }
+
+@media (max-width: 768px) {
+  .capabilities-grid, .why-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .theme-phase { display: none; }
+  section { padding: 80px 0; }
+  .hero h1 { letter-spacing: -1px; }
+  .context-flow { flex-wrap: wrap; }
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Riché Zamor",
+  "url": "https://richezamor.com",
+  "jobTitle": "VP of Product",
+  "description": "AI product leader specializing in context architecture. 2x founder. Building products that turn raw data into decision-ready context.",
+  "sameAs": [
+    "https://linkedin.com/in/richezamorjr/",
+    "https://x.com/richezamor",
+    "https://github.com/rczamor"
+  ]
+}
+</script>
+</head>
+<body>
+
+<div class="ambient-bg"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Riché<span>.</span>Zamor</div>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="/" class="active">Home</a>
+      <a href="/thesis">Thesis</a>
+      <a href="/work">Work</a>
+      <a href="/about">About</a>
+      <a href="/projects">Projects</a>
+    </div>
+    <div class="nav-social">
+      <a href="https://linkedin.com/in/richezamorjr/" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+      <a href="https://x.com/richezamor" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="https://github.com/rczamor" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+    </div>
+    <span class="theme-phase" id="phase-label">night</span>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">🌙</button>
+    <a href="/contact" class="nav-cta">Get in Touch</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="container">
+    <div class="hero-content">
+      <h1>VP of Product.<br>2x Founder.<br><span class="highlight">Context Architect.</span></h1>
+      <p class="hero-description">I transform how organizations use data, intelligence, and AI to make decisions. The architecture most teams skip — turning raw data into decision-ready context — is the problem I keep solving.</p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-value">300%</div>
+          <div class="hero-stat-label">Growth at $0 CAC</div>
+          <div class="hero-stat-org">Grandstage</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value">$3.25M</div>
+          <div class="hero-stat-label">Pipeline pre-product</div>
+          <div class="hero-stat-org">Helm Labs</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value">$M+</div>
+          <div class="hero-stat-label">Revenue impact</div>
+          <div class="hero-stat-org">IBM</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value">VP Product</div>
+          <div class="hero-stat-label">Platform transformation</div>
+          <div class="hero-stat-org">Suzy</div>
+        </div>
+      </div>
+      <div class="hero-ctas">
+        <a href="/thesis" class="btn-primary">Read the Thesis <span>→</span></a>
+        <a href="/work" class="btn-secondary">See My Work <span>→</span></a>
+      </div>
+      <div class="hero-proof-bar">
+        <div class="proof-label">I've shipped products for</div>
+        <div class="proof-logos">
+          <span>IBM</span>
+          <span>Twitter</span>
+          <span>Reddit</span>
+          <span>Mozilla</span>
+          <span>PBS</span>
+          <span>Al Jazeera</span>
+          <span>Universal Music</span>
+          <span>J&J</span>
+          <span>Cigna</span>
+          <span>MSK</span>
+          <span>Bank of America</span>
+          <span>USAID</span>
+          <span>Jane Goodall Institute</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THESIS TEASER -->
+<section class="thesis-section">
+  <div class="container">
+    <div class="thesis-grid reveal">
+      <div>
+        <div class="section-label">The Thesis</div>
+        <h2 class="section-title">Data is <span class="em" style="font-style:italic;color:var(--accent)">not</span> context.</h2>
+        <p class="thesis-body">The AI industry is obsessed with retrieval — how to get the right chunks into the context window. But retrieval is downstream. If what you're retrieving was never curated, synthesized, consolidated, prioritized, or stored intelligently, your RAG pipeline is just efficiently delivering noise.</p>
+        <p class="thesis-body">Most AI systems skip four of the five steps that turn data into context. That's the gap I build for.</p>
+        <a href="/thesis" class="thesis-link">Read the full thesis <span>→</span></a>
+      </div>
+      <div class="thesis-visual">
+        <div class="flow-label">The Five-Step Context Generation Pipeline</div>
+        <div class="context-flow">
+          <div class="flow-step"><span class="step-num">1</span> Curate</div>
+          <div class="flow-step"><span class="step-num">2</span> Synthesize</div>
+          <div class="flow-step"><span class="step-num">3</span> Consolidate</div>
+          <div class="flow-step"><span class="step-num">4</span> Prioritize</div>
+          <div class="flow-step"><span class="step-num">5</span> Store Intelligently</div>
+        </div>
+        <div class="flow-skip">Most AI systems skip steps 1–4. <em>That's the gap.</em></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT I DO -->
+<section class="capabilities-section">
+  <div class="container">
+    <div class="capabilities-intro reveal">
+      <div class="section-label">What I Do</div>
+      <h2 class="section-title">Product leadership,<br>end-to-end.</h2>
+      <p class="section-subtitle">I take AI products from zero to revenue. Strategy through execution, architecture through launch and go-to-market.</p>
+    </div>
+    <div class="capabilities-grid">
+      <div class="capability-card reveal">
+        <div class="capability-icon"><span class="material-symbols-outlined">hub</span></div>
+        <h3>Strategy</h3>
+        <p>Customer and market research. Product strategy. Growth strategy. AI architecture decisions that map to business outcomes.</p>
+      </div>
+      <div class="capability-card reveal">
+        <div class="capability-icon"><span class="material-symbols-outlined">deployed_code</span></div>
+        <h3>Build</h3>
+        <p>Requirements. Prototyping. Technical architecture. Working directly with engineering and data science to ship products that hold up in production.</p>
+      </div>
+      <div class="capability-card reveal">
+        <div class="capability-icon"><span class="material-symbols-outlined">trending_up</span></div>
+        <h3>Scale</h3>
+        <p>Go-to-market execution. Growth experimentation. Analytics and optimization. Building the feedback loops that make products compound.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SELECT WORK -->
+<section class="work-section">
+  <div class="container">
+    <div class="work-intro reveal">
+      <div class="section-label">Select Work</div>
+      <h2 class="section-title">Execution at scale.</h2>
+      <p class="section-subtitle">Every role has been a transformation story. Here's what I built, what changed, and what it taught me about context.</p>
+    </div>
+    <div class="work-grid">
+      <div class="work-card reveal">
+        <div class="work-card-header">
+          <div class="work-company">Suzy</div>
+          <div class="work-role">VP Product</div>
+        </div>
+        <div class="work-card-body">
+          <p>Led the transformation of a consumer survey platform trusted by 350+ enterprise brands into a Decision Engine — synthesizing fragmented marketing intelligence into decisions organizations can act on. Built and shipped in six weeks.</p>
+        </div>
+        <div class="work-metric">
+          <div class="work-metric-value">6 wks</div>
+          <div class="work-metric-label">concept → launch</div>
+        </div>
+      </div>
+
+      <div class="work-card reveal">
+        <div class="work-card-header">
+          <div class="work-company">Grandstage</div>
+          <div class="work-role">Co-Founder & Head of Product</div>
+        </div>
+        <div class="work-card-body">
+          <p>Built an answer engine fusing 10,000+ sources into synthesized market intelligence. Designed the hybrid search architecture and hierarchical relevance model that lifted user retention from 50% to 80%.</p>
+        </div>
+        <div class="work-metric">
+          <div class="work-metric-value">300%</div>
+          <div class="work-metric-label">user growth · $0 CAC</div>
+        </div>
+      </div>
+
+      <div class="work-card reveal">
+        <div class="work-card-header">
+          <div class="work-company">Helm Labs</div>
+          <div class="work-role">SVP & General Manager</div>
+        </div>
+        <div class="work-card-body">
+          <p>Defined product vision for a unified enterprise data platform integrating five acquired products and proprietary datasets covering 200M+ Americans. Built the GTM motion from scratch.</p>
+        </div>
+        <div class="work-metric">
+          <div class="work-metric-value">$3.25M</div>
+          <div class="work-metric-label">pipeline pre-launch</div>
+        </div>
+      </div>
+
+      <div class="work-card reveal">
+        <div class="work-card-header">
+          <div class="work-company">IBM</div>
+          <div class="work-role">Digital Product & Growth</div>
+        </div>
+        <div class="work-card-body">
+          <p>Transformed how IBM's Cloud and AI business acquired, converted, and retained ~1M users globally. Deployed growth stack across 30+ countries with 100% adoption.</p>
+        </div>
+        <div class="work-metric">
+          <div class="work-metric-value">31%</div>
+          <div class="work-metric-label">trial conversion lift</div>
+        </div>
+      </div>
+    </div>
+    <div class="work-cta reveal">
+      <a href="/work" class="btn-secondary">See all work <span>→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY ME -->
+<section class="why-section">
+  <div class="container">
+    <div class="why-intro reveal">
+      <div class="section-label">Why Me</div>
+      <h2 class="section-title">A product mind grounded in the bottom line.</h2>
+      <p class="section-subtitle">I lead product end-to-end — and I can sell it, too. My strategies are anchored in generating revenue or saving millions.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-number">01</div>
+        <h3>A career built on transformation.</h3>
+        <p>Every major role has been a transformation story — taking an organization, a team, or a product and fundamentally changing how it operates. I don't maintain products. I transform businesses through them.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-number">02</div>
+        <h3>An original thesis backed by real builds.</h3>
+        <p>A specific, defensible point of view on turning raw data into decision-ready context — grounded in cognitive science and information theory, validated by every product I've shipped.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-number">03</div>
+        <h3>The full stack: strategy to revenue.</h3>
+        <p>Strategy, architecture, build, go-to-market, and growth — in one person. I've raised venture capital, sold enterprise deals, deployed growth infrastructure globally, and written production AI applications.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container reveal">
+    <div class="cta-box">
+      <div class="section-label">Let's Connect</div>
+      <h2 class="section-title">Ready to architect the next <span class="highlight">context</span>?</h2>
+      <p class="section-subtitle">I'm open to advisory engagements, board positions, speaking opportunities, and connecting with people building at the intersection of AI and product.</p>
+      <a href="/contact" class="btn-primary">Get in touch <span>→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">Riché Zamor</div>
+      <div class="footer-links">
+        <a href="https://linkedin.com/in/richezamorjr/">LinkedIn</a>
+        <a href="https://x.com/richezamor">X</a>
+        <a href="https://github.com/rczamor">GitHub</a>
+      </div>
+      <div class="footer-copy">© 2026</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ===== TIME-ADAPTIVE THEME ENGINE ===== */
+const themes = ['night','dawn','day','dusk'];
+const icons = { night: '🌙', dawn: '🌅', day: '☀️', dusk: '🌆' };
+
+function getAutoTheme() {
+  const h = new Date().getHours();
+  const m = new Date().getMinutes();
+  const t = h + m / 60;
+  if (t >= 5.5 && t < 8) return 'dawn';
+  if (t >= 8 && t < 17) return 'day';
+  if (t >= 17 && t < 20) return 'dusk';
+  return 'night';
+}
+
+let userOverride = null;
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  document.getElementById('theme-toggle').textContent = icons[theme];
+  document.getElementById('phase-label').textContent = theme;
+}
+
+function autoUpdate() {
+  if (!userOverride) applyTheme(getAutoTheme());
+}
+autoUpdate();
+setInterval(autoUpdate, 60000);
+
+document.getElementById('theme-toggle').addEventListener('click', () => {
+  if (!userOverride) {
+    const current = getAutoTheme();
+    const idx = themes.indexOf(current);
+    userOverride = themes[(idx + 1) % themes.length];
+  } else {
+    const idx = themes.indexOf(userOverride);
+    const nextIdx = (idx + 1) % themes.length;
+    if (themes[nextIdx] === getAutoTheme()) {
+      userOverride = null;
+      applyTheme(getAutoTheme());
+      return;
+    }
+    userOverride = themes[nextIdx];
+  }
+  applyTheme(userOverride);
+});
+
+/* ===== HERO CANVAS: NOISE → SIGNAL ===== */
+const canvas = document.getElementById('hero-canvas');
+const ctx = canvas.getContext('2d');
+let W, H, particles = [], mouse = { x: -999, y: -999 };
+const PARTICLE_COUNT = 220;
+const GRID_COLS = 22, GRID_ROWS = 14;
+
+function resize() {
+  const rect = canvas.parentElement.getBoundingClientRect();
+  W = canvas.width = rect.width;
+  H = canvas.height = rect.height;
+  initParticles();
+}
+
+function initParticles() {
+  particles = [];
+  const cellW = W / GRID_COLS, cellH = H / GRID_ROWS;
+  for (let i = 0; i < PARTICLE_COUNT; i++) {
+    const col = i % GRID_COLS;
+    const row = Math.floor(i / GRID_COLS) % GRID_ROWS;
+    const tx = cellW * col + cellW / 2;
+    const ty = cellH * row + cellH / 2;
+    particles.push({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      tx, ty,
+      size: 1.5 + Math.random() * 1.5,
+      progress: 0,
+      speed: 0.0003 + Math.random() * 0.0004,
+      noiseX: Math.random() * 1000,
+      noiseY: Math.random() * 1000,
+    });
+  }
+}
+
+let time = 0;
+function draw() {
+  ctx.clearRect(0, 0, W, H);
+  time += 0.016;
+
+  const style = getComputedStyle(document.documentElement);
+  const particleColor = style.getPropertyValue('--canvas-particle').trim();
+  const lineColor = style.getPropertyValue('--canvas-line').trim();
+
+  for (let i = 0; i < particles.length; i++) {
+    const p = particles[i];
+    p.progress = Math.min(0.7, p.progress + p.speed);
+    const noiseScale = 0.8;
+    const nx = p.x + Math.sin(time * 0.3 + p.noiseX) * 40 * noiseScale * (1 - p.progress);
+    const ny = p.y + Math.cos(time * 0.25 + p.noiseY) * 40 * noiseScale * (1 - p.progress);
+    p.x += (p.tx - p.x) * 0.002 * p.progress;
+    p.y += (p.ty - p.y) * 0.002 * p.progress;
+    p.x += Math.sin(time * 0.5 + p.noiseX) * 0.15;
+    p.y += Math.cos(time * 0.4 + p.noiseY) * 0.12;
+    const dx = (nx || p.x) - mouse.x;
+    const dy = (ny || p.y) - mouse.y;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    let drawX = p.progress > 0.3 ? p.x : nx;
+    let drawY = p.progress > 0.3 ? p.y : ny;
+    if (dist < 120) {
+      const force = (120 - dist) / 120;
+      drawX += dx / dist * force * 30;
+      drawY += dy / dist * force * 30;
+    }
+    ctx.beginPath();
+    ctx.arc(drawX, drawY, p.size, 0, Math.PI * 2);
+    ctx.fillStyle = particleColor;
+    ctx.fill();
+    if (p.progress > 0.25) {
+      for (let j = i + 1; j < Math.min(i + 8, particles.length); j++) {
+        const q = particles[j];
+        const qx = q.progress > 0.3 ? q.x : q.x + Math.sin(time * 0.3 + q.noiseX) * 40 * (1 - q.progress);
+        const qy = q.progress > 0.3 ? q.y : q.y + Math.cos(time * 0.25 + q.noiseY) * 40 * (1 - q.progress);
+        const d = Math.hypot(drawX - qx, drawY - qy);
+        if (d < 80) {
+          ctx.beginPath();
+          ctx.moveTo(drawX, drawY);
+          ctx.lineTo(qx, qy);
+          ctx.strokeStyle = lineColor;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+  }
+  requestAnimationFrame(draw);
+}
+
+window.addEventListener('resize', resize);
+canvas.parentElement.addEventListener('mousemove', e => {
+  const rect = canvas.getBoundingClientRect();
+  mouse.x = e.clientX - rect.left;
+  mouse.y = e.clientY - rect.top;
+});
+canvas.parentElement.addEventListener('mouseleave', () => { mouse.x = -999; mouse.y = -999; });
+resize();
+draw();
+
+/* ===== SCROLL REVEAL ===== */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* ===== NAV SCROLL ===== */
+window.addEventListener('scroll', () => {
+  document.querySelector('nav').classList.toggle('scrolled', scrollY > 80);
+}, { passive: true });
+
+/* ===== CHATBOT WIDGET ENGINE ===== */
+(function() {
+  const widget = document.querySelector('.chatbot-widget');
+  const button = document.querySelector('.chatbot-button');
+  const panel = document.querySelector('.chatbot-panel');
+  const messagesContainer = document.querySelector('.chatbot-messages');
+  const inputField = document.querySelector('.chatbot-input-field');
+  const sendBtn = document.querySelector('.chatbot-send-btn');
+  const closeBtn = document.querySelector('.chatbot-close');
+
+  // State
+  let messages = [];
+  let isFirstMessage = true;
+
+  // Toggle panel
+  function togglePanel() {
+    panel.classList.toggle('open');
+    if (panel.classList.contains('open')) {
+      inputField.focus();
+    }
+  }
+
+  // Add event listeners
+  button.addEventListener('click', togglePanel);
+  closeBtn.addEventListener('click', () => panel.classList.remove('open'));
+
+  // Close on escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && panel.classList.contains('open')) {
+      panel.classList.remove('open');
+    }
+  });
+
+  // Close on outside click
+  document.addEventListener('click', (e) => {
+    if (!widget.contains(e.target) && panel.classList.contains('open')) {
+      panel.classList.remove('open');
+    }
+  });
+
+  // Render welcome message on first open
+  function renderWelcome() {
+    if (isFirstMessage) {
+      const welcomeMsg = document.createElement('div');
+      welcomeMsg.className = 'chatbot-message bot';
+      welcomeMsg.innerHTML = `
+        <div class="chatbot-avatar">
+          <span class="material-symbols-outlined">psychology</span>
+        </div>
+        <div style="flex: 1;">
+          <div class="chatbot-bubble">
+            Hi! I'm Riché's Context Layer Engine — an AI grounded in his knowledge base, writing, and frameworks. Ask me about context architecture, AI product strategy, or Riché's work.
+          </div>
+          <div class="chatbot-suggestions">
+            <button class="chatbot-suggestion">What is context architecture?</button>
+            <button class="chatbot-suggestion">Tell me about the thesis</button>
+            <button class="chatbot-suggestion">What's Riché's background?</button>
+          </div>
+        </div>
+      `;
+      messagesContainer.appendChild(welcomeMsg);
+
+      // Suggestion handlers
+      welcomeMsg.querySelectorAll('.chatbot-suggestion').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          sendMessage(btn.textContent.trim());
+        });
+      });
+
+      isFirstMessage = false;
+      scrollToBottom();
+    }
+  }
+
+  // Send message
+  function sendMessage(text) {
+    if (!text.trim()) return;
+
+    // Render welcome if first message
+    if (isFirstMessage) {
+      renderWelcome();
+    }
+
+    // Add user message
+    const userMsg = document.createElement('div');
+    userMsg.className = 'chatbot-message user';
+    userMsg.innerHTML = `
+      <div class="chatbot-bubble">${escapeHtml(text)}</div>
+    `;
+    messagesContainer.appendChild(userMsg);
+    messages.push({ role: 'user', content: text });
+
+    // Clear input
+    inputField.value = '';
+    inputField.style.height = 'auto';
+    scrollToBottom();
+
+    // Disable send while processing
+    sendBtn.disabled = true;
+    inputField.disabled = true;
+
+    // Show typing indicator
+    const typingMsg = document.createElement('div');
+    typingMsg.className = 'chatbot-message bot';
+    typingMsg.innerHTML = `
+      <div class="chatbot-avatar">
+        <span class="material-symbols-outlined">psychology</span>
+      </div>
+      <div class="chatbot-typing">
+        <div class="chatbot-typing-dot"></div>
+        <div class="chatbot-typing-dot"></div>
+        <div class="chatbot-typing-dot"></div>
+      </div>
+    `;
+    messagesContainer.appendChild(typingMsg);
+    scrollToBottom();
+
+    // Simulate response delay (1.5s)
+    setTimeout(() => {
+      typingMsg.remove();
+
+      // Add bot response
+      const botMsg = document.createElement('div');
+      botMsg.className = 'chatbot-message bot';
+      botMsg.innerHTML = `
+        <div class="chatbot-avatar">
+          <span class="material-symbols-outlined">psychology</span>
+        </div>
+        <div style="flex: 1;">
+          <div class="chatbot-bubble">
+            The Context Layer Engine is currently in development. In the meantime, you can explore Riché's <a href="/thesis" style="color: var(--chatbot-accent); text-decoration: underline;">thesis</a>, <a href="/work" style="color: var(--chatbot-accent); text-decoration: underline;">work history</a>, or <a href="/contact" style="color: var(--chatbot-accent); text-decoration: underline;">get in touch</a> directly.
+          </div>
+          <div class="chatbot-notify-section">
+            <input
+              type="email"
+              class="chatbot-notify-input"
+              placeholder="your@email.com"
+              aria-label="Email for notification"
+            />
+            <button class="chatbot-notify-btn">Notify me</button>
+          </div>
+        </div>
+      `;
+      messagesContainer.appendChild(botMsg);
+
+      // Notify button handler
+      const notifyBtn = botMsg.querySelector('.chatbot-notify-btn');
+      const notifyInput = botMsg.querySelector('.chatbot-notify-input');
+
+      notifyBtn.addEventListener('click', () => {
+        const email = notifyInput.value.trim();
+        if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          notifyBtn.textContent = 'Thanks!';
+          notifyBtn.disabled = true;
+          notifyInput.disabled = true;
+          notifyInput.value = '';
+          setTimeout(() => {
+            botMsg.remove();
+          }, 2000);
+        } else {
+          notifyInput.style.boxShadow = 'inset 0 0 0 1px #ff6b6b';
+        }
+      });
+
+      notifyInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          notifyBtn.click();
+        }
+      });
+
+      messages.push({ role: 'bot', content: 'pre-launch' });
+
+      // Re-enable input
+      sendBtn.disabled = false;
+      inputField.disabled = false;
+      inputField.focus();
+      scrollToBottom();
+    }, 1500);
+  }
+
+  // Input handlers
+  inputField.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage(inputField.value);
+    }
+  });
+
+  inputField.addEventListener('input', () => {
+    inputField.style.height = 'auto';
+    inputField.style.height = Math.min(inputField.scrollHeight, 100) + 'px';
+  });
+
+  sendBtn.addEventListener('click', () => {
+    sendMessage(inputField.value);
+  });
+
+  // Auto-scroll to bottom
+  function scrollToBottom() {
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }
+
+  // Escape HTML
+  function escapeHtml(text) {
+    const map = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#039;',
+    };
+    return text.replace(/[&<>"']/g, (m) => map[m]);
+  }
+
+  // Render initial welcome on first interaction
+  button.addEventListener('click', () => {
+    if (panel.classList.contains('open') && isFirstMessage) {
+      renderWelcome();
+    }
+  });
+})();
+</script>
+
+<!-- CHATBOT WIDGET -->
+<div class="chatbot-widget">
+  <!-- Floating Button -->
+  <button class="chatbot-button" aria-label="Open chat" title="Chat with Riché">
+    <span class="material-symbols-outlined">smart_toy</span>
+  </button>
+
+  <!-- Chat Panel -->
+  <div class="chatbot-panel">
+    <!-- Header -->
+    <div class="chatbot-header">
+      <div class="chatbot-title">
+        Context Layer Engine
+        <span class="chatbot-beta-badge">beta</span>
+      </div>
+      <button class="chatbot-close" aria-label="Close chat">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+
+    <!-- Messages -->
+    <div class="chatbot-messages"></div>
+
+    <!-- Input -->
+    <div class="chatbot-input-area">
+      <input
+        type="text"
+        class="chatbot-input-field"
+        placeholder="Ask me anything..."
+        aria-label="Message input"
+      />
+      <button class="chatbot-send-btn" aria-label="Send message">
+        <span class="material-symbols-outlined">send</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
