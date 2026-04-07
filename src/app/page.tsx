@@ -4,6 +4,7 @@ import HeroCanvas from "@/components/HeroCanvas";
 import FiveStepsCallout from "@/components/FiveStepsCallout";
 import LogosSection from "@/components/LogosSection";
 import GSAPAnimations from "@/components/GSAPAnimations";
+import TestimonialsCarousel from "@/components/TestimonialsCarousel";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -301,6 +302,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Testimonials */}
+      <TestimonialsCarousel />
 
       {/* Why Me */}
       <section className="why-section">
