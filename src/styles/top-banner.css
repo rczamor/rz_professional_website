@@ -117,3 +117,22 @@
     width: auto;
   }
 }
+
+@media (max-width: 480px) {
+  .top-banner-inner {
+    padding: 6px 12px;
+    gap: 6px;
+  }
+  .top-banner-text {
+    font-size: 11px;
+    line-height: 1.3;
+  }
+  .top-banner-form input {
+    display: none;
+  }
+  .top-banner-form button {
+    padding: 4px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+}

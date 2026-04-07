@@ -3,16 +3,17 @@ import Footer from "@/components/Footer";
 import HeroCanvas from "@/components/HeroCanvas";
 import FiveStepsCallout from "@/components/FiveStepsCallout";
 import LogosSection from "@/components/LogosSection";
+import GSAPAnimations from "@/components/GSAPAnimations";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Riche Zamor — VP of Product. 2x Founder. Context Architect.",
   description:
-    "Building AI products that turn raw data into decision-ready context. The architecture most teams skip is the problem I keep solving.",
+    "Riche Zamor is a context architect and VP of Product who designs how organizations structure knowledge for AI-driven decision-making.",
   openGraph: {
     title: "Riche Zamor — VP of Product. 2x Founder. Context Architect.",
     description:
-      "Building AI products that turn raw data into decision-ready context. The architecture most teams skip is the problem I keep solving.",
+      "Riche Zamor is a context architect and VP of Product who designs how organizations structure knowledge for AI-driven decision-making.",
     url: "https://richezamor.com/",
     type: "website",
     images: ["https://richezamor.com/og-image.png"],
@@ -56,7 +57,9 @@ export default function Home() {
   return (
     <>
       <Nav activePage="home" />
+      <GSAPAnimations />
 
+      <main id="main-content">
       {/* Hero */}
       <section className="hero">
         <HeroCanvas />
@@ -70,7 +73,7 @@ export default function Home() {
             <p className="hero-description">
               I transform how organizations use data, intelligence, and AI to
               make decisions. The architecture most teams skip — turning raw data
-              into decision-ready context — is the problem I keep solving.
+              into decision-ready <dfn title="The practice of designing informational environments for AI systems">context</dfn> — is the problem I keep solving.
             </p>
 
             <div className="hero-stats">
@@ -364,6 +367,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      </main>
 
       <Footer />
 

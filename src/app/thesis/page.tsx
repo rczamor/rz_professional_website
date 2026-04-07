@@ -8,11 +8,11 @@ import "@/styles/thesis.css";
 export const metadata = {
   title: "Data Is Not Context — Riche Zamor",
   description:
-    "Data is not context. The thesis on why AI systems need context architecture — the five-step pipeline most teams skip.",
+    "The Context Architecture Thesis by Riche Zamor: a five-step framework for designing the informational environment that surrounds AI systems.",
   openGraph: {
     title: "Data Is Not Context — Riche Zamor",
     description:
-      "The thesis on why AI systems need context architecture — ingest, synthesize, consolidate, prioritize, store intelligently.",
+      "The Context Architecture Thesis by Riche Zamor: curation, synthesis, consolidation, prioritization, and intelligent storage — the five steps most AI systems skip.",
     url: "https://richezamor.com/thesis",
     type: "article",
     images: ["https://richezamor.com/og-image.png"],
@@ -29,10 +29,67 @@ export const metadata = {
 };
 
 export default function ThesisPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "What is context architecture?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Context architecture is the practice of designing the informational environment that surrounds AI systems — shaping what they know, how they retrieve it, and how that knowledge is structured for human decision-making. The term was coined by Riche Zamor.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What are the five steps of context architecture?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "The five steps are: (1) Curation — filtering what enters the pipeline, (2) Synthesis — extracting insights across sources, (3) Consolidation — finding cross-cutting patterns over time, (4) Prioritization — ranking by goal-awareness, and (5) Intelligent Storage — storing with priority-aware indexing.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Why does context architecture matter more than larger context windows?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "The bottleneck is not how much context you can fit — it's how well that context has been selected and compressed for the decision at hand. Expert decision-makers process less information than novices, but they process the right things.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Who coined context architecture?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Riche Zamor coined the term 'context architecture' based on two decades of building AI products at companies including Suzy, Grandstage, Helm Labs, and IBM.",
+        },
+      },
+    ],
+  };
+
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "Data Is Not Context — The Context Architecture Thesis",
+    author: {
+      "@type": "Person",
+      name: "Riche Zamor",
+      url: "https://richezamor.com",
+    },
+    publisher: {
+      "@type": "Person",
+      name: "Riche Zamor",
+    },
+    url: "https://richezamor.com/thesis",
+    datePublished: "2026-04-06",
+    description: "The thesis on why AI systems need context architecture — the five-step pipeline most teams skip.",
+  };
+
   return (
     <>
       <Nav activePage="thesis" />
-      <main>
+      <main id="main-content">
         {/* ===== HERO ===== */}
         <section className="thesis-hero">
           <div className="thesis-container">
@@ -46,7 +103,7 @@ export default function ThesisPage() {
           <div className="thesis-container">
             <div className="thesis-narrow reveal">
               <div className="thesis-prose-label">The Problem</div>
-              <h2>Most AI systems confuse data with context.</h2>
+              <h2>Why do most AI systems confuse data with context?</h2>
               <p>They chunk documents. Embed them. Store them in a vector database. Retrieve the top-k results at query time. Ship the output.</p>
               <p><strong>This is not context. This is data retrieval with a similarity score.</strong></p>
               <p>The result is predictable: hallucinations, irrelevant responses, context windows stuffed with noise, and products that feel impressive in a demo but collapse under real-world conditions. Research has consistently shown that LLM performance degrades non-uniformly as you add more context — even on simple tasks.<span className="cite"><span className="cite-num">1</span><span className="cite-tooltip"><span className="cite-source">Lost in the Middle: How Language Models Use Long Contexts</span><span className="cite-detail">Liu et al. (2023) demonstrated that LLM performance degrades significantly when relevant information is placed in the middle of long contexts, even on simple retrieval tasks.</span><a className="cite-link" href="https://arxiv.org/abs/2307.03172" target="_blank" rel="noopener noreferrer">arxiv.org/abs/2307.03172 &rarr;</a></span></span> Information positioned in the middle of the context window sees 20%+ accuracy drops.<span className="cite"><span className="cite-num">2</span><span className="cite-tooltip"><span className="cite-source">Same study — &ldquo;U-shaped&rdquo; attention curve</span><span className="cite-detail">The same research found a U-shaped performance curve: models attend most to the beginning and end of context, with 20%+ accuracy degradation for information in the middle positions.</span><a className="cite-link" href="https://arxiv.org/abs/2307.03172" target="_blank" rel="noopener noreferrer">arxiv.org/abs/2307.03172 &rarr;</a></span></span></p>
@@ -60,8 +117,8 @@ export default function ThesisPage() {
           <div className="thesis-container">
             <div className="thesis-steps-header reveal">
               <div className="thesis-prose-label">The Five Steps</div>
-              <h2>Context must be generated from data. Not retrieved.</h2>
-              <p>There are five steps to this process. Most AI systems skip four of them.</p>
+              <h2>What are the five steps of context architecture?</h2>
+              <p className="answer-summary">Context architecture follows five steps: curation, synthesis, consolidation, prioritization, and intelligent storage. Most AI systems skip four of them, jumping straight to retrieval.</p>
             </div>
             <div className="thesis-steps-grid">
 
@@ -129,7 +186,7 @@ export default function ThesisPage() {
           <div className="thesis-container">
             <div className="thesis-narrow reveal">
               <div className="thesis-prose-label">Less Context, Better Decisions</div>
-              <h2>The race toward larger context windows misunderstands the problem.</h2>
+              <h2>Why does context architecture matter more than larger context windows?</h2>
               <p>The bottleneck is not how much context you can fit. It&apos;s how well that context has been selected and compressed for the decision at hand.</p>
               <p><strong>Expert decision-makers don&apos;t process more information than novices. They process less — and they process the right things.</strong><span className="cite"><span className="cite-num">3</span><span className="cite-tooltip"><span className="cite-source">Sources of Power: How People Make Decisions</span><span className="cite-detail">Gary Klein&apos;s research on naturalistic decision making showed that experts use pattern recognition, not exhaustive analysis. They recognize the situation and act on the first viable option.</span><a className="cite-link" href="https://mitpress.mit.edu/9780262611466/" target="_blank" rel="noopener noreferrer">MIT Press &rarr;</a></span></span></p>
               <p>Research on ecological rationality showed that simple heuristics using minimal cues match or outperform complex statistical models under real-world uncertainty.<span className="cite"><span className="cite-num">4</span><span className="cite-tooltip"><span className="cite-source">Simple Heuristics That Make Us Smart</span><span className="cite-detail">Gigerenzer, Todd &amp; the ABC Research Group (1999) demonstrated that fast-and-frugal heuristics using minimal information can match or exceed the accuracy of complex statistical models in uncertain environments.</span><a className="cite-link" href="https://global.oup.com/academic/product/simple-heuristics-that-make-us-smart-9780195143812" target="_blank" rel="noopener noreferrer">Oxford University Press &rarr;</a></span></span> Fireground commanders used explicit option comparison less than 5% of the time — they recognized the pattern and acted.<span className="cite"><span className="cite-num">5</span><span className="cite-tooltip"><span className="cite-source">Recognition-Primed Decision Model</span><span className="cite-detail">Klein (1989) found that experienced firefighters used recognition-primed decision making in 80%+ of cases, generating a single course of action through pattern matching rather than comparing options.</span><a className="cite-link" href="https://doi.org/10.1016/S0065-2601(08)60315-8" target="_blank" rel="noopener noreferrer">doi.org &rarr;</a></span></span></p>
@@ -158,7 +215,7 @@ export default function ThesisPage() {
             <div className="thesis-narrow reveal">
               <div className="thesis-prose-label">Context Architecture Is Product Strategy</div>
               <h2 style={{ fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 800, letterSpacing: "-1.5px", lineHeight: 1.1, marginBottom: "28px" }}>How you architect context determines your product&apos;s quality, defensibility, and unit economics.</h2>
-              <p style={{ fontSize: "17px", lineHeight: 1.85, color: "var(--text-secondary)" }}>This is not a plumbing decision — it&apos;s the most consequential product strategy decision in any AI system. Companies like Glean have built multi-billion dollar valuations on context layers, not model capability.<span className="cite"><span className="cite-num">8</span><span className="cite-tooltip"><span className="cite-source">Glean valuation: $4.6B (2024)</span><span className="cite-detail">Glean, an enterprise AI search and knowledge platform built on context architecture, reached a $4.6B valuation in its Series E — demonstrating that context infrastructure is a venture-scale opportunity.</span><a className="cite-link" href="https://www.glean.com" target="_blank" rel="noopener noreferrer">glean.com &rarr;</a></span></span> No formal framework exists for measuring context quality pre-inference, modeling context ROI, or defining cost-per-decision metrics.</p>
+              <p style={{ fontSize: "17px", lineHeight: 1.85, color: "var(--text-secondary)" }}><dfn id="context-architecture" title="The practice of designing the informational environment that surrounds AI systems">Context architecture</dfn> is the practice of designing the informational environment that surrounds AI systems — shaping what they know, how they retrieve it, and how that knowledge is structured for human decision-making. This is not a plumbing decision — it&apos;s the most consequential product strategy decision in any AI system. Companies like Glean have built multi-billion dollar valuations on context layers, not model capability.<span className="cite"><span className="cite-num">8</span><span className="cite-tooltip"><span className="cite-source">Glean valuation: $4.6B (2024)</span><span className="cite-detail">Glean, an enterprise AI search and knowledge platform built on context architecture, reached a $4.6B valuation in its Series E — demonstrating that context infrastructure is a venture-scale opportunity.</span><a className="cite-link" href="https://www.glean.com" target="_blank" rel="noopener noreferrer">glean.com &rarr;</a></span></span> No formal framework exists for measuring context quality pre-inference, modeling context ROI, or defining cost-per-decision metrics.</p>
               <p style={{ fontSize: "17px", lineHeight: 1.85, color: "var(--text-secondary)", marginTop: "24px" }}><strong style={{ color: "var(--text-primary)" }}>The companies that figure this out will own the next era of AI products.</strong> The ones that don&apos;t will keep swapping models every quarter and wondering why their outputs haven&apos;t improved.</p>
             </div>
           </div>
@@ -169,7 +226,8 @@ export default function ThesisPage() {
           <div className="thesis-container">
             <div className="thesis-built-header reveal">
               <div className="thesis-prose-label">What I&apos;ve Built</div>
-              <h2>I&apos;m not making this argument from the sidelines.</h2>
+              <h2>Who coined context architecture?</h2>
+              <p className="answer-summary">Riche Zamor coined the term &ldquo;context architecture&rdquo; based on two decades of building AI products that turn raw data into decision-ready context. He&apos;s not making this argument from the sidelines.</p>
             </div>
             <div className="thesis-built-grid">
               <div className="thesis-built-card reveal">
@@ -214,6 +272,15 @@ export default function ThesisPage() {
       <Footer />
       <ScrollReveal />
       <ThesisCanvasAnimations />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
     </>
   );
 }

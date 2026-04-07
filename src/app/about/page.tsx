@@ -6,11 +6,11 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "About — Riche Zamor",
   description:
-    "AI product leader with 20 years of experience building systems that turn raw data into decision-ready context.",
+    "About Riche Zamor — context architect, VP of Product, 2x founder, and author of the Context Architecture Thesis.",
   openGraph: {
     title: "About — Riche Zamor",
     description:
-      "AI product leader with 20 years of experience building systems that turn raw data into decision-ready context.",
+      "About Riche Zamor — context architect, VP of Product, 2x founder, and author of the Context Architecture Thesis.",
     url: "https://richezamor.com/about",
     type: "website",
     images: ["https://richezamor.com/og-image.png"],
@@ -32,7 +32,7 @@ export default function AboutPage() {
     <>
       <Nav activePage="about" />
 
-      <main>
+      <main id="main-content">
         {/* Hero */}
         <section className="hero hero-centered">
           <div className="container">

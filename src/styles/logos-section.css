@@ -223,3 +223,40 @@ html[data-theme="dawn"] .logo-grid {
   .logo-cell .logo-wrap.sq-xl { width: 70px; height: 70px; }
   .logo-cell .logo-wrap.full { width: 100px; height: 80px; }
 }
+
+@media (max-width: 480px) {
+  .logo-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+  }
+  .logo-cell {
+    padding: 16px 12px;
+    min-height: 70px;
+  }
+  .logo-cell .logo-wrap,
+  .logo-cell .logo-text {
+    display: none;
+  }
+  .logo-overlay {
+    position: static;
+    opacity: 1;
+    pointer-events: auto;
+    padding: 0;
+  }
+  .logo-overlay-name {
+    font-size: 13px;
+  }
+  .logo-overlay-desc {
+    font-size: 10px;
+  }
+  .logo-cell::after {
+    display: none;
+  }
+  .logo-cell.statement-cell {
+    grid-column: span 2;
+    padding: 16px 12px;
+  }
+  .statement-text {
+    font-size: 13px;
+  }
+}

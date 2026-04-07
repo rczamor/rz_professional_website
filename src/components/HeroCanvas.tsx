@@ -199,6 +199,7 @@ export default function HeroCanvas() {
     <canvas
       ref={canvasRef}
       id="hero-canvas"
+      aria-hidden="true"
       style={{
         position: "absolute",
         inset: 0,

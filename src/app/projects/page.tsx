@@ -5,11 +5,11 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Projects & Prototypes — Riche Zamor",
   description:
-    "Side projects and prototypes — things I build to learn, test ideas, and scratch itches.",
+    "Side projects and prototypes by Riche Zamor — AI experiments, context architecture tools, and things built to test ideas.",
   openGraph: {
     title: "Projects & Prototypes — Riche Zamor",
     description:
-      "Side projects and prototypes — things I build to learn, test ideas, and scratch itches.",
+      "Side projects and prototypes by Riche Zamor — AI experiments, context architecture tools, and things built to test ideas.",
     url: "https://richezamor.com/projects",
     type: "website",
     images: ["https://richezamor.com/og-image.png"],
@@ -31,7 +31,7 @@ export default function ProjectsPage() {
     <>
       <Nav activePage="projects" />
 
-      <main>
+      <main id="main-content">
         {/* Hero */}
         <section className="hero hero-centered">
           <div className="container">
@@ -53,7 +53,7 @@ export default function ProjectsPage() {
                   <h3>Sia</h3>
                   <div className="project-status">In Development</div>
                   <p>A personal knowledge system demonstrating the five-step context generation architecture I advocate for. Curates from Feedly and other sources, synthesizes at ingest time, runs consolidation agents every six hours, prioritizes by goal-awareness, and stores with intelligent indexing. Built with FastAPI, Neon Postgres + pgvector, Ollama, and Langfuse. This is the proof of the thesis.</p>
-                  <a href="#" className="featured-link">Learn more <span>&rarr;</span></a>
+                  <a href="/thesis" className="featured-link">Read the thesis <span>&rarr;</span></a>
                 </div>
                 <div className="featured-visual">
                   <svg viewBox="0 0 200 200" width="200" height="200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">

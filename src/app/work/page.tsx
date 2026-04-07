@@ -4,11 +4,11 @@ import Footer from "@/components/Footer";
 export const metadata = {
   title: "Work — Riche Zamor",
   description:
-    "Track record of building AI products at scale. Suzy, Grandstage, Helm Labs, IBM — every role a transformation story.",
+    "Riche Zamor's track record building AI products at Suzy, Grandstage, Helm Labs, and IBM — 300% growth, $3.25M pipeline, and $10M+ revenue impact.",
   openGraph: {
     title: "Work — Riche Zamor",
     description:
-      "Track record of building AI products at scale. 300% growth at $0 CAC. $3.25M pipeline pre-product. Millions in revenue impact.",
+      "Riche Zamor's track record building AI products at Suzy, Grandstage, Helm Labs, and IBM — 300% growth, $3.25M pipeline, and $10M+ revenue impact.",
     url: "https://richezamor.com/work",
     type: "website",
     images: ["https://richezamor.com/og-image.png"],
@@ -28,12 +28,12 @@ export default function WorkPage() {
   return (
     <>
       <Nav activePage="work" />
-      <main>
+      <main id="main-content">
         {/* ── Hero ── */}
         <section className="hero hero-centered">
           <div className="container">
             <h1>Work</h1>
-            <p className="hero-sub">Transforming organizations through 0&rarr;1 innovation, AI architecture, and product-led growth.</p>
+            <p className="hero-sub">Every role has been a context architecture story — taking raw data, fragmented systems, or greenfield products and building the intelligence layer that makes them work.</p>
           </div>
         </section>
 

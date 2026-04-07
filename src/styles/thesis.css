@@ -1,5 +1,13 @@
 /* ===== THESIS PAGE V2 ===== */
 
+.answer-summary {
+  font-size: 1.1em;
+  line-height: 1.6;
+  color: var(--text-primary);
+  margin-bottom: 1.5em;
+  font-weight: 450;
+}
+
 /* ===== HERO ===== */
 .thesis-hero {
   min-height: auto;
@@ -551,4 +559,18 @@
     border-top-color: transparent;
     border-bottom-color: var(--border-hover);
   }
+}
+
+@media (max-width: 480px) {
+  .thesis-hero { padding: 100px 0 40px; }
+  .thesis-hero h1 { font-size: clamp(36px, 10vw, 48px); letter-spacing: -2px; }
+  .thesis-hero-sub { font-size: 15px; }
+  .thesis-container { padding: 0 16px; }
+  .thesis-step-top { padding: 20px 16px 14px; }
+  .thesis-step-num { font-size: 28px; }
+  .thesis-step-content h3 { font-size: 18px; }
+  .thesis-step-content p { font-size: 14px; }
+  .thesis-step-canvas-wrap { margin: 0 12px 12px; }
+  .thesis-step-canvas-wrap canvas { height: 80px; }
+  .thesis-cta-box { padding: 40px 20px; }
 }

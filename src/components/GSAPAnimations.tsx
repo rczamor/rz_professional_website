@@ -232,17 +232,24 @@ export default function GSAPAnimations() {
       });
     }
 
-    // Only run on the home page
-    const isHome =
-      typeof window !== "undefined" &&
-      (window.location.pathname === "/" ||
-        window.location.pathname === "/index.html");
-    if (isHome) {
-      init();
-    }
+    init();
+
+    // Safety net: force all GSAP-hidden elements visible after 3s
+    const safetyTimeout = setTimeout(() => {
+      document
+        .querySelectorAll("[style*='opacity: 0']")
+        .forEach((el) => {
+          const htmlEl = el as HTMLElement;
+          if (htmlEl.style.opacity === "0") {
+            htmlEl.style.opacity = "1";
+            htmlEl.style.transform = "none";
+          }
+        });
+    }, 3000);
 
     return () => {
       if (ctx) ctx.revert();
+      clearTimeout(safetyTimeout);
     };
   }, []);
 

@@ -69,6 +69,8 @@ export default function ThinkingArticles() {
             {isVisible("context-intelligence") && (
               <div className="article-card reveal" data-pillar="context-intelligence">
                 <div className="article-meta">
+                  <span className="article-author">Riche Zamor</span>
+                  <span className="article-meta-separator"></span>
                   <span>March 14, 2026</span>
                   <span className="article-meta-separator"></span>
                   <span>12 min read</span>
@@ -86,6 +88,8 @@ export default function ThinkingArticles() {
             {isVisible("context-intelligence") && (
               <div className="article-card reveal" data-pillar="context-intelligence">
                 <div className="article-meta">
+                  <span className="article-author">Riche Zamor</span>
+                  <span className="article-meta-separator"></span>
                   <span>March 7, 2026</span>
                   <span className="article-meta-separator"></span>
                   <span>9 min read</span>
@@ -103,6 +107,8 @@ export default function ThinkingArticles() {
             {isVisible("product-management") && (
               <div className="article-card reveal" data-pillar="product-management">
                 <div className="article-meta">
+                  <span className="article-author">Riche Zamor</span>
+                  <span className="article-meta-separator"></span>
                   <span>February 28, 2026</span>
                   <span className="article-meta-separator"></span>
                   <span>14 min read</span>
@@ -120,6 +126,8 @@ export default function ThinkingArticles() {
             {isVisible("product-management") && (
               <div className="article-card reveal" data-pillar="product-management">
                 <div className="article-meta">
+                  <span className="article-author">Riche Zamor</span>
+                  <span className="article-meta-separator"></span>
                   <span>February 21, 2026</span>
                   <span className="article-meta-separator"></span>
                   <span>11 min read</span>
@@ -137,6 +145,8 @@ export default function ThinkingArticles() {
             {isVisible("context-intelligence") && (
               <div className="article-card reveal" data-pillar="context-intelligence">
                 <div className="article-meta">
+                  <span className="article-author">Riche Zamor</span>
+                  <span className="article-meta-separator"></span>
                   <span>February 14, 2026</span>
                   <span className="article-meta-separator"></span>
                   <span>7 min read</span>
@@ -154,6 +164,8 @@ export default function ThinkingArticles() {
             {isVisible("leadership") && (
               <div className="article-card reveal" data-pillar="leadership">
                 <div className="article-meta">
+                  <span className="article-author">Riche Zamor</span>
+                  <span className="article-meta-separator"></span>
                   <span>February 7, 2026</span>
                   <span className="article-meta-separator"></span>
                   <span>6 min read</span>

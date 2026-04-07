@@ -42,8 +42,8 @@ html[data-theme="day"] {
   --border-subtle: rgba(0,0,0,0.07);
   --border-hover: rgba(0,0,0,0.14);
   --text-primary: #0c0c14;
-  --text-secondary: rgba(12,12,20,0.55);
-  --text-tertiary: rgba(12,12,20,0.28);
+  --text-secondary: rgba(12,12,20,0.72);
+  --text-tertiary: rgba(12,12,20,0.45);
   --accent: #6366B8;
   --accent-dim: rgba(99,102,184,0.07);
   --accent-glow: rgba(99,102,184,0.04);
@@ -65,8 +65,8 @@ html[data-theme="dawn"] {
   --border-subtle: rgba(120,80,40,0.08);
   --border-hover: rgba(120,80,40,0.15);
   --text-primary: #1a1410;
-  --text-secondary: rgba(26,20,16,0.55);
-  --text-tertiary: rgba(26,20,16,0.3);
+  --text-secondary: rgba(26,20,16,0.72);
+  --text-tertiary: rgba(26,20,16,0.45);
   --accent: #c47a28;
   --accent-dim: rgba(196,122,40,0.08);
   --accent-glow: rgba(196,122,40,0.04);
@@ -88,8 +88,8 @@ html[data-theme="dusk"] {
   --border-subtle: rgba(180,160,220,0.08);
   --border-hover: rgba(180,160,220,0.15);
   --text-primary: #ddd8e8;
-  --text-secondary: rgba(221,216,232,0.55);
-  --text-tertiary: rgba(221,216,232,0.3);
+  --text-secondary: rgba(221,216,232,0.72);
+  --text-tertiary: rgba(221,216,232,0.45);
   --accent: #b07cc8;
   --accent-dim: rgba(176,124,200,0.1);
   --accent-glow: rgba(176,124,200,0.05);
@@ -104,6 +104,25 @@ html[data-theme="dusk"] {
 }
 
 html { scroll-behavior: smooth; font-size: 16px; }
+
+/* Skip navigation link (WCAG 2.4.1) */
+.skip-nav {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  z-index: 10000;
+  padding: 8px 16px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border: 2px solid var(--accent);
+  border-radius: 4px;
+  font-size: 14px;
+  text-decoration: none;
+  transition: top 0.2s;
+}
+.skip-nav:focus {
+  top: 16px;
+}
 
 body {
   font-family: var(--font-sans);
@@ -947,10 +966,16 @@ footer {
 }
 
 /* ========== SCROLL REVEAL ========== */
+/* Content visible by default — animations are progressive enhancement */
 .reveal {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+/* Only hide when JS has confirmed IntersectionObserver is available */
+.reveal.io-ready {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal.visible {
   opacity: 1;
@@ -1576,6 +1601,10 @@ footer {
   color: var(--text-tertiary);
   letter-spacing: 0.5px;
 }
+.article-author {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
 .article-meta-separator {
   width: 1px;
   height: 12px;
@@ -2011,7 +2040,7 @@ footer {
   position: fixed;
   bottom: 24px;
   right: 24px;
-  width: 400px;
+  width: min(400px, calc(100vw - 32px));
   height: 600px;
   max-height: 80vh;
   background: var(--chatbot-bg-dark);
@@ -2496,6 +2525,28 @@ footer {
     padding: 0 clamp(16px, 4vw, 24px);
   }
 
+  .hero h1 {
+    font-size: 36px;
+    letter-spacing: -2px;
+  }
+
+  .hero-description {
+    font-size: 15px;
+  }
+
+  .hero-ctas {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-ctas .btn-primary,
+  .hero-ctas .btn-secondary {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    min-height: 48px;
+  }
+
   .hero-stats {
     grid-template-columns: 1fr;
   }
@@ -2519,6 +2570,30 @@ footer {
 
   section {
     padding: 60px 0;
+  }
+
+  .form-input,
+  .form-select,
+  .form-textarea {
+    font-size: 16px; /* Prevents iOS zoom on focus */
+  }
+
+  .form-submit {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  .availability-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .chatbot-panel {
+    width: 100vw;
+    height: calc(100vh - env(safe-area-inset-top, 0px));
+    height: 100dvh;
+    right: 0;
+    bottom: 0;
+    border-radius: 0;
   }
 }
 
@@ -2770,6 +2845,34 @@ footer {
   }
 }
 
+/* ========== GLOSSARY ========== */
+.glossary-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.glossary-entry {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.glossary-entry:first-child {
+  border-top: 1px solid var(--border-subtle);
+}
+.glossary-entry dt {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  letter-spacing: -0.3px;
+}
+.glossary-entry dd {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
 /* ==========================================================================
    PREFERS REDUCED MOTION
    ========================================================================== */
@@ -2808,6 +2911,11 @@ footer {
   .ambient-bg::before,
   .ambient-bg::after {
     animation: none;
+  }
+
+  #hero-canvas,
+  .thesis-step-canvas-wrap canvas {
+    display: none;
   }
 
   .capability-card:hover,

@@ -6,11 +6,11 @@ import ContactForm from "./ContactForm";
 export const metadata: Metadata = {
   title: "Get in Touch — Riche Zamor",
   description:
-    "Reach out for advisory, board positions, speaking engagements, or to connect.",
+    "Get in touch with Riche Zamor to discuss context architecture, AI product strategy, advisory, or speaking opportunities.",
   openGraph: {
     title: "Get in Touch — Riche Zamor",
     description:
-      "Reach out for advisory, board positions, speaking engagements, or to connect.",
+      "Get in touch with Riche Zamor to discuss context architecture, AI product strategy, advisory, or speaking opportunities.",
     url: "https://richezamor.com/contact",
     type: "website",
     images: ["https://richezamor.com/og-image.png"],
@@ -32,7 +32,7 @@ export default function ContactPage() {
     <>
       <Nav activePage="contact" />
 
-      <main>
+      <main id="main-content">
         {/* Hero */}
         <section className="hero hero-centered" style={{ paddingBottom: '32px' }}>
           <div className="container">

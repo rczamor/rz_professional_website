@@ -7,11 +7,11 @@ import ThinkingArticles from "./ThinkingArticles";
 export const metadata: Metadata = {
   title: "Thinking in Public — Riche Zamor",
   description:
-    "Essays and frameworks on context intelligence, product management, and leadership.",
+    "Articles and insights on context architecture, AI product strategy, and leadership by Riche Zamor.",
   openGraph: {
     title: "Thinking in Public — Riche Zamor",
     description:
-      "Essays and frameworks on context intelligence, product management, and leadership.",
+      "Articles and insights on context architecture, AI product strategy, and leadership by Riche Zamor.",
     url: "https://richezamor.com/thinking",
     type: "website",
     images: ["https://richezamor.com/og-image.png"],
@@ -33,7 +33,7 @@ export default function ThinkingPage() {
     <>
       <Nav activePage="thinking" />
 
-      <main>
+      <main id="main-content">
         {/* Hero */}
         <section className="hero hero-centered">
           <div className="container">

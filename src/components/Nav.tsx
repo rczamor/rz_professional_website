@@ -6,7 +6,7 @@ type NavProps = {
 
 export default function Nav({ activePage }: NavProps) {
   return (
-    <nav>
+    <nav aria-label="Main navigation">
       <a href="/" className="nav-logo">
         Rich&#233;<span>.</span>Zamor
       </a>

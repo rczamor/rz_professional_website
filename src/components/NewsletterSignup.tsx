@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { usePathname } from "next/navigation";
 
 const HUBSPOT_PORTAL_ID = "245808914";
 const HUBSPOT_FORM_GUID = "2530a9e8-5fad-4e04-a99f-36f0b152d43e";
@@ -13,6 +14,7 @@ type Props = {
 export default function NewsletterSignup({ buttonText = "Subscribe", className = "hero-newsletter" }: Props) {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [email, setEmail] = useState("");
+  const pathname = usePathname();
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -24,8 +26,8 @@ export default function NewsletterSignup({ buttonText = "Subscribe", className =
         { name: "email", value: email.trim() },
       ],
       context: {
-        pageUri: "https://richezamor.com/thinking",
-        pageName: "Thinking in Public — Riché Zamor",
+        pageUri: `https://richezamor.com${pathname}`,
+        pageName: document.title,
       },
     };
 
@@ -54,7 +56,7 @@ export default function NewsletterSignup({ buttonText = "Subscribe", className =
 
   if (status === "success") {
     return (
-      <div className={className}>
+      <div className={className} aria-live="polite">
         <p style={{ color: "var(--accent)", fontSize: 14, fontWeight: 500 }}>
           You&apos;re on the list. I&apos;ll be in touch when it launches.
         </p>
@@ -75,11 +77,13 @@ export default function NewsletterSignup({ buttonText = "Subscribe", className =
       <button type="submit" disabled={status === "submitting"}>
         {status === "submitting" ? "..." : buttonText}
       </button>
-      {status === "error" && (
-        <p style={{ color: "#ff6b6b", fontSize: 12, width: "100%" }}>
-          Something went wrong. Try again.
-        </p>
-      )}
+      <div aria-live="polite" aria-atomic="true">
+        {status === "error" && (
+          <p style={{ color: "#ff6b6b", fontSize: 12, width: "100%" }}>
+            Something went wrong. Try again.
+          </p>
+        )}
+      </div>
     </form>
   );
 }

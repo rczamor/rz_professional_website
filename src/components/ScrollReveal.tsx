@@ -18,19 +18,35 @@ export default function ScrollReveal() {
 
     function observeAll() {
       document.querySelectorAll(".reveal:not(.visible)").forEach((el) => {
+        // Mark as ready so CSS can apply initial hidden state
+        el.classList.add("io-ready");
         io.observe(el);
       });
     }
 
     observeAll();
 
-    // Watch for dynamically added .reveal elements (e.g. filter toggling on /thinking)
-    const mo = new MutationObserver(() => observeAll());
-    mo.observe(document.body, { childList: true, subtree: true });
+    // Watch for dynamically added .reveal elements — scope to main content
+    let debounceTimer: ReturnType<typeof setTimeout>;
+    const mo = new MutationObserver(() => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(observeAll, 100);
+    });
+    const target = document.querySelector("main") || document.body;
+    mo.observe(target, { childList: true, subtree: true });
+
+    // Safety net: if any .reveal elements are still hidden after 3s, force them visible
+    const safetyTimeout = setTimeout(() => {
+      document.querySelectorAll(".reveal.io-ready:not(.visible)").forEach((el) => {
+        el.classList.add("visible");
+      });
+    }, 3000);
 
     return () => {
       io.disconnect();
       mo.disconnect();
+      clearTimeout(debounceTimer);
+      clearTimeout(safetyTimeout);
     };
   }, []);
 
