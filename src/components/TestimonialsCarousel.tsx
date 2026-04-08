@@ -165,10 +165,6 @@ export default function TestimonialsCarousel() {
                   <div className="testimonial-card">
                     <div className="card-top">
                       <span className="company-tag">{slide.company}</span>
-                      <div className="card-metric">
-                        <div className="metric-value">{slide.metricValue}</div>
-                        <div className="metric-label">{slide.metricLabel}</div>
-                      </div>
                     </div>
                     <p
                       className="quote-body"
