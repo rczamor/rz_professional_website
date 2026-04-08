@@ -174,3 +174,17 @@
     font-size: 12px;
   }
 }
+
+@media (max-width: 375px) {
+  .top-banner-inner {
+    padding: 4px 8px;
+    gap: 4px;
+  }
+  .top-banner-text {
+    font-size: 10px;
+  }
+  .top-banner-form button {
+    padding: 3px 12px;
+    font-size: 11px;
+  }
+}

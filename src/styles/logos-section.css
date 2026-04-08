@@ -208,55 +208,67 @@ html[data-theme="dawn"] .logo-grid {
   font-weight: 600;
 }
 
+/* ===== MOBILE DESCRIPTIVE CARDS ===== */
+.logo-cards-mobile {
+  display: none;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 900px) {
   .logo-grid { grid-template-columns: repeat(3, 1fr); }
 }
-@media (max-width: 600px) {
-  .logo-grid { grid-template-columns: repeat(2, 1fr); }
-  .logo-cell { padding: 28px 20px; min-height: 80px; }
-  .logo-cell .logo-wrap { width: 100px; height: 32px; }
-  .logo-cell .logo-wrap svg { max-width: 100px; max-height: 32px; }
-  .logo-cell .logo-wrap.w { width: 120px; height: 28px; }
-  .logo-cell .logo-wrap.sq { width: 40px; height: 40px; }
-  .logo-cell .logo-wrap.sq-lg { width: 56px; height: 56px; }
-  .logo-cell .logo-wrap.sq-xl { width: 70px; height: 70px; }
-  .logo-cell .logo-wrap.full { width: 100px; height: 80px; }
+
+@media (max-width: 768px) {
+  /* Hide desktop logo grid, show mobile cards */
+  .logo-grid {
+    display: none;
+  }
+  .logo-cards-mobile {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .company-card-mobile {
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 16px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .company-card-mobile:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(123, 127, 228, 0.15);
+  }
+  .company-card-name {
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .company-card-desc {
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
 }
 
-@media (max-width: 480px) {
-  .logo-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 1px;
-  }
+@media (max-width: 375px) {
   .logo-cell {
-    padding: 16px 12px;
-    min-height: 70px;
-  }
-  .logo-cell .logo-wrap,
-  .logo-cell .logo-text {
-    display: none;
-  }
-  .logo-overlay {
-    position: static;
-    opacity: 1;
-    pointer-events: auto;
-    padding: 0;
+    padding: 12px 8px;
+    min-height: 60px;
   }
   .logo-overlay-name {
-    font-size: 13px;
+    font-size: 12px;
   }
   .logo-overlay-desc {
-    font-size: 10px;
-  }
-  .logo-cell::after {
-    display: none;
+    font-size: 9px;
   }
   .logo-cell.statement-cell {
-    grid-column: span 2;
-    padding: 16px 12px;
+    padding: 12px 8px;
   }
   .statement-text {
-    font-size: 13px;
+    font-size: 12px;
   }
 }

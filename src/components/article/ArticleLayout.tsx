@@ -7,7 +7,15 @@ interface ArticleLayoutProps {
   children: React.ReactNode;
 }
 
+function toISODate(dateStr: string): string {
+  const parsed = Date.parse(dateStr);
+  if (isNaN(parsed)) return dateStr;
+  return new Date(parsed).toISOString().split("T")[0];
+}
+
 export default function ArticleLayout({ metadata, children }: ArticleLayoutProps) {
+  const isoDate = toISODate(metadata.date);
+
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -24,7 +32,7 @@ export default function ArticleLayout({ metadata, children }: ArticleLayoutProps
         "https://github.com/rczamor",
       ],
     },
-    datePublished: metadata.date,
+    datePublished: isoDate,
     url: `https://richezamor.com/thinking/${metadata.slug}`,
     publisher: {
       "@type": "Person",
@@ -66,33 +74,33 @@ export default function ArticleLayout({ metadata, children }: ArticleLayoutProps
       <Nav activePage="thinking" />
       <main id="main-content">
         <article>
-        <section className="hero hero-centered">
-          <div className="container">
-            <div className="article-hero-meta">
-              <span className={`article-badge${metadata.badgeVariant ? ` ${metadata.badgeVariant}` : ""}`}>
-                {metadata.badge}
-              </span>
-              <span className="article-hero-pillar">
-                {metadata.pillar.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
-              </span>
+          <section className="hero hero-centered">
+            <div className="container">
+              <div className="article-hero-meta">
+                <span className={`article-badge${metadata.badgeVariant ? ` ${metadata.badgeVariant}` : ""}`}>
+                  {metadata.badge}
+                </span>
+                <span className="article-hero-pillar">
+                  {metadata.pillar.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
+                </span>
+              </div>
+              <h1>{metadata.title}</h1>
+              <div className="article-hero-info">
+                <address rel="author" className="article-author-address">By Riche Zamor</address>
+                <span className="article-meta-separator" />
+                <time dateTime={isoDate}>{metadata.date}</time>
+                <span className="article-meta-separator" />
+                <span>{metadata.readTime}</span>
+              </div>
             </div>
-            <h1>{metadata.title}</h1>
-            <div className="article-hero-info">
-              <span>Riche Zamor</span>
-              <span className="article-meta-separator" />
-              <span>{metadata.date}</span>
-              <span className="article-meta-separator" />
-              <span>{metadata.readTime}</span>
+          </section>
+          <section className="article-body">
+            <div className="container">
+              <div className="article-prose">
+                {children}
+              </div>
             </div>
-          </div>
-        </section>
-        <section className="article-body">
-          <div className="container">
-            <div className="article-prose">
-              {children}
-            </div>
-          </div>
-        </section>
+          </section>
         </article>
         <section className="page-bridge">
           <div className="container">

@@ -29,7 +29,12 @@ function applyTheme(theme: string) {
   const toggleBtn = document.getElementById("theme-toggle");
   const phaseLabel = document.getElementById("phase-label");
 
-  if (toggleBtn) toggleBtn.textContent = THEME_ICONS[theme] ?? THEME_ICONS.night;
+  if (toggleBtn) {
+    toggleBtn.textContent = THEME_ICONS[theme] ?? THEME_ICONS.night;
+    const idx = THEME_ORDER.indexOf(theme);
+    const nextTheme = THEME_ORDER[(idx + 1) % THEME_ORDER.length];
+    toggleBtn.setAttribute("aria-label", `Switch to ${nextTheme} theme`);
+  }
   if (phaseLabel) phaseLabel.textContent = theme;
 }
 

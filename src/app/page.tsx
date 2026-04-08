@@ -48,11 +48,11 @@ export default function Home() {
 
       <main id="main-content">
       {/* Hero */}
-      <section className="hero">
+      <section className="hero" aria-labelledby="hero-heading">
         <HeroCanvas />
         <div className="container">
           <div className="hero-content">
-            <h1>
+            <h1 id="hero-heading">
               VP of Product.
               <br />
               <span className="highlight">Context Architect.</span>
@@ -93,12 +93,12 @@ export default function Home() {
       <LogosSection />
 
       {/* Thesis Teaser */}
-      <section className="thesis-section">
+      <section className="thesis-section" aria-labelledby="thesis-heading">
         <div className="container">
           <div className="thesis-teaser reveal">
             <div className="thesis-teaser-text">
               <div className="section-label">The Thesis</div>
-              <h2 className="section-title">
+              <h2 id="thesis-heading" className="section-title">
                 Data is{" "}
                 <span
                   className="em"
@@ -132,11 +132,11 @@ export default function Home() {
       </section>
 
       {/* Capabilities */}
-      <section className="capabilities-section">
+      <section className="capabilities-section" aria-labelledby="capabilities-heading">
         <div className="container">
           <div className="capabilities-intro reveal">
             <div className="section-label">What I Do</div>
-            <h2 className="section-title">
+            <h2 id="capabilities-heading" className="section-title">
               Product leadership,
               <br />
               end-to-end.
@@ -161,11 +161,11 @@ export default function Home() {
       </section>
 
       {/* Select Work */}
-      <section className="work-section">
+      <section className="work-section" aria-labelledby="work-heading">
         <div className="container">
           <div className="work-intro reveal">
             <div className="section-label">Select Work</div>
-            <h2 className="section-title">Execution at scale.</h2>
+            <h2 id="work-heading" className="section-title">Execution at scale.</h2>
             <p className="section-subtitle">
               Every role has been a transformation story. Here&apos;s what I
               built, what changed, and what it taught me about context.
@@ -196,15 +196,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <TestimonialsCarousel />
+      {/* Testimonials — hidden per CAR-271 */}
+      {/* <TestimonialsCarousel /> */}
 
       {/* Why Me */}
-      <section className="why-section">
+      <section className="why-section" aria-labelledby="why-heading">
         <div className="container">
           <div className="why-intro reveal">
             <div className="section-label">Why Me</div>
-            <h2 className="section-title">
+            <h2 id="why-heading" className="section-title">
               A product mind grounded in the bottom line.
             </h2>
             <p className="section-subtitle">
@@ -225,11 +225,11 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="cta-section">
+      <section className="cta-section" aria-labelledby="cta-heading">
         <div className="container reveal">
           <div className="cta-box">
             <div className="section-label">Let&apos;s Connect</div>
-            <h2 className="section-title">
+            <h2 id="cta-heading" className="section-title">
               Ready to architect the next{" "}
               <span className="highlight">context</span>?
             </h2>

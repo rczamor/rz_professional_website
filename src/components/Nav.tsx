@@ -6,6 +6,7 @@ type NavProps = {
 
 export default function Nav({ activePage }: NavProps) {
   return (
+    <header>
     <nav aria-label="Main navigation">
       <a href="/" className="nav-logo">
         Rich&#233;<span>.</span>Zamor
@@ -75,5 +76,6 @@ export default function Nav({ activePage }: NavProps) {
         <MobileNav activePage={activePage} />
       </div>
     </nav>
+    </header>
   );
 }

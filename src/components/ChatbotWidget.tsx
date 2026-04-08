@@ -90,6 +90,38 @@ export default function ChatbotWidget() {
     return () => document.removeEventListener("click", onClick);
   }, [isOpen]);
 
+  // Focus trapping when dialog is open
+  useEffect(() => {
+    if (!isOpen) return;
+    const panel = widgetRef.current;
+    if (!panel) return;
+
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key !== "Tab") return;
+      const focusable = panel!.querySelectorAll<HTMLElement>(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    }
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [isOpen]);
+
   return (
     <div className="chatbot-widget" ref={widgetRef}>
       {/* Floating Button */}
@@ -97,14 +129,19 @@ export default function ChatbotWidget() {
         className="chatbot-button"
         onClick={() => setIsOpen(!isOpen)}
         type="button"
-        aria-label="Open chat"
+        aria-label={isOpen ? "Close chat" : "Open chat"}
         title="Chat with Riché"
       >
         <span className="material-symbols-outlined">smart_toy</span>
       </button>
 
       {/* Chat Panel */}
-      <div className={`chatbot-panel${isOpen ? " open" : ""}`}>
+      <div
+        className={`chatbot-panel${isOpen ? " open" : ""}`}
+        role="dialog"
+        aria-label="Chat with Riché"
+        aria-modal={isOpen ? "true" : undefined}
+      >
         {/* Header */}
         <div className="chatbot-header">
           <div className="chatbot-title">

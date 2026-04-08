@@ -332,3 +332,12 @@
   .stage .desc { font-size: 12px; }
   .stage-anim canvas { height: 80px; }
 }
+
+@media (max-width: 375px) {
+  .pipe-inner { padding: 16px 8px 12px; }
+  .stage-row { padding: 10px 8px; gap: 8px; grid-template-columns: 32px 1fr; }
+  .node { width: 32px; height: 32px; border-radius: 8px; }
+  .stage .name { font-size: 12px; }
+  .stage .desc { font-size: 11px; }
+  .stage-anim canvas { height: 64px; }
+}

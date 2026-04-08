@@ -3,10 +3,11 @@ import { logoEntries } from '@/content/logos';
 
 export default function LogosSection() {
   return (
-    <section className="validation">
+    <section className="validation" aria-label="Companies I've shipped products for">
       <div className="container">
       <div className="validation-label">I&apos;ve shipped products for</div>
 
+      {/* Desktop: logo grid with hover overlays */}
       <div className="logo-grid">
         {logoEntries.map((logo) => (
           <div key={logo.name} className="logo-cell">
@@ -30,6 +31,17 @@ export default function LogosSection() {
           <p className="statement-text"><span>200+</span> AI systems, data platforms, web applications and enterprise websites launched in my career.</p>
         </div>
       </div>
+
+      {/* Mobile: descriptive text cards */}
+      <div className="logo-cards-mobile">
+        {logoEntries.map((logo) => (
+          <div key={logo.name} className="company-card-mobile">
+            <div className="company-card-name">{logo.name}</div>
+            <div className="company-card-desc">{logo.description}</div>
+          </div>
+        ))}
+      </div>
+
       </div>
     </section>
   );

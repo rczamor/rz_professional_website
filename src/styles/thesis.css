@@ -574,3 +574,17 @@
   .thesis-step-canvas-wrap canvas { height: 80px; }
   .thesis-cta-box { padding: 40px 20px; }
 }
+
+@media (max-width: 375px) {
+  .thesis-hero { padding: 88px 0 32px; }
+  .thesis-hero h1 { font-size: 28px; letter-spacing: -1.5px; }
+  .thesis-hero-sub { font-size: 14px; }
+  .thesis-container { padding: 0 12px; }
+  .thesis-step-top { padding: 16px 12px 12px; }
+  .thesis-step-num { font-size: 24px; }
+  .thesis-step-content h3 { font-size: 16px; }
+  .thesis-step-content p { font-size: 13px; }
+  .thesis-step-canvas-wrap { margin: 0 8px 8px; }
+  .thesis-step-canvas-wrap canvas { height: 64px; }
+  .thesis-cta-box { padding: 32px 16px; }
+}

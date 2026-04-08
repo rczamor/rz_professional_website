@@ -143,12 +143,20 @@ export default function TestimonialsCarousel() {
   }
 
   return (
-    <section className="testimonials-section">
+    <section className="testimonials-section" aria-labelledby="testimonials-heading">
       <div className="testimonials">
         <div className="section-label">What People Say</div>
-        <h2 className="section-title">Working with Rich&eacute;</h2>
+        <h2 id="testimonials-heading" className="section-title">Working with Rich&eacute;</h2>
 
-        <div className="carousel">
+        <div
+          className="carousel"
+          role="region"
+          aria-roledescription="carousel"
+          aria-label="Testimonials"
+        >
+          <div aria-live="polite" aria-atomic="true" className="sr-only">
+            {`Showing testimonial ${current + 1} of ${SLIDES.length}: ${SLIDES[current].name}, ${SLIDES[current].role} at ${SLIDES[current].company}`}
+          </div>
           <div
             className="carousel-viewport"
             onMouseEnter={() => { pausedRef.current = true; }}
@@ -161,6 +169,10 @@ export default function TestimonialsCarousel() {
                 <div
                   key={i}
                   className={`carousel-slide${i === current ? " active" : ""}`}
+                  role="group"
+                  aria-roledescription="slide"
+                  aria-label={`Testimonial ${i + 1} of ${SLIDES.length}`}
+                  aria-hidden={i !== current}
                 >
                   <div className="testimonial-card">
                     <div className="card-top">

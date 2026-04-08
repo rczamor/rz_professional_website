@@ -200,6 +200,7 @@ export default function HeroCanvas() {
       ref={canvasRef}
       id="hero-canvas"
       aria-hidden="true"
+      role="presentation"
       style={{
         position: "absolute",
         inset: 0,
