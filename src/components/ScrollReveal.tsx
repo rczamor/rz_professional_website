@@ -26,14 +26,17 @@ export default function ScrollReveal() {
 
     observeAll();
 
-    // Watch for dynamically added .reveal elements — scope to main content
+    // Watch for dynamically added .reveal elements — scope to main content container only.
+    // Using a targeted container (never document.body) with debounce to avoid excessive firing.
     let debounceTimer: ReturnType<typeof setTimeout>;
     const mo = new MutationObserver(() => {
       clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(observeAll, 100);
+      debounceTimer = setTimeout(observeAll, 200);
     });
-    const target = document.querySelector("main") || document.body;
-    mo.observe(target, { childList: true, subtree: true });
+    const mainEl = document.querySelector("main");
+    if (mainEl) {
+      mo.observe(mainEl, { childList: true, subtree: true });
+    }
 
     // Safety net: if any .reveal elements are still hidden after 3s, force them visible
     const safetyTimeout = setTimeout(() => {

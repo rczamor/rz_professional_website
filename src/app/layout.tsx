@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Inter, JetBrains_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Inter } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Script from "next/script";
 import "@/styles/globals.css";
@@ -24,13 +24,6 @@ const inter = Inter({
   display: "swap",
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  weight: ["400", "500"],
-  subsets: ["latin"],
-  variable: "--font-mono",
-  display: "swap",
-});
-
 export const metadata: Metadata = {
   title: "Riche Zamor — VP of Product. 2x Founder. Context Architect.",
   description:
@@ -47,7 +40,7 @@ export default function RootLayout({
       lang="en"
       data-theme="night"
       suppressHydrationWarning={true}
-      className={`${bricolage.variable} ${inter.variable} ${jetbrainsMono.variable}`}
+      className={`${bricolage.variable} ${inter.variable}`}
     >
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -67,7 +60,7 @@ export default function RootLayout({
         <link rel="alternate" type="text/plain" href="/llms-full.txt" title="LLM full content" />
       </head>
       <body
-        className={`${bricolage.variable} ${inter.variable} ${jetbrainsMono.variable} has-top-banner`}
+        className={`${bricolage.variable} ${inter.variable} has-top-banner`}
       >
         <a href="#main-content" className="skip-nav">
           Skip to main content

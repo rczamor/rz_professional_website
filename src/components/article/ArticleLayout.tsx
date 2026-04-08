@@ -8,10 +8,64 @@ interface ArticleLayoutProps {
 }
 
 export default function ArticleLayout({ metadata, children }: ArticleLayoutProps) {
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: metadata.title,
+    description: metadata.excerpt,
+    author: {
+      "@type": "Person",
+      name: "Riche Zamor",
+      url: "https://richezamor.com",
+      jobTitle: "VP of Product",
+      sameAs: [
+        "https://linkedin.com/in/richezamorjr",
+        "https://twitter.com/richezamor",
+        "https://github.com/rczamor",
+      ],
+    },
+    datePublished: metadata.date,
+    url: `https://richezamor.com/thinking/${metadata.slug}`,
+    publisher: {
+      "@type": "Person",
+      name: "Riche Zamor",
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://richezamor.com/thinking/${metadata.slug}`,
+    },
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://richezamor.com",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Thinking",
+        item: "https://richezamor.com/thinking",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: metadata.title,
+        item: `https://richezamor.com/thinking/${metadata.slug}`,
+      },
+    ],
+  };
+
   return (
     <>
       <Nav activePage="thinking" />
       <main id="main-content">
+        <article>
         <section className="hero hero-centered">
           <div className="container">
             <div className="article-hero-meta">
@@ -39,6 +93,7 @@ export default function ArticleLayout({ metadata, children }: ArticleLayoutProps
             </div>
           </div>
         </section>
+        </article>
         <section className="page-bridge">
           <div className="container">
             <p className="page-bridge-prompt">More thinking in public</p>
@@ -49,6 +104,15 @@ export default function ArticleLayout({ metadata, children }: ArticleLayoutProps
         </section>
       </main>
       <Footer />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
     </>
   );
 }

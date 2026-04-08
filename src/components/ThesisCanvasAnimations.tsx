@@ -412,7 +412,7 @@ function createPrioritize(canvas: HTMLCanvasElement, stageIdx: number): Controll
 
     if (phase === "hold" || (phase === "sort" && clusters[0].progress > 0.7)) {
       const markerAlpha = phase === "hold" ? 0.3 : (clusters[0].progress - 0.7) / 0.3 * 0.3;
-      ctx.font = "500 8px 'JetBrains Mono', monospace";
+      ctx.font = "500 8px 'SF Mono', 'Cascadia Code', 'Fira Code', monospace";
       ctx.textAlign = "center";
       for (const c of clusters) {
         const sortedIdx = clusters.filter(o => o.rank > c.rank).length;
@@ -559,7 +559,7 @@ function createStore(canvas: HTMLCanvasElement, stageIdx: number): Controller {
       ctx.fill();
 
       ctx.fillStyle = `rgba(${col[0]},${col[1]},${col[2]},${0.12 + br * 0.25})`;
-      ctx.font = `600 ${Math.max(7, Math.min(9, tierW * 0.12))}px 'JetBrains Mono', monospace`;
+      ctx.font = `600 ${Math.max(7, Math.min(9, tierW * 0.12))}px 'SF Mono', 'Cascadia Code', 'Fira Code', monospace`;
       ctx.textAlign = "center";
       ctx.fillText(tier.label, tx0 + tierW / 2, tierTop + tierH + 14);
 

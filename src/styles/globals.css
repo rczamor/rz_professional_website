@@ -30,7 +30,7 @@
   --shadow-h: 0 0 0 transparent;
   --font-heading: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-mono: 'SF Mono', 'Cascadia Code', 'Fira Code', 'Menlo', 'Consolas', monospace;
   transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 

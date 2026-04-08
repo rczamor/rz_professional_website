@@ -242,7 +242,11 @@ export default function GSAPAnimations() {
           const htmlEl = el as HTMLElement;
           if (htmlEl.style.opacity === "0") {
             htmlEl.style.opacity = "1";
+            htmlEl.style.visibility = "visible";
             htmlEl.style.transform = "none";
+            // Force compositor repaint — reading offsetHeight flushes
+            // pending style changes and invalidates the GPU layer
+            void htmlEl.offsetHeight;
           }
         });
     }, 3000);

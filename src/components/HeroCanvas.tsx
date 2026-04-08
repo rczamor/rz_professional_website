@@ -3,11 +3,8 @@
 import { useRef, useEffect } from "react";
 
 const PARTICLE_COUNT_DESKTOP = 300;
-const PARTICLE_COUNT_MOBILE = 100;
 const GRID_COLS_DESKTOP = 20;
-const GRID_COLS_MOBILE = 10;
 const GRID_ROWS_DESKTOP = 15;
-const GRID_ROWS_MOBILE = 10;
 
 type Particle = {
   x: number;
@@ -32,14 +29,17 @@ export default function HeroCanvas() {
     const parent = canvas.parentElement;
     if (!parent) return;
 
-    const isMobile = window.innerWidth < 768;
-    const PARTICLE_COUNT = isMobile ? PARTICLE_COUNT_MOBILE : PARTICLE_COUNT_DESKTOP;
-    const GRID_COLS = isMobile ? GRID_COLS_MOBILE : GRID_COLS_DESKTOP;
-    const GRID_ROWS = isMobile ? GRID_ROWS_MOBILE : GRID_ROWS_DESKTOP;
+    // Skip canvas on mobile (<=768px) for battery/performance
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) return;
 
     // Skip canvas entirely if user prefers reduced motion
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReducedMotion) return;
+
+    const PARTICLE_COUNT = PARTICLE_COUNT_DESKTOP;
+    const GRID_COLS = GRID_COLS_DESKTOP;
+    const GRID_ROWS = GRID_ROWS_DESKTOP;
 
     let particles: Particle[] = [];
     let mouseX = -9999;
