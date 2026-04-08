@@ -65,7 +65,12 @@ export default function NewsletterSignup({ buttonText = "Subscribe", className =
   }
 
   return (
-    <form className={className} onSubmit={handleSubmit}>
+    <form
+      className={className}
+      onSubmit={handleSubmit}
+      toolname="subscribe_newsletter"
+      tooldescription="Subscribe to The Context Layer newsletter"
+    >
       <input
         type="email"
         placeholder="your@email.com"
@@ -73,6 +78,7 @@ export default function NewsletterSignup({ buttonText = "Subscribe", className =
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         required
+        toolparamtitle="Email"
       />
       <button type="submit" disabled={status === "submitting"}>
         {status === "submitting" ? "..." : buttonText}

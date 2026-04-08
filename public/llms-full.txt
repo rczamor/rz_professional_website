@@ -1,0 +1,123 @@
+# Riche Zamor — Full Site Content
+> VP of Product. 2x Founder. Context Architect.
+
+---
+
+## Professional Profile
+
+Riche Zamor is a context architect and VP of Product who designs how organizations structure knowledge for AI-driven decision-making. He has 20 years of experience building AI products, data platforms, and enterprise digital experiences.
+
+**Current Role:** VP Product at Suzy — led the transformation from a consumer survey platform to a Decision Engine synthesizing fragmented marketing intelligence for 350+ enterprise brands.
+
+**Expertise:** Product Management, AI Products, Context Architecture, Startup Leadership, Go-to-Market Strategy
+
+**Social:**
+- LinkedIn: https://linkedin.com/in/richezamorjr/
+- X/Twitter: https://x.com/richezamor
+- GitHub: https://github.com/rczamor
+
+---
+
+## The Thesis: Data Is Not Context
+
+The AI industry is obsessed with retrieval — how to get the right chunks into the context window. But retrieval is downstream. If what you're retrieving was never curated, synthesized, consolidated, prioritized, or stored intelligently, your RAG pipeline is just efficiently delivering noise.
+
+### The Five Steps of Context Architecture
+
+1. **Curation** — Intelligent filtering at the intake level. Deciding what sources matter, what's fresh, and what's relevant to the system's goals.
+2. **Synthesis** — Classifying inputs, extracting insights, combining information across sources, and producing understanding that no single document contained.
+3. **Consolidation** — The periodic process of replaying accumulated knowledge to find cross-cutting patterns, merge redundant information, prune stale facts, and extract higher-order insights.
+4. **Prioritization** — Ranking information by goal-awareness. Determining what the system needs to decide and what context is most relevant to that specific decision.
+5. **Intelligent Storage** — Storing insights with priority-aware indexing so that high-value consolidated knowledge is rapidly retrievable while lower-priority information decays gracefully.
+
+### Key Insight
+Expert decision-makers don't process more information than novices. They process less — and they process the right things. The question is not "how do we fit more in?" It's "how do we build systems that know precisely what to leave out?"
+
+---
+
+## Case Studies
+
+### Suzy — VP Product (Dec 2025 – Present)
+Led transformation to Decision Engine. Architected retrieval using Databricks vector DB with Qwen3-Embedding-8B. Drove inference cost optimization through model tiering. Reorganized product org from two pods into six triads.
+- 6 weeks concept to launch
+- 350+ enterprise brands
+
+### Grandstage / Spade AI — Co-Founder & Head of Product (2022–2024)
+Built AI market intelligence platform. Hybrid search architecture: PostgreSQL + PGVector. Hierarchical relevance model using K-Means clustering.
+- 300% user growth
+- $0 CAC
+- 80% retention
+
+### Helm Labs — SVP & General Manager (2024)
+Enterprise data platform integrating proprietary datasets covering 200M+ Americans.
+- $3.25M pipeline pre-launch
+- 14x partner ACV growth
+
+### IBM — Digital Product & Growth Leader (2018–2021)
+Led digital product and growth for Cloud and AI self-service portfolio.
+- 31% trial conversion lift
+- $2.4M e-nurture revenue
+- 8-figure pipeline
+
+### Phase2 — Director, Product & Digital Strategy (2014–2017)
+Consulting practice with J&J, Northwell Health, Twitter, Reddit, Memorial Sloan Kettering, Al Jazeera, Sony Music.
+- $3M practice revenue year 1
+- 500% J&J revenue growth
+
+---
+
+## Glossary of Context Architecture Terms
+
+- **Context Architecture**: The practice of designing the informational environment that surrounds AI systems — shaping what they know, how they retrieve it, and how that knowledge is structured for human decision-making.
+- **Curation**: Intelligent filtering at the intake level that determines whether downstream steps operate on signal or noise.
+- **Synthesis**: The active processing step — classifying inputs, extracting insights, combining information across sources.
+- **Consolidation**: The periodic process of replaying accumulated knowledge to find cross-cutting patterns.
+- **Prioritization**: Ranking information by goal-awareness for specific decisions.
+- **Intelligent Storage**: Storing insights with priority-aware indexing.
+- **Context Drift**: The gradual degradation of AI system performance as context becomes stale or misaligned.
+- **Context Window**: The maximum amount of text a language model can process in a single interaction.
+- **Decision-Ready Context**: Information that has been fully processed through all five steps.
+- **Context Layer**: The architectural component managing the flow from raw data to decision-ready context.
+- **RAG (Retrieval-Augmented Generation)**: A technique that retrieves documents and provides them as context — necessary but insufficient without prior curation and synthesis.
+- **Goal-Aware Compression**: Reducing information volume while preserving elements most relevant to a specific decision.
+
+---
+
+## Projects
+
+- **Sia** (In Development): Personal knowledge system demonstrating the five-step context generation architecture. Built with FastAPI, Neon Postgres + pgvector, Ollama, and Langfuse.
+- **Ascend** (Live): Career growth SaaS built entirely with AI coding tools. https://ascend.careers
+- **Blocade** (Live): Political fundraising system for local campaigns. https://blocade.app
+- **AI Topic Trend Analyzer** (Prototype): Analyzes trending topics in AI discourse.
+- **Hubspot AI Dashboard** (Prototype): AI-powered onboarding and analytics dashboard.
+- **Recipe Remix** (Live): Creative cooking tool. https://recipe-remix.app
+
+---
+
+## Speaking Topics
+
+1. **The Five Steps Most AI Systems Skip** — Why most AI products treat data as context and what happens when you build the generation layer they're missing.
+2. **RAG Is Not Enough** — What the next generation of AI products needs beyond chunking and embedding.
+3. **From Zero to Revenue: Building AI Products Without Writing Code** — Architecture decisions, mistakes, and workflows that scale.
+4. **The Product Leader's Guide to AI Architecture Decisions** — When to build vs. buy, how to evaluate context systems.
+
+---
+
+## Career Timeline
+
+- 2025–Present: VP Product, Suzy
+- 2024: SVP & General Manager, Helm Labs
+- 2022–2024: Co-Founder & Head of Product, Grandstage / Spade AI
+- 2018–2021: Digital Product & Growth Leader, IBM
+- 2014–2017: Director, Product & Digital Strategy, Phase2
+- 2012–2014: Director, Strategy, 4Site Interactive Studios
+- 2011–2012: Digital Strategist, Hill Holliday
+- 2009–2011: Founder, Social Contxt
+- 2006–2009: Digital Director & Product Manager, Freelance
+
+---
+
+## Contact
+
+Available for: Advisory engagements, board positions, speaking opportunities, networking.
+Contact form: https://richezamor.com/contact

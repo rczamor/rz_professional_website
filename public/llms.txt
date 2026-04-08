@@ -1,0 +1,24 @@
+# Riche Zamor
+> VP of Product. 2x Founder. Context Architect.
+
+## About
+Riche Zamor is a context architect and VP of Product who designs how organizations structure knowledge for AI-driven decision-making. He coined the term "context architecture" — a five-step framework (curate, synthesize, consolidate, prioritize, store intelligently) for turning raw data into decision-ready context.
+
+## Pages
+- Home: https://richezamor.com/
+- Thesis (Data Is Not Context): https://richezamor.com/thesis
+- Work (Case Studies): https://richezamor.com/work
+- About: https://richezamor.com/about
+- Thinking (Articles): https://richezamor.com/thinking
+- Projects: https://richezamor.com/projects
+- Glossary: https://richezamor.com/glossary
+- Contact: https://richezamor.com/contact
+
+## Contact
+- Email: connect@richezamor.com
+- LinkedIn: https://linkedin.com/in/richezamorjr/
+- X/Twitter: https://x.com/richezamor
+- GitHub: https://github.com/rczamor
+
+## Full Content
+For complete site content, see: https://richezamor.com/llms-full.txt

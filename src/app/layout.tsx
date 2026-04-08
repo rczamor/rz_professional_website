@@ -3,10 +3,12 @@ import { Bricolage_Grotesque, Inter, JetBrains_Mono } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Script from "next/script";
 import "@/styles/globals.css";
+import "@/styles/article.css";
 import ThemeEngine from "@/components/ThemeEngine";
 import ScrollReveal from "@/components/ScrollReveal";
 import NavScroll from "@/components/NavScroll";
 import TopBanner from "@/components/TopBanner";
+import WebMcpProvider from "@/components/WebMcpProvider";
 
 const bricolage = Bricolage_Grotesque({
   weight: ["400", "500", "600", "700", "800"],
@@ -61,6 +63,8 @@ export default function RootLayout({
           type="image/svg+xml"
           href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%237B7FE4'/><text x='50' y='68' font-family='system-ui' font-size='55' font-weight='bold' fill='white' text-anchor='middle'>R</text></svg>"
         />
+        <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM summary" />
+        <link rel="alternate" type="text/plain" href="/llms-full.txt" title="LLM full content" />
       </head>
       <body
         className={`${bricolage.variable} ${inter.variable} ${jetbrainsMono.variable} has-top-banner`}
@@ -71,6 +75,7 @@ export default function RootLayout({
         <TopBanner />
         <div className="ambient-bg" />
         <ThemeEngine />
+        <WebMcpProvider />
         <ScrollReveal />
         <NavScroll />
         {children}

@@ -2,6 +2,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import NewsletterSignup from "@/components/NewsletterSignup";
 import type { Metadata } from "next";
+import { getAllArticles } from "@/lib/articles";
 import ThinkingArticles from "./ThinkingArticles";
 
 export const metadata: Metadata = {
@@ -28,7 +29,9 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://richezamor.com/thinking" },
 };
 
-export default function ThinkingPage() {
+export default async function ThinkingPage() {
+  const articles = await getAllArticles();
+
   return (
     <>
       <Nav activePage="thinking" />
@@ -43,7 +46,7 @@ export default function ThinkingPage() {
         </section>
 
         {/* Filter + Articles (client component for interactivity) */}
-        <ThinkingArticles />
+        <ThinkingArticles articles={articles} />
 
         {/* CTA / Newsletter Section */}
         <section className="cta-section">

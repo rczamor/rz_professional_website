@@ -2,6 +2,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import type { Metadata } from "next";
 import ContactForm from "./ContactForm";
+import { engagementCards } from "@/content/contact";
 
 export const metadata: Metadata = {
   title: "Get in Touch — Riche Zamor",
@@ -51,29 +52,15 @@ export default function ContactPage() {
                 <h2 className="availability-heading">Availability</h2>
 
                 <div className="engagement-cards">
-                  <div className="engagement-card">
-                    <div className="engagement-icon">
-                      <span className="material-symbols-outlined">account_tree</span>
+                  {engagementCards.map((card) => (
+                    <div key={card.title} className="engagement-card">
+                      <div className="engagement-icon">
+                        <span className="material-symbols-outlined">{card.icon}</span>
+                      </div>
+                      <h3>{card.title}</h3>
+                      <p>{card.description}</p>
                     </div>
-                    <h3>Advisory</h3>
-                    <p>If you&rsquo;re building an AI product and making architecture decisions about context, memory, RAG, or agent systems, I can help you think through the trade-offs.</p>
-                  </div>
-
-                  <div className="engagement-card">
-                    <div className="engagement-icon">
-                      <span className="material-symbols-outlined">groups</span>
-                    </div>
-                    <h3>Board Positions</h3>
-                    <p>I&rsquo;m interested in joining boards of AI-forward companies where my product and go-to-market experience adds value.</p>
-                  </div>
-
-                  <div className="engagement-card">
-                    <div className="engagement-icon">
-                      <span className="material-symbols-outlined">record_voice_over</span>
-                    </div>
-                    <h3>Speaking &amp; Podcasts</h3>
-                    <p>I speak about context architecture, AI product strategy, and building in production. Practitioner-focused talks with specific frameworks the audience can apply.</p>
-                  </div>
+                  ))}
                 </div>
 
               </div>

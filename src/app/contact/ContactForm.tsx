@@ -68,26 +68,30 @@ export default function ContactForm() {
 
   return (
     <div className="form-card">
-      <form onSubmit={handleSubmit}>
+      <form
+        onSubmit={handleSubmit}
+        toolname="submit_contact_inquiry"
+        tooldescription="Submit a contact inquiry to Riche Zamor for advisory, board, speaking, or networking"
+      >
         <div className="form-two-column">
           <div className="form-group">
             <label htmlFor="firstname" className="form-label">First Name</label>
-            <input type="text" id="firstname" name="firstname" className="form-input" placeholder="First name" required />
+            <input type="text" id="firstname" name="firstname" className="form-input" placeholder="First name" required toolparamtitle="First Name" toolparamdescription="Contact's first name" />
           </div>
           <div className="form-group">
             <label htmlFor="lastname" className="form-label">Last Name</label>
-            <input type="text" id="lastname" name="lastname" className="form-input" placeholder="Last name" required />
+            <input type="text" id="lastname" name="lastname" className="form-input" placeholder="Last name" required toolparamtitle="Last Name" toolparamdescription="Contact's last name" />
           </div>
         </div>
 
         <div className="form-group">
           <label htmlFor="email" className="form-label">Email</label>
-          <input type="email" id="email" name="email" className="form-input" placeholder="your@email.com" required />
+          <input type="email" id="email" name="email" className="form-input" placeholder="your@email.com" required toolparamtitle="Email" toolparamdescription="Contact's email address" />
         </div>
 
         <div className="form-group">
           <label htmlFor="inquiry_type" className="form-label">Type of Inquiry</label>
-          <select id="inquiry_type" name="inquiry_type" className="form-select" required>
+          <select id="inquiry_type" name="inquiry_type" className="form-select" required toolparamtitle="Inquiry Type" toolparamdescription="Type of engagement: Advisory, Board, Speaking, Networking, or Other">
             <option value="">Select an option</option>
             <option value="Advisory Engagement">Advisory Engagement</option>
             <option value="Board Position">Board Position</option>
@@ -99,7 +103,7 @@ export default function ContactForm() {
 
         <div className="form-group">
           <label htmlFor="message" className="form-label">Message</label>
-          <textarea id="message" name="message" className="form-textarea" placeholder="Tell me about what you're working on..." required />
+          <textarea id="message" name="message" className="form-textarea" placeholder="Tell me about what you're working on..." required toolparamtitle="Message" toolparamdescription="Details about what the contact is working on or wants to discuss" />
         </div>
 
         <button type="submit" className="form-submit" disabled={status === "submitting"}>

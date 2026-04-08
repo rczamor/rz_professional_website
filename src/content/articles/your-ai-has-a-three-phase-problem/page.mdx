@@ -1,0 +1,47 @@
+export const metadata = {
+  title: "Your AI Has a Three-Phase Problem",
+  slug: "your-ai-has-a-three-phase-problem",
+  excerpt: "Most AI systems fail not because they lack intelligence, but because they lack diagnosis. Why context collapse happens in three distinct phases and how to prevent each one.",
+  pillar: "context-intelligence",
+  date: "March 14, 2026",
+  readTime: "12 min read",
+  badge: "Deep Dive",
+}
+
+# Your AI Has a Three-Phase Problem
+
+Most AI systems fail not because they lack intelligence, but because they lack diagnosis.
+
+The symptoms look the same — hallucinations, irrelevant responses, confident-but-wrong answers — but the root causes are different depending on *where* in the pipeline context collapses.
+
+## Phase 1: Ingestion Collapse
+
+The first failure mode happens before the AI even sees the data. Information enters the system without structure, priority, or relationship mapping.
+
+Think of it like a hospital emergency room where every patient arrives without a chart. The doctors are brilliant, but they're starting from zero every time.
+
+## Phase 2: Retrieval Collapse
+
+Even with good data, retrieval can fail. Vector similarity is not semantic relevance. The chunk that's closest in embedding space may be the least useful for the actual decision at hand.
+
+This is where most RAG implementations break. They optimize for similarity when they should optimize for *decision relevance*.
+
+## Phase 3: Synthesis Collapse
+
+The final failure mode is the most subtle. The AI has the right information, retrieves the right context, but fails to synthesize it into a coherent recommendation.
+
+This happens when context arrives as fragments instead of narratives — isolated facts instead of connected reasoning chains.
+
+## Prevention Architecture
+
+Each phase requires a different intervention:
+
+- **Ingestion**: Schema design, relationship mapping, priority scoring at write time
+- **Retrieval**: Decision-aware ranking, context window budgeting, recency weighting
+- **Synthesis**: Chain-of-thought scaffolding, citation requirements, confidence calibration
+
+The organizations building real AI capabilities are the ones diagnosing *which* phase is failing — not just throwing more compute at the symptoms.
+
+---
+
+*Part of the Context Intelligence series.*

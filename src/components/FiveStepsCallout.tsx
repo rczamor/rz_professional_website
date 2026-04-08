@@ -2,15 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from 'react';
 import '@/styles/five-steps.css';
-
-/* ===== STAGE DATA ===== */
-const STAGES = [
-  { num: 1, name: 'Curate', tag: 'raw data', desc: 'Filter signal from noise. Ingest only what matters from the firehose of data.' },
-  { num: 2, name: 'Synthesize', tag: 'insights', desc: 'Extract meaning. Classify, summarize, and pull key insights at ingest time.' },
-  { num: 3, name: 'Consolidate', tag: 'patterns', desc: 'Find connections across knowledge. The sleep cycle \u2014 where patterns emerge.' },
-  { num: 4, name: 'Prioritize', tag: 'ranked', desc: 'Rank by relevance, recency, and confidence. Not all context is equal.' },
-  { num: 5, name: 'Store Intelligently', tag: 'context', desc: 'Decision-ready context. Indexed, versioned, instantly retrievable.' },
-];
+import { STAGES } from '@/content/shared';
 
 const COLORS: [number, number, number][] = [
   [123, 127, 228],

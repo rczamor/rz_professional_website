@@ -1,0 +1,52 @@
+export const metadata = {
+  title: "Building My Own Context Layer: Week 1",
+  slug: "building-my-own-context-layer-week-1",
+  excerpt: "What happens when you try to build context architecture in the real world? This is what I learned in the first week of building my own implementation.",
+  pillar: "context-intelligence",
+  date: "February 14, 2026",
+  readTime: "7 min read",
+  badge: "Building in Public",
+}
+
+# Building My Own Context Layer: Week 1
+
+I've spent months writing about context architecture in theory. This week, I started building it for real.
+
+## The Goal
+
+Build a personal context layer — a system that captures, curates, synthesizes, and activates the information I encounter every day. Think of it as a second brain, but with an actual architecture instead of a pile of notes.
+
+## Day 1-2: Capture
+
+The first step was building the ingestion pipeline. Every article I read, every conversation I have, every idea that crosses my mind — it all needs a place to land.
+
+I started simple: a Chrome extension that captures highlights with one click, and a Telegram bot for quick voice notes.
+
+The lesson: **capture has to be frictionless or it doesn't happen.** If it takes more than 2 seconds, I skip it. And every skipped capture is lost context.
+
+## Day 3-4: The Schema Problem
+
+Here's where theory met reality. In my essays, I write about "structured knowledge representation." In practice, that means answering a surprisingly hard question: *What metadata do I attach to each piece of captured context?*
+
+I landed on:
+- **Source** (where did this come from?)
+- **Domain** (what area of knowledge?)
+- **Confidence** (how reliable is this?)
+- **Connections** (what else does this relate to?)
+- **Freshness** (when was this last validated?)
+
+## Day 5-7: First Synthesis Attempt
+
+By the end of the week, I had about 200 captured items. I wrote a simple script to cluster them by domain and surface connections.
+
+The result was... humbling. The clusters were noisy, the connections were mostly spurious, and the "synthesis" was really just keyword matching wearing a trench coat.
+
+## What I Learned
+
+Building context architecture is harder than writing about it. The gap between "this should work in theory" and "this actually works in practice" is where the real engineering happens.
+
+Next week: curation pipelines and the art of deciding what matters.
+
+---
+
+*Part of the Building in Public series.*

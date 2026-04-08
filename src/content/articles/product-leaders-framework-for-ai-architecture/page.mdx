@@ -1,0 +1,50 @@
+export const metadata = {
+  title: "The Product Leader's Framework for AI Architecture Decisions",
+  slug: "product-leaders-framework-for-ai-architecture",
+  excerpt: "Not all AI architecture decisions are created equal. A framework for evaluating tradeoffs between latency, cost, accuracy, and maintainability when designing AI features.",
+  pillar: "product-management",
+  date: "February 21, 2026",
+  readTime: "11 min read",
+  badge: "Framework",
+}
+
+# The Product Leader's Framework for AI Architecture Decisions
+
+Not all AI architecture decisions are created equal. Some are easily reversible. Others lock you into a path for years.
+
+The difference between a good AI product leader and a great one is knowing which decisions matter — and having a framework for making them.
+
+## The Four Dimensions
+
+Every AI architecture decision involves tradeoffs across four dimensions:
+
+### 1. Latency
+How fast does the user need a response? A chatbot needs sub-second. A weekly analytics report can take minutes. The latency requirement determines whether you can use large models, complex retrieval pipelines, or multi-step reasoning chains.
+
+### 2. Cost
+What's the per-query cost at scale? A consumer product serving millions of queries needs cheap inference. An enterprise tool serving hundreds of high-value decisions can afford expensive pipelines.
+
+### 3. Accuracy
+How wrong can you be? Medical diagnosis needs near-perfect accuracy. Content recommendations can tolerate noise. The accuracy requirement determines your evaluation strategy and acceptable error rates.
+
+### 4. Maintainability
+Who maintains this after launch? A system that requires a PhD to debug will become a liability. The best AI architectures are boring — simple enough that any senior engineer can understand and modify them.
+
+## The Decision Matrix
+
+For each AI feature, plot it on the four dimensions. The profile tells you what architecture to use:
+
+- **Low latency + Low cost + Moderate accuracy** → Cached embeddings with simple retrieval
+- **High accuracy + High latency tolerance** → Multi-step reasoning with verification
+- **High accuracy + Low latency** → Fine-tuned models with pre-computed context
+- **Low cost + High maintainability** → Rule-based systems with AI fallback
+
+## The Meta-Framework
+
+The most important decision isn't *which* architecture to use — it's *when* to use AI at all.
+
+Sometimes a well-designed database query is better than a vector search. Sometimes a hardcoded rule is better than a trained model. The best product leaders know when AI adds genuine value and when it adds genuine complexity.
+
+---
+
+*Part of the Product Management series.*

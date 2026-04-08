@@ -6,6 +6,13 @@ import LogosSection from "@/components/LogosSection";
 import GSAPAnimations from "@/components/GSAPAnimations";
 import TestimonialsCarousel from "@/components/TestimonialsCarousel";
 import type { Metadata } from "next";
+import {
+  heroStats,
+  capabilities,
+  selectWork,
+  whyMeCards,
+  jsonLdData,
+} from "@/content/home";
 
 export const metadata: Metadata = {
   title: "Riche Zamor — VP of Product. 2x Founder. Context Architect.",
@@ -34,27 +41,6 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: "Riche Zamor",
-    url: "https://richezamor.com",
-    jobTitle: "VP of Product",
-    description:
-      "Building AI products that turn raw data into decision-ready context.",
-    sameAs: [
-      "https://linkedin.com/in/richezamorjr",
-      "https://twitter.com/richezamor",
-      "https://github.com/rczamor",
-    ],
-    knowsAbout: [
-      "Product Management",
-      "AI Products",
-      "Context Architecture",
-      "Startup Leadership",
-    ],
-  };
-
   return (
     <>
       <Nav activePage="home" />
@@ -81,29 +67,21 @@ export default function Home() {
             </p>
 
             <div className="hero-stats">
-              <div className="hero-stat">
-                <div className="hero-stat-value">300%</div>
-                <div className="hero-stat-label">Growth at $0 CAC</div>
-                <div className="hero-stat-org">Grandstage</div>
-              </div>
-              <div className="hero-stat">
-                <div className="hero-stat-value">$3.25M</div>
-                <div className="hero-stat-label">Pipeline pre-product</div>
-                <div className="hero-stat-org">Helm Labs</div>
-              </div>
-              <div className="hero-stat">
-                <div className="hero-stat-value">$10M+</div>
-                <div className="hero-stat-label">Revenue impact</div>
-                <div className="hero-stat-org">IBM</div>
-              </div>
+              {heroStats.map((stat) => (
+                <div key={stat.org} className="hero-stat">
+                  <div className="hero-stat-value">{stat.value}</div>
+                  <div className="hero-stat-label">{stat.label}</div>
+                  <div className="hero-stat-org">{stat.org}</div>
+                </div>
+              ))}
             </div>
 
             <div className="hero-ctas">
               <a href="/thesis" className="btn-primary">
-                Read the Thesis <span>→</span>
+                Read the Thesis <span>&rarr;</span>
               </a>
               <a href="/work" className="btn-secondary">
-                See My Work <span>→</span>
+                See My Work <span>&rarr;</span>
               </a>
             </div>
 
@@ -118,7 +96,6 @@ export default function Home() {
       <section className="thesis-section">
         <div className="container">
           <div className="thesis-teaser reveal">
-            {/* Left column: text */}
             <div className="thesis-teaser-text">
               <div className="section-label">The Thesis</div>
               <h2 className="section-title">
@@ -143,11 +120,10 @@ export default function Home() {
                 context. That&apos;s the gap I build for.
               </p>
               <a href="/thesis" className="thesis-link">
-                Read the full thesis <span>→</span>
+                Read the full thesis <span>&rarr;</span>
               </a>
             </div>
 
-            {/* Right column: pipeline widget */}
             <div className="thesis-teaser-widget">
               <FiveStepsCallout />
             </div>
@@ -171,38 +147,15 @@ export default function Home() {
             </p>
           </div>
           <div className="capabilities-grid">
-            <div className="capability-card reveal">
-              <div className="capability-icon">
-                <span className="material-symbols-outlined">hub</span>
+            {capabilities.map((cap) => (
+              <div key={cap.title} className="capability-card reveal">
+                <div className="capability-icon">
+                  <span className="material-symbols-outlined">{cap.icon}</span>
+                </div>
+                <h3>{cap.title}</h3>
+                <p>{cap.description}</p>
               </div>
-              <h3>Strategy</h3>
-              <p>
-                Customer and market research. Product strategy. Growth strategy.
-                AI architecture decisions that map to business outcomes.
-              </p>
-            </div>
-            <div className="capability-card reveal">
-              <div className="capability-icon">
-                <span className="material-symbols-outlined">deployed_code</span>
-              </div>
-              <h3>Build</h3>
-              <p>
-                Requirements. Prototyping. Technical architecture. Working
-                directly with engineering and data science to ship products that
-                hold up in production.
-              </p>
-            </div>
-            <div className="capability-card reveal">
-              <div className="capability-icon">
-                <span className="material-symbols-outlined">trending_up</span>
-              </div>
-              <h3>Scale</h3>
-              <p>
-                Go-to-market execution. Growth experimentation. Analytics and
-                optimization. Building the feedback loops that make products
-                compound.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -219,85 +172,25 @@ export default function Home() {
             </p>
           </div>
           <div className="work-grid">
-            <div className="work-card reveal">
-              <div className="work-card-header">
-                <div className="work-company">Suzy</div>
-                <div className="work-role">VP Product</div>
-              </div>
-              <div className="work-card-body">
-                <p>
-                  Led the transformation of a consumer survey platform trusted by
-                  350+ enterprise brands into a Decision Engine — synthesizing
-                  fragmented marketing intelligence into decisions organizations
-                  can act on. Built and shipped in six weeks.
-                </p>
-              </div>
-              <div className="work-metric">
-                <div className="work-metric-value">6 wks</div>
-                <div className="work-metric-label">concept → launch</div>
-              </div>
-            </div>
-
-            <div className="work-card reveal">
-              <div className="work-card-header">
-                <div className="work-company">Grandstage</div>
-                <div className="work-role">Co-Founder &amp; Head of Product</div>
-              </div>
-              <div className="work-card-body">
-                <p>
-                  Built an answer engine fusing 10,000+ sources into synthesized
-                  market intelligence. Designed the hybrid search architecture
-                  and hierarchical relevance model that lifted user retention
-                  from 50% to 80%.
-                </p>
-              </div>
-              <div className="work-metric">
-                <div className="work-metric-value">300%</div>
-                <div className="work-metric-label">
-                  user growth · $0 CAC
+            {selectWork.map((w) => (
+              <div key={w.company} className="work-card reveal">
+                <div className="work-card-header">
+                  <div className="work-company">{w.company}</div>
+                  <div className="work-role">{w.role}</div>
+                </div>
+                <div className="work-card-body">
+                  <p>{w.body}</p>
+                </div>
+                <div className="work-metric">
+                  <div className="work-metric-value">{w.metricValue}</div>
+                  <div className="work-metric-label">{w.metricLabel}</div>
                 </div>
               </div>
-            </div>
-
-            <div className="work-card reveal">
-              <div className="work-card-header">
-                <div className="work-company">Helm Labs</div>
-                <div className="work-role">SVP &amp; General Manager</div>
-              </div>
-              <div className="work-card-body">
-                <p>
-                  Defined product vision for a unified enterprise data platform
-                  integrating five acquired products and proprietary datasets
-                  covering 200M+ Americans. Built the GTM motion from scratch.
-                </p>
-              </div>
-              <div className="work-metric">
-                <div className="work-metric-value">$3.25M</div>
-                <div className="work-metric-label">pipeline pre-launch</div>
-              </div>
-            </div>
-
-            <div className="work-card reveal">
-              <div className="work-card-header">
-                <div className="work-company">IBM</div>
-                <div className="work-role">Digital Product &amp; Growth</div>
-              </div>
-              <div className="work-card-body">
-                <p>
-                  Transformed how IBM&apos;s Cloud and AI business acquired,
-                  converted, and retained ~1M users globally. Deployed growth
-                  stack across 30+ countries with 100% adoption.
-                </p>
-              </div>
-              <div className="work-metric">
-                <div className="work-metric-value">31%</div>
-                <div className="work-metric-label">trial conversion lift</div>
-              </div>
-            </div>
+            ))}
           </div>
           <div className="work-cta reveal">
             <a href="/work" className="btn-secondary">
-              See all work <span>→</span>
+              See all work <span>&rarr;</span>
             </a>
           </div>
         </div>
@@ -320,36 +213,13 @@ export default function Home() {
             </p>
           </div>
           <div className="why-grid">
-            <div className="why-card reveal">
-              <div className="why-number">01</div>
-              <h3>A career built on transformation.</h3>
-              <p>
-                Every major role has been a transformation story — taking an
-                organization, a team, or a product and fundamentally changing how
-                it operates. I don&apos;t maintain products. I transform
-                businesses through them.
-              </p>
-            </div>
-            <div className="why-card reveal">
-              <div className="why-number">02</div>
-              <h3>An original thesis backed by real builds.</h3>
-              <p>
-                A specific, defensible point of view on turning raw data into
-                decision-ready context — grounded in cognitive science and
-                information theory, validated by every product I&apos;ve
-                shipped.
-              </p>
-            </div>
-            <div className="why-card reveal">
-              <div className="why-number">03</div>
-              <h3>The full stack: strategy to revenue.</h3>
-              <p>
-                Strategy, architecture, build, go-to-market, and growth — in one
-                person. I&apos;ve raised venture capital, sold enterprise deals,
-                deployed growth infrastructure globally, and written production
-                AI applications.
-              </p>
-            </div>
+            {whyMeCards.map((card) => (
+              <div key={card.number} className="why-card reveal">
+                <div className="why-number">{card.number}</div>
+                <h3>{card.title}</h3>
+                <p>{card.body}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -369,7 +239,7 @@ export default function Home() {
               intersection of AI and product.
             </p>
             <a href="/contact" className="btn-primary">
-              Get in touch <span>→</span>
+              Get in touch <span>&rarr;</span>
             </a>
           </div>
         </div>
@@ -381,7 +251,7 @@ export default function Home() {
 
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdData) }}
       />
     </>
   );
