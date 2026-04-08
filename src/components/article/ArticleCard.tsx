@@ -7,11 +7,9 @@ interface ArticleCardProps {
 export default function ArticleCard({ article }: ArticleCardProps) {
   if (article.featured) {
     return (
-      <a
-        href={article.comingSoon ? undefined : `/thinking/${article.slug}`}
+      <div
         className="featured-article reveal"
         data-pillar={article.pillar}
-        style={article.comingSoon ? { pointerEvents: "none" } : undefined}
       >
         <div className="featured-article-meta">
           <span>{article.comingSoon ? "Coming Soon" : article.date}</span>
@@ -24,16 +22,14 @@ export default function ArticleCard({ article }: ArticleCardProps) {
         <p style={{ marginTop: "16px", fontSize: "13px", color: "var(--text-tertiary)" }}>
           {article.readTime}
         </p>
-      </a>
+      </div>
     );
   }
 
   return (
-    <a
-      href={article.comingSoon ? undefined : `/thinking/${article.slug}`}
+    <div
       className="article-card reveal"
       data-pillar={article.pillar}
-      style={article.comingSoon ? { pointerEvents: "none" } : undefined}
     >
       <div className="article-meta">
         <span className="article-author">Riche Zamor</span>
@@ -51,6 +47,6 @@ export default function ArticleCard({ article }: ArticleCardProps) {
           </span>
         </div>
       </div>
-    </a>
+    </div>
   );
 }
