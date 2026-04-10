@@ -14,7 +14,7 @@ const statsRow1: Stat[] = [
   { end: 20, suffix: "+", label: "Years Building" },
   { end: 200, suffix: "+", label: "Apps Built" },
   { end: 4, label: "Companies Started" },
-  { end: 5, prefix: "$", suffix: "M", label: "Capital Raised" },
+  { end: 1, suffix: " Exit", label: "" },
 ];
 
 const statsRow2: Stat[] = [

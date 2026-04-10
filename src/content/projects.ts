@@ -32,17 +32,11 @@ export const projects: ProjectCard[] = [
     link: "https://ai-topic-analyzer.replit.app",
   },
   {
-    title: "Hubspot AI Dashboard",
+    title: "AI Onboarding Assistant and Dashboard",
     status: "Prototype",
     description:
       "AI-powered onboarding and analytics dashboard for HubSpot. Demonstrates intelligent context generation for customer success.",
     link: "https://hubspot-ai-onboarding.replit.app",
-  },
-  {
-    title: "AI Onboarding Assistant",
-    status: "Prototype",
-    description:
-      "Intelligent onboarding system that adapts to user context and behavior. Demonstrates personalized context generation at scale.",
   },
   {
     title: "Ploppy",

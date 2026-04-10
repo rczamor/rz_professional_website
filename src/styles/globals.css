@@ -749,8 +749,8 @@ html[data-theme="dawn"] .proof-logos img:hover {
   border-color: var(--border-hover);
   border-left-color: var(--accent);
   background: var(--bg-card-hover);
-  transform: translateX(4px);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  transform: translateX(2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
 }
 .work-card-header {
   display: flex;
@@ -1045,7 +1045,7 @@ footer {
 .steps-grid { display: flex; flex-direction: column; gap: 20px; }
 .step-card { display: grid; grid-template-columns: 80px 1fr; gap: 32px; padding: 40px; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 16px; transition: all 0.3s; position: relative; overflow: hidden; }
 .step-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; opacity: 0; transition: opacity 0.3s; }
-.step-card:hover { border-color: var(--border-hover); background: var(--bg-card-hover); transform: translateX(4px); box-shadow: 0 8px 32px rgba(0,0,0,0.12); }
+.step-card:hover { border-color: var(--border-hover); background: var(--bg-card-hover); transform: translateX(2px); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
 .step-card:hover::before { opacity: 1; }
 .step-card:nth-child(1)::before { background: var(--accent); }
 .step-card:nth-child(2)::before { background: #00c9a0; }
@@ -1535,7 +1535,7 @@ footer {
 
 .project-card.featured { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; padding: 48px; background: var(--bg-card); border: 2px solid var(--accent); border-radius: 16px; transition: all 0.3s; position: relative; overflow: hidden; }
 .project-card.featured::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); }
-.project-card.featured:hover { background: var(--bg-card-hover); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(123,127,228,0.2); }
+.project-card.featured:hover { background: var(--bg-card-hover); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(123,127,228,0.1); }
 .featured-visual { display: flex; align-items: center; justify-content: center; height: 320px; background: linear-gradient(135deg, var(--accent-dim), var(--accent-secondary-dim)); border-radius: 12px; font-size: 64px; }
 .project-card.featured h3 { font-size: 32px; font-weight: 800; letter-spacing: -1px; margin-bottom: 12px; }
 .project-card.featured .project-status { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; background: var(--accent-dim); border: 1px solid var(--accent); border-radius: 6px; font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
@@ -1546,7 +1546,7 @@ footer {
 
 .project-card { padding: 32px; background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 16px; transition: all 0.3s; display: flex; flex-direction: column; position: relative; overflow: hidden; }
 .project-card::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, var(--accent), var(--accent-secondary)); opacity: 0; transition: opacity 0.3s; }
-.project-card:hover { border-color: var(--border-hover); background: var(--bg-card-hover); transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.12); }
+.project-card:hover { border-color: var(--border-hover); background: var(--bg-card-hover); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
 .project-card:hover::before { opacity: 1; }
 .project-card h3 { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 12px; }
 .project-status { display: inline-flex; align-items: center; gap: 6px; width: fit-content; padding: 6px 12px; background: var(--accent-dim); border: 1px solid rgba(123,127,228,0.3); border-radius: 6px; font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
@@ -1672,8 +1672,8 @@ footer {
 .featured-article:hover {
   border-color: var(--border-hover);
   background: var(--bg-card-hover);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
 }
 .featured-article-meta {
   display: flex;
