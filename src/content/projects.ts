@@ -5,8 +5,8 @@ export const featuredProject = {
   status: "In Development" as const,
   description:
     "A personal knowledge system demonstrating the five-step context generation architecture I advocate for. Curates from Feedly and other sources, synthesizes at ingest time, runs consolidation agents every six hours, prioritizes by goal-awareness, and stores with intelligent indexing. Built with FastAPI, Neon Postgres + pgvector, Ollama, and Langfuse. This is the proof of the thesis.",
-  link: "/thesis",
-  linkText: "Read the thesis",
+  link: "https://github.com/rczamor/sia",
+  linkText: "View on GitHub",
 };
 
 export const projects: ProjectCard[] = [
@@ -29,26 +29,27 @@ export const projects: ProjectCard[] = [
     status: "Prototype",
     description:
       "Analyzes trending topics and patterns in AI discourse. Real-time tracking of emerging themes, terminology, and community focus areas.",
-    link: "https://ai-topic-analyzer.replit.app",
+    link: "https://github.com/rczamor/ai_trend_analyzer",
   },
   {
     title: "AI Onboarding Assistant and Dashboard",
     status: "Prototype",
     description:
       "AI-powered onboarding and analytics dashboard for HubSpot. Demonstrates intelligent context generation for customer success.",
-    link: "https://hubspot-ai-onboarding.replit.app",
+    link: "https://github.com/rczamor/HubspotAiOnboarding",
   },
   {
     title: "Ploppy",
     status: "Coming Soon",
     description:
       "Analyze NYC political contribution data. Tools for understanding political finance patterns and contributor networks in New York City.",
+    link: "https://github.com/rczamor/ploppy",
   },
   {
     title: "Recipe Remix",
     status: "Live",
     description:
       "Because sometimes you just want to build something fun. A creative cooking tool that remixes and reimagines recipes.",
-    link: "https://recipe-remix.app",
+    link: "https://github.com/rczamor/recipe-remix",
   },
 ];
