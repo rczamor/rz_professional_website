@@ -16,11 +16,11 @@ export default function Nav({ activePage }: NavProps) {
           <a href="/thesis" className={activePage === "thesis" ? "active" : undefined}>
             Thesis
           </a>
-          <a href="/work" className={activePage === "work" ? "active" : undefined}>
-            Work
-          </a>
           <a href="/about" className={activePage === "about" ? "active" : undefined}>
             About
+          </a>
+          <a href="/work" className={activePage === "work" ? "active" : undefined}>
+            Work
           </a>
           <a href="/projects" className={activePage === "projects" ? "active" : undefined}>
             Projects

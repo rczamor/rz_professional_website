@@ -13,41 +13,40 @@ function toISODate(dateStr: string): string {
 export default function ArticleCard({ article }: ArticleCardProps) {
   const isoDate = toISODate(article.date);
 
+  const comingSoon = !article.slug || article.comingSoon;
+
   if (article.featured) {
     return (
       <article
-        className="featured-article reveal"
+        className={`featured-article reveal${comingSoon ? " coming-soon" : ""}`}
         data-pillar={article.pillar}
       >
         <div className="featured-article-meta">
-          {article.comingSoon ? (
-            <span>Coming Soon</span>
-          ) : (
-            <time dateTime={isoDate}>{article.date}</time>
-          )}
-          <span className="featured-article-badge">
-            {article.pillar.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
-          </span>
+          {comingSoon && <span className="coming-soon-label">Coming Soon</span>}
+          <time dateTime={isoDate}>{article.date}</time>
+          <span className="article-meta-separator" />
+          <span>{article.readTime}</span>
         </div>
         <h2>{article.title}</h2>
         <p>{article.excerpt}</p>
-        <footer style={{ marginTop: "16px", fontSize: "13px", color: "var(--text-tertiary)" }}>
-          <address className="article-author article-author-address">By Riche Zamor</address>
-          <span className="article-meta-separator" />
-          <span>{article.readTime}</span>
-        </footer>
+        <div className="article-footer">
+          <div className="article-badges">
+            <span className="featured-article-badge">
+              {article.pillar.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
+            </span>
+          </div>
+        </div>
       </article>
     );
   }
 
   return (
     <article
-      className="article-card reveal"
+      className={`article-card reveal${comingSoon ? " coming-soon" : ""}`}
       data-pillar={article.pillar}
     >
       <div className="article-meta">
-        <address className="article-author article-author-address">By Riche Zamor</address>
-        <span className="article-meta-separator" />
+        {comingSoon && <span className="coming-soon-label">Coming Soon</span>}
         <time dateTime={isoDate}>{article.date}</time>
         <span className="article-meta-separator" />
         <span>{article.readTime}</span>

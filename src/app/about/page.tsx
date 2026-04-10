@@ -4,12 +4,17 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import {
   heroSub,
-  bioIntro,
-  bioSections,
+  introText,
+  throughlineQuote,
+  throughlineBody,
+  personalText,
   speakingEntries,
-  timelineEntries,
   socialLinks,
+  photos,
 } from "@/content/about";
+import { AnimatedStats } from "@/components/about/AnimatedStats";
+import JourneyMapWrapper from "@/components/about/JourneyMapWrapper";
+import AboutPhoto from "@/components/about/AboutPhoto";
 
 export const metadata: Metadata = {
   title: "About — Riche Zamor",
@@ -41,7 +46,7 @@ export default function AboutPage() {
       <Nav activePage="about" />
 
       <main id="main-content">
-        {/* Hero */}
+        {/* ═══ HERO ═══ */}
         <section className="hero hero-centered">
           <div className="container">
             <h1>About</h1>
@@ -49,101 +54,191 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Bio Section */}
-        <section className="bio-section">
-          <div className="container">
-            <div className="bio-intro reveal">
-              {bioIntro.map((p, i) => (
-                <p key={i}>{p}</p>
+        {/* ═══ INTRO + PORTRAIT ═══ */}
+        <section className="about-section">
+          <div className="container about-intro-grid">
+            <div>
+              {introText.map((p, i) => (
+                <p key={i} className="about-body-text">
+                  {p}
+                </p>
               ))}
             </div>
-
-            {bioSections.map((section) => (
-              <div key={section.label} className="bio-subsection reveal">
-                <div className="prose-label">{section.label}</div>
-                {section.paragraphs.map((p, i) => (
-                  <p key={i}>{p}</p>
-                ))}
-              </div>
-            ))}
+            <AboutPhoto
+              src={photos.headshot.src}
+              alt={photos.headshot.alt}
+              aspect={photos.headshot.aspect}
+              label="Portrait"
+            />
           </div>
         </section>
 
-        {/* Speaking Section */}
-        <section className="speaking-section">
+        {/* ═══ BY THE NUMBERS ═══ */}
+        <section className="about-section">
           <div className="container">
-            <div className="speaking-intro reveal">
-              <div className="section-label">Speaking &amp; Podcasts</div>
-              <h2 className="section-title">I speak about context, product, and AI.</h2>
-              <p>I speak about context architecture, AI product strategy, and the lessons from building AI products in production. My talks are practitioner-focused: specific decisions, real trade-offs, frameworks the audience can apply Monday morning.</p>
-            </div>
+            <div className="section-label">By the numbers</div>
+            <h2 className="section-title" style={{ marginBottom: 64 }}>
+              The quick version<span className="accent-dot">.</span>
+            </h2>
+            <AnimatedStats />
+          </div>
+        </section>
 
-            <div className="speaking-grid">
+        {/* ═══ PHOTO STRIP 1 ═══ */}
+        <section className="about-photo-strip">
+          <div className="container about-three-col">
+            <AboutPhoto
+              src={photos.speaking.src}
+              alt={photos.speaking.alt}
+              aspect={photos.speaking.aspect}
+              label="Speaking"
+            />
+            <AboutPhoto
+              src={photos.building.src}
+              alt={photos.building.alt}
+              aspect={photos.building.aspect}
+              label="Building"
+            />
+            <AboutPhoto
+              src={photos.nycSkyline.src}
+              alt={photos.nycSkyline.alt}
+              aspect={photos.nycSkyline.aspect}
+              label="Street Photography"
+            />
+          </div>
+        </section>
+
+        {/* ═══ THE JOURNEY + STICKY MAP ═══ */}
+        <section className="about-section">
+          <div className="container">
+            <JourneyMapWrapper />
+          </div>
+        </section>
+
+        {/* ═══ PHOTO STRIP 2 ═══ */}
+        <section className="about-photo-strip">
+          <div className="container about-two-col-photos">
+            <AboutPhoto
+              src={photos.family.src}
+              alt={photos.family.alt}
+              aspect={photos.family.aspect}
+              label="Family / Brooklyn"
+              objectPosition="center 20%"
+            />
+            <AboutPhoto
+              src={photos.deadlift.src}
+              alt={photos.deadlift.alt}
+              aspect={photos.deadlift.aspect}
+              label="Strength Training"
+              objectPosition="center 15%"
+            />
+          </div>
+        </section>
+
+        {/* ═══ THE THROUGHLINE ═══ */}
+        <section className="about-section">
+          <div className="container about-throughline">
+            <div className="section-label">The Throughline</div>
+            <blockquote>
+              {throughlineQuote}
+              <span className="accent-dot">?</span>
+            </blockquote>
+            <p className="about-body-text" style={{ maxWidth: 640 }}>
+              {throughlineBody}
+            </p>
+          </div>
+        </section>
+
+        {/* ═══ OFF THE CLOCK ═══ */}
+        <section className="about-section">
+          <div className="container about-personal-grid">
+            <div>
+              <div className="section-label">Off the clock</div>
+              <h2 className="section-title" style={{ marginBottom: 24 }}>
+                Brooklyn, with family<span className="accent-dot">.</span>
+              </h2>
+              <p
+                className="about-body-text"
+                style={{ maxWidth: 540, marginBottom: 32 }}
+              >
+                {personalText}
+              </p>
+              <div className="about-social-links">
+                {socialLinks.map((link) => (
+                  <a key={link.label} href={link.href}>
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+            <div className="about-small-photos">
+              <AboutPhoto
+                src={photos.scifiReads.src}
+                alt={photos.scifiReads.alt}
+                aspect={photos.scifiReads.aspect}
+                label="Sci-fi reads"
+              />
+              <AboutPhoto
+                src={photos.brooklynStreet.src}
+                alt={photos.brooklynStreet.alt}
+                aspect={photos.brooklynStreet.aspect}
+                label="Street photo"
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* ═══ SPEAKING & PODCASTS ═══ */}
+        <section className="about-section">
+          <div className="container">
+            <div className="section-label">Speaking &amp; Podcasts</div>
+            <h2 className="section-title" style={{ marginBottom: 12 }}>
+              I speak about context, product, and AI
+              <span className="accent-dot">.</span>
+            </h2>
+            <p
+              className="about-body-text"
+              style={{ maxWidth: 640, marginBottom: 48 }}
+            >
+              Practitioner-focused: specific decisions, real trade-offs,
+              frameworks the audience can apply Monday morning.
+            </p>
+            <div className="about-speaking-grid">
               {speakingEntries.map((talk) => (
-                <div key={talk.title} className="talk-card reveal">
+                <div key={talk.title} className="about-speaking-card">
                   <h3>{talk.title}</h3>
                   <p>{talk.description}</p>
                 </div>
               ))}
             </div>
-
-            <div className="speaking-cta reveal">
-              For speaking inquiries, podcast bookings, or panel invitations:{" "}
-              <Link href="/contact" className="btn-secondary" style={{ display: "inline-flex", marginTop: "16px" }}>
-                Get in touch <span>&rarr;</span>
+            <div style={{ marginTop: 48 }}>
+              <Link href="/contact" className="about-btn-primary">
+                Get in touch for speaking inquiries &rarr;
               </Link>
             </div>
           </div>
         </section>
 
-        {/* Career Arc Section */}
-        <section className="career-section">
+        {/* ═══ PAGE BRIDGE ═══ */}
+        <section className="about-footer-cta">
           <div className="container">
-            <div className="career-intro reveal">
-              <div className="section-label">Career Arc</div>
-              <h2 className="section-title">Twenty years of building systems.</h2>
+            <h2 className="section-title" style={{ marginBottom: 16 }}>
+              See what I&rsquo;m building<span className="accent-dot">.</span>
+            </h2>
+            <p
+              className="about-body-text"
+              style={{ marginBottom: 40 }}
+            >
+              Explore the projects, read the thinking, or get in touch.
+            </p>
+            <div className="about-cta-buttons">
+              <Link href="/projects" className="about-btn-primary">
+                View Projects
+              </Link>
+              <Link href="/contact" className="about-btn-outline">
+                Get in Touch
+              </Link>
             </div>
-
-            <div className="career-timeline reveal">
-              <div className="timeline-line" />
-              <div className="timeline-entries">
-                {timelineEntries.map((entry) => (
-                  <div key={entry.years} className="timeline-entry">
-                    <div className="timeline-dot" />
-                    <div className="timeline-entry-years">{entry.years}</div>
-                    <div className="timeline-entry-title">{entry.title}</div>
-                    <div className="timeline-entry-company">{entry.company}</div>
-                    <div className="timeline-entry-desc">{entry.description}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Social Section */}
-        <section className="social-section">
-          <div className="container">
-            <div className="social-intro reveal">
-              <div className="section-label">Find me online</div>
-              <h2 className="section-title">Let&rsquo;s connect.</h2>
-            </div>
-
-            <div className="social-links reveal">
-              {socialLinks.map((link) => (
-                <a key={link.label} href={link.href} className="social-link">
-                  {link.label}
-                </a>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── Bridge CTA ── */}
-        <section className="page-bridge">
-          <div className="container">
-            <p className="page-bridge-prompt">See what I&rsquo;m building now</p>
-            <a href="/projects" className="btn-secondary">View projects <span>&rarr;</span></a>
           </div>
         </section>
       </main>
