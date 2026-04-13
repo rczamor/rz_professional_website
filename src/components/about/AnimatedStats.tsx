@@ -14,13 +14,13 @@ const statsRow1: Stat[] = [
   { end: 20, suffix: "+", label: "Years Building" },
   { end: 200, suffix: "+", label: "Apps Built" },
   { end: 4, label: "Companies Started" },
-  { end: 1, suffix: " Exit", label: "" },
+  { end: 1, label: "Exit" },
 ];
 
 const statsRow2: Stat[] = [
-  { end: 2, label: "Kids" },
   { end: 11, label: "Cities Lived In" },
   { end: 4, label: "Careers (Maybe 5)" },
+  { end: 2, label: "Kids" },
   { end: 1400, suffix: " lb", label: "Powerlifting Total" },
 ];
 
