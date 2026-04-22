@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Article Design System / richezamor.com/thinking</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   RICHEZAMOR.COM / THINKING — ARTICLE DESIGN SYSTEM
+   ============================================================
+   This file documents every visual component used across the
+   /thinking article prototypes. Each section shows a live
+   rendered example followed by usage guidance.
+
+   FONTS: Bricolage Grotesque (headings) + Inter (body) + JetBrains Mono (technical/UI)
+   ACCENT: site indigo #7B7FE4 for all UI chrome; semantic colors for data viz only
+   NO: Instrument Serif, decorative fonts, pastels, neon,
+       em dashes, "Context Intelligence" terminology
+   ============================================================ */
+
+:root {
+    /* Backgrounds — matches richezamor.com night theme */
+    --bg-primary: #050508; --bg-secondary: #0a0a0f; --bg-card: #0f0f16;
+    --bg-card-hover: #141420;
+    /* Borders */
+    --border-subtle: rgba(255,255,255,0.06);
+    --border-hover: rgba(255,255,255,0.12);
+    /* Text */
+    --text-primary: #f0f0f5; --text-secondary: rgba(240,240,245,0.6); --text-tertiary: rgba(240,240,245,0.35);
+    /* Accent — site indigo */
+    --accent: #7B7FE4; --accent-dim: rgba(123,127,228,0.15);
+    --accent-secondary: #7c5cfc;
+    --accent-glow: rgba(123,127,228,0.08);
+    /* Nav */
+    --nav-bg: rgba(5,5,8,0.6); --nav-bg-scroll: rgba(5,5,8,0.85);
+    /* Fonts */
+    --font-heading: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  
+    /* Semantic palette (for data viz, never as primary accent) */
+    --green: #10b981; --amber: #f59e0b; --red: #ef4444;
+  }
+
+/* ============================================================
+   RESET + BASE
+   ============================================================ */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+  h1, h2, h3 { font-family: var(--font-heading); }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; }
+img { max-width: 100%; display: block; }
+
+/* ============================================================
+   DESIGN SYSTEM DOCUMENTATION CHROME
+   (This section styles the documentation itself.
+    Not part of the article component system.)
+   ============================================================ */
+.ds-header {
+  padding: 80px 40px 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.ds-header .brand {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+}
+.ds-header .brand b { color: var(--text-primary); font-weight: 600; }
+.ds-header h1 {
+  font-size: clamp(40px, 5vw, 72px);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1;
+  margin-bottom: 20px;
+}
+.ds-header h1 .acc { color: var(--accent); }
+.ds-header .sub {
+  font-size: 20px;
+  color: var(--text-secondary);
+  max-width: 720px;
+  line-height: 1.5;
+}
+
+.ds-section {
+  padding: 100px 40px 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-top: 1px solid var(--border-subtle);
+}
+.ds-section-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+.ds-section h2 {
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+.ds-section .ds-desc {
+  font-size: 16px;
+  color: var(--text-secondary);
+  max-width: 680px;
+  line-height: 1.6;
+  margin-bottom: 48px;
+}
+
+.ds-example {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 48px 40px;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.ds-example.flush { padding: 0; }
+.ds-example-label {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+}
+
+.ds-guidance {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 28px 32px;
+  margin-bottom: 60px;
+}
+.ds-guidance h4 {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+.ds-guidance p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+.ds-guidance p:last-child { margin-bottom: 0; }
+.ds-guidance code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: rgba(255,255,255,0.06);
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: var(--text-primary);
+}
+.ds-guidance .rule {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* Swatch grid */
+.swatch-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; }
+.swatch {
+  border-radius: 8px;
+  padding: 20px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+.swatch .name { margin-bottom: 6px; font-weight: 600; }
+.swatch .val { opacity: 0.7; }
+
+/* Type scale */
+.type-row { margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid var(--border-subtle); }
+.type-row:last-child { border-bottom: none; }
+.type-label { font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px; }
+
+/* ============================================================
+   ARTICLE COMPONENTS — LIVE EXAMPLES BELOW
+   ============================================================ */
+
+/* ---------- NAV ---------- */
+.nav-demo {
+  position: relative; /* not fixed in the demo */
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--nav-bg);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.nav-demo .brand { font-family: var(--font-mono); font-size: 13px; color: var(--text-secondary); }
+.nav-demo .brand b { color: var(--text-primary); font-weight: 600; }
+.nav-demo .back { font-family: var(--font-mono); font-size: 12px; color: var(--text-secondary); }
+
+/* ---------- PROGRESS BAR ---------- */
+.progress-demo {
+  height: 2px;
+  width: 60%;
+  background: var(--accent);
+}
+
+/* ---------- EYEBROW ---------- */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.eyebrow .dot {
+  width: 6px; height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.eyebrow .pulse {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  animation: pulse 1.2s ease-in-out infinite;
+}
+@keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.5); opacity: 0.4; } }
+.eyebrow .flash {
+  background: var(--red);
+  color: #fff;
+  padding: 3px 8px;
+  border-radius: 2px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  font-size: 10px;
+  animation: flash 2s ease-in-out infinite;
+}
+@keyframes flash { 50% { opacity: 0.4; } }
+
+/* ---------- DISPLAY HEADLINE ---------- */
+h1.display {
+  font-size: clamp(48px, 7.5vw, 108px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+}
+h1.display .accent { color: var(--accent); }
+h1.display .strike { position: relative; display: inline-block; }
+h1.display .strike::after {
+  content: ''; position: absolute;
+  left: -4%; right: -4%; top: 52%;
+  height: 8px; background: var(--accent);
+  transform: scaleX(0); transform-origin: left;
+  animation: strike 1.2s ease 0.6s forwards;
+}
+@keyframes strike { to { transform: scaleX(1); } }
+
+/* ---------- SECTION HEADLINE ---------- */
+h2.section {
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  max-width: 900px;
+}
+
+/* ---------- SECTION LABEL ---------- */
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 24px;
+}
+
+/* ---------- DECK (subtitle) ---------- */
+.deck {
+  font-size: clamp(18px, 1.6vw, 22px);
+  color: var(--text-secondary);
+  max-width: 720px;
+  line-height: 1.5;
+}
+
+/* ---------- META BAR ---------- */
+.meta {
+  display: flex;
+  gap: 32px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-tertiary);
+  padding-top: 28px;
+  border-top: 1px solid var(--border-subtle);
+}
+.meta span b { color: var(--text-primary); font-weight: 500; margin-left: 8px; }
+
+/* ---------- PROSE ---------- */
+.prose {
+  font-size: 19px;
+  color: var(--text-primary);
+  max-width: 680px;
+  line-height: 1.7;
+}
+.prose p + p { margin-top: 22px; }
+.prose .muted { color: var(--text-secondary); }
+
+/* ---------- STORY BLOCK (opening narrative) ---------- */
+.story-demo {
+  background: var(--bg-secondary);
+  padding: 60px 40px;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.story-inner { max-width: 760px; margin: 0 auto; }
+.story-inner p {
+  font-size: 21px;
+  line-height: 1.65;
+  margin-bottom: 24px;
+}
+.story-inner p:first-of-type::first-letter {
+  font-size: 64px;
+  font-weight: 700;
+  float: left;
+  line-height: 0.9;
+  padding: 6px 12px 0 0;
+  color: var(--accent);
+}
+
+/* ---------- PULLQUOTE ---------- */
+.pullquote {
+  padding: 60px 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+.pullquote blockquote {
+  font-size: clamp(28px, 3.8vw, 42px);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+.pullquote cite {
+  display: block;
+  margin-top: 28px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-tertiary);
+  font-style: normal;
+  letter-spacing: 0.1em;
+}
+
+/* ---------- CLOSE (takeaway) ---------- */
+.close-demo { max-width: 900px; }
+.close-demo .kicker {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.close-demo h2 {
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+.close-demo p {
+  font-size: 19px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 680px;
+}
+
+/* ---------- COMPARISON GRID ---------- */
+.compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.compare .col {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 36px;
+}
+.compare .col.right { border-color: var(--accent); }
+.compare .col h3 {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-tertiary);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.compare .col.right h3 { color: var(--accent); }
+.compare .col .title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
+}
+.compare ul { list-style: none; }
+.compare ul li {
+  padding: 12px 0;
+  border-top: 1px solid var(--border-subtle);
+  font-size: 14px;
+  color: var(--text-secondary);
+  display: flex;
+  gap: 12px;
+}
+.compare ul li:first-child { border-top: none; }
+.compare ul li .n {
+  font-family: var(--font-mono);
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+  width: 20px;
+}
+.compare .col.right ul li .n { color: var(--accent); }
+.compare .col.right ul li { color: var(--text-primary); }
+
+/* ---------- DYPTICH ---------- */
+.dyptich-demo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.side { padding: 40px; background: var(--bg-card); }
+.side + .side { border-left: 1px solid var(--border-subtle); background: var(--bg-secondary); }
+.side h4 {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.side + .side h4 { color: var(--text-secondary); }
+.side h3 {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+.side p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+
+/* ---------- BIG NUMBERS ---------- */
+.bignums {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.bignum {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 32px;
+}
+.bignum .n {
+  font-size: clamp(48px, 6vw, 88px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--accent);
+}
+.bignum .l {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-secondary);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-top: 16px;
+}
+.bignum .s {
+  font-size: 14px;
+  color: var(--text-tertiary);
+  margin-top: 8px;
+}
+
+/* ---------- TIMELINE ---------- */
+.timeline {
+  border-left: 2px solid var(--border-subtle);
+  padding-left: 32px;
+}
+.tl-item {
+  padding: 24px 0;
+  position: relative;
+}
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: -40px;
+  top: 32px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 2px solid var(--accent);
+}
+.tl-mark {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+}
+.tl-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.tl-body {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ---------- CARD GRID ---------- */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.card-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 32px;
+}
+.card-item .num {
+  font-family: var(--font-mono);
+  font-size: 36px;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+.card-item h3 {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  margin-bottom: 12px;
+}
+.card-item p {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ---------- DIALOGUE ---------- */
+.dialogue {
+  padding: 28px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  border-left: 3px solid var(--accent);
+  margin-bottom: 16px;
+}
+.dialogue.them { border-left-color: var(--text-secondary); }
+.dialogue .speaker {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.dialogue.them .speaker { color: var(--text-secondary); }
+.dialogue p {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+/* ---------- CODE BLOCK ---------- */
+.code-block {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 24px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-x: auto;
+}
+.code-block .c { color: var(--text-tertiary); }
+.code-block .k { color: var(--accent); }
+.code-block .s { color: var(--amber); }
+.code-block .f { color: var(--green); }
+
+/* ---------- TERMINAL ---------- */
+.terminal {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  overflow: hidden;
+  font-family: var(--font-mono);
+}
+.term-bar {
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  background: var(--bg-secondary);
+}
+.term-dot { width: 12px; height: 12px; border-radius: 50%; }
+.term-dot.r { background: var(--red); }
+.term-dot.a { background: var(--amber); }
+.term-dot.g { background: var(--green); }
+.term-title {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  margin-left: 16px;
+  letter-spacing: 0.1em;
+}
+.term-body {
+  padding: 24px;
+  font-size: 13px;
+  line-height: 1.8;
+}
+.term-body .p { color: var(--green); }
+.term-body .c { color: var(--text-secondary); }
+.term-body .k { color: var(--accent); }
+.cursor {
+  display: inline-block;
+  width: 8px; height: 16px;
+  background: var(--accent);
+  vertical-align: middle;
+  animation: blink 1s infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* ---------- DAY LOG ---------- */
+.day-log {
+  border-top: 1px solid var(--border-subtle);
+  padding: 40px 0;
+}
+.day-head {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+.day-mark {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--accent);
+  letter-spacing: 0.18em;
+  flex-shrink: 0;
+}
+.day-title {
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+.day-grid {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 40px;
+  align-items: start;
+}
+.day-body p {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+.day-body p b { color: var(--text-primary); font-weight: 500; }
+
+/* ---------- CNN TICKER ---------- */
+.ticker-demo {
+  position: relative;
+  background: #050508;
+  border-top: 2px solid var(--red);
+  height: 56px;
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  border-radius: 0 0 12px 12px;
+}
+.ticker-demo .brk {
+  background: var(--red);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  flex-shrink: 0;
+}
+.ticker-demo .brk .live {
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #fff;
+  margin-right: 8px;
+  animation: live 1s ease-in-out infinite;
+}
+@keyframes live { 50% { opacity: 0.3; } }
+.ticker-demo .scroll {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.ticker-demo .scroll-inner {
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: #fff;
+  letter-spacing: 0.04em;
+  animation: ticker-scroll 40s linear infinite;
+  padding-left: 100%;
+}
+@keyframes ticker-scroll { to { transform: translateX(-100%); } }
+.ticker-demo .time-badge {
+  background: #1a1a1a;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  flex-shrink: 0;
+  border-left: 1px solid rgba(255,255,255,0.1);
+}
+
+/* ---------- FAILURE SIGNATURE ---------- */
+.sig-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 32px;
+}
+.sig-title {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.sig-card svg { width: 100%; height: 140px; }
+.sig-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-subtle);
+}
+.sig-row h4 {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 8px;
+}
+.sig-row p { font-size: 13px; color: var(--text-primary); line-height: 1.5; }
+
+/* ---------- PHASE SECTION ---------- */
+.phase-demo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.phase-num {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  margin-bottom: 16px;
+}
+.phase-h3 {
+  font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+/* ---------- INTERACTIVE RADAR ---------- */
+.radar-wrap-demo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+.radar-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 32px;
+}
+.radar-grid { stroke: rgba(255,255,255,0.08); fill: none; }
+.radar-axis { stroke: rgba(255,255,255,0.05); }
+.radar-shape {
+  fill: var(--accent-dim);
+  stroke: var(--accent);
+  stroke-width: 2;
+  transition: all 0.6s ease;
+}
+.radar-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  fill: var(--text-secondary);
+  text-anchor: middle;
+  letter-spacing: 0.1em;
+}
+.preset-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 14px 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+.preset-btn:hover { border-color: var(--text-tertiary); color: var(--text-primary); }
+.preset-btn.on { border-color: var(--accent); background: var(--accent-dim); color: var(--text-primary); }
+.preset-btn b {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 2px;
+  font-weight: 500;
+}
+
+/* ---------- FOOTER ---------- */
+.footer-demo {
+  padding: 40px;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 900px) {
+  .compare, .dyptich-demo, .phase-demo, .radar-wrap-demo, .day-grid, .card-grid, .bignums { grid-template-columns: 1fr; }
+  .side + .side { border-left: none; border-top: 1px solid var(--border-subtle); }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+<div class="ds-header">
+  <div class="brand"><b>richezamor</b>/thinking / design-system</div>
+  <h1>Article <span class="acc">Design System</span></h1>
+  <p class="sub">Every component used in the /thinking article prototypes, documented with live examples and usage guidance. Place this file in the website repo for reference by future systems.</p>
+</div>
+
+<!-- ============================================================
+     01. DESIGN TOKENS
+     ============================================================ -->
+<div class="ds-section">
+  <div class="ds-section-label">01 / Foundation</div>
+  <h2>Design Tokens</h2>
+  <p class="ds-desc">All colors, fonts, and spacing are defined as CSS custom properties on <code>:root</code>. Override <code>--accent</code> and <code>--accent-dim</code> per article.</p>
+
+  <div class="ds-example">
+    <div class="ds-example-label">Colors</div>
+    <div class="swatch-grid">
+      <div class="swatch" style="background:#050508;color:#f0f0f5;border:1px solid rgba(255,255,255,0.06)"><div class="name">--bg-primary</div><div class="val">#050508</div></div>
+      <div class="swatch" style="background:#0a0a0f;color:#f0f0f5;border:1px solid rgba(255,255,255,0.06)"><div class="name">--bg-secondary</div><div class="val">#0a0a0f</div></div>
+      <div class="swatch" style="background:#0f0f16;color:#f0f0f5;border:1px solid rgba(255,255,255,0.06)"><div class="name">--bg-card</div><div class="val">#0f0f16</div></div>
+      <div class="swatch" style="background:#f0f0f5;color:#050508"><div class="name">--text-primary</div><div class="val">#f0f0f5</div></div>
+      <div class="swatch" style="background:rgba(240,240,245,0.6);color:#050508"><div class="name">--text-secondary</div><div class="val">rgba(240,240,245,0.6)</div></div>
+      <div class="swatch" style="background:rgba(240,240,245,0.35);color:#f0f0f5"><div class="name">--text-tertiary</div><div class="val">rgba(240,240,245,0.35)</div></div>
+      <div class="swatch" style="background:#7B7FE4;color:#fff"><div class="name">Accent (indigo)</div><div class="val">#7B7FE4</div></div>
+      <div class="swatch" style="background:#7c5cfc;color:#fff"><div class="name">Accent secondary</div><div class="val">#7c5cfc</div></div>
+      <div class="swatch" style="background:#10b981;color:#fff"><div class="name">Green (semantic)</div><div class="val">#10b981</div></div>
+      <div class="swatch" style="background:#f59e0b;color:#000"><div class="name">Amber (semantic)</div><div class="val">#f59e0b</div></div>
+      <div class="swatch" style="background:#ef4444;color:#fff"><div class="name">Red (semantic)</div><div class="val">#ef4444</div></div>
+    </div>
+  </div>
+
+  <div class="ds-guidance">
+    <h4>Usage rules</h4>
+    <p class="rule">Primary accent is always site indigo (#7B7FE4). Do not replace it with semantic colors for UI chrome (nav, progress bars, section labels, CTAs).</p>
+    <p>Green, amber, and red are semantic only: data visualization phases, medical/EKG themes, error states, breaking-news badges, terminal syntax highlighting. Never use as a primary accent.</p>
+    <p>The <code>--accent-dim</code> token is indigo at ~15% opacity. Use for hover fills, active node backgrounds, selected button states.</p>
+    <p>Borders use <code>var(--border-subtle)</code> which is white at 6% opacity. Hover borders use <code>var(--border-hover)</code> at 12%.</p>
+    <p>All token names match <code>globals.css</code> in the Next.js repo. When integrating, reference <code>var(--bg-primary)</code>, <code>var(--text-secondary)</code>, etc. directly.</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     02. TYPOGRAPHY
+     ============================================================ -->
+<div class="ds-section">
+  <div class="ds-section-label">02 / Foundation</div>
+  <h2>Typography</h2>
+  <p class="ds-desc">Three typefaces. Bricolage Grotesque for all headings (h1, h2, h3). Inter for body and deck text. JetBrains Mono for technical, UI, and label text. No decorative or serif fonts ever. Matches the main site's font stack.</p>
+
+  <div class="ds-example">
+    <div class="ds-example-label">Type scale</div>
+    <div class="type-row">
+      <div class="type-label">Display / h1.display / 48-108px / 800 / -0.03em</div>
+      <h1 class="display" style="font-size:72px;margin:0">Data is <span class="accent">not</span> context.</h1>
+    </div>
+    <div class="type-row">
+      <div class="type-label">Section / h2.section / 36-64px / 700 / -0.02em</div>
+      <h2 class="section" style="font-size:48px;margin:0">Five steps. One architecture.</h2>
+    </div>
+    <div class="type-row">
+      <div class="type-label">Deck / .deck / 18-22px / 400 / muted</div>
+      <p class="deck" style="margin:0">Most teams pipe raw information into models and call it context. That isn't context.</p>
+    </div>
+    <div class="type-row">
+      <div class="type-label">Prose / .prose / 19px / 400 / 1.7 line-height</div>
+      <p class="prose" style="margin:0">When an engineer says "give the model more context," what usually happens is someone wires up a vector database, stuffs it with documents, and retrieves chunks at query time.</p>
+    </div>
+    <div class="type-row">
+      <div class="type-label">Mono Label / .section-label / 11px / JetBrains Mono / 0.18em tracking</div>
+      <div class="section-label" style="margin:0">The framework</div>
+    </div>
+    <div class="type-row">
+      <div class="type-label">Mono UI / 12-13px / JetBrains Mono / meta, navigation, badges</div>
+      <div class="meta" style="border-top:none;padding-top:0">
+        <span>Read<b>12 min</b></span>
+        <span>Filed<b>Context / AI</b></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ds-guidance">
+    <h4>Usage rules</h4>
+    <p class="rule">Only Inter and JetBrains Mono. No Instrument Serif, no decorative fonts, no script fonts.</p>
+    <p>Display headlines use <code>clamp()</code> for fluid scaling. The first value is the mobile floor, the last is the desktop cap.</p>
+    <p>JetBrains Mono is for: navigation, eyebrows, section labels, meta bars, code, terminal content, button labels, badge text, chart labels, and axis labels.</p>
+    <p>Inter is for everything else: headlines, body prose, deck subtitles, card titles, pullquotes.</p>
+    <p>Negative letter-spacing on headlines (<code>-0.02em</code> to <code>-0.03em</code>) is load-bearing. Don't remove it.</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     03. NAVIGATION
+     ============================================================ -->
+<div class="ds-section">
+  <div class="ds-section-label">03 / Chrome</div>
+  <h2>Navigation + Progress</h2>
+  <p class="ds-desc">Fixed nav bar with blurred background. Progress bar sits directly below it and fills on scroll.</p>
+
+  <div class="ds-example flush">
+    <div class="nav-demo">
+      <a class="brand"><b>richezamor</b>/thinking</a>
+      <a class="back">← index</a>
+    </div>
+    <div class="progress-demo"></div>
+  </div>
+
+  <div class="ds-guidance">
+    <h4>Usage rules</h4>
+    <p class="rule">Every article page gets this nav. It is position:fixed with z-index:100.</p>
+    <p>Background is <code>rgba(10,10,10,0.8)</code> with <code>backdrop-filter: blur(12px)</code>.</p>
+    <p>Progress bar is 2px tall, accent-colored, positioned at <code>top: 61px</code> (below the nav). Width is set via JS scroll listener as a percentage of total scroll.</p>
+    <p>Brand text format: <code>&lt;b&gt;richezamor&lt;/b&gt;/thinking</code>. Back link: <code>← index</code>.</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     04. HERO ELEMENTS
+     ============================================================ -->
+<div class="ds-section">
+  <div class="ds-section-label">04 / Layout</div>
+  <h2>Hero Elements</h2>
+  <p class="ds-desc">The hero is always full-viewport height. It contains an eyebrow, display headline, deck, and meta bar. The eyebrow has three variants.</p>
+
+  <div class="ds-example">
+    <div class="ds-example-label">Eyebrow variants</div>
+    <div style="display:flex;flex-direction:column;gap:24px;">
+      <div class="eyebrow"><span class="dot"></span>Essay 01 / Context Architecture</div>
+      <div class="eyebrow"><span class="pulse"></span>Essay 03 / Craft</div>
+      <div class="eyebrow"><span class="flash">BREAKING</span>Essay 07 / Narrative</div>
+    </div>
+  </div>
+
+  <div class="ds-guidance">
+    <h4>Eyebrow variants</h4>
+    <p><code>.dot</code> — static colored circle. Default for most essays.</p>
+    <p><code>.pulse</code> — animated breathing circle. Use for essays with a medical/organic theme (e.g. cardiologists).</p>
+    <p><code>.flash</code> — red "BREAKING" badge with fade animation. Use only for the CNN/media essay.</p>
+  </div>
+
+  <div class="ds-example">
+    <div class="ds-example-label">Animated strikethrough</div>
+    <h1 class="display" style="font-size:clamp(48px,8vw,96px)">Data is <span class="strike">not</span> <span class="accent">context.</span></h1>
+  </div>
+
+  <div class="ds-guidance">
+    <h4>When to use the strikethrough</h4>
+    <p class="rule">Only on the flagship essay "Data is not context." The strikethrough is the visual thesis: data ≠ context.</p>
+    <p>Uses a <code>::after</code> pseudo-element with <code>scaleX(0→1)</code> animation, delayed 0.6s after page load. 8px tall, accent-colored.</p>
+    <p>Do not reuse this animation on other essays. It's a signature device for the flagship only.</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     05. STORY BLOCK
+     ============================================================ -->
+<div class="ds-section">
+  <div class="ds-section-label">05 / Content</div>
+  <h2>Story Block (Opening Narrative)</h2>
+  <p class="ds-desc">A full-width section with darker background for the opening personal story. Uses a large accent-colored dropcap on the first letter.</p>
+
+  <div class="ds-example flush">
+    <div class="story-demo">
+      <div class="story-inner">
+        <p>The first AI product I shipped at Grandstage worked in the demo and failed in the wild. Same model. Same prompts. Same team. What changed was the data.</p>
+        <p>That gap is what I want to write about. It isn't a model gap. It's a context gap.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="ds-guidance">
+    <h4>When to use</h4>
+    <p class="rule">Use once per essay, immediately after the hero. Opens with a personal moment or specific failure.</p>
+    <p>Background is <code>var(--bg-secondary)</code> (#0a0a0f) with top and bottom <code>var(--border-subtle)</code> borders.</p>
+    <p>First letter of first paragraph floats left at 64px, 700 weight, accent-colored.</p>
+    <p>Max-width 760px. Slightly wider than prose (680px) for a more open reading rhythm.</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     06. PULLQUOTE
+     ============================================================ -->
+<div class="ds-section">
+  <div class="ds-section-label">06 / Content</div>
+  <h2>Pullquote</h2>
+  <p class="ds-desc">Centered large-format quote. Use only real one-liners from the established rotation.</p>
+
+  <div class="ds-example">
+    <div class="pullquote" style="padding:40px">
+      <blockquote>Retrieval without consolidation is just efficient delivery of noise.</blockquote>
+      <cite>from the rotation</cite>
+    </div>
+  </div>
+
+  <div class="ds-guidance">
+    <h4>Usage rules</h4>
+    <p class="rule">Only use quotes from the real rotation. Never invent pullquotes.</p>
+    <p>Approved rotation: "Retrieval without consolidation is just efficient delivery of noise." / "Your AI doesn't have a model problem. It has a context problem." / "Expert decision-makers use less information, not more. Your AI should too." / "Models get smarter every month. Context quality stays the same."</p>
+    <p>Maximum one pullquote per essay. Place it at the structural midpoint, between the analytical body and the product outcome.</p>
+    <p>The <code>cite</code> attribution uses mono, dim color, normal (not italic) style.</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     07. CLOSE (TAKEAWAY)
+     ============================================================ -->
+<div class="ds-section">
+  <div class="ds-section-label">07 / Content</div>
+  <h2>Close / Takeaway</h2>
+  <p class="ds-desc">The final content section. A mono kicker, a bold headline statement, and one paragraph of supporting prose.</p>
+
+  <div class="ds-example">
+    <div class="close-demo">
+      <div class="kicker">The takeaway</div>
+      <h2>If you're building AI and your quality ceiling is lower than you want, look at your context layer before you look at your model.</h2>
+      <p>Your AI doesn't have a model problem. It has a context problem.</p>
+    </div>
+  </div>
+
+  <div class="ds-guidance">
+    <h4>Usage rules</h4>
+    <p class="rule">Every essay ends with this pattern. Kicker is always "The takeaway" in accent-colored mono.</p>
+    <p>Headline is a single actionable statement. Not a summary. Not a question. A direct instruction the reader can act on.</p>
+    <p>The supporting paragraph is short (1-2 sentences). Muted color. No performative closers ("Thanks for reading," "Stay tuned").</p>
+    <p>Sits above the footer with a <code>border-top: 1px solid var(--border-subtle)</code> separator.</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     08. COMPARISON GRID
+     ============================================================ -->
+<div class="ds-section">
+  <div class="ds-section-label">08 / Data Display</div>
+  <h2>Comparison Grid</h2>
+  <p class="ds-desc">Side-by-side comparison with the "better" option visually distinguished by an accent border.</p>
+
+  <div class="ds-example">
+    <div class="compare">
+      <div class="col">
+        <h3>Typical approach</h3>
+        <div class="title">Four steps. Minimal work.</div>
+        <ul>
+          <li><span class="n">01</span><span>Chunk documents.</span></li>
+          <li><span class="n">02</span><span>Embed chunks.</span></li>
+          <li><span class="n">03</span><span>Retrieve by similarity.</span></li>
+        </ul>
+      </div>
+      <div class="col right">
+        <h3>Context generation</h3>
+        <div class="title">Five steps. Real transformation.</div>
+        <ul>
+          <li><span class="n">01</span><span>Curate what's eligible.</span></li>
+          <li><span class="n">02</span><span>Synthesize across sources.</span></li>
+          <li><span class="n">03</span><span>Consolidate and prioritize.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="ds-guidance">
+    <h4>When to use</h4>
+    <p class="rule">Use when contrasting a conventional approach with a better one. The "right" column always has the accent border.</p>
+    <p>Left column: <code>var(--bg-card)</code> background, <code>var(--border-subtle)</code> border, dim-colored header. Represents the default/inferior approach.</p>
+    <p>Right column: accent border, accent-colored header and step numbers. Represents the thesis position.</p>
+    <p>Step numbers are mono, zero-padded (01, 02, 03).</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     09. DYPTICH
+     ============================================================ -->
+<div class="ds-section">
+  <div class="ds-section-label">09 / Data Display</div>
+  <h2>Dyptich (Analogy Panel)</h2>
+  <p class="ds-desc">Two-panel comparison with no visual hierarchy between them. Left panel is card-colored, right is bg-2. Use for analogies between domains.</p>
+
+  <div class="ds-example flush" style="padding:0">
+    <div class="dyptich-demo">
+      <div class="side">
+        <h4>Cardiology</h4>
+        <h3>The senior doctor knows which test to order.</h3>
+        <p>Not which test exists. Which one will change the decision.</p>
+      </div>
+      <div class="side">
+        <h4>AI product</h4>
+        <h3>The good product knows which chunk to retrieve.</h3>
+        <p>Not which chunk is related. Which one will change the answer.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="ds-guidance">
+    <h4>When to use</h4>
+    <p class="rule">Use for domain analogies where two fields illuminate each other. Stack multiple dyptichs vertically for a series of comparisons.</p>
+    <p>Left panel heading is accent-colored. Right panel heading is muted. This signals "source domain → target domain."</p>
+    <p>Can be stacked 2-4 times in sequence. More than 4 becomes repetitive.</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     10. BIG NUMBERS
+     ============================================================ -->
+<div class="ds-section">
+  <div class="ds-section-label">10 / Data Display</div>
+  <h2>Big Numbers</h2>
+  <p class="ds-desc">Hero-level metric display. Use only for real, verified proof points.</p>
+
+  <div class="ds-example">
+    <div class="bignums">
+      <div class="bignum"><div class="n">300%</div><div class="l">User growth</div><div class="s">Compound over the build period</div></div>
+      <div class="bignum"><div class="n">$0</div><div class="l">CAC</div><div class="s">Zero paid acquisition.</div></div>
+      <div class="bignum"><div class="n">350+</div><div class="l">Enterprise customers</div><div class="s">Suzy Decision Engine</div></div>
+    </div>
+  </div>
+
+  <div class="ds-guidance">
+    <h4>Usage rules</h4>
+    <p class="rule">Only real proof points. Never fabricated or estimated numbers. If a number can't be sourced, use [TK] and flag for review.</p>
+    <p>Approved numbers: Grandstage 300% / $0 CAC. Helm Labs $1.25M pre-launch pipeline / 14x ACV. IBM "millions in revenue." Suzy 350+ enterprise / 6-week transformation.</p>
+    <p>Number is accent-colored, 900 weight, with tight negative tracking. Label is mono. Supporting text is dim.</p>
+    <p>Use 2-3 numbers in a row. Never more than 3. The constraint forces you to pick the numbers that matter.</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     11. TIMELINE
+     ============================================================ -->
+<div class="ds-section">
+  <div class="ds-section-label">11 / Data Display</div>
+  <h2>Timeline</h2>
+  <p class="ds-desc">Vertical timeline with dot markers. Use for sequential decisions, chronological events, or phased processes.</p>
+
+  <div class="ds-example">
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-mark">Decision 01</div>
+        <div class="tl-title">Build the context system before the UI.</div>
+        <div class="tl-body">The instinct was to ship a demo and iterate. A bad UI on good context outperforms a beautiful UI on noise.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-mark">Decision 02</div>
+        <div class="tl-title">Refuse to ship a chatbot.</div>
+        <div class="tl-body">Every competitor had one. We led with structured briefs instead of conversational responses.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ds-guidance">
+    <h4>When to use</h4>
+    <p class="rule">Use for 4-8 items. Fewer than 4 doesn't warrant a timeline. More than 8 becomes a list.</p>
+    <p>Dot is 14px with accent border and card fill. Border-left is 2px <code>var(--border-subtle)</code>.</p>
+    <p>Mark text is mono, accent-colored. Title is 20px, 600 weight. Body is 15px, muted.</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     12. CARD GRID
+     ============================================================ -->
+<div class="ds-section">
+  <div class="ds-section-label">12 / Data Display</div>
+  <h2>Card Grid (Numbered)</h2>
+  <p class="ds-desc">2-column grid of cards with large accent numbers. Use for frameworks, lessons, and questions.</p>
+
+  <div class="ds-example">
+    <div class="card-grid">
+      <div class="card-item">
+        <div class="num">01</div>
+        <h3>Build the context layer first. Always.</h3>
+        <p>Everything else is faster when the underlying context is right.</p>
+      </div>
+      <div class="card-item">
+        <div class="num">02</div>
+        <h3>Refuse the chatbot default.</h3>
+        <p>Conversational UI is a trap when the value is structured output.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="ds-guidance">
+    <h4>When to use</h4>
+    <p class="rule">Use for 4-6 items. Works well for lesson lists, framework questions, principles.</p>
+    <p>Number is 36px, mono, accent-colored. Card background is <code>var(--bg-card)</code>. Title is 20px, 700 weight.</p>
+    <p>Body text is 15px, muted. Keep it to 1-2 sentences per card.</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     13. DIALOGUE
+     ============================================================ -->
+<div class="ds-section">
+  <div class="ds-section-label">13 / Content</div>
+  <h2>Dialogue Blocks</h2>
+  <p class="ds-desc">Attributed conversation blocks for interview or narrative essays. Accent border for the subject, muted border for the interviewer.</p>
+
+  <div class="ds-example">
+    <div class="dialogue them">
+      <div class="speaker">Anchor</div>
+      <p>"Riché, we keep hearing about companies investing millions in AI and getting almost nothing back. What's going on?"</p>
+    </div>
+    <div class="dialogue">
+      <div class="speaker">Riché</div>
+      <p>"Most of those companies are solving the wrong problem. Your AI doesn't have a model problem. It has a context problem."</p>
+    </div>
+  </div>
+
+  <div class="ds-guidance">
+    <h4>When to use</h4>
+    <p class="rule">Use in narrative essays with real conversations (interviews, panels, meetings). Not for fictional dialogue.</p>
+    <p>Subject's block: accent-colored left border, accent-colored speaker label.</p>
+    <p>Other party: muted left border, muted speaker label. Class <code>.them</code>.</p>
+    <p>Alternate blocks vertically. No prose paragraphs between dialogue blocks in a continuous exchange.</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     14. CODE + TERMINAL
+     ============================================================ -->
+<div class="ds-section">
+  <div class="ds-section-label">14 / Technical</div>
+  <h2>Code Block + Terminal</h2>
+  <p class="ds-desc">Two technical display formats. Code block for inline snippets. Terminal for command-line context with the full macOS chrome.</p>
+
+  <div class="ds-example">
+    <div class="ds-example-label">Code block</div>
+    <div class="code-block">
+      <span class="c"># corpus entry schema</span><br>
+      <span class="k">type</span> <span class="f">CorpusEntry</span> = {<br>
+      &nbsp;&nbsp;source: <span class="s">string</span>,<br>
+      &nbsp;&nbsp;authority: <span class="s">'primary' | 'secondary'</span>,<br>
+      &nbsp;&nbsp;why_included: <span class="s">string</span> <span class="c">// required</span><br>
+      }
+    </div>
+  </div>
+
+  <div class="ds-example flush">
+    <div class="ds-example-label" style="z-index:1">Terminal</div>
+    <div class="terminal">
+      <div class="term-bar">
+        <div class="term-dot r"></div>
+        <div class="term-dot a"></div>
+        <div class="term-dot g"></div>
+        <div class="term-title">~/context-layer-engine</div>
+      </div>
+      <div class="term-body">
+        <div><span class="p">$</span> git log <span class="c">--oneline --since="7 days ago"</span></div>
+        <div class="c">// curation pipeline online</div>
+        <div><span class="p">$</span> <span class="k">status</span><span class="cursor"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ds-guidance">
+    <h4>Syntax highlighting tokens</h4>
+    <p><code>.c</code> = comment (dim). <code>.k</code> = keyword (accent). <code>.s</code> = string (amber). <code>.f</code> = function (green).</p>
+    <p class="rule">Terminal is for the build log essay hero only. Code blocks can appear in any technical essay.</p>
+    <p>Terminal has three traffic light dots (red/amber/green), a title bar in bg-2, and a body in card color.</p>
+    <p>Blinking cursor is 8x16px, accent-colored, with a 1s infinite blink animation.</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     15. DAY LOG
+     ============================================================ -->
+<div class="ds-section">
+  <div class="ds-section-label">15 / Layout</div>
+  <h2>Day Log</h2>
+  <p class="ds-desc">Two-column layout for build journal entries. Text on one side, code on the other. Used in the week-by-week build log essays.</p>
+
+  <div class="ds-example">
+    <div class="day-log">
+      <div class="day-head">
+        <div class="day-mark">DAY 01 / MON</div>
+        <div class="day-title">Curation pipeline gets a schema.</div>
+      </div>
+      <div class="day-grid">
+        <div class="day-body">
+          <p>Started with the question most teams skip: what belongs in the corpus at all. <b>Wrote the ingestion schema before the ingestion code.</b></p>
+        </div>
+        <div class="code-block"><span class="k">type</span> <span class="f">Entry</span> = {<br>&nbsp;&nbsp;source: <span class="s">string</span>,<br>&nbsp;&nbsp;authority: <span class="s">'primary'</span><br>}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ds-guidance">
+    <h4>When to use</h4>
+    <p class="rule">Only in build log essays (the "Building the Context Layer Engine" series). Not for other essay types.</p>
+    <p>Day mark is mono, accent-colored, all-caps with tracking. Day title is 24-36px, 700 weight.</p>
+    <p>Grid is 2fr / 3fr (text takes less space than code). Each day is separated by a <code>var(--border-subtle)</code> top border.</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     16. FAILURE SIGNATURE
+     ============================================================ -->
+<div class="ds-section">
+  <div class="ds-section-label">16 / Data Viz</div>
+  <h2>Failure Signature Card</h2>
+  <p class="ds-desc">SVG waveform with diagnostic metadata. Each failure type gets a distinct visual pattern.</p>
+
+  <div class="ds-example">
+    <div class="sig-card" style="max-width:500px">
+      <div class="sig-title">Failure signature / Ingestion</div>
+      <svg viewBox="0 0 400 140">
+        <line x1="0" y1="110" x2="400" y2="110" stroke="rgba(255,255,255,0.1)"/>
+        <path d="M 20 60 L 60 30 L 100 90 L 140 20 L 180 80 L 220 40 L 260 100 L 300 35 L 340 85 L 380 50" stroke="#10b981" stroke-width="2" fill="none"/>
+        <text x="10" y="16" fill="#6a6a6a" font-family="JetBrains Mono" font-size="10">ANSWER VARIANCE</text>
+      </svg>
+      <div class="sig-row">
+        <div><h4>Shows up as</h4><p>Same question, different answer across sessions.</p></div>
+        <div><h4>Root cause</h4><p>Corpus includes unvetted or conflicting sources.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ds-guidance">
+    <h4>When to use</h4>
+    <p class="rule">Only in the "three-phase problem" diagnostic essay. Each failure phase gets its own signature.</p>
+    <p>Ingestion: jagged variance waveform (green). Synthesis: oscillating sine wave (amber). Retrieval: overlapping Venn circles (red).</p>
+    <p>Bottom section always has two columns: "Shows up as" and "Root cause."</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     17. INTERACTIVE RADAR
+     ============================================================ -->
+<div class="ds-section">
+  <div class="ds-section-label">17 / Data Viz</div>
+  <h2>Interactive Radar Chart</h2>
+  <p class="ds-desc">Clickable architecture comparison. Five axes, five presets. The polygon morphs on click with a CSS transition.</p>
+
+  <div class="ds-example">
+    <div class="radar-wrap-demo">
+      <div>
+        <h3 style="font-size:20px;font-weight:700;margin-bottom:16px">Try an architecture</h3>
+        <button class="preset-btn on" data-arch="context"><b>Context layer</b>Curate, synthesize, consolidate, prioritize, store.</button>
+        <button class="preset-btn" data-arch="rag"><b>Vanilla RAG</b>Chunk, embed, retrieve.</button>
+        <button class="preset-btn" data-arch="single"><b>Single model call</b>Prompt engineering only.</button>
+      </div>
+      <div class="radar-box">
+        <svg viewBox="0 0 400 400" id="radar-demo">
+          <g id="grid-demo"></g>
+          <polygon class="radar-shape" id="shape-demo" points=""/>
+          <text class="radar-label" x="200" y="28">LATENCY</text>
+          <text class="radar-label" x="376" y="158">DEFENSIBILITY</text>
+          <text class="radar-label" x="310" y="360">FLEXIBILITY</text>
+          <text class="radar-label" x="90" y="360">COST</text>
+          <text class="radar-label" x="24" y="158">QUALITY</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="ds-guidance">
+    <h4>When to use</h4>
+    <p class="rule">Only in the "architecture is a product decision" essay. One radar chart per essay.</p>
+    <p>Five axes: Latency, Defensibility, Flexibility, Cost Efficiency, Quality Ceiling. Scores 0-4.</p>
+    <p>Presets: context layer, vanilla RAG, fine-tuned model, agent loop, single model call. Each maps to a 5-value array.</p>
+    <p>Polygon transitions with <code>transition: all 0.6s ease</code>. Fill is <code>var(--accent-dim)</code>, stroke is <code>var(--accent)</code>.</p>
+    <p>Grid rings are <code>var(--border-subtle)</code>. Axis lines are <code>rgba(255,255,255,0.05)</code>.</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     18. CNN TICKER
+     ============================================================ -->
+<div class="ds-section">
+  <div class="ds-section-label">18 / Special</div>
+  <h2>CNN Ticker Bar</h2>
+  <p class="ds-desc">Fixed bottom bar with infinite-scroll text, a red "BREAKING" badge with live dot, and a live clock. One-off component for the CNN interview essay.</p>
+
+  <div class="ds-example flush">
+    <div class="ticker-demo">
+      <div class="brk"><span class="live"></span>BREAKING</div>
+      <div class="scroll"><div class="scroll-inner">DATA IS NOT CONTEXT  •  RETRIEVAL WITHOUT CONSOLIDATION IS EFFICIENT DELIVERY OF NOISE  •  MODELS GET SMARTER EVERY MONTH. CONTEXT QUALITY STAYS THE SAME  •  </div></div>
+      <div class="time-badge">LIVE 16:02 ET</div>
+    </div>
+  </div>
+
+  <div class="ds-guidance">
+    <h4>When to use</h4>
+    <p class="rule">Only on the CNN interview essay. Never reuse on other essays. It is a thematic device tied to one story.</p>
+    <p>Position: fixed, bottom: 0. Height: 56px. Background: pure black with red top border.</p>
+    <p>Scroll text is the rotation one-liners, separated by bullet separators. Animation: <code>translateX(-100%)</code> over 60s, linear, infinite.</p>
+    <p>Time badge updates every 30 seconds via <code>setInterval</code>. Format: <code>LIVE HH:MM ET</code>.</p>
+    <p>When this ticker is present, the page body needs <code>padding-bottom: 56px</code> and the footer needs <code>padding-bottom: 80px</code>.</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     19. SCROLLYTELLING
+     ============================================================ -->
+<div class="ds-section">
+  <div class="ds-section-label">19 / Interactive</div>
+  <h2>Scrollytelling (Sticky + Steps)</h2>
+  <p class="ds-desc">Two-column layout with a sticky visualization on one side and scroll-triggered text steps on the other. The visualization updates as each step enters the viewport.</p>
+
+  <div class="ds-guidance">
+    <h4>Architecture</h4>
+    <p>Grid: <code>1fr 1fr</code> with 80px gap. Sticky column: <code>position: sticky; top: 120px</code>. Steps: <code>min-height: 85vh</code> per step, flex-centered.</p>
+    <p>IntersectionObserver with <code>rootMargin: '-40% 0px -40% 0px'</code> triggers activation when a step hits the viewport center.</p>
+    <p>Each step has a <code>data-step</code> attribute. The observer activates nodes/edges where <code>data-step &lt;= current</code>.</p>
+    <p class="rule">Use for the five-step context generation process in the flagship essay. Can be adapted for other multi-stage processes with 3-7 steps.</p>
+    <p>SVG nodes transition from 25% opacity (inactive) to 100% (active). Edges go from dashed/dim to solid/accent.</p>
+    <p>On mobile (&lt;900px), the sticky column becomes static and the layout collapses to single-column.</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     20. ANIMATED GROWTH CHART
+     ============================================================ -->
+<div class="ds-section">
+  <div class="ds-section-label">20 / Data Viz</div>
+  <h2>Animated Growth Chart</h2>
+  <p class="ds-desc">SVG line chart that draws itself on viewport entry using strokeDashoffset. An area fill fades in after the line completes. Annotation callouts mark inflection points.</p>
+
+  <div class="ds-guidance">
+    <h4>Architecture</h4>
+    <p>Path uses <code>stroke-dasharray</code> set to total path length. On IntersectionObserver trigger, <code>stroke-dashoffset</code> transitions from full length to 0 over 2.5s.</p>
+    <p>Area fill uses a vertical <code>linearGradient</code> from accent at 30% opacity to transparent. It fades in with <code>opacity: 0 → 1</code> delayed 1s after the line starts.</p>
+    <p>Annotations are vertical dashed lines with accent circles and mono labels. Only mark real inflection points with qualitative descriptions (e.g. "context v2 ships"), never fabricated numbers.</p>
+    <p class="rule">Use in case study essays. Only with real growth data. Annotations must describe what happened, not made-up metrics.</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     21. EKG TRACE
+     ============================================================ -->
+<div class="ds-section">
+  <div class="ds-section-label">21 / Data Viz</div>
+  <h2>Live EKG Trace</h2>
+  <p class="ds-desc">Continuous animated SVG trace simulating a cardiac monitor. Runs via requestAnimationFrame.</p>
+
+  <div class="ds-guidance">
+    <h4>Architecture</h4>
+    <p>The trace is a repeating QRS-complex waveform: flat PR segment, Q dip, sharp R spike, S dip, gentle T bump, flat again. Each "beat" is 100 units wide in SVG viewBox coordinates.</p>
+    <p>Animation: <code>requestAnimationFrame</code> shifts the offset by 1.5 units per frame. 10-12 beats visible at once. Stroke is accent-colored, 2px.</p>
+    <p>Container is a card-colored box with a mono title ("Live trace / diagnostic cadence").</p>
+    <p class="rule">Only in the cardiologists essay. A thematic device, not a reusable component.</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     22. FOOTER
+     ============================================================ -->
+<div class="ds-section">
+  <div class="ds-section-label">22 / Chrome</div>
+  <h2>Footer</h2>
+  <p class="ds-desc">Minimal footer with copyright and a link back to the index.</p>
+
+  <div class="ds-example flush">
+    <div class="footer-demo">
+      <span>© 2026 Riché Zamor</span>
+      <a style="color:var(--text-tertiary)">More essays</a>
+    </div>
+  </div>
+
+  <div class="ds-guidance">
+    <h4>Usage rules</h4>
+    <p class="rule">Every essay page gets this footer. No social links, no newsletter signup, no decoration.</p>
+    <p>Mono font, 12px, dim color. Left: copyright. Right: "More essays" linking to index.</p>
+    <p>Top border is <code>var(--border-subtle)</code>. Padding 48px.</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     23. ARTICLE STRUCTURE TEMPLATE
+     ============================================================ -->
+<div class="ds-section" style="border-top:2px solid var(--accent)">
+  <div class="ds-section-label">Reference</div>
+  <h2>Article Assembly Order</h2>
+  <p class="ds-desc">The canonical structure for a /thinking essay. Not every component is used in every essay, but the order is always this when a component is present.</p>
+
+  <div class="ds-guidance" style="margin-top:32px">
+    <h4>Standard article structure</h4>
+    <p class="rule">1. Nav (fixed) + Progress bar</p>
+    <p class="rule">2. Hero (eyebrow + display headline + deck + meta) + optional hero attachment (EKG, terminal, big numbers, decay curve)</p>
+    <p class="rule">3. Story block (opening narrative with dropcap)</p>
+    <p class="rule">4. Content sections (section-label + h2.section + prose), interleaved with data display components as needed</p>
+    <p class="rule">5. Pullquote (one per essay, at structural midpoint)</p>
+    <p class="rule">6. Close / Takeaway (kicker + bold headline + one paragraph)</p>
+    <p class="rule">7. Footer</p>
+    <p class="rule">8. Optional: fixed ticker (CNN essay only)</p>
+  </div>
+
+  <div class="ds-guidance">
+    <h4>Accent color assignment</h4>
+    <p class="rule">All essays use the site accent <code>#7B7FE4</code> (indigo) for UI chrome: nav, progress bar, section labels, CTAs, card hover borders.</p>
+    <p>02 Three-phase problem: adds semantic phase colors (--p1 green, --p2 amber, --p3 red) for data visualization only</p>
+    <p>03 Cardiologists: adds <code>--emerald</code> for EKG trace and medical-themed elements</p>
+    <p>06 Building week 1: adds semantic terminal colors (--green, --amber, --red) for syntax highlighting</p>
+    <p>07 CNN interview: adds <code>--amber</code> for CNN brand elements and <code>--red</code> for BREAKING ticker</p>
+  </div>
+
+  <div class="ds-guidance">
+    <h4>Copy rules (critical)</h4>
+    <p class="rule">No em dashes. Use colons or commas.</p>
+    <p class="rule">No "Context Intelligence" (not an established term).</p>
+    <p class="rule">No Instrument Serif or any decorative font. Headings use Bricolage Grotesque only.</p>
+    <p class="rule">No fabricated numbers. Real proof points only, or mark [TK].</p>
+    <p class="rule">One pullquote per essay, from the approved rotation only.</p>
+    <p class="rule">First person, active voice, contractions. Varied paragraph rhythm.</p>
+    <p class="rule">No "In today's..." openers. No "Moreover/Furthermore." No "game-changing." See rz-copywriting Fatal Fifteen.</p>
+    <p class="rule">No performative closers. The close section's headline is the final word.</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     RADAR CHART JS
+     ============================================================ -->
+<script>
+(function() {
+  const cx = 200, cy = 200, R = 140, axes = 5;
+  const grid = document.getElementById('grid-demo');
+  for (let r = 1; r <= 4; r++) {
+    const pts = [];
+    for (let i = 0; i < axes; i++) {
+      const a = (i / axes) * Math.PI * 2 - Math.PI / 2;
+      pts.push(`${cx + Math.cos(a) * R * r/4},${cy + Math.sin(a) * R * r/4}`);
+    }
+    const p = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+    p.setAttribute('points', pts.join(' '));
+    p.setAttribute('class', 'radar-grid');
+    grid.appendChild(p);
+  }
+  for (let i = 0; i < axes; i++) {
+    const a = (i / axes) * Math.PI * 2 - Math.PI / 2;
+    const l = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    l.setAttribute('x1', cx); l.setAttribute('y1', cy);
+    l.setAttribute('x2', cx + Math.cos(a) * R); l.setAttribute('y2', cy + Math.sin(a) * R);
+    l.setAttribute('class', 'radar-axis');
+    grid.appendChild(l);
+  }
+  const data = {
+    context: [2,4,4,3,4],
+    rag: [3,2,3,3,2],
+    single: [4,1,2,4,1],
+  };
+  const shape = document.getElementById('shape-demo');
+  function render(arch) {
+    const v = data[arch];
+    const pts = v.map((n, i) => {
+      const a = (i / axes) * Math.PI * 2 - Math.PI / 2;
+      return `${cx + Math.cos(a) * R * n/4},${cy + Math.sin(a) * R * n/4}`;
+    });
+    shape.setAttribute('points', pts.join(' '));
+  }
+  render('context');
+  document.querySelectorAll('.preset-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('on'));
+      btn.classList.add('on');
+      render(btn.dataset.arch);
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
