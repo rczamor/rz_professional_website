@@ -13,6 +13,10 @@ function toISODate(dateStr: string): string {
   return new Date(parsed).toISOString().split("T")[0];
 }
 
+function pillarLabel(pillar: string): string {
+  return pillar.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
 export default function ArticleLayout({ metadata, children }: ArticleLayoutProps) {
   const isoDate = toISODate(metadata.date);
 
@@ -74,28 +78,42 @@ export default function ArticleLayout({ metadata, children }: ArticleLayoutProps
       <Nav activePage="thinking" />
       <main id="main-content">
         <article>
-          <section className="hero hero-centered">
+          <header className="think-hero">
             <div className="container">
-              <div className="article-hero-meta">
-                <span className={`article-badge${metadata.badgeVariant ? ` ${metadata.badgeVariant}` : ""}`}>
-                  {metadata.badge}
-                </span>
-                <span className="article-hero-pillar">
-                  {metadata.pillar.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
-                </span>
+              <div className="think-hero-eyebrow">
+                <span className="think-hero-dot" aria-hidden="true" />
+                <span>{pillarLabel(metadata.pillar)}</span>
+                {metadata.badge && (
+                  <>
+                    <span className="think-hero-eyebrow-sep" aria-hidden="true">/</span>
+                    <span>{metadata.badge}</span>
+                  </>
+                )}
               </div>
-              <h1>{metadata.title}</h1>
-              <div className="article-hero-info">
-                <address rel="author" className="article-author-address">By Riche Zamor</address>
-                <span className="article-meta-separator" />
-                <time dateTime={isoDate}>{metadata.date}</time>
-                <span className="article-meta-separator" />
-                <span>{metadata.readTime}</span>
-              </div>
+              <h1 className="think-hero-title">{metadata.title}</h1>
+              <dl className="think-hero-meta">
+                <div>
+                  <dt>By</dt>
+                  <dd>
+                    <address rel="author">Riché Zamor</address>
+                  </dd>
+                </div>
+                <div>
+                  <dt>Published</dt>
+                  <dd>
+                    <time dateTime={isoDate}>{metadata.date}</time>
+                  </dd>
+                </div>
+                <div>
+                  <dt>Read</dt>
+                  <dd>{metadata.readTime}</dd>
+                </div>
+              </dl>
             </div>
-          </section>
+          </header>
           <section className="article-body">
             <div className="container">
+              <p className="think-article-deck">{metadata.excerpt}</p>
               <div className="article-prose">
                 {children}
               </div>

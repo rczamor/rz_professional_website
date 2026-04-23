@@ -1,14 +1,197 @@
 /* ==========================================================================
+   Think article hero — left-aligned editorial header matching the
+   think-article design system (eyebrow + display + deck + meta bar).
+   ========================================================================== */
+
+.think-hero {
+  padding: 128px 0 56px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.think-hero .container {
+  max-width: 1120px;
+}
+
+.think-hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 40px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.think-hero-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.think-hero-eyebrow-sep {
+  color: var(--text-tertiary);
+  font-weight: 400;
+}
+
+.think-hero-title {
+  font-family: var(--font-heading);
+  font-size: clamp(44px, 7vw, 92px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+  color: var(--text-primary);
+  max-width: 18ch;
+  margin: 0 0 48px;
+}
+
+.think-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 48px;
+  margin: 0;
+}
+
+.think-hero-meta > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.think-hero-meta dt {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin: 0;
+}
+
+.think-hero-meta dd {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.think-hero-meta address {
+  font-style: normal;
+  display: inline;
+}
+
+@media (max-width: 860px) {
+  .think-hero {
+    padding: 112px 0 44px;
+  }
+  .think-hero-eyebrow {
+    margin-bottom: 28px;
+  }
+  .think-hero-title {
+    margin-bottom: 36px;
+  }
+  .think-hero-meta {
+    gap: 24px 36px;
+  }
+}
+
+@media (max-width: 540px) {
+  .think-hero {
+    padding: 96px 0 36px;
+  }
+  .think-hero-eyebrow {
+    flex-wrap: wrap;
+    row-gap: 6px;
+    margin-bottom: 24px;
+  }
+  .think-hero-title {
+    margin-bottom: 28px;
+  }
+  .think-hero-meta {
+    gap: 18px 28px;
+  }
+  .think-hero-meta dt {
+    font-size: 9px;
+  }
+  .think-hero-meta dd {
+    font-size: 13px;
+  }
+}
+
+/* Article body — pull tight up against the hero; first block carries the air. */
+.article-body {
+  padding: 72px 0 120px;
+}
+
+/* Article deck — prominent lead paragraph below the hero divider. */
+.think-article-deck {
+  font-family: var(--font-sans);
+  font-size: clamp(18px, 2vw, 26px);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-primary);
+  max-width: 720px;
+  margin: 0 auto 72px;
+  letter-spacing: -0.005em;
+}
+
+@media (max-width: 860px) {
+  .article-body {
+    padding: 56px 0 96px;
+  }
+  .think-article-deck {
+    margin-bottom: 56px;
+  }
+}
+
+@media (max-width: 540px) {
+  .article-body {
+    padding: 44px 0 80px;
+  }
+  .think-article-deck {
+    margin-bottom: 40px;
+  }
+}
+
+/* When the first prose child is a think-story (dropcap opener), let it
+   provide its own top breathing room. */
+.article-prose > .think-story:first-child {
+  padding-top: 0;
+}
+
+/* ==========================================================================
    Article prose typography — dark-theme-first, respects CSS custom properties
    ========================================================================== */
 
 .article-prose {
-  max-width: 720px;
+  max-width: 1120px;
   margin: 0 auto;
   font-family: var(--font-sans);
   color: var(--text-primary);
   line-height: 1.75;
   font-size: 1.125rem;
+}
+
+/* Keep pure-prose elements at readable measure; think_components break out. */
+.article-prose > p,
+.article-prose > h1,
+.article-prose > h2,
+.article-prose > h3,
+.article-prose > h4,
+.article-prose > ul,
+.article-prose > ol,
+.article-prose > blockquote,
+.article-prose > hr,
+.article-prose > pre {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Headings */
@@ -137,7 +320,25 @@
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 860px) {
+  .article-prose {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+  }
+  .article-h2 {
+    font-size: clamp(1.5rem, 4vw, 1.75rem);
+    margin-top: 2rem;
+  }
+  .article-h3 {
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+  }
+  .article-p {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 540px) {
   .article-prose {
     font-size: 1rem;
   }
@@ -146,8 +347,5 @@
   }
   .article-h2 {
     font-size: 1.5rem;
-  }
-  .article-h3 {
-    font-size: 1.2rem;
   }
 }

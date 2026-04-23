@@ -1,0 +1,226 @@
+import {
+  ProgressBar,
+  SectionLabel,
+  StoryBlock,
+  Pullquote,
+  Close,
+  ComparisonGrid,
+  BigNumbers,
+  Timeline,
+  CardGrid,
+  SystemOverview,
+} from "@/components/article/think_components";
+
+export const metadata = {
+  title: "How I Built a 14-Agent Software Factory on a Single VPS",
+  slug: "building-a-14-agent-software-factory",
+  excerpt:
+    "While on paternity leave I stood up fourteen agents on a single $50/mo VPS, watched three vendor moves break my plan in seven days, and learned that the infrastructure is not the moat.",
+  pillar: "context-intelligence",
+  date: "April 22, 2026",
+  readTime: "10 min read",
+  badge: "Case Study",
+  badgeVariant: "product",
+  featured: true,
+}
+
+<ProgressBar />
+
+<StoryBlock dropcap>
+The constraint forced it. With a newborn and a two-year-old, I don't have stretches of time to code. Thirty to forty-five minute windows, here and there. Building a team of agents that can work while I can't was the only way to keep shipping.
+
+The framing wasn't mine. Chamath has been talking about the Software Factory at 8090 for most of the last year. His frame is enterprise: a system that ties PMs, designers, engineers, and QA into a single agent-run loop. Addy Osmani made the same argument from the developer angle: the shift isn't writing code faster, it's building the factory that builds the code. Anthropic's multi-agent research system showed the pattern from the AI lab side: a team of specialized agents beats a single generalist agent on anything non-trivial.
+
+I wanted to run that pattern at personal scale. A team of agents maintaining and enhancing the apps and prototypes in my portfolio, so my windows go toward describing outcomes instead of writing code.
+</StoryBlock>
+
+<BigNumbers
+  items={[
+    { value: "14", label: "agents across two coordinated layers" },
+    { value: "$50", label: "per month, one Hostinger VPS" },
+    { value: "1", label: "afternoon to stand up the plumbing" },
+  ]}
+/>
+
+<SectionLabel>01 / The Stack</SectionLabel>
+
+## One VPS. Everything containerized.
+
+Here is what is running on it, what model powers it, and why it earned a slot.
+
+<CardGrid
+  cards={[
+    {
+      num: "01",
+      title: "OpenClaw",
+      body: "Ten execution agents, each a containerized instance with a scoped role: Conductor, AI Engineer, PM-lite, Designer, Backend, Data, UI, QA, DevOps, Tech Writer.",
+    },
+    {
+      num: "02",
+      title: "Paperclip",
+      body: "Orchestration plus the execution audit log for the OpenClaw layer. Every handoff, every retry, every verdict.",
+    },
+    {
+      num: "03",
+      title: "Postgres",
+      body: "Shared agent_memory schema for execution agents, partitioned by app_id. Rows for decisions, patterns, blockers.",
+    },
+    {
+      num: "04",
+      title: "Slack",
+      body: "Live agent communication. One team channel, plus one channel per app in the portfolio. The same pattern a human team uses.",
+    },
+    {
+      num: "05",
+      title: "Langfuse",
+      body: "Prompt-level and task-level evals. Tracing for every LLM call across both layers. The mirror.",
+    },
+    {
+      num: "06",
+      title: "GrowthBook",
+      body: "Experimentation for prototypes and apps, plus a feedback loop for AI output optimization. The lever.",
+    },
+    {
+      num: "07",
+      title: "n8n",
+      body: "Webhook router between Linear and the agent layers. The seam that keeps planning and execution decoupled.",
+    },
+    {
+      num: "08",
+      title: "Ollama Cloud",
+      body: "Inference for all execution agents. Kimi K2.6 end to end. One model, one prompt convention, one handoff protocol.",
+    },
+  ]}
+/>
+
+Off the VPS: four Claude Code Routines on Anthropic's cloud (Technical Architect, Analyst, User Researcher, AI Researcher) running Opus 4.7. Linear is the planning and trigger surface. Notion is durable memory for the strategic layer.
+
+Every VPS tool is a one-click install on Hostinger. I didn't fight with installs. I didn't build a Kubernetes cluster. A single $50/mo tier of infrastructure is running a containerized software factory with two-layer agent architecture, observability, experimentation, and evals.
+
+Two years ago this would have been a quarter of DevOps work. Today it is an afternoon. This isn't a billionaire's toy anymore.
+
+<SectionLabel>02 / Seven Days</SectionLabel>
+
+## Three things broke my plan in seven days.
+
+End of last week I had eleven OpenClaw instances, one shared Postgres schema, one Conductor orchestrating the rest. Closed-source models for the reasoning-heavy roles via my Max subscription. Open-source workhorses for the rest.
+
+By Tuesday morning, the plan was dead.
+
+<Timeline
+  events={[
+    {
+      label: "Event 01 · Vendor policy",
+      title: "Anthropic blocks Pro and Max on third-party agent runtimes",
+      body: "OpenClaw is a third-party runtime. The cheap Claude route for reasoning-heavy agents was gone. Pay API rates at volume, or move the whole execution layer to open-source. I picked open-source.",
+    },
+    {
+      label: "Event 02 · New product",
+      title: "Claude Desktop 2.0 ships Routines",
+      body: "Cloud-hosted Claude Code sessions, fired via API, runnable under a Max subscription and capped at fifteen runs per day. I could keep Opus for high-leverage work, but only for work I fire a few times a week, not a few times an hour. First split: some work on Routines, some on OpenClaw.",
+    },
+    {
+      label: "Event 03 · Model release",
+      title: "Kimi K2.6 drops and beats Opus 4.6 on SWE-Bench Pro",
+      body: "58.6 vs 53.4 on Pro. 80.2 vs 80.8 on Verified. Sustained 12+ hour autonomous runs with 4,000+ tool calls. I reran the numbers and swapped to K2.6 across the entire execution layer.",
+    },
+  ]}
+/>
+
+<SectionLabel>03 / The Hybrid</SectionLabel>
+
+## The two-layer architecture that fell out.
+
+Once the constraints settled, work shape divided the factory cleanly in half. Strategic work is rare, document-shaped, and high-leverage, so it earns the expensive model. Execution work is frequent, decision-shaped, and bounded, so it runs on the workhorse.
+
+<SystemOverview />
+
+The two layers don't talk directly. They coordinate through Linear ticket state and Notion artifacts. No cross-layer RPC. No shared session memory.
+
+Mid-week, Claude released [the Advisor Tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool), a pattern for letting agents request expert counsel from a more capable model on hard problems. That sharpened the escalation path I was already building. My open-source execution agents can fire a Claude Code Routine running Opus 4.7 when they hit their ceiling. The routine writes a brief to Notion. The execution agent resumes by reading it.
+
+<SectionLabel>04 / Memory</SectionLabel>
+
+## Memory followed work shape.
+
+Once I had two layers, I had two memory requirements, and the schema I had designed for the old plan didn't fit either one.
+
+The original plan had a Researcher agent writing full research briefs into a `findings` table as giant TEXT columns. The schema bloated. Queries slowed. A Postgres row was the wrong surface for a research brief. I was forcing one memory shape onto two kinds of work.
+
+<ComparisonGrid
+  beforeLabel="Original plan"
+  afterLabel="New design"
+  before={[
+    "Single Postgres schema shared across all 14 agents",
+    "Research briefs stored as TEXT columns in a findings table",
+    "One memory surface, one reader pattern, for both layers",
+    "Schema bloated on every research sync; queries slowed",
+    "Stateful strategic agent holding internal context across runs",
+  ]}
+  after={[
+    "Execution: Postgres agent_memory, partitioned by app_id",
+    "Strategic: Notion hubs, one per routine, documents over rows",
+    "findings_references, a lightweight index pointing to Notion docs",
+    "Research briefs searchable semantically, not column-scanned",
+    "Stateless routines that write every decision to Notion, audit-friendly",
+  ]}
+/>
+
+Rows work for execution because the writes are short and frequent: handoffs, design decisions, patterns, blockers, session summaries. Strategic routines are stateless between runs. Their durable memory lives in Notion, with a role-specific hub per routine: ADR log, competitive matrix library, UX research library, AI research library. Research briefs live as documents, not rows.
+
+<Pullquote
+  quote="Rows for decisions. Documents for research. Most agent team designs I've seen treat memory as a storage problem. It's a work-shape problem."
+  cite="Learning 01"
+/>
+
+<SectionLabel>05 / Learnings</SectionLabel>
+
+## Seven learnings from week one.
+
+<CardGrid
+  cards={[
+    {
+      num: "01",
+      title: "Work shape determines memory shape",
+      body: "Rows for decisions. Documents for research. If every agent in your team reads the same schema, you're probably wrong for at least half your work.",
+    },
+    {
+      num: "02",
+      title: "One model per layer beats a clever split",
+      body: "I was going to run MiniMax for the Conductor and Qwen for workers. Consistency on prompts, handoffs, and memory reads was worth more than the marginal capability delta.",
+    },
+    {
+      num: "03",
+      title: "Stateless strategic agents are a feature",
+      body: "Forcing routines to write their decisions to Notion means I can read what they decided three weeks from now. A stateful agent that remembers internally is one you cannot audit.",
+    },
+    {
+      num: "04",
+      title: "Plan in Linear, execute in Paperclip",
+      body: "Linear is the roadmap. Paperclip is the task manager for execution agents. Treating one tool as both led to my original muddled design. Separating them clarified what each agent actually needs to read.",
+    },
+    {
+      num: "05",
+      title: "Architecture is set by constraints you didn't choose",
+      body: "Vendor policy changes. New model releases. Rate limits. The win isn't avoiding this. It's reading the constraints fast and letting them surface the right design.",
+    },
+    {
+      num: "06",
+      title: "Observability from day one, not day sixty",
+      body: "Langfuse shows me what's happening. GrowthBook lets me change what's happening without redeploying. One is the mirror. The other is the lever. Adding these later would have meant flying blind through exactly the week I needed to see.",
+    },
+    {
+      num: "07",
+      title: "The infrastructure is not the moat",
+      body: "A single VPS with one-click installs is running ten containerized agents, observability, experimentation, a workflow router, and a custom Postgres schema. The work is in the architecture, the prompts, and the evals. Not the plumbing.",
+    },
+  ]}
+/>
+
+<Close kicker="The claim" heading="The barrier isn't infrastructure anymore.">
+Two years ago, building a software factory meant a research team, a Kubernetes cluster, and a cloud bill. Today it is a VPS, a handful of open-source models, and a weekend of integration work.
+
+The barrier is knowing what to build, and reading your constraints fast enough to adapt when they change on you mid-build.
+
+I spent three days learning that the expensive way. You don't have to.
+</Close>
