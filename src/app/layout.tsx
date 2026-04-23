@@ -4,6 +4,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import Script from "next/script";
 import "@/styles/globals.css";
 import "@/styles/article.css";
+import "@/components/article/think_components/think-components.css";
 import ThemeEngine from "@/components/ThemeEngine";
 import ScrollReveal from "@/components/ScrollReveal";
 import NavScroll from "@/components/NavScroll";

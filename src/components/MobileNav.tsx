@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { createPortal } from "react-dom";
 
 type MobileNavProps = {
   activePage: "home" | "thesis" | "work" | "about" | "projects" | "thinking" | "contact";
@@ -18,6 +19,9 @@ const NAV_LINKS = [
 
 export default function MobileNav({ activePage }: MobileNavProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
 
   const close = useCallback(() => setIsOpen(false), []);
 
@@ -42,23 +46,20 @@ export default function MobileNav({ activePage }: MobileNavProps) {
     };
   }, [isOpen]);
 
-  return (
-    <>
-      <button
-        className="hamburger-btn"
-        type="button"
-        aria-label={isOpen ? "Close menu" : "Open menu"}
-        aria-expanded={isOpen}
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        <span className={`hamburger-icon${isOpen ? " open" : ""}`}>
-          <span />
-          <span />
-          <span />
-        </span>
-      </button>
+  const overlay = (
+    <div className={`mobile-overlay${isOpen ? " open" : ""}`}>
+        <button
+          type="button"
+          className="mobile-overlay-close"
+          aria-label="Close menu"
+          onClick={close}
+        >
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
 
-      <div className={`mobile-overlay${isOpen ? " open" : ""}`}>
         <nav className="mobile-overlay-nav" aria-label="Mobile navigation">
           {NAV_LINKS.map((link) => (
             <a
@@ -105,6 +106,24 @@ export default function MobileNav({ activePage }: MobileNavProps) {
           </a>
         </div>
       </div>
+  );
+
+  return (
+    <>
+      <button
+        className="hamburger-btn"
+        type="button"
+        aria-label={isOpen ? "Close menu" : "Open menu"}
+        aria-expanded={isOpen}
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <span className={`hamburger-icon${isOpen ? " open" : ""}`}>
+          <span />
+          <span />
+          <span />
+        </span>
+      </button>
+      {mounted ? createPortal(overlay, document.body) : null}
     </>
   );
 }

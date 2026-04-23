@@ -1,0 +1,1566 @@
+/* ==========================================================================
+   THINK ARTICLE COMPONENTS — richezamor.com/thinking
+   ==========================================================================
+   Styles for all MDX-embeddable article components.
+   Import once in layout.tsx or globals.css:
+     import "@/.spec/think_components/think-components.css";
+
+   All colors reference CSS custom properties from globals.css (:root).
+   No hardcoded hex values. Theme-safe across night/day/dawn/dusk.
+   ========================================================================== */
+
+/* ── Progress Bar ──────────────────────────────────────────────────────── */
+.think-progress {
+  position: fixed;
+  top: 72px; /* below site nav */
+  left: 0;
+  height: 2px;
+  width: 0;
+  background: var(--accent);
+  z-index: 101;
+  transition: width 50ms linear;
+}
+
+/* ── Section Label ─────────────────────────────────────────────────────── */
+.think-section-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 24px;
+}
+
+/* ── Story Block ───────────────────────────────────────────────────────── */
+.think-story {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 80px 0;
+}
+.think-story-dropcap::first-letter {
+  font-family: var(--font-heading);
+  font-size: 3.4em;
+  float: left;
+  line-height: 0.8;
+  margin: 0.05em 0.12em 0 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* ── Pullquote ─────────────────────────────────────────────────────────── */
+.think-pullquote {
+  padding: 100px 0;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+.think-pullquote blockquote {
+  font-family: var(--font-heading);
+  font-size: clamp(28px, 3.8vw, 42px);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: var(--text-primary);
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+}
+.think-pullquote cite {
+  display: block;
+  margin-top: 32px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-tertiary);
+  font-style: normal;
+  letter-spacing: 0.1em;
+}
+
+/* ── Close / Takeaway ──────────────────────────────────────────────────── */
+.think-close {
+  padding: 120px 0;
+  max-width: 900px;
+  margin: 0 auto;
+  border-top: 1px solid var(--border-subtle);
+}
+.think-close-kicker {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.think-close h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 4.5vw, 52px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 32px;
+}
+.think-close p {
+  font-size: 19px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ── Comparison Grid ───────────────────────────────────────────────────── */
+.think-comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin: 60px 0;
+}
+.think-comparison-col {
+  padding: 36px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+}
+.think-comparison-col h3 {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.think-comparison-col.before h3 { color: var(--text-tertiary); }
+.think-comparison-col.after h3 { color: var(--accent); }
+.think-comparison-col.after { border-color: var(--accent); }
+.think-comparison-item {
+  font-size: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+.think-comparison-item:last-child { border-bottom: none; }
+@media (max-width: 700px) {
+  .think-comparison { grid-template-columns: 1fr; }
+}
+
+/* ── Dyptich ───────────────────────────────────────────────────────────── */
+.think-dyptich {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin: 40px 0;
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.think-dyptich-side {
+  padding: 36px;
+}
+.think-dyptich-side:first-child {
+  border-right: 1px solid var(--border-subtle);
+}
+.think-dyptich-side h4 {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.think-dyptich-side.left h4 { color: var(--text-tertiary); }
+.think-dyptich-side.right h4 { color: var(--accent); }
+.think-dyptich-side p {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+@media (max-width: 700px) {
+  .think-dyptich { grid-template-columns: 1fr; }
+  .think-dyptich-side:first-child { border-right: none; border-bottom: 1px solid var(--border-subtle); }
+}
+
+/* ── Big Numbers ───────────────────────────────────────────────────────── */
+.think-bignums {
+  display: flex;
+  gap: 48px;
+  margin: 40px 0 60px;
+  flex-wrap: wrap;
+}
+.think-bignum {
+  flex: 1;
+  min-width: 140px;
+}
+.think-bignum-value {
+  font-family: var(--font-heading);
+  font-size: clamp(48px, 8vw, 96px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--accent);
+}
+.think-bignum-label {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-top: 8px;
+  line-height: 1.4;
+}
+
+/* ── Timeline ──────────────────────────────────────────────────────────── */
+.think-timeline {
+  margin: 60px 0;
+  position: relative;
+  padding-left: 32px;
+}
+.think-timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--border-subtle);
+}
+.think-timeline-item {
+  position: relative;
+  padding: 0 0 48px 24px;
+}
+.think-timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -37px;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 2px solid var(--accent);
+}
+.think-timeline-item:last-child { padding-bottom: 0; }
+.think-timeline-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+}
+.think-timeline-title {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.think-timeline-body {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ── Card Grid ─────────────────────────────────────────────────────────── */
+.think-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  margin: 60px 0;
+}
+.think-card {
+  padding: 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  transition: border-color 0.25s, transform 0.25s;
+}
+.think-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+}
+.think-card-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.15em;
+  margin-bottom: 12px;
+}
+.think-card h3 {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+.think-card p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ── Dialogue ──────────────────────────────────────────────────────────── */
+.think-dialogue {
+  margin: 40px 0;
+  padding: 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  border-left: 3px solid var(--accent);
+}
+.think-dialogue.other {
+  border-left-color: var(--text-tertiary);
+}
+.think-dialogue-speaker {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.think-dialogue.other .think-dialogue-speaker {
+  color: var(--text-tertiary);
+}
+.think-dialogue p {
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--text-primary);
+  margin: 0;
+}
+.think-dialogue + .think-dialogue {
+  margin-top: 16px;
+}
+
+/* ── Code Block ────────────────────────────────────────────────────────── */
+.think-codeblock {
+  margin: 40px 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.think-codeblock-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--border-subtle);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+.think-codeblock-lang {
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.think-codeblock pre {
+  padding: 24px;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  overflow-x: auto;
+  background: none;
+  border: none;
+}
+.think-codeblock .token-comment { color: var(--text-tertiary); }
+.think-codeblock .token-keyword { color: var(--accent); }
+.think-codeblock .token-string { color: #f59e0b; }
+.think-codeblock .token-function { color: #10b981; }
+
+/* ── Terminal ──────────────────────────────────────────────────────────── */
+.think-terminal {
+  margin: 40px 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.think-terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.think-terminal-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.think-terminal-dot.r { background: #ef4444; }
+.think-terminal-dot.y { background: #f59e0b; }
+.think-terminal-dot.g { background: #10b981; }
+.think-terminal-title {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-tertiary);
+  margin-left: 12px;
+}
+.think-terminal pre {
+  padding: 24px;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  overflow-x: auto;
+  background: none;
+  border: none;
+}
+.think-terminal .prompt { color: var(--accent); }
+.think-terminal .cursor {
+  display: inline-block;
+  width: 8px;
+  height: 18px;
+  background: var(--accent);
+  animation: think-blink 1s step-end infinite;
+  vertical-align: text-bottom;
+  margin-left: 2px;
+}
+@keyframes think-blink {
+  50% { opacity: 0; }
+}
+
+/* ── Day Log ───────────────────────────────────────────────────────────── */
+.think-daylog {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 32px;
+  padding: 40px 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.think-daylog:last-child { border-bottom: none; }
+.think-daylog-day {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.think-daylog-prose {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+@media (max-width: 700px) {
+  .think-daylog { grid-template-columns: 1fr; }
+}
+
+/* ── Failure Signature ─────────────────────────────────────────────────── */
+.think-failure-sig {
+  margin: 60px 0;
+  padding: 40px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+}
+.think-failure-sig-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+.think-failure-sig-phase {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.think-failure-sig-meta {
+  display: flex;
+  gap: 24px;
+}
+.think-failure-sig-meta dt {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-tertiary);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.think-failure-sig-meta dd {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+.think-failure-sig svg {
+  width: 100%;
+  height: 80px;
+}
+
+/* ── Interactive Radar ─────────────────────────────────────────────────── */
+.think-radar {
+  margin: 60px 0;
+  text-align: center;
+}
+.think-radar svg {
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto 24px;
+  display: block;
+}
+.think-radar-presets {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.think-radar-btn {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  padding: 10px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.think-radar-btn:hover {
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+}
+.think-radar-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* ── CNN Ticker ────────────────────────────────────────────────────────── */
+.think-ticker {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  background: var(--bg-primary);
+  border-top: 2px solid #ef4444;
+  height: 56px;
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+}
+.think-ticker-badge {
+  background: #ef4444;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  flex-shrink: 0;
+}
+.think-ticker-live {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+  margin-right: 10px;
+  animation: think-ticker-pulse 1s ease-in-out infinite;
+}
+@keyframes think-ticker-pulse { 50% { opacity: 0.3; } }
+.think-ticker-scroll {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.think-ticker-scroll-inner {
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-primary);
+  letter-spacing: 0.05em;
+  animation: think-ticker-scroll 60s linear infinite;
+  padding-left: 100%;
+}
+@keyframes think-ticker-scroll { to { transform: translateX(-100%); } }
+.think-ticker-time {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  flex-shrink: 0;
+  border-left: 1px solid var(--border-subtle);
+}
+
+/* ── Growth Chart (SVG container) ──────────────────────────────────────── */
+.think-growth-chart {
+  margin: 60px 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 40px;
+}
+.think-growth-chart h4 {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-tertiary);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.think-growth-chart svg {
+  width: 100%;
+  height: auto;
+}
+.think-growth-chart .grid-line {
+  stroke: var(--border-subtle);
+  stroke-dasharray: 4 4;
+}
+.think-growth-chart .axis-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  fill: var(--text-tertiary);
+}
+.think-growth-chart .growth-line {
+  stroke: var(--accent);
+  stroke-width: 3;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.think-growth-chart .annotation {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  fill: var(--text-secondary);
+}
+
+/* ── Agent Architecture ────────────────────────────────────────────────── */
+.think-arch {
+  margin: 72px 0;
+  display: grid;
+  gap: 0;
+}
+.think-arch-layer {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  padding: 36px 36px 40px;
+  position: relative;
+  overflow: hidden;
+}
+.think-arch-layer.strategic::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+}
+.think-arch-layer.execution::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-secondary), var(--accent));
+  opacity: 0.5;
+}
+.think-arch-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+.think-arch-label {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+.think-arch-sub {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.think-arch-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.think-arch-grid.nine {
+  grid-template-columns: repeat(3, 1fr);
+}
+.think-arch-cell {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 16px 18px;
+  transition: border-color 0.25s, background 0.25s;
+}
+.think-arch-cell:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-card-hover);
+}
+.think-arch-cell-name {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+.think-arch-cell-role {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+.think-arch-lead {
+  background: linear-gradient(135deg, rgba(123,127,228,0.08), rgba(124,92,252,0.05));
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 16px;
+}
+.think-arch-lead-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+.think-arch-lead-name {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+.think-arch-lead-role {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+.think-arch-infra {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px dashed var(--border-subtle);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.think-arch-infra-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+}
+.think-arch-infra ul {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.think-arch-infra li {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  padding: 4px 10px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+}
+.think-arch-bridge {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 36px;
+}
+.think-arch-bridge-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--border-hover) 50%,
+    transparent
+  );
+}
+.think-arch-bridge-line:last-child {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--border-hover) 50%,
+    transparent
+  );
+}
+.think-arch-bridge-text {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+@media (max-width: 860px) {
+  .think-arch-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .think-arch-grid.nine {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .think-arch-layer {
+    padding: 28px 24px 32px;
+    border-radius: 16px;
+  }
+  .think-arch-bridge {
+    padding: 12px 24px;
+  }
+}
+
+/* ── System Overview (unified architecture + flow diagram) ─────────────── */
+.think-sysmap {
+  margin: 80px 0;
+  border: 1px solid var(--border-subtle);
+  border-radius: 24px;
+  padding: 40px 36px 48px;
+  background:
+    radial-gradient(1200px 500px at 10% 0%, var(--accent-glow), transparent 60%),
+    var(--bg-card);
+  position: relative;
+  overflow: hidden;
+}
+.think-sysmap::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    #f59e0b,
+    var(--accent),
+    var(--accent-secondary),
+    #10b981
+  );
+  opacity: 0.55;
+}
+
+.think-sysmap-caption {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0 0 36px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.think-sysmap-caption-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.think-sysmap-caption-title {
+  font-family: var(--font-heading);
+  font-size: clamp(18px, 2vw, 22px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  color: var(--text-primary);
+  max-width: 680px;
+}
+
+.think-sysmap-flow {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+/* Flow thread — vertical line connecting step numbers */
+.think-sysmap-flow::before {
+  content: "";
+  position: absolute;
+  left: 27px;
+  top: 30px;
+  bottom: 30px;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    var(--border-subtle),
+    var(--border-hover) 20%,
+    var(--border-hover) 80%,
+    var(--border-subtle)
+  );
+  pointer-events: none;
+}
+
+.think-sysmap-node,
+.think-sysmap-fork,
+.think-sysmap-shared,
+.think-sysmap-row-group {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 20px;
+  align-items: start;
+  padding: 20px 24px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  background: var(--bg-secondary);
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 700ms cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0ms),
+    transform 700ms cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0ms),
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+.think-sysmap.in-view .think-sysmap-node,
+.think-sysmap.in-view .think-sysmap-fork,
+.think-sysmap.in-view .think-sysmap-shared,
+.think-sysmap.in-view .think-sysmap-row-group,
+.think-sysmap.in-view .think-sysmap-escalation {
+  opacity: 1;
+  transform: translateY(0);
+}
+.think-sysmap-node:hover,
+.think-sysmap-shared:hover,
+.think-sysmap-row-group:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-card-hover);
+}
+
+.think-sysmap-step {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  text-align: center;
+  padding-top: 2px;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-card);
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.think-sysmap-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.think-sysmap-kicker {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+.think-sysmap-title {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  line-height: 1.25;
+}
+.think-sysmap-meta {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+.think-sysmap-meta code,
+.think-sysmap-arm-trigger code,
+.think-sysmap-escalation-body code,
+.think-sysmap-tile-desc code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  padding: 1px 5px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 3px;
+  color: var(--text-primary);
+}
+
+/* Per-step coloring */
+.think-sysmap-node.human {
+  border-color: rgba(180, 178, 169, 0.28);
+}
+.think-sysmap-node.human .think-sysmap-step {
+  color: var(--text-secondary);
+  border-color: var(--text-tertiary);
+}
+.think-sysmap-node.linear {
+  border-color: rgba(245, 158, 11, 0.28);
+  background: linear-gradient(
+    180deg,
+    rgba(245, 158, 11, 0.05),
+    rgba(245, 158, 11, 0.01) 70%
+  );
+}
+.think-sysmap-node.linear .think-sysmap-step {
+  color: #f59e0b;
+  border-color: #f59e0b;
+}
+.think-sysmap-node.linear .think-sysmap-kicker {
+  color: #f59e0b;
+}
+.think-sysmap-node.router {
+  border-color: rgba(245, 158, 11, 0.22);
+}
+.think-sysmap-node.router .think-sysmap-step {
+  color: #f59e0b;
+  border-color: rgba(245, 158, 11, 0.5);
+}
+.think-sysmap-node.close {
+  border-color: rgba(245, 158, 11, 0.28);
+  background: linear-gradient(
+    180deg,
+    rgba(245, 158, 11, 0.05),
+    rgba(245, 158, 11, 0.01) 70%
+  );
+}
+.think-sysmap-node.close .think-sysmap-step {
+  color: #f59e0b;
+  border-color: #f59e0b;
+}
+.think-sysmap-node.close .think-sysmap-kicker {
+  color: #f59e0b;
+}
+
+.think-sysmap-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 4px 0;
+}
+.think-sysmap-badge {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: #f59e0b;
+  padding: 4px 10px;
+  border: 1px solid rgba(245, 158, 11, 0.28);
+  border-radius: 4px;
+  background: rgba(245, 158, 11, 0.08);
+}
+
+/* Fork — two-arm split. Offset-aligns with content column of other rows. */
+.think-sysmap-fork {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  padding: 0;
+  margin-left: 76px;
+  background: transparent;
+  border: none;
+}
+.think-sysmap-fork:hover {
+  background: transparent;
+  border: none;
+}
+.think-sysmap-fork > .think-sysmap-arm {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 24px 22px 22px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  background: var(--bg-secondary);
+  overflow: hidden;
+  transition:
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.think-sysmap-arm:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+}
+.think-sysmap-arm::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+}
+.think-sysmap-arm.strategic::before {
+  background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+}
+.think-sysmap-arm.execution::before {
+  background: linear-gradient(90deg, #10b981, #5ddca5);
+}
+.think-sysmap-arm-step {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--text-tertiary);
+}
+.think-sysmap-arm-head {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-right: 36px;
+}
+.think-sysmap-arm.strategic .think-sysmap-kicker {
+  color: var(--accent);
+}
+.think-sysmap-arm.execution .think-sysmap-kicker {
+  color: #5ddca5;
+}
+.think-sysmap-arm.strategic .think-sysmap-title {
+  color: #c7c4f2;
+}
+.think-sysmap-arm.execution .think-sysmap-title {
+  color: #5ddca5;
+}
+
+.think-sysmap-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.think-sysmap-pills li {
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  padding: 5px 11px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  background: var(--bg-card);
+  transition:
+    border-color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+    background 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.think-sysmap-pills li:hover {
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+}
+.think-sysmap-arm.strategic .think-sysmap-pills li {
+  border-color: rgba(123, 127, 228, 0.22);
+  color: #c7c4f2;
+  background: rgba(123, 127, 228, 0.06);
+}
+.think-sysmap-arm.strategic .think-sysmap-pills li:hover {
+  border-color: var(--accent);
+  background: rgba(123, 127, 228, 0.14);
+}
+.think-sysmap-pills li.lead {
+  border-color: #10b981;
+  color: #5ddca5;
+  background: rgba(16, 185, 129, 0.1);
+  font-weight: 700;
+}
+
+.think-sysmap-arm-trigger {
+  margin-top: 4px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: var(--bg-card);
+  border: 1px dashed var(--border-subtle);
+  border-radius: 8px;
+}
+.think-sysmap-arm-trigger-label {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+.think-sysmap-arm-trigger code {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--text-primary);
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+/* Shared infra strip */
+.think-sysmap-infra {
+  list-style: none;
+  padding: 0;
+  margin: 6px 0 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.think-sysmap-infra li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+}
+.think-sysmap-infra-name {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.think-sysmap-infra-desc {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--text-tertiary);
+  letter-spacing: 0.03em;
+}
+
+/* Deliverables + observability groups */
+.think-sysmap-row-group.deliverables {
+  border-color: rgba(92, 140, 252, 0.22);
+}
+.think-sysmap-row-group.deliverables .think-sysmap-step {
+  color: #85b7eb;
+  border-color: rgba(92, 140, 252, 0.5);
+}
+.think-sysmap-row-group.deliverables .think-sysmap-kicker {
+  color: #85b7eb;
+}
+.think-sysmap-row-group.observability {
+  border-color: rgba(151, 196, 89, 0.22);
+}
+.think-sysmap-row-group.observability .think-sysmap-step {
+  color: #c0dd97;
+  border-color: rgba(151, 196, 89, 0.5);
+}
+.think-sysmap-row-group.observability .think-sysmap-kicker {
+  color: #c0dd97;
+}
+
+.think-sysmap-tiles {
+  list-style: none;
+  padding: 0;
+  margin: 6px 0 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.think-sysmap-row-group.observability .think-sysmap-tiles {
+  grid-template-columns: repeat(2, 1fr);
+}
+.think-sysmap-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  transition: border-color 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.think-sysmap-tile:hover {
+  border-color: var(--border-hover);
+}
+.think-sysmap-tile-name {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.think-sysmap-tile-desc {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  letter-spacing: 0.02em;
+}
+.think-sysmap-tile.delivery .think-sysmap-tile-name {
+  color: #b5d4f4;
+}
+.think-sysmap-tile.obs .think-sysmap-tile-name {
+  color: #c0dd97;
+}
+
+/* Escalation sidebar */
+.think-sysmap-escalation {
+  margin-top: 28px;
+  padding: 22px 24px 24px;
+  border: 1px dashed rgba(239, 68, 68, 0.28);
+  border-radius: 12px;
+  background: rgba(239, 68, 68, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 700ms cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0ms),
+    transform 700ms cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0ms);
+}
+.think-sysmap-escalation-kicker {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #f4c0d1;
+}
+.think-sysmap-escalation-title {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+.think-sysmap-escalation-body {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+.think-sysmap-escalation-body code {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.2);
+  color: #f4c0d1;
+}
+
+@media (max-width: 860px) {
+  .think-sysmap {
+    padding: 28px 22px 36px;
+    border-radius: 16px;
+  }
+  .think-sysmap-flow::before {
+    left: 23px;
+  }
+  .think-sysmap-node,
+  .think-sysmap-shared,
+  .think-sysmap-row-group {
+    padding: 16px 18px;
+    gap: 14px;
+    grid-template-columns: 40px 1fr;
+  }
+  .think-sysmap-fork {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-left: 54px;
+  }
+  .think-sysmap-step {
+    width: 28px;
+    height: 28px;
+    font-size: 11.5px;
+  }
+  .think-sysmap-title {
+    font-size: 16px;
+  }
+  .think-sysmap-infra,
+  .think-sysmap-tiles,
+  .think-sysmap-row-group.observability .think-sysmap-tiles {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 540px) {
+  .think-sysmap-badges {
+    gap: 6px;
+  }
+  .think-sysmap-badge {
+    font-size: 10px;
+    padding: 3px 8px;
+  }
+  .think-sysmap-pills li {
+    font-size: 12px;
+    padding: 4px 9px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .think-sysmap-node,
+  .think-sysmap-fork,
+  .think-sysmap-shared,
+  .think-sysmap-row-group,
+  .think-sysmap-escalation {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ── EKG Trace ─────────────────────────────────────────────────────────── */
+.think-ekg {
+  margin: 40px 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 32px;
+  overflow: hidden;
+}
+.think-ekg svg {
+  width: 100%;
+  height: 120px;
+}
+.think-ekg-trace {
+  stroke: #10b981;
+  stroke-width: 2;
+  fill: none;
+}
+.think-ekg-grid {
+  stroke: var(--border-subtle);
+  stroke-width: 0.5;
+}
+
+/* ── Responsive refinements ────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .think-story {
+    padding: 48px 0;
+  }
+  .think-story-dropcap::first-letter {
+    font-size: 2.8em;
+  }
+  .think-pullquote {
+    padding: 72px 0;
+  }
+  .think-close {
+    padding: 80px 0;
+  }
+  .think-close p {
+    font-size: 17px;
+  }
+  .think-comparison-col {
+    padding: 28px 24px;
+  }
+  .think-cards {
+    gap: 16px;
+    margin: 40px 0;
+  }
+  .think-card {
+    padding: 24px 22px;
+  }
+  .think-bignums {
+    gap: 24px;
+    margin: 32px 0 48px;
+  }
+  .think-bignum-label {
+    font-size: 13px;
+  }
+  .think-timeline {
+    margin: 40px 0;
+    padding-left: 28px;
+  }
+  .think-timeline-item {
+    padding-bottom: 36px;
+  }
+  .think-timeline-title {
+    font-size: 18px;
+  }
+  .think-codeblock pre,
+  .think-terminal pre {
+    padding: 18px;
+    font-size: 12.5px;
+  }
+  .think-dialogue {
+    padding: 24px 22px;
+  }
+  .think-dialogue p {
+    font-size: 16px;
+  }
+  .think-failure-sig {
+    padding: 28px 22px;
+    margin: 40px 0;
+  }
+  .think-arch {
+    margin: 48px 0;
+  }
+  .think-arch-head {
+    margin-bottom: 20px;
+  }
+  .think-arch-label {
+    font-size: 19px;
+  }
+  .think-arch-lead {
+    padding: 16px 18px;
+  }
+  .think-arch-lead-name {
+    font-size: 20px;
+  }
+  .think-arch-cell {
+    padding: 14px 16px;
+  }
+  .think-arch-cell-name {
+    font-size: 14px;
+  }
+  .think-arch-infra {
+    gap: 12px;
+    margin-top: 20px;
+    padding-top: 20px;
+  }
+}
+
+@media (max-width: 540px) {
+  .think-pullquote {
+    padding: 56px 0;
+  }
+  .think-close {
+    padding: 64px 0;
+  }
+  .think-arch-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .think-arch-grid {
+    gap: 10px;
+  }
+  .think-arch-layer {
+    padding: 24px 20px 28px;
+  }
+  .think-arch-infra {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .think-comparison-col h3 {
+    margin-bottom: 18px;
+  }
+  .think-timeline {
+    padding-left: 24px;
+  }
+  .think-timeline::before {
+    left: 4px;
+  }
+  .think-timeline-item::before {
+    left: -33px;
+  }
+  .think-cards {
+    margin: 32px 0;
+  }
+}

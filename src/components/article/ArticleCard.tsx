@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { ArticleMetadata } from "@/content/types";
 
 interface ArticleCardProps {
@@ -12,15 +13,12 @@ function toISODate(dateStr: string): string {
 
 export default function ArticleCard({ article }: ArticleCardProps) {
   const isoDate = toISODate(article.date);
-
   const comingSoon = !article.slug || article.comingSoon;
+  const href = comingSoon ? undefined : `/thinking/${article.slug}`;
 
   if (article.featured) {
-    return (
-      <article
-        className={`featured-article reveal${comingSoon ? " coming-soon" : ""}`}
-        data-pillar={article.pillar}
-      >
+    const body = (
+      <>
         <div className="featured-article-meta">
           {comingSoon && <span className="coming-soon-label">Coming Soon</span>}
           <time dateTime={isoDate}>{article.date}</time>
@@ -36,15 +34,24 @@ export default function ArticleCard({ article }: ArticleCardProps) {
             </span>
           </div>
         </div>
+      </>
+    );
+
+    const className = `featured-article reveal${comingSoon ? " coming-soon" : ""}`;
+
+    return href ? (
+      <Link href={href} className={className} data-pillar={article.pillar}>
+        {body}
+      </Link>
+    ) : (
+      <article className={className} data-pillar={article.pillar}>
+        {body}
       </article>
     );
   }
 
-  return (
-    <article
-      className={`article-card reveal${comingSoon ? " coming-soon" : ""}`}
-      data-pillar={article.pillar}
-    >
+  const body = (
+    <>
       <div className="article-meta">
         {comingSoon && <span className="coming-soon-label">Coming Soon</span>}
         <time dateTime={isoDate}>{article.date}</time>
@@ -60,6 +67,18 @@ export default function ArticleCard({ article }: ArticleCardProps) {
           </span>
         </div>
       </div>
+    </>
+  );
+
+  const className = `article-card reveal${comingSoon ? " coming-soon" : ""}`;
+
+  return href ? (
+    <Link href={href} className={className} data-pillar={article.pillar}>
+      {body}
+    </Link>
+  ) : (
+    <article className={className} data-pillar={article.pillar}>
+      {body}
     </article>
   );
 }
