@@ -166,11 +166,17 @@
 }
 
 /* Centered wrapper for standalone widgets embedded in articles (e.g. the
-   Five-Step Pipeline widget from the homepage). */
+   Five-Step Pipeline widget from the homepage). Stacks the widget with an
+   optional CTA button beneath it. */
 .article-widget-center {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
   margin: 48px auto 56px;
+}
+.article-widget-cta {
+  margin-top: 4px;
 }
 
 /* ==========================================================================
