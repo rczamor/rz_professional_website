@@ -29,7 +29,18 @@
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--text-tertiary);
+  margin-top: 80px;
   margin-bottom: 24px;
+}
+/* First section label doesn't need the top break — the hero/deck already
+   provides the air above it. */
+.article-prose > .think-section-label:first-child {
+  margin-top: 0;
+}
+@media (max-width: 860px) {
+  .think-section-label {
+    margin-top: 60px;
+  }
 }
 
 /* ── Story Block ───────────────────────────────────────────────────────── */
