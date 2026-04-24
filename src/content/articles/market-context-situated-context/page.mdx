@@ -1,0 +1,194 @@
+import {
+  ProgressBar,
+  SectionLabel,
+  StoryBlock,
+  Pullquote,
+  Close,
+  ComparisonGrid,
+  CardGrid,
+} from "@/components/article/think_components";
+
+export const metadata = {
+  title: "Market Context Wins the Deal. Situated Context Builds the Moat.",
+  slug: "market-context-situated-context",
+  excerpt:
+    "The AI industry has reduced context to what fits in the window. That's a category error. Context is a property of organizations, not model architecture — and only one of its two forms becomes a moat.",
+  pillar: "context-intelligence",
+  date: "April 23, 2026",
+  readTime: "9 min read",
+  badge: "Essay",
+  badgeVariant: "product",
+  featured: true,
+}
+
+<ProgressBar />
+
+<StoryBlock dropcap>
+One sentence in Alex Lazarow's new Forbes piece stopped me cold. It wasn't his argument. It was the line he was citing from HBR.
+</StoryBlock>
+
+<Pullquote
+  quote="The difference wasn't the technology. It was context: the behavioral patterns, decision rhythms, and accumulated institutional knowledge that no system of record captures."
+  cite="Harvard Business Review, via Alex Lazarow"
+/>
+
+<StoryBlock>
+Two companies. Identical CRMs, identical sales stages, identical tools. Different outcomes. The gap between them wasn't in the software. It was in everything around the software that the software couldn't see.
+
+Lazarow builds from that line to a clean argument. When models, infrastructure, and APIs commoditize, what's left is context. Regulatory expertise, customer workflow knowledge, distribution relationships, cultural fluency. He's right, and it's worth reading.
+
+But the reason the piece stuck with me isn't the argument. It's the fact that he's one of the few business writers talking about context as a real-world phenomenon at all.
+</StoryBlock>
+
+<SectionLabel>01 / The Category Error</SectionLabel>
+
+## The industry has been talking about the wrong thing.
+
+<StoryBlock>
+Inside the AI industry, the word context has drifted. Ask ten practitioners what context means right now and nine of them will answer with some mix of context windows, agent memory, retrieval architectures, vector stores, KV cache, token budgets, and RAG patterns. Context has become a synonym for the stuff you put into the model.
+
+That's a category error.
+
+Context, as it exists in the world, is not a token count. It's the web of behavioral patterns, decision rhythms, unwritten rules, shared assumptions, and cultural fluency that makes a setting legible to the people operating inside it. It exists whether or not any AI system is involved. It existed before LLMs. It will exist after them. It's a property of organizations, teams, and people, not a property of model architecture.
+
+The industry's slide from the first meaning to the second has consequences. When you reduce context to stuff in the window, you start optimizing for the wrong primitive. You get better at retrieval latency and worse at understanding. You build systems that manage tokens efficiently and still can't tell the difference between a documented policy and the unwritten rule everyone actually follows. You ship agent memory architectures that log every event and miss every pattern.
+</StoryBlock>
+
+<Pullquote
+  quote="Plumbing isn't the hard problem. What you're plumbing is the hard problem."
+/>
+
+<StoryBlock>
+Lazarow's piece matters because it pulls the word back to its actual meaning before making any claim about technology. That order matters. Start from the world, then reason about the system. Most AI writing does it in the opposite direction and ends up describing sophisticated infrastructure for capturing the wrong thing.
+</StoryBlock>
+
+<SectionLabel>02 / Situated Cognition</SectionLabel>
+
+## A detour through forty years of cognitive science.
+
+<StoryBlock>
+There's a concept that has been sitting underneath this conversation for forty years without making it into the discourse. It's called situated cognition, and once you see it, the AI context debate looks different.
+
+The traditional view treats knowledge like a substance. You acquire it, store it in your head, and carry it wherever you go. A doctor learns medicine in school, then applies that knowledge in any hospital. Knowledge is portable. The environment is incidental.
+
+Situated cognition says that's wrong, or at least incomplete. A significant portion of what we call knowing something is actually distributed between the person, the tools they use, the people around them, and the specific environment they operate in. A nurse's clinical judgment on her own floor is not the same skill on a different unit, even at the same hospital. Half of what she knows is built into the room, the team, the rhythms, the unwritten rules about which attending to flag early and which one to let find it. Move her to a different floor and a measurable portion of her expertise stays behind.
+
+This isn't a deficit in her memory. It's how cognition actually works. Knowledge is situated. It lives in the setting, not just in the head.
+
+Hold that idea.
+</StoryBlock>
+
+<SectionLabel>03 / Two Kinds of Context</SectionLabel>
+
+## Market context travels. Situated context lives inside the setting.
+
+<StoryBlock>
+Market context is generalized understanding of how a category, industry, or type of organization operates. How community banks underwrite small business loans. How B2B sales cycles behave. How Indonesian fintech regulation actually functions versus what the rulebook says. It includes the cultural fluency Lazarow highlights, the regulatory instincts, the distribution patterns, the workflow archetypes that recur across organizations of a given type.
+
+Market context is built through many customer conversations, many deployments, and many years of watching an industry behave. It travels. Your team carries it into every new customer. It's what makes a founder with twenty years in fintech more credible than one pivoting in from adtech. It's necessary. Lazarow is right about that.
+
+Situated context is different. It's understanding of how this specific organization, team, or role actually operates. Not how community banks underwrite but how the credit committee at this community bank actually decides. Who pushes back. Which risk factors get treated as real versus theatrical. Which unwritten rules carry more weight than the documented policy.
+</StoryBlock>
+
+<ComparisonGrid
+  beforeLabel="Market context"
+  afterLabel="Situated context"
+  before={[
+    "Generalized across a category, industry, or organization type",
+    "How community banks underwrite. How B2B cycles behave.",
+    "Travels with your team into every new customer",
+    "Accrued across your customer base over years",
+    "Gets you to the starting line. Necessary, not sufficient.",
+  ]}
+  after={[
+    "Specific to one organization, team, or role",
+    "How this credit committee actually decides. Who really signs off.",
+    "Lives in the setting. Doesn't travel.",
+    "Accrued one organization at a time, one decision at a time",
+    "Keeps you there. Earned per customer. Hard to take back.",
+  ]}
+/>
+
+<StoryBlock>
+Port the brand marketing team's context from Colgate Palmolive to Crest and most of it becomes noise. Same function, same industry, different situated context. Leader preferences, approval rhythms, category beliefs, the web of shared assumptions that make sense of how they get things done — none of it carries over.
+
+Both kinds are accrued over time. Market context accrues across your customer base. Situated context accrues one organization at a time.
+</StoryBlock>
+
+<SectionLabel>04 / What AI Actually Changes</SectionLabel>
+
+## Situated context has always existed. It was always trapped.
+
+<StoryBlock>
+Situated context is the thing that makes a five-year employee harder to replace than their job description suggests. It's why consultants can walk into a company with twenty years of market context and still need six months to become useful.
+
+What's new is that situated context was always trapped in people and hallways. Systems of record could log events but couldn't capture meaning. Salesforce logs that a deal moved from Stage 3 to Stage 4. It doesn't capture that your top AE always skips Stage 4 when the deal comes from a referral, because the referral itself is the validation. It doesn't capture that Finance pushes back on any deal over $250K in Q4 regardless of pipeline coverage, because that's a rule nobody ever wrote down. It doesn't capture that when the VP of Sales says let's revisit next quarter, the team has learned that means kill the deal politely.
+
+That's not a schema problem. That's situated cognition showing up in an org chart. The knowledge is distributed between the people, the tools, the rhythms, and the unwritten rules. No system of record was ever going to capture it, because capturing it would require interpretation, not logging.
+
+Before LLMs, there was no reasonable way for a product to do that interpretation at scale. You could instrument every click, build dashboards, log every state transition. Turning that telemetry into a coherent model of how a specific organization actually makes decisions was a research project, not a product feature.
+
+Now it's tractable. Not trivial, not free, not solved, but tractable.
+</StoryBlock>
+
+<SectionLabel>05 / Five Moves</SectionLabel>
+
+## Five moves have to happen. Most companies skip at least three.
+
+<CardGrid
+  cards={[
+    {
+      num: "01",
+      title: "Curation",
+      body: "Decide which signals actually carry meaning and which are noise you're about to pay to store forever. Skip this and you're training on noise.",
+    },
+    {
+      num: "02",
+      title: "Synthesis",
+      body: "Turn events into patterns. Ten similar rejections aren't ten data points. They're one insight about how this team makes calls.",
+    },
+    {
+      num: "03",
+      title: "Consolidation",
+      body: "The background work of merging redundant context, pruning stale context, and finding cross-cutting patterns nobody explicitly asked about. Skip it and the system never compounds, it just accumulates.",
+    },
+    {
+      num: "04",
+      title: "Prioritization",
+      body: "Decide what surfaces at decision time. Raw context isn't useful. Ranked, situationally relevant context is.",
+    },
+    {
+      num: "05",
+      title: "Intelligent storage",
+      body: "Make the output retrievable at the moment of use rather than sitting in a lake nobody queries. Skip this and the best insight never reaches the model when it's needed.",
+    },
+  ]}
+/>
+
+<StoryBlock>
+Notice what's happening in that list. None of those five moves are about the context window. None of them are about retrieval latency. They're about turning raw signal into situated understanding. The technology is necessary, but it's the scaffolding, not the work.
+
+At Suzy, where I lead product, the Decision Engine is built around exactly this principle. Every consumer research decision a customer makes teaches the system about their category, their audience assumptions, the signals they trust versus the ones they dismiss, the patterns in what they act on versus what they shelve. Market context is what got them onto the platform. Situated context is what should make leaving it hard.
+
+The same pattern applies anywhere a product sits inside a recurring decision workflow. Coding assistants, support platforms, sales tools, clinical decision support, design systems. Anywhere the same team makes the same class of decision repeatedly with subtle variations that matter, situated context is the real differentiator.
+</StoryBlock>
+
+<SectionLabel>06 / The Moat Question</SectionLabel>
+
+## One question to run against your roadmap.
+
+<Pullquote
+  quote="Does your product get smarter about each customer's specific organization the more they use it? Or does it just execute faster?"
+/>
+
+<StoryBlock>
+Faster execution is a feature. Organization-specific understanding that compounds with usage is a moat. One gets commoditized the moment a competitor catches up on models. The other is earned, per customer, and no data export or contract clause fully takes it back.
+
+Lazarow is right that context is the moat. The piece he leaves on the table is that market context gets you to the starting line. Situated context is what keeps you there.
+</StoryBlock>
+
+<Close kicker="The claim" heading="Systems of record logged what happened. Systems of context understand what it means.">
+Inside this specific setting. At the moment it's needed.
+
+The companies that figure out the second category will define the next decade of enterprise AI.
+</Close>
