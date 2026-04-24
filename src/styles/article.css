@@ -167,13 +167,14 @@
 
 /* Centered wrapper for standalone widgets embedded in articles (e.g. the
    Five-Step Pipeline widget from the homepage). Stacks the widget with an
-   optional CTA button beneath it. */
+   optional CTA button beneath it. Margins use the 4-based spacing scale
+   from the design system (see .spec/design.md). */
 .article-widget-center {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 28px;
-  margin: 48px auto 56px;
+  gap: 24px;
+  margin: 32px auto 40px;
 }
 
 /* ==========================================================================
@@ -215,23 +216,31 @@
   color: var(--text-primary);
 }
 
+/* Matches design.md heading.h2: clamp(32px, 4vw, 48px), weight 800,
+   line-height 1.1, letter-spacing -1.5px. Margins follow the 4-based
+   spacing scale — tight pair to the preceding section label, measured
+   gap to following prose. */
 .article-h2 {
   font-family: var(--font-heading);
-  font-size: 1.75rem;
-  font-weight: 600;
-  line-height: 1.3;
-  margin-top: 2.5rem;
-  margin-bottom: 0.75rem;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-top: 16px;
+  margin-bottom: 24px;
   color: var(--text-primary);
 }
 
+/* Matches design.md heading.h3: 24px, weight 700, line-height 1.3,
+   letter-spacing -0.5px. */
 .article-h3 {
   font-family: var(--font-heading);
-  font-size: 1.35rem;
-  font-weight: 600;
-  line-height: 1.4;
-  margin-top: 2rem;
-  margin-bottom: 0.5rem;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  margin-top: 32px;
+  margin-bottom: 16px;
   color: var(--text-primary);
 }
 
@@ -330,19 +339,20 @@
   margin: 1.5rem 0;
 }
 
-/* Responsive */
+/* Responsive — clamp() already handles h2/h3 scaling; tighten margins
+   on small screens to preserve rhythm within narrower viewports. */
 @media (max-width: 860px) {
   .article-prose {
     font-size: 1.0625rem;
     line-height: 1.7;
   }
   .article-h2 {
-    font-size: clamp(1.5rem, 4vw, 1.75rem);
-    margin-top: 2rem;
+    margin-top: 12px;
+    margin-bottom: 20px;
   }
   .article-h3 {
-    font-size: 1.2rem;
-    margin-top: 1.5rem;
+    margin-top: 24px;
+    margin-bottom: 12px;
   }
   .article-p {
     margin-bottom: 1rem;
@@ -355,8 +365,5 @@
   }
   .article-h1 {
     font-size: 2rem;
-  }
-  .article-h2 {
-    font-size: 1.5rem;
   }
 }
