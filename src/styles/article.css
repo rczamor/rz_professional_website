@@ -175,9 +175,6 @@
   gap: 28px;
   margin: 48px auto 56px;
 }
-.article-widget-cta {
-  margin-top: 4px;
-}
 
 /* ==========================================================================
    Article prose typography — dark-theme-first, respects CSS custom properties
