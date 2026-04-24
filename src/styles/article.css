@@ -165,6 +165,14 @@
   padding-top: 0;
 }
 
+/* Centered wrapper for standalone widgets embedded in articles (e.g. the
+   Five-Step Pipeline widget from the homepage). */
+.article-widget-center {
+  display: flex;
+  justify-content: center;
+  margin: 48px auto 56px;
+}
+
 /* ==========================================================================
    Article prose typography — dark-theme-first, respects CSS custom properties
    ========================================================================== */

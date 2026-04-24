@@ -5,8 +5,8 @@ import {
   Pullquote,
   Close,
   ComparisonGrid,
-  CardGrid,
 } from "@/components/article/think_components";
+import FiveStepsCallout from "@/components/FiveStepsCallout";
 
 export const metadata = {
   title: "Market Context Wins the Deal. Situated Context Builds the Moat.",
@@ -135,38 +135,12 @@ Now it's tractable. Not trivial, not free, not solved, but tractable.
 
 ## Five moves have to happen. Most companies skip at least three.
 
-<CardGrid
-  cards={[
-    {
-      num: "01",
-      title: "Curation",
-      body: "Decide which signals actually carry meaning and which are noise you're about to pay to store forever. Skip this and you're training on noise.",
-    },
-    {
-      num: "02",
-      title: "Synthesis",
-      body: "Turn events into patterns. Ten similar rejections aren't ten data points. They're one insight about how this team makes calls.",
-    },
-    {
-      num: "03",
-      title: "Consolidation",
-      body: "The background work of merging redundant context, pruning stale context, and finding cross-cutting patterns nobody explicitly asked about. Skip it and the system never compounds, it just accumulates.",
-    },
-    {
-      num: "04",
-      title: "Prioritization",
-      body: "Decide what surfaces at decision time. Raw context isn't useful. Ranked, situationally relevant context is.",
-    },
-    {
-      num: "05",
-      title: "Intelligent storage",
-      body: "Make the output retrievable at the moment of use rather than sitting in a lake nobody queries. Skip this and the best insight never reaches the model when it's needed.",
-    },
-  ]}
-/>
+<div className="article-widget-center">
+  <FiveStepsCallout />
+</div>
 
 <StoryBlock>
-Notice what's happening in that list. None of those five moves are about the context window. None of them are about retrieval latency. They're about turning raw signal into situated understanding. The technology is necessary, but it's the scaffolding, not the work.
+Notice what's happening in that pipeline. None of those five moves are about the context window. None of them are about retrieval latency. They're about turning raw signal into situated understanding. The technology is necessary, but it's the scaffolding, not the work.
 
 At Suzy, where I lead product, the Decision Engine is built around exactly this principle. Every consumer research decision a customer makes teaches the system about their category, their audience assumptions, the signals they trust versus the ones they dismiss, the patterns in what they act on versus what they shelve. Market context is what got them onto the platform. Situated context is what should make leaving it hard.
 
