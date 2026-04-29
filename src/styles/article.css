@@ -177,6 +177,23 @@
   margin: 32px auto 40px;
 }
 
+/* MDX often wraps inline link content in <p class="article-p">, which would
+   otherwise collapse a button anchor into a block-shaped element with the wrong
+   color and a bottom margin. Reset the wrap so the button stays inline-flex. */
+.article-prose .btn-primary > p,
+.article-prose .btn-secondary > p,
+.article-prose .btn-primary > .article-p,
+.article-prose .btn-secondary > .article-p {
+  margin: 0;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
 /* ==========================================================================
    Article prose typography — dark-theme-first, respects CSS custom properties
    ========================================================================== */

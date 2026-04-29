@@ -225,7 +225,13 @@ Most production AI systems implement zero of these five steps. They chunk, embed
 
 It's not the model's fault when that fails.
 
-Surrounding the five-step loop are the parts most teams ignore until production breaks them. **Context economics:** the actual cost of pulling, processing, and storing each unit of context, and the cost-per-decision that should be on every AI product's unit economics dashboard. **Context optimization:** figuring out which retrievers, prompts, and consolidation patterns are pulling weight versus burning tokens. **Context evaluation:** measuring whether what the model is being handed is actually decision-grade or just retrieval-grade, before inference, not after.
+Surrounding the five-step loop are the parts most teams ignore until production breaks them.
+
+**Context economics.** The actual cost of pulling, processing, and storing each unit of context, and the cost-per-decision that should be on every AI product's unit economics dashboard.
+
+**Context optimization.** Figuring out which retrievers, prompts, and consolidation patterns are pulling weight versus burning tokens.
+
+**Context evaluation.** Measuring whether what the model is being handed is actually decision-grade or just retrieval-grade, before inference, not after.
 
 The five-step loop is what the layer does. Economics, optimization, and evaluation are how you tell whether it's working.
 
@@ -236,6 +242,12 @@ The five-step loop is what the layer does. Economics, optimization, and evaluati
 Here's where most teams go wrong.
 
 They start with a memory store. They pick Mem0, or Letta, or Zep, or roll their own with pgvector. They wire it up. Then they design the context flow around what the store can do.
+
+The store dictates the architecture. The tail wags the dog. Six months in, when the system is hallucinating on production data, nobody can explain why, because the layer where the explanation lives was never explicitly designed.
+
+The right order is the opposite. Decide what your Context Layer needs to do first. What gets curated in. What gets synthesized. How consolidation runs. What prioritization signals matter. What needs to persist and what can decay. Then pick the infrastructure that supports those decisions.
+
+Sometimes that means a vector store. Sometimes a graph database. Sometimes Postgres with pgvector and hybrid search. Sometimes session state in flat files, like Anthropic and Paper Compute just shipped. Almost always some combination of the above. The infrastructure choice is downstream of the architecture choice.
 
 <ComparisonGrid
   beforeLabel="Tail wags the dog"
