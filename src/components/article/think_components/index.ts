@@ -14,6 +14,7 @@ export { default as Dyptich } from "./Dyptich";
 export { default as BigNumbers } from "./BigNumbers";
 export { default as Timeline } from "./Timeline";
 export { default as CardGrid } from "./CardGrid";
+export { default as LayerStack } from "./LayerStack";
 export { default as Dialogue } from "./Dialogue";
 export { default as CodeBlock } from "./CodeBlock";
 export { default as Terminal } from "./Terminal";

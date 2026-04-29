@@ -7,6 +7,7 @@ import {
   ComparisonGrid,
   CardGrid,
   BigNumbers,
+  LayerStack,
 } from "@/components/article/think_components";
 import FiveStepsCallout from "@/components/FiveStepsCallout";
 
@@ -132,27 +133,37 @@ Atlan and others have built the enterprise version of this argument: context lay
 
 In my read of where this is heading, the cleanest separation is four layers.
 
-<CardGrid
-  cards={[
+<LayerStack
+  caption="The four-layer AI stack — foundation up"
+  layers={[
     {
       num: "01",
       title: "Data layer",
-      body: "Where information lives. S3, Snowflake, Postgres, your CRM, your docs, your CSVs, your call transcripts. The raw material.",
+      description:
+        "Where information lives. S3, Snowflake, Postgres, your CRM, your docs, your CSVs, your call transcripts. The raw material.",
+      tag: "Raw material",
     },
     {
       num: "02",
       title: "Retrieval layer",
-      body: "How the system reaches into the data layer. Vector search, knowledge graph traversal, SQL queries, MCP server calls, API hits. Tools live here too: they're how the agent reaches into the data at runtime.",
+      description:
+        "How the system reaches into the data. Vector search, knowledge graph traversal, SQL queries, MCP server calls, API hits. Tools live here too: they're how the agent reaches into the data at runtime.",
+      tag: "How it reaches",
     },
     {
       num: "03",
       title: "Context layer",
-      body: "Where retrieved information becomes meaning. Where raw chunks get synthesized, consolidated, and prioritized into something a model can actually reason with. The layer almost everyone is skipping.",
+      description:
+        "Where retrieved information becomes meaning. Raw chunks get synthesized, consolidated, and prioritized into something a model can actually reason with. The layer almost everyone is skipping.",
+      tag: "Meaning",
+      highlight: true,
     },
     {
       num: "04",
       title: "Inference layer",
-      body: "Where the model runs. Includes which model gets used for which task, how task complexity drives routing, how outputs are tested and evaluated, how cost is managed against quality, how feedback flows back. Model selection, evaluation, and economics all sit here.",
+      description:
+        "Where the model runs. Which model gets used for which task, how complexity drives routing, how outputs are tested and evaluated, how cost is managed against quality, how feedback flows back. Model selection, evaluation, and economics all sit here.",
+      tag: "Where the model runs",
     },
   ]}
 />
