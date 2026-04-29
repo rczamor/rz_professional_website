@@ -1,0 +1,290 @@
+import {
+  ProgressBar,
+  SectionLabel,
+  StoryBlock,
+  Pullquote,
+  Close,
+  ComparisonGrid,
+  CardGrid,
+  BigNumbers,
+} from "@/components/article/think_components";
+import FiveStepsCallout from "@/components/FiveStepsCallout";
+
+export const metadata = {
+  title: "What a Context Layer Actually Is (And Why Agent Memory Isn't One)",
+  slug: "what-is-a-context-layer",
+  excerpt:
+    "Agent memory got the headlines. The Context Layer didn't. The four-layer separation practitioners are converging on, what actually sits inside the Context Layer, and why architecture defines infrastructure.",
+  pillar: "context-intelligence",
+  date: "April 29, 2026",
+  readTime: "11 min read",
+  badge: "Essay",
+  badgeVariant: "product",
+  featured: true,
+  keywords: [
+    "context layer",
+    "agent memory",
+    "ai memory layer",
+    "context engineering",
+    "four layer ai stack",
+    "inference layer",
+    "retrieval layer",
+    "rag",
+    "ai architecture",
+  ],
+  faq: [
+    {
+      question: "What is the difference between agent memory and a Context Layer?",
+      answer:
+        "A memory store is where information lives. A Context Layer is the active processing tier that decides which information matters, when, why, and in what shape, before the model reasons over it. They're different layers in the stack.",
+    },
+    {
+      question: "Where do tools and skills fit in the four-layer stack?",
+      answer:
+        "Tools live in the retrieval layer: they're how the agent reaches into the data layer. Skills live in long-term memory: persistent capabilities the agent carries from session to session.",
+    },
+    {
+      question: "Is the Context Layer the same as RAG?",
+      answer:
+        "No. RAG is a retrieval pattern. The Context Layer is what happens to retrieved content before it reaches the model: synthesis, consolidation, prioritization, and intelligent storage. RAG without those steps is just efficient delivery of noise.",
+    },
+    {
+      question: "Will the Context Layer matter when LLMs are replaced?",
+      answer:
+        "Yes. The Context Layer is a property of intelligence, not a property of LLMs. When models change, the need to curate, synthesize, consolidate, prioritize, and store doesn't go away.",
+    },
+  ],
+}
+
+<ProgressBar />
+
+<StoryBlock dropcap>
+Agent memory is the hottest topic in AI right now. We're overly focused on infrastructure and not focused enough on designing effective context layers.
+
+Last week alone: Anthropic shipped memory-as-files for Claude Managed Agents. Paper Compute formally launched with Tapes, open-source session telemetry as JSONL. Cloudflare went the other direction with Agent Memory, vector-retrieval-based. Today LangChain dropped Deep Agents Deploy, pushing AGENTS.md and Agent Skills as open standards for storing instructions and specialized knowledge. Four labs, four architectural calls, all inside two weeks.
+</StoryBlock>
+
+<BigNumbers
+  items={[
+    { value: "4", label: "labs shipping memory primitives in two weeks" },
+    { value: "4", label: "layers in the stack practitioners are converging on" },
+    { value: "5", label: "steps inside the Context Layer most teams skip" },
+  ]}
+/>
+
+The headlines focused on the storage debate. Files versus vectors. Inspectable versus searchable. Open standards versus walled gardens. Audit trail versus similarity match.
+
+That's a real debate. It's also the wrong altitude.
+
+Storage is downstream. The architecture decision that determines whether your AI product actually works is upstream of which memory primitive you pick. Most teams are overly focused on infrastructure, and that may be hurting them.
+
+<SectionLabel>01 / Three Things People Conflate</SectionLabel>
+
+## What people get wrong about agent memory
+
+When practitioners say "AI memory" right now, they usually mean one of three things, and they tend to conflate them.
+
+<CardGrid
+  cards={[
+    {
+      num: "01",
+      title: "Corpus memory",
+      body: "Your static-ish knowledge base. Company docs, research notes, articles, product copy. This is what vector stores were originally built for. Similarity search over a corpus.",
+    },
+    {
+      num: "02",
+      title: "Session state",
+      body: "The running record of what's happening inside a single task or conversation. Messages, tool calls, retrieval results, intermediate decisions. What Anthropic's memory-as-files holds. What Tapes records.",
+    },
+    {
+      num: "03",
+      title: "Long-term memory",
+      body: "Facts and patterns the system carries across sessions. Skills sit here too: persistent capabilities the agent carries session to session as reusable knowledge artifacts.",
+    },
+  ]}
+/>
+
+All three are real. All three need infrastructure. None of them is a Context Layer.
+
+<Pullquote
+  quote="A memory store is where information lives. A Context Layer decides which information matters, before it ever reaches the model."
+/>
+
+Memory infrastructure asks "where do we put it." The Context Layer asks "what does it mean for the decision the agent has to make next."
+
+Those are different problems.
+
+<SectionLabel>02 / The Four Layers</SectionLabel>
+
+## What is a Context Layer?
+
+Practitioners are already converging on this, even if they're using different vocabulary.
+
+Keith Townsend's 4+1 AI Infrastructure Model, which has been circulating since late 2025, splits the stack into explicit numbered layers: data storage, context management and retrieval, data movement, and a reasoning plane on top. He's been pushing the point that the layers between storage and inference are where most enterprise AI systems quietly fail, because nobody designed them. They got assembled.
+
+Aishwarya Naresh Reganti's 2026 AI agent stack, published this week, makes the same move from a different angle. She separates what was a single layer in 2025, "memory and knowledge," into distinct layers, and explicitly argues that retrieval is one move inside a larger context problem, not the whole of it.
+
+Glean's emerging agent architecture, published in February, frames the whole question as a stack design problem. Their argument: the context layer needs to be separated from the model layer to preserve enterprise knowledge and let the rest of the stack evolve independently.
+
+Different framings, different cuts. The direction is consistent. The field is learning that context, retrieval, and inference are not one thing.
+
+Atlan and others have built the enterprise version of this argument: context layer as governed metadata infrastructure. The architectural version is upstream: data, retrieval, context, and inference are different layers, regardless of how you govern them.
+
+In my read of where this is heading, the cleanest separation is four layers.
+
+<CardGrid
+  cards={[
+    {
+      num: "01",
+      title: "Data layer",
+      body: "Where information lives. S3, Snowflake, Postgres, your CRM, your docs, your CSVs, your call transcripts. The raw material.",
+    },
+    {
+      num: "02",
+      title: "Retrieval layer",
+      body: "How the system reaches into the data layer. Vector search, knowledge graph traversal, SQL queries, MCP server calls, API hits. Tools live here too: they're how the agent reaches into the data at runtime.",
+    },
+    {
+      num: "03",
+      title: "Context layer",
+      body: "Where retrieved information becomes meaning. Where raw chunks get synthesized, consolidated, and prioritized into something a model can actually reason with. The layer almost everyone is skipping.",
+    },
+    {
+      num: "04",
+      title: "Inference layer",
+      body: "Where the model runs. Includes which model gets used for which task, how task complexity drives routing, how outputs are tested and evaluated, how cost is managed against quality, how feedback flows back. Model selection, evaluation, and economics all sit here.",
+    },
+  ]}
+/>
+
+Most teams collapse the context layer into either retrieval (treating it as smarter RAG) or inference (treating it as prompt engineering). Neither is right. Smarter RAG still hands the model raw chunks. Better prompts still rely on whatever the retrieval system handed them.
+
+<Pullquote
+  quote="The Context Layer is the active processing tier between retrieval and inference, and it's the one that determines whether everything above and below it is operating on signal or noise."
+/>
+
+This piece sits next to a related cut I made earlier: that context isn't only an architectural layer, it's a property of organizations and people, and the kind you can compound matters as much as the layer you stack. [Market context wins the deal. Situated context builds the moat](/thinking/market-context-situated-context) is the other half of the picture.
+
+<SectionLabel>03 / Inside the Context Layer</SectionLabel>
+
+## What sits inside the Context Layer (the five-step loop)
+
+If you actually open up the Context Layer, what's inside it is a five-step loop.
+
+<CardGrid
+  cards={[
+    {
+      num: "01",
+      title: "Curate",
+      body: "Decide what's worth processing in the first place. Not all data is context. The job at this step is filtering noise out before it ever enters the system.",
+    },
+    {
+      num: "02",
+      title: "Synthesize",
+      body: "Classify, extract, and combine information across sources to produce understanding that no single source contained. This is where data becomes context.",
+    },
+    {
+      num: "03",
+      title: "Consolidate",
+      body: "Periodically replay the accumulated knowledge to find cross-cutting patterns, merge duplicates, and prune what's stale or contradicted. What makes a knowledge base compound instead of just accumulate.",
+    },
+    {
+      num: "04",
+      title: "Prioritize",
+      body: "Rank by what the system actually needs to decide. Compression without goal-awareness is just making things smaller. Prioritization makes them useful.",
+    },
+    {
+      num: "05",
+      title: "Store intelligently",
+      body: "Index by insight value, not just embedding similarity, so the most important consolidated knowledge is fastest to surface next time.",
+    },
+  ]}
+/>
+
+This sequence isn't arbitrary. It's roughly how the brain handles incoming information. Encoding during attention. Consolidation during sleep. Surfacing what's relevant. Discarding what isn't. The architecture is older than computing. The five steps aren't an invention. They're a recognition that intelligence, biological or artificial, has always required this kind of active processing, and that AI systems skipping it produce exactly the kind of mediocre output we've all gotten used to.
+
+<div className="article-widget-center">
+  <FiveStepsCallout />
+  <a href="/thesis" className="btn-primary">
+    Read the full thesis <span>&rarr;</span>
+  </a>
+</div>
+
+Most production AI systems implement zero of these five steps. They chunk, embed, store, retrieve. That's it. The model gets handed a pile of similar-looking text and is expected to produce a coherent answer.
+
+It's not the model's fault when that fails.
+
+Surrounding the five-step loop are the parts most teams ignore until production breaks them. **Context economics:** the actual cost of pulling, processing, and storing each unit of context, and the cost-per-decision that should be on every AI product's unit economics dashboard. **Context optimization:** figuring out which retrievers, prompts, and consolidation patterns are pulling weight versus burning tokens. **Context evaluation:** measuring whether what the model is being handed is actually decision-grade or just retrieval-grade, before inference, not after.
+
+The five-step loop is what the layer does. Economics, optimization, and evaluation are how you tell whether it's working.
+
+<SectionLabel>04 / Architecture Defines Infrastructure</SectionLabel>
+
+## Why infrastructure follows architecture
+
+Here's where most teams go wrong.
+
+They start with a memory store. They pick Mem0, or Letta, or Zep, or roll their own with pgvector. They wire it up. Then they design the context flow around what the store can do.
+
+<ComparisonGrid
+  beforeLabel="Tail wags the dog"
+  afterLabel="Architecture leads"
+  before={[
+    "Pick a memory store first (Mem0, Letta, Zep, pgvector)",
+    "Design the context flow around what the store can do",
+    "The store dictates the architecture",
+    "Six months in, the system hallucinates and nobody can explain why",
+    "The layer where the explanation lives was never explicitly designed",
+  ]}
+  after={[
+    "Decide what the Context Layer needs to do first",
+    "What gets curated in. What gets synthesized. How consolidation runs.",
+    "What prioritization signals matter. What persists, what decays.",
+    "Then pick infrastructure that supports those decisions",
+    "Sometimes vector store, sometimes graph DB, sometimes Postgres + pgvector — usually a combination",
+  ]}
+/>
+
+<Pullquote
+  quote="The infrastructure choice is downstream of the architecture choice."
+/>
+
+I built one version of this in production while on paternity leave. [How I built a 14-agent software factory on a single VPS](/thinking/building-a-14-agent-software-factory) walks through what happened when three vendor moves broke my plan in seven days. The whole reason the stack survived is that work shape, not infrastructure, was the design primitive. Rows for decisions, documents for research. Two memory shapes for two work shapes.
+
+The agent memory wave is solving where session state lives. That's a real and necessary question. It's not the same question as how the Context Layer works. Until the field separates those two questions cleanly, we're going to keep building products that demo well and fail in production.
+
+<SectionLabel>05 / Frequently Asked Questions</SectionLabel>
+
+## The four questions I get asked most
+
+### What is the difference between agent memory and a Context Layer?
+
+A memory store is where information lives. A Context Layer is the active processing tier that decides which information matters, when, why, and in what shape, before the model reasons over it. They're different layers in the stack.
+
+### Where do tools and skills fit in the four-layer stack?
+
+Tools live in the retrieval layer: they're how the agent reaches into the data layer. Skills live in long-term memory: persistent capabilities the agent carries from session to session.
+
+### Is the Context Layer the same as RAG?
+
+No. RAG is a retrieval pattern. The Context Layer is what happens to retrieved content before it reaches the model: synthesis, consolidation, prioritization, and intelligent storage. RAG without those steps is just efficient delivery of noise.
+
+### Will the Context Layer matter when LLMs are replaced?
+
+Yes. The Context Layer is a property of intelligence, not a property of LLMs. When models change, the need to curate, synthesize, consolidate, prioritize, and store doesn't go away.
+
+<SectionLabel>06 / The Bet</SectionLabel>
+
+## What happens to the Context Layer when LLMs are replaced
+
+Yann LeCun left Meta in late 2025 to start AMI Labs and bet a billion dollars that LLMs aren't the path to AGI. He raised $1.03B at a $3.5B valuation in March 2026, the largest seed round in European history, for a company that won't ship a product for at least a year. His thesis: scaling language models won't get us to general intelligence. World models will. Some other architecture will. Just not this one.
+
+I think he's probably right.
+
+Here's what most people miss about that.
+
+When LLMs get replaced, by world models, by JEPA-based architectures, by something nobody has named yet, the Context Layer is still there. The need to curate, synthesize, consolidate, prioritize, and store doesn't go away when the model changes. It's a property of intelligence, not a property of LLMs.
+
+<Close kicker="The bet" heading="Replace the model and the Context Layer is still there. Replace the Context Layer and you're back to retrieving noise.">
+That's the whole bet.
+</Close>

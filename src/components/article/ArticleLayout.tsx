@@ -46,6 +46,9 @@ export default function ArticleLayout({ metadata, children }: ArticleLayoutProps
       "@type": "WebPage",
       "@id": `https://richezamor.com/thinking/${metadata.slug}`,
     },
+    ...(metadata.keywords && metadata.keywords.length > 0
+      ? { keywords: metadata.keywords.join(", ") }
+      : {}),
   };
 
   const breadcrumbJsonLd = {
@@ -72,6 +75,22 @@ export default function ArticleLayout({ metadata, children }: ArticleLayoutProps
       },
     ],
   };
+
+  const faqJsonLd =
+    metadata.faq && metadata.faq.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: metadata.faq.map((item) => ({
+            "@type": "Question",
+            name: item.question,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: item.answer,
+            },
+          })),
+        }
+      : null;
 
   return (
     <>
@@ -139,6 +158,12 @@ export default function ArticleLayout({ metadata, children }: ArticleLayoutProps
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      )}
     </>
   );
 }
