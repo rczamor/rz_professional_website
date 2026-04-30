@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 };
 
 export default async function ThinkingPage() {
-  const articles = await getAllArticles();
+  const articles = (await getAllArticles()).filter((a) => !a.comingSoon);
 
   return (
     <>

@@ -1727,3 +1727,264 @@
     margin: 32px 0;
   }
 }
+
+/* ── Framework Matrix (questions × layers grid) ────────────────────────── */
+.think-matrix {
+  margin: 72px 0;
+  padding: 0;
+}
+.think-matrix-caption {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 18px;
+  text-align: center;
+}
+.think-matrix-grid {
+  display: grid;
+  border: 1px solid var(--border-subtle);
+  border-radius: 18px;
+  overflow: hidden;
+  background:
+    radial-gradient(900px 380px at 50% 0%, var(--accent-glow), transparent 60%),
+    var(--bg-card);
+  position: relative;
+  isolation: isolate;
+}
+.think-matrix-grid::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+  opacity: 0.55;
+  z-index: 1;
+}
+.think-matrix-cell {
+  padding: 18px 18px;
+  border-right: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+.think-matrix-cell:last-child {
+  border-right: none;
+}
+.think-matrix-row {
+  display: grid;
+  grid-column: 1 / -1;
+}
+.think-matrix-row > .think-matrix-cell {
+  border-bottom: 1px solid var(--border-subtle);
+}
+.think-matrix-row:last-child > .think-matrix-cell {
+  border-bottom: none;
+}
+.think-matrix-cell-corner {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 16px 18px;
+  background: var(--bg-secondary);
+}
+.think-matrix-corner-q {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+.think-matrix-corner-arrow {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  color: var(--accent);
+  line-height: 1;
+  align-self: flex-start;
+}
+.think-matrix-corner-l {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  text-align: right;
+}
+.think-matrix-head {
+  background: var(--bg-secondary);
+  gap: 4px;
+  align-items: flex-start;
+}
+.think-matrix-head-num {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+}
+.think-matrix-head-label {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+.think-matrix-rowhead {
+  background: var(--bg-secondary);
+  gap: 6px;
+}
+.think-matrix-rowhead-num {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--accent);
+}
+.think-matrix-rowhead-q {
+  font-family: var(--font-heading);
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+}
+.think-matrix-rowhead-short {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+.think-matrix-data {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  text-align: left;
+  padding: 18px 16px;
+  transition: background 0.2s, color 0.2s;
+}
+.think-matrix-data:hover {
+  background: var(--bg-card-hover);
+  color: var(--text-primary);
+}
+.think-matrix-row.is-highlight > .think-matrix-cell {
+  background: linear-gradient(
+    135deg,
+    rgba(123, 127, 228, 0.10),
+    rgba(124, 92, 252, 0.04)
+  );
+}
+.think-matrix-row.is-highlight > .think-matrix-rowhead {
+  background: linear-gradient(
+    135deg,
+    rgba(123, 127, 228, 0.16),
+    rgba(124, 92, 252, 0.06)
+  );
+  position: relative;
+}
+.think-matrix-row.is-highlight > .think-matrix-rowhead::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--accent), var(--accent-secondary));
+}
+.think-matrix-row.is-highlight .think-matrix-rowhead-num,
+.think-matrix-row.is-highlight .think-matrix-rowhead-short {
+  color: var(--accent);
+}
+.think-matrix-row.is-highlight .think-matrix-data {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+.think-matrix-note {
+  margin: 18px 4px 0;
+  padding: 14px 18px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: transparent;
+}
+.think-matrix-note-marker {
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  margin-top: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(123, 127, 228, 0.18);
+}
+
+/* Tablet — keep tabular feel but tighten cell padding */
+@media (max-width: 980px) {
+  .think-matrix-data {
+    font-size: 12.5px;
+    padding: 14px 12px;
+  }
+  .think-matrix-head-label {
+    font-size: 14px;
+  }
+  .think-matrix-rowhead-q {
+    font-size: 13.5px;
+  }
+}
+
+/* Mobile — collapse to vertical card stack, one row at a time */
+@media (max-width: 720px) {
+  .think-matrix-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .think-matrix-cell-corner,
+  .think-matrix-head {
+    display: none;
+  }
+  .think-matrix-row {
+    grid-template-columns: 1fr !important;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .think-matrix-row:last-child {
+    border-bottom: none;
+  }
+  .think-matrix-row > .think-matrix-cell {
+    border-right: none;
+    border-bottom: 1px dashed var(--border-subtle);
+    padding: 14px 18px;
+  }
+  .think-matrix-row > .think-matrix-cell:last-child {
+    border-bottom: none;
+  }
+  .think-matrix-rowhead {
+    padding: 16px 18px;
+    background: var(--bg-secondary);
+  }
+  .think-matrix-data {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    align-items: center;
+    gap: 14px;
+  }
+  .think-matrix-data::before {
+    content: attr(data-layer);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+  }
+}
