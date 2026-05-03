@@ -78,21 +78,60 @@ export const whyMeCards = [
 
 export const jsonLdData = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Riche Zamor",
-  url: "https://richezamor.com",
-  jobTitle: "VP of Product",
-  description:
-    "Building AI products that turn raw data into decision-ready context.",
-  sameAs: [
-    "https://linkedin.com/in/richezamorjr",
-    "https://twitter.com/richezamor",
-    "https://github.com/rczamor",
-  ],
-  knowsAbout: [
-    "Product Management",
-    "AI Products",
-    "Context Architecture",
-    "Startup Leadership",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://richezamor.com/#person",
+      name: "Riche Zamor",
+      url: "https://richezamor.com",
+      jobTitle: "VP of Product",
+      description:
+        "Building AI products that turn raw data into decision-ready context.",
+      sameAs: [
+        "https://linkedin.com/in/richezamorjr",
+        "https://twitter.com/richezamor",
+        "https://github.com/rczamor",
+      ],
+      knowsAbout: [
+        "Product Management",
+        "AI Products",
+        "Context Architecture",
+        "Startup Leadership",
+      ],
+      worksFor: { "@id": "https://richezamor.com/#organization" },
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://richezamor.com/#organization",
+      name: "Riche Zamor",
+      alternateName: "Riche Zamor — Context Architecture",
+      url: "https://richezamor.com",
+      logo: "https://richezamor.com/og-image.png",
+      description:
+        "Independent product leadership and context architecture practice — advisory, board work, and AI product strategy.",
+      founder: { "@id": "https://richezamor.com/#person" },
+      sameAs: [
+        "https://linkedin.com/in/richezamorjr",
+        "https://twitter.com/richezamor",
+        "https://github.com/rczamor",
+      ],
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "Inquiries",
+        email: "connect@richezamor.com",
+        url: "https://richezamor.com/contact",
+        availableLanguage: ["English"],
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://richezamor.com/#website",
+      url: "https://richezamor.com",
+      name: "Riche Zamor",
+      description:
+        "Riche Zamor is a context architect and VP of Product who designs how organizations structure knowledge for AI-driven decision-making.",
+      publisher: { "@id": "https://richezamor.com/#organization" },
+      inLanguage: "en-US",
+    },
   ],
 };
