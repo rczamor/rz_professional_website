@@ -48,8 +48,9 @@ export default function RootLayout({
         <noscript>
           <style>{`.reveal { opacity: 1 !important; transform: none !important; }`}</style>
         </noscript>
+        {/* eslint-disable-next-line @next/next/no-page-custom-font -- App Router has no pages/_document.js; this Material Symbols variable font is loaded site-wide via the root layout */}
         <link
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=optional"
           rel="stylesheet"
         />
         <link
