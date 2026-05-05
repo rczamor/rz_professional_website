@@ -137,7 +137,11 @@ export default function TestimonialsCarousel() {
   function onTouchEnd(e: React.TouchEvent) {
     const dx = tx0Ref.current - e.changedTouches[0].screenX;
     if (Math.abs(dx) > 50) {
-      dx > 0 ? next() : prev();
+      if (dx > 0) {
+        next();
+      } else {
+        prev();
+      }
     }
     pausedRef.current = false;
   }
