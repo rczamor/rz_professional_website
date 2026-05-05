@@ -1807,7 +1807,6 @@ footer {
   line-height: 1.3;
   letter-spacing: -0.5px;
   margin-bottom: 12px;
-  flex-grow: 1;
 }
 .article-excerpt {
   font-size: 14px;
