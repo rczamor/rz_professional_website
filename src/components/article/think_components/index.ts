@@ -27,3 +27,4 @@ export { default as GrowthChart } from "./GrowthChart";
 export { default as EKGTrace } from "./EKGTrace";
 export { default as AgentArch } from "./AgentArch";
 export { default as SystemOverview } from "./SystemOverview";
+export { default as BrainLoopComparison } from "./BrainLoopComparison";
