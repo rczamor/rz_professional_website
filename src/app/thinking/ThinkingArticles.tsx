@@ -14,7 +14,7 @@ export default function ThinkingArticles({ articles }: ThinkingArticlesProps) {
   const [activeFilter, setActiveFilter] = useState<Pillar>("all");
 
   const featured = articles.find((a) => a.featured);
-  const grid = articles.filter((a) => !a.featured);
+  const grid = articles.filter((a) => a.slug !== featured?.slug);
 
   const isVisible = (pillar: string) =>
     activeFilter === "all" || activeFilter === pillar;

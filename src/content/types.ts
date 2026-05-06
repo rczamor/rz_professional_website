@@ -1,3 +1,8 @@
+export interface ArticleFAQ {
+  question: string;
+  answer: string;
+}
+
 export interface ArticleMetadata {
   title: string;
   slug: string;
@@ -9,6 +14,8 @@ export interface ArticleMetadata {
   badgeVariant?: "product" | "leadership";
   featured?: boolean;
   comingSoon?: boolean;
+  keywords?: string[];
+  faq?: ArticleFAQ[];
 }
 
 export interface CaseStudy {
