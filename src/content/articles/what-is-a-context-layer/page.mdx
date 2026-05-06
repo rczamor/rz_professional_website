@@ -79,6 +79,10 @@ That's a real debate. It's also the wrong altitude.
 
 Storage is downstream. The architecture decision that determines whether your AI product actually works is upstream of which memory primitive you pick. Most teams are overly focused on infrastructure, and that may be hurting them.
 
+## What is a Context Layer?
+
+A Context Layer transforms retrieved data into decision-ready context before an AI system reasons, decides, or acts.
+
 <SectionLabel>01 / Three Things People Conflate</SectionLabel>
 
 ## What people get wrong about agent memory
@@ -117,7 +121,7 @@ Those are different problems.
 
 <SectionLabel>02 / The Four Layers</SectionLabel>
 
-## What is a Context Layer?
+## Why the Context Layer is separate
 
 Practitioners are already converging on this, even if they're using different vocabulary.
 
@@ -276,27 +280,7 @@ I built one version of this in production while on paternity leave. [How I built
 
 The agent memory wave is solving where session state lives. That's a real and necessary question. It's not the same question as how the Context Layer works. Until the field separates those two questions cleanly, we're going to keep building products that demo well and fail in production.
 
-<SectionLabel>05 / Frequently Asked Questions</SectionLabel>
-
-## The four questions I get asked most
-
-### What is the difference between agent memory and a Context Layer?
-
-A memory store is where information lives. A Context Layer is the active processing tier that decides which information matters, when, why, and in what shape, before the model reasons over it. They're different layers in the stack.
-
-### Where do tools and skills fit in the four-layer stack?
-
-Tools live in the retrieval layer: they're how the agent reaches into the data layer. Skills live in long-term memory: persistent capabilities the agent carries from session to session.
-
-### Is the Context Layer the same as RAG?
-
-No. RAG is a retrieval pattern. The Context Layer is what happens to retrieved content before it reaches the model: synthesis, consolidation, prioritization, and intelligent storage. RAG without those steps is just efficient delivery of noise.
-
-### Will the Context Layer matter when LLMs are replaced?
-
-Yes. The Context Layer is a property of intelligence, not a property of LLMs. When models change, the need to curate, synthesize, consolidate, prioritize, and store doesn't go away.
-
-<SectionLabel>06 / The Bet</SectionLabel>
+<SectionLabel>05 / The Bet</SectionLabel>
 
 ## What happens to the Context Layer when LLMs are replaced
 

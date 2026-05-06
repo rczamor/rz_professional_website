@@ -1,3 +1,4 @@
+import Link from "next/link";
 import MobileNav from "./MobileNav";
 
 type NavProps = {
@@ -8,9 +9,9 @@ export default function Nav({ activePage }: NavProps) {
   return (
     <header>
     <nav aria-label="Main navigation">
-      <a href="/" className="nav-logo">
+      <Link href="/" className="nav-logo">
         Rich&#233;<span>.</span>Zamor
-      </a>
+      </Link>
       <div className="nav-right">
         <div className="nav-links">
           <a href="/thesis" className={activePage === "thesis" ? "active" : undefined}>
@@ -25,9 +26,9 @@ export default function Nav({ activePage }: NavProps) {
           <a href="/projects" className={activePage === "projects" ? "active" : undefined}>
             Projects
           </a>
-          <a href="/thinking" className={activePage === "thinking" ? "active" : undefined}>
+          <Link href="/thinking" className={activePage === "thinking" ? "active" : undefined}>
             Thinking
-          </a>
+          </Link>
         </div>
         <div className="nav-social">
           <a

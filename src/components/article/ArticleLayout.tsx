@@ -1,96 +1,63 @@
+import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import type { ArticleMetadata } from "@/content/types";
+import type { ArticleFAQ as ArticleFAQItem, ArticleMetadata } from "@/content/types";
+import {
+  buildArticleBreadcrumbSchema,
+  buildArticleFaqSchema,
+  buildArticleSchema,
+  safeJsonLd,
+  toISODate,
+} from "@/lib/seo";
 
 interface ArticleLayoutProps {
   metadata: ArticleMetadata;
   children: React.ReactNode;
 }
 
-function toISODate(dateStr: string): string {
-  const parsed = Date.parse(dateStr);
-  if (isNaN(parsed)) return dateStr;
-  return new Date(parsed).toISOString().split("T")[0];
-}
-
 function pillarLabel(pillar: string): string {
   return pillar.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
+function slugifyFaqQuestion(question: string): string {
+  return `faq-${question
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")}`;
+}
+
+function ArticleFAQ({ items, slug }: { items?: ArticleFAQItem[]; slug: string }) {
+  if (!items || items.length === 0) return null;
+
+  const headingId = `${slug}-faq`;
+
+  return (
+    <section className="article-faq" aria-labelledby={headingId}>
+      <h2 id={headingId} className="article-faq-title">
+        Frequently Asked Questions
+      </h2>
+      <div className="article-faq-list">
+        {items.map((item) => {
+          const id = slugifyFaqQuestion(item.question);
+          return (
+            <div key={item.question} className="article-faq-item">
+              <h3 id={id} className="article-faq-question">
+                <a href={`#${id}`}>{item.question}</a>
+              </h3>
+              <p className="article-faq-answer">{item.answer}</p>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
 export default function ArticleLayout({ metadata, children }: ArticleLayoutProps) {
   const isoDate = toISODate(metadata.date);
-
-  const articleJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: metadata.title,
-    description: metadata.excerpt,
-    author: {
-      "@type": "Person",
-      name: "Riche Zamor",
-      url: "https://richezamor.com",
-      jobTitle: "VP of Product",
-      sameAs: [
-        "https://linkedin.com/in/richezamorjr",
-        "https://twitter.com/richezamor",
-        "https://github.com/rczamor",
-      ],
-    },
-    datePublished: isoDate,
-    url: `https://richezamor.com/thinking/${metadata.slug}`,
-    publisher: {
-      "@type": "Person",
-      name: "Riche Zamor",
-    },
-    mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": `https://richezamor.com/thinking/${metadata.slug}`,
-    },
-    ...(metadata.keywords && metadata.keywords.length > 0
-      ? { keywords: metadata.keywords.join(", ") }
-      : {}),
-  };
-
-  const breadcrumbJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: "https://richezamor.com",
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Thinking",
-        item: "https://richezamor.com/thinking",
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        name: metadata.title,
-        item: `https://richezamor.com/thinking/${metadata.slug}`,
-      },
-    ],
-  };
-
-  const faqJsonLd =
-    metadata.faq && metadata.faq.length > 0
-      ? {
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: metadata.faq.map((item) => ({
-            "@type": "Question",
-            name: item.question,
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: item.answer,
-            },
-          })),
-        }
-      : null;
+  const articleJsonLd = buildArticleSchema(metadata);
+  const breadcrumbJsonLd = buildArticleBreadcrumbSchema(metadata);
+  const faqJsonLd = buildArticleFaqSchema(metadata);
 
   return (
     <>
@@ -136,15 +103,16 @@ export default function ArticleLayout({ metadata, children }: ArticleLayoutProps
               <div className="article-prose">
                 {children}
               </div>
+              <ArticleFAQ items={metadata.faq} slug={metadata.slug} />
             </div>
           </section>
         </article>
         <section className="page-bridge">
           <div className="container">
             <p className="page-bridge-prompt">More thinking in public</p>
-            <a href="/thinking" className="btn-secondary">
+            <Link href="/thinking" className="btn-secondary">
               All articles <span>&rarr;</span>
-            </a>
+            </Link>
           </div>
         </section>
       </main>
@@ -152,16 +120,16 @@ export default function ArticleLayout({ metadata, children }: ArticleLayoutProps
 
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(articleJsonLd) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbJsonLd) }}
       />
       {faqJsonLd && (
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: safeJsonLd(faqJsonLd) }}
         />
       )}
     </>

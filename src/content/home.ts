@@ -1,4 +1,5 @@
 import type { CapabilityCard } from "./types";
+import { buildHomeJsonLd } from "@/lib/seo";
 
 export const heroStats = [
   { value: "300%", label: "Growth at $0 CAC", org: "Grandstage" },
@@ -76,23 +77,4 @@ export const whyMeCards = [
   },
 ];
 
-export const jsonLdData = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Riche Zamor",
-  url: "https://richezamor.com",
-  jobTitle: "VP of Product",
-  description:
-    "Building AI products that turn raw data into decision-ready context.",
-  sameAs: [
-    "https://linkedin.com/in/richezamorjr",
-    "https://twitter.com/richezamor",
-    "https://github.com/rczamor",
-  ],
-  knowsAbout: [
-    "Product Management",
-    "AI Products",
-    "Context Architecture",
-    "Startup Leadership",
-  ],
-};
+export const jsonLdData = buildHomeJsonLd();

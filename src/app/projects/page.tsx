@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import type { Metadata } from "next";
@@ -131,7 +132,7 @@ export default function ProjectsPage() {
         <section className="page-bridge">
           <div className="container">
             <p className="page-bridge-prompt">Read my latest thinking</p>
-            <a href="/thinking" className="btn-secondary">View essays <span>&rarr;</span></a>
+            <Link href="/thinking" className="btn-secondary">View essays <span>&rarr;</span></Link>
           </div>
         </section>
       </main>

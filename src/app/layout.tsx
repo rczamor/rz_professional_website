@@ -10,6 +10,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 import NavScroll from "@/components/NavScroll";
 import TopBanner from "@/components/TopBanner";
 import WebMcpProvider from "@/components/WebMcpProvider";
+import { buildPersonSchema, safeJsonLd } from "@/lib/seo";
 
 const bricolage = Bricolage_Grotesque({
   weight: ["400", "500", "600", "700", "800"],
@@ -48,8 +49,9 @@ export default function RootLayout({
         <noscript>
           <style>{`.reveal { opacity: 1 !important; transform: none !important; }`}</style>
         </noscript>
+        {/* eslint-disable-next-line @next/next/no-page-custom-font -- App Router has no pages/_document.js; this Material Symbols variable font is loaded site-wide via the root layout */}
         <link
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=optional"
           rel="stylesheet"
         />
         <link
@@ -59,6 +61,10 @@ export default function RootLayout({
         />
         <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM summary" />
         <link rel="alternate" type="text/plain" href="/llms-full.txt" title="LLM full content" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: safeJsonLd(buildPersonSchema()) }}
+        />
       </head>
       <body
         className={`${bricolage.variable} ${inter.variable} has-top-banner`}

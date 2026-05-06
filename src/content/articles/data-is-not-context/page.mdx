@@ -6,8 +6,7 @@ export const metadata = {
   date: "April 8, 2026",
   readTime: "8 min read",
   badge: "Context Intelligence",
-  featured: true,
-  comingSoon: true,
+  featured: false,
 }
 
 # Data Is Not Context
@@ -15,6 +14,10 @@ export const metadata = {
 The AI industry is obsessed with retrieval — how to get the right chunks into the context window. But retrieval is downstream.
 
 If what you're retrieving was never curated, synthesized, consolidated, prioritized, or stored intelligently, your RAG pipeline is just efficiently delivering noise.
+
+## Naive RAG vs Context Layer
+
+Naive RAG retrieves similar chunks; a Context Layer turns selected information into decision-ready context before retrieval or inference.
 
 ## The Retrieval Trap
 

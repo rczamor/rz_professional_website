@@ -1,8 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import * as d3 from "d3";
 import * as topojson from "topojson-client";
+import statesTopology from "us-atlas/states-10m.json";
+import type { GeometryObject, Topology } from "topojson-specification";
 
 /* ------------------------------------------------------------------ */
 /*  Data                                                               */
@@ -20,6 +22,9 @@ const CITIES = [
 ];
 
 const CONNECTION_ORDER = ["providence", "randolph", "boston", "dc", "arlington", "nyc", "brooklyn"];
+const US_STATES_TOPOLOGY = statesTopology as unknown as Topology<{ states: GeometryObject }>;
+const MAP_WIDTH = 430;
+const MAP_HEIGHT = 300;
 
 interface TimelineEntry {
   year: string;
@@ -116,7 +121,10 @@ export default function JourneyMap() {
   const [activeEntry, setActiveEntry] = useState(0);
 
   /* ---- Active city IDs derived from current entry ---- */
-  const activeCityIds = TIMELINE[activeEntry]?.cityIds ?? [];
+  const activeCityIds = useMemo(
+    () => TIMELINE[activeEntry]?.cityIds ?? [],
+    [activeEntry],
+  );
 
   /* ---- Map label ---- */
   const mapLabel = activeCityIds
@@ -176,13 +184,11 @@ export default function JourneyMap() {
   useEffect(() => {
     if (!mapRef.current) return;
 
-    const width = 380;
-    const height = 280;
-
     const svg = d3
       .select(mapRef.current)
       .append("svg")
-      .attr("viewBox", `0 0 ${width} ${height}`)
+      .attr("class", "about-map-svg")
+      .attr("viewBox", `0 0 ${MAP_WIDTH} ${MAP_HEIGHT}`)
       .attr("width", "100%")
       .attr("height", "100%");
 
@@ -190,73 +196,82 @@ export default function JourneyMap() {
 
     const g = svg.append("g");
 
-    fetch("https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json")
-      .then((res) => res.json())
-      .then((us) => {
-        const states = topojson.feature(us, us.objects.states) as unknown as GeoJSON.FeatureCollection;
-        const mesh = topojson.mesh(us, us.objects.states, (a: any, b: any) => a !== b);
+    const us = US_STATES_TOPOLOGY;
+    const states = topojson.feature(us, us.objects.states) as unknown as GeoJSON.FeatureCollection;
+    const mesh = topojson.mesh(
+      us,
+      us.objects.states,
+      (a: GeometryObject, b: GeometryObject) => a !== b,
+    );
 
-        const projection = d3.geoAlbersUsa().fitSize([width, height], states);
-        projectionRef.current = projection;
-        const path = d3.geoPath().projection(projection);
+    const projection = d3.geoAlbersUsa().fitExtent([[18, 16], [MAP_WIDTH - 18, MAP_HEIGHT - 20]], states);
+    projectionRef.current = projection;
+    const path = d3.geoPath().projection(projection);
 
-        /* State fills */
-        g.selectAll("path.about-state-path")
-          .data(states.features)
-          .join("path")
-          .attr("class", "about-state-path")
-          .attr("d", path as any);
+    /* State fills */
+    g.selectAll<SVGPathElement, GeoJSON.Feature>("path.about-state-path")
+      .data(states.features)
+      .join("path")
+      .attr("class", "about-state-path")
+      .attr("d", (d) => path(d));
 
-        /* State borders */
-        g.append("path")
-          .datum(mesh)
-          .attr("class", "about-state-path")
-          .attr("fill", "none")
-          .attr("d", path as any);
+    /* State borders */
+    g.append<SVGPathElement>("path")
+      .datum(mesh)
+      .attr("class", "about-state-border")
+      .attr("fill", "none")
+      .attr("d", (d) => path(d));
 
-        /* Connection lines */
-        const lineGen = d3.line<[number, number]>().x((d) => d[0]).y((d) => d[1]);
-        const connectionCoords = CONNECTION_ORDER.map((id) => {
-          const city = CITIES.find((c) => c.id === id)!;
-          return projection(city.coords) as [number, number];
-        }).filter(Boolean);
+    /* Connection lines */
+    const lineGen = d3.line<[number, number]>().x((d) => d[0]).y((d) => d[1]);
+    const connectionCoords = CONNECTION_ORDER.map((id) => {
+      const city = CITIES.find((c) => c.id === id)!;
+      return projection(city.coords) as [number, number] | null;
+    }).filter((coords): coords is [number, number] => coords !== null);
 
-        g.append("path")
-          .datum(connectionCoords)
-          .attr("class", "about-connection-line")
-          .attr("d", lineGen)
-          .attr("fill", "none");
+    g.append("path")
+      .datum(connectionCoords)
+      .attr("class", "about-connection-line")
+      .attr("d", lineGen)
+      .attr("fill", "none");
 
-        /* City pulse circles (behind dots) */
-        g.selectAll("circle.about-city-pulse")
-          .data(CITIES)
-          .join("circle")
-          .attr("class", (d) => `about-city-pulse`)
-          .attr("data-city", (d) => d.id)
-          .attr("cx", (d) => projection(d.coords)?.[0] ?? 0)
-          .attr("cy", (d) => projection(d.coords)?.[1] ?? 0)
-          .attr("r", 0);
+    /* City pulse circles (behind dots) */
+    g.selectAll("circle.about-city-pulse")
+      .data(CITIES)
+      .join("circle")
+      .attr("class", "about-city-pulse")
+      .attr("data-city", (d) => d.id)
+      .attr("cx", (d) => projection(d.coords)?.[0] ?? 0)
+      .attr("cy", (d) => projection(d.coords)?.[1] ?? 0)
+      .attr("r", 0);
 
-        /* City dots */
-        g.selectAll("circle.about-city-dot")
-          .data(CITIES)
-          .join("circle")
-          .attr("class", "about-city-dot")
-          .attr("data-city", (d) => d.id)
-          .attr("cx", (d) => projection(d.coords)?.[0] ?? 0)
-          .attr("cy", (d) => projection(d.coords)?.[1] ?? 0)
-          .attr("r", 2.5);
+    /* City dots */
+    g.selectAll("circle.about-city-dot")
+      .data(CITIES)
+      .join("circle")
+      .attr("class", "about-city-dot")
+      .attr("data-city", (d) => d.id)
+      .attr("cx", (d) => projection(d.coords)?.[0] ?? 0)
+      .attr("cy", (d) => projection(d.coords)?.[1] ?? 0)
+      .attr("r", 3.5);
 
-        /* City labels */
-        g.selectAll("text.about-city-label")
-          .data(CITIES)
-          .join("text")
-          .attr("class", "about-city-label")
-          .attr("data-city", (d) => d.id)
-          .attr("x", (d) => (projection(d.coords)?.[0] ?? 0) + 6)
-          .attr("y", (d) => (projection(d.coords)?.[1] ?? 0) + 4)
-          .text((d) => d.name);
-      });
+    /* City labels */
+    g.selectAll("text.about-city-label")
+      .data(CITIES)
+      .join("text")
+      .attr("class", "about-city-label")
+      .attr("data-city", (d) => d.id)
+      .attr("x", (d) => {
+        const point = projection(d.coords);
+        if (!point) return 0;
+        return point[0] > MAP_WIDTH - 120 ? point[0] - 8 : point[0] + 8;
+      })
+      .attr("y", (d) => (projection(d.coords)?.[1] ?? 0) + 4)
+      .attr("text-anchor", (d) => {
+        const point = projection(d.coords);
+        return point && point[0] > MAP_WIDTH - 120 ? "end" : "start";
+      })
+      .text((d) => d.name);
 
     return () => {
       svg.remove();
@@ -271,10 +286,10 @@ export default function JourneyMap() {
     const sel = d3.select(svg);
 
     /* Dots */
-    sel.selectAll<SVGCircleElement, (typeof CITIES)[number]>("circle.about-city-dot").each(function (d) {
+    sel.selectAll<SVGCircleElement, (typeof CITIES)[number]>("circle.about-city-dot").each(function () {
       const el = d3.select(this);
       const isActive = activeCityIds.includes(el.attr("data-city"));
-      el.classed("active", isActive).transition().duration(400).attr("r", isActive ? 5 : 2.5);
+      el.classed("active", isActive).transition().duration(400).attr("r", isActive ? 6.5 : 3.5);
     });
 
     /* Labels */
@@ -290,11 +305,11 @@ export default function JourneyMap() {
       const isActive = activeCityIds.includes(el.attr("data-city"));
       if (isActive) {
         const loop = () => {
-          el.attr("r", 5)
+          el.attr("r", 6)
             .attr("opacity", 0.6)
             .transition()
             .duration(1200)
-            .attr("r", 14)
+            .attr("r", 18)
             .attr("opacity", 0)
             .on("end", function () {
               if (el.classed("active")) loop();
@@ -353,7 +368,7 @@ export default function JourneyMap() {
         {/* Sticky map column */}
         <div className="about-sticky-map">
           <div className="about-map-label">{mapLabel || "Eleven cities and counting"}</div>
-          <div ref={mapRef} />
+          <div ref={mapRef} className="about-map-viewport" />
 
           {/* City cards grid */}
           <div className="about-city-cards">

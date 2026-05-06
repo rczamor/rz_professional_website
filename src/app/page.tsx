@@ -4,7 +4,6 @@ import HeroCanvas from "@/components/HeroCanvas";
 import FiveStepsCallout from "@/components/FiveStepsCallout";
 import LogosSection from "@/components/LogosSection";
 import GSAPAnimations from "@/components/GSAPAnimations";
-import TestimonialsCarousel from "@/components/TestimonialsCarousel";
 import type { Metadata } from "next";
 import {
   heroStats,
