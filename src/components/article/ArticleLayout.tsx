@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import type { ArticleMetadata } from "@/content/types";
@@ -142,9 +143,9 @@ export default function ArticleLayout({ metadata, children }: ArticleLayoutProps
         <section className="page-bridge">
           <div className="container">
             <p className="page-bridge-prompt">More thinking in public</p>
-            <a href="/thinking" className="btn-secondary">
+            <Link href="/thinking" className="btn-secondary">
               All articles <span>&rarr;</span>
-            </a>
+            </Link>
           </div>
         </section>
       </main>

@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import * as d3 from "d3";
 import * as topojson from "topojson-client";
+import type { GeometryObject } from "topojson-specification";
 
 /* ------------------------------------------------------------------ */
 /*  Data                                                               */
@@ -116,7 +117,10 @@ export default function JourneyMap() {
   const [activeEntry, setActiveEntry] = useState(0);
 
   /* ---- Active city IDs derived from current entry ---- */
-  const activeCityIds = TIMELINE[activeEntry]?.cityIds ?? [];
+  const activeCityIds = useMemo(
+    () => TIMELINE[activeEntry]?.cityIds ?? [],
+    [activeEntry],
+  );
 
   /* ---- Map label ---- */
   const mapLabel = activeCityIds
@@ -194,25 +198,29 @@ export default function JourneyMap() {
       .then((res) => res.json())
       .then((us) => {
         const states = topojson.feature(us, us.objects.states) as unknown as GeoJSON.FeatureCollection;
-        const mesh = topojson.mesh(us, us.objects.states, (a: any, b: any) => a !== b);
+        const mesh = topojson.mesh(
+          us,
+          us.objects.states,
+          (a: GeometryObject, b: GeometryObject) => a !== b,
+        );
 
         const projection = d3.geoAlbersUsa().fitSize([width, height], states);
         projectionRef.current = projection;
         const path = d3.geoPath().projection(projection);
 
         /* State fills */
-        g.selectAll("path.about-state-path")
+        g.selectAll<SVGPathElement, GeoJSON.Feature>("path.about-state-path")
           .data(states.features)
           .join("path")
           .attr("class", "about-state-path")
-          .attr("d", path as any);
+          .attr("d", (d) => path(d));
 
         /* State borders */
-        g.append("path")
+        g.append<SVGPathElement>("path")
           .datum(mesh)
           .attr("class", "about-state-path")
           .attr("fill", "none")
-          .attr("d", path as any);
+          .attr("d", (d) => path(d));
 
         /* Connection lines */
         const lineGen = d3.line<[number, number]>().x((d) => d[0]).y((d) => d[1]);
@@ -231,7 +239,7 @@ export default function JourneyMap() {
         g.selectAll("circle.about-city-pulse")
           .data(CITIES)
           .join("circle")
-          .attr("class", (d) => `about-city-pulse`)
+          .attr("class", "about-city-pulse")
           .attr("data-city", (d) => d.id)
           .attr("cx", (d) => projection(d.coords)?.[0] ?? 0)
           .attr("cy", (d) => projection(d.coords)?.[1] ?? 0)
@@ -271,7 +279,7 @@ export default function JourneyMap() {
     const sel = d3.select(svg);
 
     /* Dots */
-    sel.selectAll<SVGCircleElement, (typeof CITIES)[number]>("circle.about-city-dot").each(function (d) {
+    sel.selectAll<SVGCircleElement, (typeof CITIES)[number]>("circle.about-city-dot").each(function () {
       const el = d3.select(this);
       const isActive = activeCityIds.includes(el.attr("data-city"));
       el.classed("active", isActive).transition().duration(400).attr("r", isActive ? 5 : 2.5);

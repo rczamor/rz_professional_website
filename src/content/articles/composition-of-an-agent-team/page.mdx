@@ -1,0 +1,419 @@
+import {
+  ProgressBar,
+  SectionLabel,
+  StoryBlock,
+  Pullquote,
+  Close,
+  CardGrid,
+  BigNumbers,
+  LayerStack,
+  FrameworkMatrix,
+  AgentArch,
+} from "@/components/article/think_components";
+
+export const metadata = {
+  title: "The Composition of an Agent Team",
+  slug: "composition-of-an-agent-team",
+  excerpt:
+    "\"How many agents?\" is the wrong starting question. The four-layer framework I used to compose a 14-agent software factory, with the count as the residue.",
+  pillar: "context-intelligence",
+  date: "April 30, 2026",
+  readTime: "12 min read",
+  badge: "Framework",
+  badgeVariant: "product",
+  featured: false,
+  keywords: [
+    "agent team composition",
+    "how many agents",
+    "multi-agent system design",
+    "ai agent architecture framework",
+    "agent team architecture",
+    "four layer ai stack",
+    "ai stack framework",
+  ],
+  faq: [
+    {
+      question: "How do I decide how many agents my agent team needs?",
+      answer:
+        "Count is the wrong starting question. Decide composition first by asking five questions at every layer of the AI stack: what work shape, what input, what output, what defines success, what are the trust boundaries. The count emerges from the composition decisions.",
+    },
+    {
+      question: "What are the four layers of an AI agent stack?",
+      answer:
+        "Data, retrieval, context, and inference. Composition gets decided layer by layer.",
+    },
+    {
+      question: "What's the difference between functions and roles in an agent team?",
+      answer:
+        "Functions are the work the team is accountable for, named in the charter. Roles are the agents that emerge from running functions through the four-layer composition framework. Functions first, roles after.",
+    },
+    {
+      question: "Why do trust boundaries come last in the framework?",
+      answer:
+        "Trust constrains the other four questions. You can't decide what an agent is allowed to do until you know what work it does, what it reads and writes, and what good looks like.",
+    },
+  ],
+}
+
+<ProgressBar />
+
+<StoryBlock dropcap>
+I keep having the same sidebar conversation.
+
+Someone tells me they're building an agent team. Within two minutes, the question shows up: "How many agents do I need?"
+
+It's the wrong starting point.
+
+The right question is composition. What functions exist. How they relate. Where the boundaries sit. Count is what falls out at the end. And composition gets answered by thinking strategically about the layers of your AI system stack.
+</StoryBlock>
+
+<BigNumbers
+  items={[
+    { value: "1", label: "charter that names what the team is for" },
+    { value: "4", label: "layers in the AI stack composition runs through" },
+    { value: "5", label: "questions asked at every layer" },
+    { value: "14", label: "agents the stack handed me" },
+  ]}
+/>
+
+Most guidance on building agent teams starts at framework selection: LangGraph, CrewAI, AutoGen. The question before that, what your team should look like, rarely gets asked at all.
+
+I built a 14-agent software factory. This is the framework that emerged from that process.
+
+<Pullquote
+  quote="I didn't pick the number. The stack handed it to me."
+/>
+
+<SectionLabel>01 / How I Got Here</SectionLabel>
+
+## I didn't start with this
+
+I dove in head first and started building. Tripped over myself a lot in doing so.
+
+Made assumptions that created work. Walked decisions back. Built and rebuilt. Wrote the charter after, not before. The framework below is what survived the walkbacks.
+
+The build itself, what I built, what broke, what I learned, lives in a separate piece. That one's the case study. [How I built a 14-agent software factory on a single VPS](/thinking/building-a-14-agent-software-factory) walks through the seven days where three vendor moves broke my plan and the stack survived anyway. This piece is the methodology that emerged from it.
+
+If you're starting with "how many agents," you're probably about to trip over the same things I did. This is the path I wish I'd had on day one.
+
+<SectionLabel>02 / The Charter</SectionLabel>
+
+## Start with the charter
+
+Composition starts with what the team is for. Different missions produce different teams.
+
+My mission: automate the creation and maintenance of software prototypes. The team exists to demonstrate how I think about and approach business problems with AI systems.
+
+My vision: a team I drive the way a Spotify PM drives theirs. Slack message between meetings. By the time I'm at my desk, a working prototype is ready to iterate on or ship for feedback.
+
+Then I named the functions. Not roles. Functions.
+
+**Strategic functions:** research, data analysis, UX, technical architecture, AI research.
+
+**Execution functions:** design, build, deploy, test, manage AI systems including analytics, evaluations, and token and context economics.
+
+Then the operating guidelines.
+
+<CardGrid
+  cards={[
+    {
+      num: "01",
+      title: "Cloud, not local",
+      body: "Build in the cloud, not locally. Local dev environments don't survive the kind of always-on, multi-agent operation the team needs.",
+    },
+    {
+      num: "02",
+      title: "No human in the loop between agents",
+      body: "Agents collaborate with each other without me sitting in the middle of every handoff. I'm a steerer, not a router.",
+    },
+    {
+      num: "03",
+      title: "Fully automated CI/CD",
+      body: "Every commit ships. The team is accountable to the same pipeline humans would be.",
+    },
+    {
+      num: "04",
+      title: "Each agent operates independently",
+      body: "No agent waits on another to think. Coordination happens through durable artifacts, not blocking calls.",
+    },
+    {
+      num: "05",
+      title: "Track every decision",
+      body: "Every decision, token call, and MCP access gets recorded in detail. The audit log is non-optional.",
+    },
+    {
+      num: "06",
+      title: "I own all strategy",
+      body: "Mission, vision, charter, what we build and why. Agents own execution. The split is the deal.",
+    },
+    {
+      num: "07",
+      title: "One execution agent talks to strategy",
+      body: "An orchestrator handles the strategic-execution interface. The rest of the execution layer stays focused on shipping.",
+    },
+    {
+      num: "08",
+      title: "Each layer manages tasks where they fit",
+      body: "Strategic tasks belong in narrative systems. Execution tasks belong in code-aware systems. No forcing one shape into the other.",
+    },
+  ]}
+/>
+
+The charter doesn't tell you how many agents to build. It tells you what the team is accountable to. Composition comes next.
+
+<SectionLabel>03 / The Stack</SectionLabel>
+
+## Composition is a stack question
+
+Agent teams are AI stacks. Same four layers as any AI product: data, retrieval, context, inference. Composition gets decided layer by layer. What each layer needs. What it produces. What it's allowed to touch.
+
+<Pullquote
+  quote="Agent teams are AI stacks. Same four layers as any AI product: data, retrieval, context, inference."
+/>
+
+Anthropic's multi-agent research system showed the pattern from the AI lab side: a team of specialized agents beats a single generalist on anything non-trivial. The question isn't whether to compose a team. It's how. The four-layer separation gives you the answer, and the [four-layer Context Layer piece](/thinking/what-is-a-context-layer) is the upstream conceptual cut this framework runs on.
+
+<LayerStack
+  caption="The four-layer AI stack — foundation up"
+  layers={[
+    {
+      num: "01",
+      title: "Data layer",
+      description: "Where information lives. The raw material agents read and write.",
+      tag: "Storage",
+    },
+    {
+      num: "02",
+      title: "Retrieval layer",
+      description: "How agents reach into the data. Tool calls and API hits live here.",
+      tag: "Reach",
+    },
+    {
+      num: "03",
+      title: "Context layer",
+      description: "Where retrieved chunks become meaning the model can reason with. Synthesis, prioritization, consolidation.",
+      tag: "Meaning",
+      highlight: true,
+    },
+    {
+      num: "04",
+      title: "Inference layer",
+      description: "Where the model runs. Capability, cost, and routing all sit here.",
+      tag: "Generation",
+    },
+  ]}
+/>
+
+Five questions get asked at every layer. Same questions. Different answers.
+
+<CardGrid
+  cards={[
+    { num: "Q1", title: "Work shape", body: "What kind of work is this layer doing? Storage, reach, synthesis, generation. The shape constrains everything below." },
+    { num: "Q2", title: "Input", body: "What is the input? Where does it live? How is it used?" },
+    { num: "Q3", title: "Output", body: "What is the output? Where does it live? How is it used?" },
+    { num: "Q4", title: "Success", body: "What defines success at this layer? Architectural tests, not model quality." },
+    { num: "Q5", title: "Trust", body: "What are the trust boundaries? Read scope, write scope, capability scope." },
+  ]}
+/>
+
+Trust comes last because it constrains the other four. Success is architectural, not model quality. Each layer's answers constrain what's possible above it.
+
+<FrameworkMatrix
+  caption="Five questions × Four layers — composition emerges, count is the residue"
+  layers={["Data", "Retrieval", "Context", "Inference"]}
+  rows={[
+    {
+      question: "What work shape is this?",
+      shortLabel: "Work shape",
+      cells: ["Storage", "Reach", "Synthesis", "Generation"],
+    },
+    {
+      question: "What is the input?",
+      shortLabel: "Input",
+      cells: [
+        "Sources (me, strategic, execution, observability)",
+        "Queries (lookups, tool calls, API hits)",
+        "Retrieval results + situational signal",
+        "Shaped context + tools + role",
+      ],
+    },
+    {
+      question: "What is the output?",
+      shortLabel: "Output",
+      cells: [
+        "Reads served by role to consumers",
+        "Scoped result sets handed to context",
+        "Single shaped artifact handed to inference",
+        "Tool calls, written outputs, reasoning traces",
+      ],
+    },
+    {
+      question: "What defines success?",
+      shortLabel: "Success",
+      cells: [
+        "Replays cleanly from durable artifacts",
+        "Right info surfaces with low noise",
+        "Model receives signal, not raw dump",
+        "Capability matches work; cost stays in budget",
+      ],
+    },
+    {
+      question: "What are the trust boundaries?",
+      shortLabel: "Trust",
+      cells: [
+        "Write scope (who writes where)",
+        "Read scope (who reads what)",
+        "Composition scope (what the agent can think with)",
+        "Capability scope (what model runs the work)",
+      ],
+      highlight: true,
+    },
+  ]}
+  highlightNote="Trust comes last because it constrains the other four. Read it as the row that decides which answers above it are even allowed."
+/>
+
+By the time you've worked all four layers, the team has composed itself. Functions become roles. Roles cluster into layers. Count is the residue.
+
+<SectionLabel>04 / Layer 1: Data</SectionLabel>
+
+## Where information lives
+
+Storage and persistence. Where information lives. Who can read and write what.
+
+**Work shape.** Storage. Two shapes inside it. Narrative work, infrequent and long-form. Structured work, frequent and machine-readable. Different shapes need different handling.
+
+**Input.** Four input sources. Me, with hypotheses, instructions, and feedback. Strategic agents, with research, decision records, analyses. Execution agents, with code, session state, sub-task records, decision logs. Observability, with prompts, tool calls, decision paths. Each input gets written to a durable home that matches its shape and access pattern.
+
+**Output.** Reads served to consumers by role. Retrieval queries the durable stores. Context assembles from retrievals. Inference never reads stores directly; it only sees what context delivers. And me, for review and steering. Cross-layer handoffs use durable artifacts. No synchronous calls between layers.
+
+**Success.** Three architectural tests. A strategic run from a week ago replays cleanly from durable artifacts alone. An execution agent crashes mid-task and resumes from its session state. Any decision is auditable after the fact. Not "did the model write good code." That's an inference question.
+
+**Trust.** Write scope is the boundary. I write anywhere. Strategic agents write narrative outputs only. Execution agents write to their own workspace, their session partition, their own code branches but never main, and the audit log. Humans are the only cross-surface writers. Agents are scoped writers within their layer.
+
+**What this means for composition.** Distinct output destinations argue for distinct roles. Multiple narrative output homes is the structural case for specialized strategic agents over one generalist. Shared session state plus workspace isolation makes adding execution agents cheap as roles specialize.
+
+<SectionLabel>05 / Layer 2: Retrieval</SectionLabel>
+
+## Reaching into the data
+
+Reaching into the durable stores. Bringing information back.
+
+**Work shape.** Reaching beyond the agent's working memory. Two access patterns. Targeted lookup, where you know the record and its location. Exploratory search, where you don't. Tool calls and API hits are retrieval too. Any reach beyond the agent's current state belongs here.
+
+**Input.** Queries, not documents. From strategic agents, research questions and lookups against prior decisions. From execution agents, code lookups, session state reads, audit log scans, MCP and API calls into external systems. From me, ad-hoc queries against any store. Queries live momentarily. Their durable trace lives in observability.
+
+**Output.** Scoped result sets. Served to context assembly, which decides what to keep and how to shape it. Or to me directly when I'm steering. Retrieval never serves inference directly. Raw results don't go to a model. Context sits in between.
+
+**Success.** The right information surfaces for a given query, with low noise. A query against a stale store returns the freshest authoritative version, not a duplicate. Failed retrievals fail loudly and get logged, not silently return empty. Not "did the model use this well." That's downstream.
+
+**Trust.** Read scope is the boundary. Each agent reads only what it's permissioned for. Per-agent knowledge corpus is private to that agent. Strategic agents read across narrative stores. Execution agents read their app's partition. External tool and API access is scoped per agent, never blanket. Cross-app reads are explicit, not implicit.
+
+**What this means for composition.** Read scope differences are a structural argument for role separation. If two agents need fundamentally different read access (different corpora, different tool palettes, different external systems), they're different agents. If they need the same access, they're the same role with parallel sessions.
+
+<SectionLabel>06 / Layer 3: Context</SectionLabel>
+
+## Turning results into meaning
+
+Turning retrieval results into something the agent can actually reason with. Synthesis. Prioritization. Consolidation. Deciding what to keep, what to drop, what order to present it in. Where raw chunks become meaning.
+
+This is the layer most "how many agents" debates skip. It's also the one where role differentiation actually lives.
+
+**Work shape.** Reasoning input shaping. Building a single, fit-to-task artifact from a noisier set of upstream inputs.
+
+**Input.** Retrieval results plus situational signal. Result sets from retrieval, often noisy, often redundant, often more than fits. The agent's current task, role, and goal. Prior turns in the session, where they exist. Constraints on output shape from the next layer. These exist only for the duration of assembly. Context is ephemeral by design. Built fresh per task, not stored.
+
+**Output.** A single shaped artifact handed to inference. Synthesized, prioritized, deduplicated. Sized to the model's effective working window, not its max. Annotated with provenance where it matters. The output goes one place: the model. Then it's gone. The trace lives in observability.
+
+**Success.** The model receives signal, not raw retrieval dump. The same task with the same retrieval inputs produces consistent context shape. Context degrades gracefully when retrieval returns too much or too little. Not "did the model produce a good answer." Context can do its job perfectly and inference can still fail.
+
+**Trust.** Composition scope is the boundary. Each agent assembles only from its own permissioned retrievals. Cross-agent context sharing happens through durable artifacts, never live splicing. Sensitive material gets shaped or excluded, not blindly forwarded. The shape and prioritization logic is itself versioned and inspectable. Context is where read scope becomes reasoning scope. The boundary is what an agent is allowed to think with, not just what it's allowed to read.
+
+**What this means for composition.** Context shaping logic is role-specific. A research agent and a code-writing agent need fundamentally different prioritization, even from the same retrieval results. If two agents would shape context differently for the same query, they're different roles. If they'd shape it the same way, they're the same role with different inputs.
+
+<SectionLabel>07 / Layer 4: Inference</SectionLabel>
+
+## Capability, cost, trust
+
+Generating output from shaped context. Reasoning, drafting, deciding, calling tools. Also where model selection, task routing, and cost-versus-quality tradeoffs live. Inference is more than "the model runs." It's the economics and routing around the model too.
+
+**Work shape.** Generation, conditioned on context. Plus the routing decisions that pick which model handles what.
+
+**Input.** Shaped context from the layer below. Active tool definitions and permissions. Task instructions and role. Prior turns in the session, where they exist. Inputs exist for the duration of the call. The durable trace flows back to observability.
+
+**Output.** Three output types, each routed differently. Tool calls go back to retrieval. Final outputs (code, text, decisions) get written to durable stores by the agent. Reasoning traces go to observability. The model itself doesn't write anywhere. The agent wrapping the model does. That separation is the boundary.
+
+**Success.** Task complexity and model capability match. Cost per task stays inside the agent's budget cap. Failures degrade gracefully through retries, fallbacks, and escalation paths that exist and trigger correctly. Not "is the model smart." Capability is a vendor question. Architecture is whether the right capability gets matched to the right work.
+
+**Trust.** Capability scope is the boundary. Each agent runs on the model that fits its work shape, not the most powerful available. High-trust credentials never co-locate with execution-class models. Strategic reasoning runs where frontier capability earns its cost. Execution runs where sustained, cheaper capability earns its place. Escalation from a lower tier to a higher one is explicit, logged, and human-gated where stakes are high. Capability, cost, and trust are one decision, not three. They get answered together at this layer.
+
+**What this means for composition.** Different capability profiles argue for different agents. A frontier-reasoning routine and a sustained-execution agent shouldn't be the same role even if they touched the same data. Their economics, latency, and failure modes are different. Inference is where the strategic-versus-execution split becomes a hard architectural line, not a soft preference.
+
+<SectionLabel>08 / The Composition</SectionLabel>
+
+## How many agents emerged
+
+By the end of the layer walk, the team had composed itself.
+
+<AgentArch
+  bridge="One execution agent talks up. The rest stay focused."
+  strategic={{
+    label: "Strategic layer",
+    sublabel: "4 agents · narrative work",
+    agents: [
+      { name: "Research", role: "Discovery, market signal, sourcing" },
+      { name: "Data Analysis", role: "Quant, ranking, sizing" },
+      { name: "Architecture", role: "UX + technical structure" },
+      { name: "AI Research", role: "Methods, evals, model fit" },
+    ],
+  }}
+  execution={{
+    label: "Execution layer",
+    sublabel: "10 agents · build, deploy, test, manage",
+    lead: {
+      name: "Conductor",
+      role: "The single execution-side voice that talks to strategy. Routes work, manages handoffs, owns the audit trail.",
+    },
+    agents: [
+      { name: "AI Engineer", role: "Models, evals, prompts" },
+      { name: "PM-lite", role: "Scope, slicing, intent" },
+      { name: "Designer", role: "UX, components, flows" },
+      { name: "Backend", role: "APIs, services, data" },
+      { name: "Data Engineer", role: "Pipelines, schemas" },
+      { name: "UI Engineer", role: "Frontend build, polish" },
+      { name: "QA", role: "Tests, regressions" },
+      { name: "DevOps", role: "CI/CD, infra, deploys" },
+      { name: "Tech Writer", role: "Docs, decision logs" },
+    ],
+    infra: ["Single VPS", "Cloud build", "Audit log", "Per-agent workspace"],
+  }}
+/>
+
+The strategic-versus-execution split itself fell out of inference-layer economics. Not org chart preference. Not "this is how teams are structured." The cost and capability profiles forced the line.
+
+Fourteen agents. I didn't pick the number. The stack handed it to me.
+
+<SectionLabel>09 / Frequently Asked Questions</SectionLabel>
+
+## The four questions I get asked most
+
+### How do I decide how many agents my agent team needs?
+
+Count is the wrong starting question. Decide composition first by asking five questions at every layer of the AI stack: work shape, input, output, success, trust boundaries. The count emerges; you don't pick it.
+
+### What are the four layers of an AI agent stack?
+
+Data, retrieval, context, inference. Same four layers as any AI product. Composition gets decided layer by layer.
+
+### What's the difference between functions and roles?
+
+Functions are what the team is accountable for, named in the charter. Roles are the agents that emerge from the layer walk. Functions first, roles after.
+
+### Why do trust boundaries come last?
+
+Trust constrains the other four questions. You can't define what's allowed until you know what's being done, accessed, produced, and optimized for.
+
+<Close kicker="Composition first. Count last." heading="More agents won't save you. They'll multiply the places things can break.">
+"How many agents" is the wrong opening question because it skips composition. Composition is a stack decision. The five questions, asked at every layer, are how you make it.
+
+Every agent boundary is a context handoff. The stack decides where those handoffs make sense. Composition decides who's on each side. Count is what's left.
+</Close>
