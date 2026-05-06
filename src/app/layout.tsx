@@ -10,6 +10,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 import NavScroll from "@/components/NavScroll";
 import TopBanner from "@/components/TopBanner";
 import WebMcpProvider from "@/components/WebMcpProvider";
+import { buildPersonSchema, safeJsonLd } from "@/lib/seo";
 
 const bricolage = Bricolage_Grotesque({
   weight: ["400", "500", "600", "700", "800"],
@@ -60,6 +61,10 @@ export default function RootLayout({
         />
         <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM summary" />
         <link rel="alternate" type="text/plain" href="/llms-full.txt" title="LLM full content" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: safeJsonLd(buildPersonSchema()) }}
+        />
       </head>
       <body
         className={`${bricolage.variable} ${inter.variable} has-top-banner`}

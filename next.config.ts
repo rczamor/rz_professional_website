@@ -1,5 +1,9 @@
 import type { NextConfig } from "next";
 import createMDX from "@next/mdx";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const projectRoot = path.dirname(fileURLToPath(import.meta.url));
 
 const cspDirectives = [
   "default-src 'self'",
@@ -31,6 +35,10 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+  outputFileTracingRoot: projectRoot,
+  turbopack: {
+    root: projectRoot,
+  },
   async headers() {
     return [
       {
