@@ -81,6 +81,15 @@ export interface ThesisStep {
   description: string;
 }
 
+export interface ContextLayer {
+  number: number;
+  title: string;
+  role: string;
+  description: string;
+  highlight?: string;
+  isLocus?: boolean;
+}
+
 export interface StatCard {
   value: string;
   label: string;

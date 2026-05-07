@@ -32,12 +32,24 @@ export function buildPersonEntity() {
     ],
     knowsAbout: [
       "Context Architecture",
+      "Four-Layer AI System Stack",
+      "Context Layer",
+      "Retrieval Layer",
+      "Inference Layer",
+      "Memory-as-Files",
+      "Agents as Principals",
       "AI Product Strategy",
-      "Context Layers",
       "Context Engineering",
       "RAG",
       "Product Management",
       "Startup Leadership",
+    ],
+    subjectOf: [
+      {
+        "@type": "Article",
+        name: "Data Is Not Context — The Context Architecture Thesis",
+        url: `${siteUrl}/thesis`,
+      },
     ],
   };
 }

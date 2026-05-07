@@ -4,16 +4,16 @@ import Link from "next/link";
 import ThesisCanvasAnimations from "@/components/ThesisCanvasAnimations";
 import ScrollReveal from "@/components/ScrollReveal";
 import "@/styles/thesis.css";
-import { thesisSteps, builtCards } from "@/content/thesis";
+import { aiSystemLayers, thesisSteps, builtCards } from "@/content/thesis";
 
 export const metadata = {
   title: "Data Is Not Context — Riche Zamor",
   description:
-    "The Context Architecture Thesis by Riche Zamor: a five-step framework for designing the informational environment that surrounds AI systems.",
+    "The Context Architecture Thesis by Riche Zamor: an AI system has four layers — Data, Retrieval, Context, Inference. The five-step process lives at the Context layer, the one most systems skip entirely.",
   openGraph: {
     title: "Data Is Not Context — Riche Zamor",
     description:
-      "The Context Architecture Thesis by Riche Zamor: curation, synthesis, consolidation, prioritization, and intelligent storage — the five steps most AI systems skip.",
+      "The Context Architecture Thesis by Riche Zamor: an AI system has four layers — Data, Retrieval, Context, Inference. The five-step process (curate, synthesize, consolidate, prioritize, store) lives at the Context layer that sits between Retrieval and Inference.",
     url: "https://richezamor.com/thesis",
     type: "article",
     images: ["https://richezamor.com/og-image.png"],
@@ -23,7 +23,8 @@ export const metadata = {
     card: "summary_large_image",
     site: "@richezamor",
     title: "Data Is Not Context — Riche Zamor",
-    description: "The thesis on why AI systems need context architecture.",
+    description:
+      "The thesis on why AI systems need a Context layer between Retrieval and Inference — and the five steps that live there.",
     images: ["https://richezamor.com/og-image.png"],
   },
   alternates: { canonical: "https://richezamor.com/thesis" },
@@ -44,10 +45,42 @@ export default function ThesisPage() {
       },
       {
         "@type": "Question",
+        name: "What are the four layers of an AI system?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "An AI system has four layers: (1) Data — storage at every time scale, from raw inputs to persistent memory; (2) Retrieval — reach: queries, tool calls, and API hits; (3) Context — where retrieval results become meaning the model can reason with, with its own durable storage; and (4) Inference — generation, where the agent operates as a principal rather than a tool. Most systems route Retrieval straight into Inference and skip the Context layer entirely.",
+        },
+      },
+      {
+        "@type": "Question",
         name: "What are the five steps of context architecture?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "The five steps are: (1) Curation — filtering what enters the pipeline, (2) Synthesis — extracting insights across sources, (3) Consolidation — finding cross-cutting patterns over time, (4) Prioritization — ranking by goal-awareness, and (5) Intelligent Storage — storing with priority-aware indexing.",
+          text: "The five steps are: (1) Curation — selectively picking from Data via Retrieval based on session and user intent; (2) Synthesis — extracting insights across sources; (3) Consolidation — finding cross-cutting patterns over time; (4) Prioritization — ranking by goal-awareness for the decision at hand; and (5) Intelligent Storage — storing consolidated insights at the Context layer itself with priority-aware indexing. All five live at the Context layer, between Retrieval and Inference.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What is the Context layer in an AI system?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "The Context layer is the layer of an AI system that sits between Retrieval and Inference, where retrieval results are turned into meaning the model can reason with. It runs the five-step process — curate, synthesize, consolidate, prioritize, store — and holds its own durable storage so Inference reaches consolidated meaning first and only round-trips to raw Data via Retrieval when the Context store is insufficient. Most AI systems skip this layer entirely.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What is memory-as-files?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Memory-as-files is the convergent storage primitive at the Context layer of an AI system — durable, addressable, human-inspectable artifacts (think AGENTS.md, CLAUDE.md, archival memory) that hold synthesized, prioritized, consolidated meaning rather than raw data. Anthropic, Paper Compute, LangChain, Cloudflare, and Letta all landed on this pattern within a single seven-day window in April 2026. Files are inspectable, diffable, governable, and exportable across vendor boundaries. Vectors are none of those things.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What does it mean for agents to be principals?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Agents as principals reframes agents from tools-that-consume-context to autonomous decision-makers operating on context. At the Inference layer, the agent is no longer a tool — it is an identity-bearing actor with its own role, authority scope, and audit trail. The architectural question shifts from \"did we synthesize good context?\" to \"did we synthesize context this specific agent will use to decide well, given who it is and what it's allowed to do?\"",
         },
       },
       {
@@ -103,7 +136,26 @@ export default function ThesisPage() {
     },
     url: "https://richezamor.com/thesis",
     datePublished: "2026-04-06",
-    description: "The thesis on why AI systems need context architecture — the five-step pipeline most teams skip.",
+    dateModified: "2026-05-07",
+    description:
+      "The thesis on why AI systems need a Context layer between Retrieval and Inference — and the five-step process that lives there. Data, Retrieval, Context, Inference: the four-layer AI system stack.",
+    keywords: [
+      "context architecture",
+      "five-step context generation",
+      "four-layer AI system stack",
+      "data retrieval context inference",
+      "context layer",
+      "memory-as-files",
+      "agents as principals",
+      "inference layer",
+    ].join(", "),
+    about: [
+      { "@type": "Thing", name: "Context Architecture" },
+      { "@type": "Thing", name: "Four-Layer AI System Stack" },
+      { "@type": "Thing", name: "Context Layer" },
+      { "@type": "Thing", name: "Memory-as-Files" },
+      { "@type": "Thing", name: "Agents as Principals" },
+    ],
   };
 
   return (
@@ -114,7 +166,15 @@ export default function ThesisPage() {
         <section className="thesis-hero">
           <div className="thesis-container">
             <h1>Data Is <span className="hi">Not</span> Context.</h1>
-            <p className="thesis-hero-sub">The five-step process most AI systems skip — and why it determines whether your product is mediocre or exceptional.</p>
+            <p className="thesis-hero-sub">An AI system has four layers — Data, Retrieval, Context, Inference. The five-step process lives at the Context layer, the one most systems skip entirely.</p>
+            <div className="thesis-hero-meta">
+              <span className="thesis-hero-meta-label">
+                Last updated · <time dateTime="2026-05-07">May 7, 2026</time>
+              </span>
+              <span className="thesis-hero-meta-note">
+                This thesis is evolving as the market around context rapidly evolves. This is a snapshot of my thinking as of this date.
+              </span>
+            </div>
           </div>
         </section>
 
@@ -128,6 +188,41 @@ export default function ThesisPage() {
               <p><strong>This is not context. This is data retrieval with a similarity score.</strong></p>
               <p>The result is predictable: hallucinations, irrelevant responses, context windows stuffed with noise, and products that feel impressive in a demo but collapse under real-world conditions. Research has consistently shown that LLM performance degrades non-uniformly as you add more context — even on simple tasks.<span className="cite"><span className="cite-num">1</span><span className="cite-tooltip"><span className="cite-source">Lost in the Middle: How Language Models Use Long Contexts</span><span className="cite-detail">Liu et al. (2023) demonstrated that LLM performance degrades significantly when relevant information is placed in the middle of long contexts, even on simple retrieval tasks.</span><a className="cite-link" href="https://arxiv.org/abs/2307.03172" target="_blank" rel="noopener noreferrer">arxiv.org/abs/2307.03172 &rarr;</a></span></span> Information positioned in the middle of the context window sees 20%+ accuracy drops.<span className="cite"><span className="cite-num">2</span><span className="cite-tooltip"><span className="cite-source">Same study — &ldquo;U-shaped&rdquo; attention curve</span><span className="cite-detail">The same research found a U-shaped performance curve: models attend most to the beginning and end of context, with 20%+ accuracy degradation for information in the middle positions.</span><a className="cite-link" href="https://arxiv.org/abs/2307.03172" target="_blank" rel="noopener noreferrer">arxiv.org/abs/2307.03172 &rarr;</a></span></span></p>
               <p>More context is not better context. And most of what&apos;s being retrieved was never actually <em>context</em> to begin with.</p>
+              <p>The retrieval debate also misses a deeper structural problem. An AI system has <strong>four layers — Data, Retrieval, Context, Inference</strong>. Most teams route Retrieval straight into Inference and skip the Context layer entirely. That&apos;s where the five-step process lives, and that&apos;s the gap.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* ===== THE FOUR LAYERS ===== */}
+        <section className="thesis-layers-section" id="layers">
+          <div className="thesis-container">
+            <div className="thesis-layers-header reveal">
+              <div className="thesis-prose-label">The AI System Stack</div>
+              <h2>What are the four layers of an AI system?</h2>
+              <p className="answer-summary">An AI system has four layers — <strong>Data, Retrieval, Context, Inference</strong>. Data stores. Retrieval reaches. Context generates meaning. Inference decides. The five-step process lives entirely at the Context layer — the one most teams skip when they wire Retrieval straight into Inference.</p>
+            </div>
+            <div className="thesis-layers-grid">
+              {aiSystemLayers.map((layer) => (
+                <div
+                  key={layer.number}
+                  className={`thesis-layer-card reveal${layer.isLocus ? " thesis-layer-card-locus" : ""}`}
+                >
+                  <div className="thesis-layer-tag">
+                    <span>Layer {String(layer.number).padStart(2, "0")}</span>
+                    <span className="thesis-layer-role">{layer.role}</span>
+                  </div>
+                  <h3>{layer.title}</h3>
+                  <p>{layer.description}</p>
+                  {layer.highlight ? (
+                    <span className="thesis-layer-pill">{layer.highlight}</span>
+                  ) : null}
+                </div>
+              ))}
+            </div>
+            <div className="thesis-layers-takeaway reveal">
+              <p>
+                <strong>Most AI systems skip the Context layer entirely.</strong> They retrieve and shove — chunks come out of a vector store and go straight into the prompt, with no synthesis, no consolidation, no goal-aware prioritization, no consolidated store to hit first. That&apos;s the entire pipeline. The result: context windows stuffed with unprocessed retrievals, mediocre outputs, and products that feel impressive in a demo but collapse under real-world conditions.
+              </p>
             </div>
           </div>
         </section>
@@ -136,9 +231,9 @@ export default function ThesisPage() {
         <section className="thesis-steps-section" id="steps">
           <div className="thesis-container">
             <div className="thesis-steps-header reveal">
-              <div className="thesis-prose-label">The Five Steps</div>
+              <div className="thesis-prose-label">The Five Steps · At the Context Layer</div>
               <h2>What are the five steps of context architecture?</h2>
-              <p className="answer-summary">Context architecture follows five steps: curation, synthesis, consolidation, prioritization, and intelligent storage. Most AI systems skip four of them, jumping straight to retrieval.</p>
+              <p className="answer-summary">All five live at the Context layer — between Retrieval and Inference. Curation reaches into Data via Retrieval based on session and user needs. Synthesis combines what comes back. Consolidation runs as a background loop that compounds meaning over time. Prioritization ranks by goal-awareness for the decision at hand. Intelligent storage holds consolidated meaning at the Context layer itself, so Inference reaches it first.</p>
             </div>
             <div className="thesis-steps-grid">
               {thesisSteps.map((step, i) => (

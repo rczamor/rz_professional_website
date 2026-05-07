@@ -109,14 +109,16 @@ export default function Home() {
               </h2>
               <p className="thesis-body">
                 The AI industry is obsessed with retrieval — how to get the
-                right chunks into the context window. But retrieval is
-                downstream. If what you&apos;re retrieving was never curated,
-                synthesized, consolidated, prioritized, or stored intelligently,
-                your RAG pipeline is just efficiently delivering noise.
+                right chunks into the context window. But retrieval is one
+                layer of four. If what comes back from a vector store goes
+                straight into the prompt, your RAG pipeline is just efficiently
+                delivering noise.
               </p>
               <p className="thesis-body">
-                Most AI systems skip four of the five steps that turn data into
-                context. That&apos;s the gap I build for.
+                An AI system has four layers — <strong>Data, Retrieval,
+                Context, Inference</strong>. The five-step process lives at the
+                Context layer, the one most teams skip when they wire Retrieval
+                straight into Inference. That&apos;s the gap I build for.
               </p>
               <a href="/thesis" className="thesis-link">
                 Read the full thesis <span>&rarr;</span>
