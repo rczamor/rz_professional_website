@@ -137,7 +137,7 @@
   line-height: 1.5;
   color: var(--text-primary);
   max-width: 720px;
-  margin: 0 auto 72px;
+  margin: 0 auto 24px;
   letter-spacing: -0.005em;
 }
 
@@ -146,7 +146,7 @@
     padding: 56px 0 96px;
   }
   .think-article-deck {
-    margin-bottom: 56px;
+    margin-bottom: 20px;
   }
 }
 
@@ -155,7 +155,7 @@
     padding: 44px 0 80px;
   }
   .think-article-deck {
-    margin-bottom: 40px;
+    margin-bottom: 16px;
   }
 }
 

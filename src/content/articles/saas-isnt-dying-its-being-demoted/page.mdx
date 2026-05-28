@@ -1,0 +1,212 @@
+import {
+  ProgressBar,
+  SectionLabel,
+  StoryBlock,
+  Pullquote,
+  Close,
+  CardGrid,
+  ComparisonGrid,
+  BigNumbers,
+} from "@/components/article/think_components";
+
+export const metadata = {
+  title: "SaaS Isn't Dying. It's Being Demoted.",
+  slug: "saas-isnt-dying-its-being-demoted",
+  excerpt:
+    "Ramp's data says SaaS is fine. Notion, Linear, and Dropbox say otherwise. Why SaaS is being demoted from interface to backend, and where premium pricing now compounds.",
+  pillar: "context-intelligence",
+  date: "May 27, 2026",
+  readTime: "8 min read",
+  badge: "Deep Dive",
+  badgeVariant: "product",
+  featured: false,
+  keywords: [
+    "saaspocalypse",
+    "saas ai agents",
+    "saas as backend",
+    "ai agents saas interface layer",
+    "context engine premium pricing",
+    "notion orchestration layer",
+    "linear context capture layer",
+    "ai agent economy",
+    "context layer",
+  ],
+  faq: [
+    {
+      question: "Is SaaS dying?",
+      answer:
+        "No. SaaS revenue and contract structure are largely intact in 2026 — Ramp's data shows seat-based contracts still account for 65-75% of business software spend. But the locus of value is shifting. SaaS is being demoted from the interface layer to the capability layer beneath AI agents, which changes pricing power even when contracts and seat counts hold.",
+    },
+    {
+      question: "What does it mean for SaaS to be \"demoted\"?",
+      answer:
+        "It means the product still does the work but the user no longer touches it directly. The AI agent becomes the interface, and the SaaS becomes the backend the agent calls. Switching costs collapse, the UX moat disappears, distribution premium relocates to whoever owns the agent layer, and price pressure intensifies because agents compare backends in milliseconds.",
+    },
+    {
+      question: "Which SaaS companies are repositioning around AI agents?",
+      answer:
+        "Notion announced its developer platform on May 13, 2026, branding itself an \"orchestration layer\" with Claude, Codex, Cursor, and Decagon as native participants. Linear's CEO Karri Saarinen published \"Issue tracking is dead\" in March 2026, repositioning Linear as a \"context-capture layer\" above coding agents. Dropbox is pivoting around Dash. Salesforce shipped Agentforce. HubSpot's CTO built Agent.ai to 2M+ users. Basecamp rebranded \"agent first, agent native.\" Twenty ships native MCP in every CRM workspace by default.",
+    },
+    {
+      question: "What is a context engine?",
+      answer:
+        "A context engine is the system that decides what an AI agent should see, when, in what compressed form, and with what attribution. Real context engines do five things: curate, synthesize, consolidate, prioritize, and store intelligently. They sit between raw data and AI agents and become the system every agent has to call before it can be useful.",
+    },
+    {
+      question: "Why will customers pay premium for context engines while SaaS backends commoditize?",
+      answer:
+        "Frontier labs (Anthropic, OpenAI, Google) make their money on inference and compute. They will not own the company-specific, workflow-specific, person-specific context layer because owning it does not pay them. That cession leaves the layer open to vendors who build real context architecture, and those vendors get to charge for it because they become the system every agent has to call before it can be useful.",
+    },
+    {
+      question: "What should SaaS leaders do about the demotion?",
+      answer:
+        "Build toward one of three positions. Fight to remain the interface (Notion, Linear, Dropbox — requires capital and surface area few have). Compete to be the best backend (API-first, strong primitives, structured outputs; brand premium compresses). Or ship context management as the counter-move (build the context engine optimized for your category's workflows; hardest to pull off, highest upside).",
+    },
+  ],
+}
+
+<ProgressBar />
+
+<StoryBlock dropcap>
+There's a quiet contradiction running through the SaaSpocalypse debate that nobody's resolving.
+
+On one side, the data-driven skeptics. Ramp's lead economist Ara Kharazian published numbers this month showing that seat-based contracts are still 65-75% of business software spend. Token-based pricing sits under half a percent. Figma is one of the fastest-growing vendors on the platform despite Anthropic launching a competing design product. His conclusion: SaaSpocalypse isn't in the data, and the pronouncement came way too soon.
+
+On the other side, the people running the SaaS companies he's defending.
+</StoryBlock>
+
+<SectionLabel>01 / The Tells</SectionLabel>
+
+## The CEOs are conceding the interface point
+
+<ComparisonGrid
+  beforeLabel="What Ramp sees"
+  afterLabel="What the CEOs are publishing"
+  before={[
+    "65-75% of business software spend still on seat-based contracts",
+    "Token-based pricing under 0.5% of spend",
+    "Figma growing fast despite Anthropic shipping a competing product",
+    "No mass cancellation event in the contract data",
+  ]}
+  after={[
+    "Notion rebrands itself an \"orchestration layer\" (May 2026)",
+    "Linear: 75% of enterprise workspaces have agents installed",
+    "Linear: 25% of new issues created by agents, not humans",
+    "Dropbox pivots around Dash; CEO Drew Houston steps down",
+    "Basecamp rebrands \"agent first, agent native\"",
+    "Twenty ships native MCP in every CRM workspace by default",
+  ]}
+/>
+
+Two weeks ago, Notion announced its developer platform and the headline term in the launch post was "orchestration layer." From the announcement: "Now Notion is your orchestration layer: a Decagon ticket routes to your coding agent, which proposes a fix and loops in your team to approve." Claude, Codex, Cursor, and Decagon now show up as native participants inside Notion workspaces. The External Agents API lets companies pipe their own agents in too.
+
+Notion is the most telling example because nothing they've built since 2018 was about agents. Their entire business model is UX adhesion: keep you in the workspace, get you creating content, compound on switching cost. The product wins by being the place humans go to work. Two weeks ago, they publicly committed to being the place agents go to work too. That's a tell.
+
+<Pullquote
+  quote="The standard view is no longer 'AI threatens us.' It's 'AI agents are the interface, and we need to be the place they come to do work.'"
+/>
+
+It's also not isolated.
+
+In March, Linear CEO Karri Saarinen published a piece titled "Issue tracking is dead" launching Linear Agent. The new framing: Linear is now a "context-capture layer" while agents handle the engineering work. The data they shipped with the announcement: agents installed in 75% of Linear enterprise workspaces, agent work volume up 5x in three months, 25% of new issues now created by agents rather than humans.
+
+Drew Houston put it cleaner last year while pivoting Dropbox to Dash: "They don't want to own the file, but rather the interface to all of them." He stepped down as CEO this week. His successor inherits the bet.
+
+From the AI-first end of the market, the move shows up by default. Basecamp announced an "agent first, agent native" rebrand. Salesforce shipped Agentforce. HubSpot's CTO Dharmesh Shah built Agent.ai to 2M+ users with the explicit framing that "this is the decade of AI agents." And the next-generation challengers are starting from the agent layer rather than retrofitting. Twenty, the open-source CRM aimed at Salesforce, ships every Cloud workspace with a native Model Context Protocol (MCP) server.
+
+This isn't a fringe position. It's the consensus across the people running the largest SaaS companies and the people building the next ones. That position and Kharazian's data can't both be load-bearing at the same time. If agents become the interface, "is SaaS surviving" stops being the right question. The right question is whether SaaS remains the interface layer or gets demoted to the capability layer behind one.
+
+<SectionLabel>02 / Interface Economics</SectionLabel>
+
+## What "interface" actually means for value capture
+
+When you log into Salesforce today, Salesforce is the interface. The interface is where value compounds. Network effects in UX, switching costs from muscle memory, brand premium for ease of use, distribution leverage from being where users start their workflow. All of it lives at the interface layer.
+
+When an agent calls Salesforce on your behalf, Salesforce becomes the backend. The work still happens there. The data still sits there. The vendor still gets paid. But the user doesn't see it. The agent is the interface.
+
+<CardGrid
+  cards={[
+    {
+      num: "01",
+      title: "Switching costs collapse",
+      body: "User-to-product friction is high. Agent-to-product friction is an API call. The agent can swap one vendor for another mid-conversation if the second returns better data.",
+    },
+    {
+      num: "02",
+      title: "UX moat disappears",
+      body: "The user never sees the UX. \"Easy to use\" stops being a moat because no human is touching the interface.",
+    },
+    {
+      num: "03",
+      title: "Distribution premium relocates",
+      body: "The premium for being \"where work starts\" moves to whoever owns the agent layer.",
+    },
+    {
+      num: "04",
+      title: "Price pressure intensifies",
+      body: "Agents can compare backends in milliseconds. The friction that protected per-seat pricing — humans don't shop their tools monthly — doesn't apply to agents.",
+    },
+  ]}
+/>
+
+This is what Notion, Linear, Dropbox, Salesforce, and HubSpot are implicitly conceding. The locus of value capture is shifting, and they're betting on being the best place agents come to work rather than fighting to remain the interface.
+
+<SectionLabel>03 / The Data Gap</SectionLabel>
+
+## Why Ramp's data doesn't catch this yet
+
+Kharazian's critique is fair on the terms he's measuring. Seat counts, contract types, and vendor share are all real. But every metric he tracks measures the current arrangement, not the trajectory.
+
+The transition from interface to backend doesn't show up as cancelled contracts. It shows up as flat growth in interface-tier pricing while agent-tier products eat the premium that used to attach to being "where work happens." It shows up in pricing power, not vendor logos.
+
+His own data hints at it if you read sideways. High-intensity AI spenders saw token costs rise 13x year-over-year, and those firms are increasingly routing through OpenRouter for cheaper models. Comparing backends, optimizing for cost, treating providers as substitutable. That's the behavior agents will impose on the SaaS layer beneath them once the agent layer matures. Right now it's happening at the model layer. The application layer is next.
+
+<SectionLabel>04 / The Exception</SectionLabel>
+
+## Where premium pricing actually compounds
+
+There's one place where the demotion doesn't apply. Customers will pay premium pricing for context engines.
+
+Data stores are already commoditizing. The differentiation between Postgres, Snowflake, BigQuery, and Mongo on storage and query is thin enough that the deciding factor in 2026 procurement is increasingly whether they connect cleanly into the agent platform the buyer uses. Vendors without clean connectors get cut from the shortlist regardless of how good the underlying tech is. The same compression is coming for SaaS backends. Once you become the backend, you compete on API quality, primitives, and integration depth. Most companies can't differentiate enough on those to defend premium pricing.
+
+<Pullquote
+  quote="Vendors that build real context architecture become the system every agent has to call before it can be useful."
+/>
+
+The exception is context. The systems that decide what an agent should see, when, in what compressed form, with what attribution will command premium pricing and strong loyalty. The reason is structural. Frontier labs (Anthropic, OpenAI, Google) make their money on inference and compute. They'll keep shipping better agent memory and better tools for compression. But owning context at the company-specific, workflow-specific, person-specific level isn't where their margin lives. They'll cede this territory because owning it doesn't pay them.
+
+That cession is the opening. The companies that build real context engines — not retrieval with a fresh coat of paint but [actual architecture that curates, synthesizes, consolidates, prioritizes, and stores intelligently](/thinking/what-is-a-context-layer) — get to charge for it. They become the system every agent has to call before it can be useful. That's a stronger position than the SaaS interface ever was, because the value is structural to how AI products work rather than dependent on humans choosing to log in.
+
+<SectionLabel>05 / The Decision</SectionLabel>
+
+## The actual decision facing SaaS leaders
+
+The real question is which of three positions you're building toward.
+
+<CardGrid
+  cards={[
+    {
+      num: "01",
+      title: "Fight to remain the interface",
+      body: "Own the agent layer that wraps your product. Notion is making that bet. Linear is making that bet. Dropbox spent two years trying. Few companies have the surface area, the model capabilities, or the capital to pull it off.",
+    },
+    {
+      num: "02",
+      title: "Compete to be the best backend",
+      body: "API-first architecture, strong primitives, structured outputs, clear attribution, pricing that doesn't depend on a human session. Accept that the brand premium attached to your name compresses, because nobody's seeing it.",
+    },
+    {
+      num: "03",
+      title: "Ship context management as your counter-move",
+      body: "Build the context engine optimized for the workflows your category lives in. A CRM that ships its own sales-context engine is harder to swap out than one that just exposes endpoints. Hardest to pull off. Highest upside.",
+    },
+  ]}
+/>
+
+Most SaaS companies will end up at the second path by default, because they can't do the first or third. The companies that recognize this early and price accordingly will be fine. The companies that keep pricing as if they're the interface will get repriced.
+
+<Close kicker="The diagnosis" heading="Not extinction. Demotion. And demotion shows up in the books years before it shows up in the headlines.">
+That's the SaaSpocalypse the data doesn't catch yet.
+
+If your category leader is still pricing on the assumption that humans will keep logging in, you're looking at a backend in interface clothing. The repricing is coming. Building the context engine your category needs is the move that survives it.
+</Close>
