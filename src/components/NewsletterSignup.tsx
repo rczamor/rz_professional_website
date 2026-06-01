@@ -1,7 +1,13 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
+import {
+  captureUtmParams,
+  getStoredUtms,
+  getHubspotCookie,
+  trackEvent,
+} from "@/lib/analytics";
 
 const HUBSPOT_PORTAL_ID = "245808914";
 const HUBSPOT_FORM_GUID = "2530a9e8-5fad-4e04-a99f-36f0b152d43e";
@@ -15,33 +21,84 @@ export default function NewsletterSignup({ buttonText = "Subscribe", className =
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [email, setEmail] = useState("");
   const pathname = usePathname();
+  const formRef = useRef<HTMLFormElement>(null);
+  const viewedRef = useRef(false);
+
+  // Persist first-touch UTM attribution for the session as soon as the form mounts.
+  useEffect(() => {
+    captureUtmParams();
+  }, []);
+
+  // Fire `newsletter_form_view` once, when the form scrolls into the viewport.
+  useEffect(() => {
+    const el = formRef.current;
+    if (!el || viewedRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting && !viewedRef.current) {
+            viewedRef.current = true;
+            trackEvent("newsletter_form_view", {
+              placement: className,
+              page_path: pathname,
+              ...getStoredUtms(),
+            });
+            observer.disconnect();
+          }
+        }
+      },
+      { threshold: 0.5 },
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [className, pathname]);
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     if (!email.trim()) return;
     setStatus("submitting");
 
-    const payload = {
-      fields: [
-        { name: "email", value: email.trim() },
-      ],
-      context: {
-        pageUri: `https://richezamor.com${pathname}`,
-        pageName: document.title,
-      },
-    };
+    const utms = getStoredUtms();
+    const hutk = getHubspotCookie();
 
-    try {
-      const res = await fetch(
+    const emailField = { name: "email", value: email.trim() };
+    const utmFields = Object.entries(utms).map(([name, value]) => ({ name, value }));
+
+    const context: Record<string, string> = {
+      pageUri: `https://richezamor.com${pathname}`,
+      pageName: document.title,
+    };
+    // hutk ties the submission to HubSpot's tracked session, which captures UTMs
+    // natively via the site-wide tracking script. This is the reliable attribution path.
+    if (hutk) context.hutk = hutk;
+
+    const submit = (fields: { name: string; value: string }[]) =>
+      fetch(
         `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_GUID}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        }
+          body: JSON.stringify({ fields, context }),
+        },
       );
 
+    try {
+      // Attempt to send UTMs as explicit hidden fields. If the form doesn't define
+      // those fields yet, HubSpot rejects the whole submission — so fall back to
+      // email-only (hutk still carries native UTM attribution) to never fail a signup.
+      let res = await submit([emailField, ...utmFields]);
+      if (!res.ok && utmFields.length > 0) {
+        res = await submit([emailField]);
+      }
+
       if (res.ok) {
+        trackEvent("newsletter_form_submit", {
+          placement: className,
+          page_path: pathname,
+          ...utms,
+        });
         setStatus("success");
         setEmail("");
       } else {
@@ -66,6 +123,7 @@ export default function NewsletterSignup({ buttonText = "Subscribe", className =
 
   return (
     <form
+      ref={formRef}
       className={className}
       onSubmit={handleSubmit}
       toolname="subscribe_newsletter"
