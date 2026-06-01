@@ -7,22 +7,22 @@ import "@/styles/thesis.css";
 import { aiSystemLayers, thesisSteps, builtCards } from "@/content/thesis";
 
 export const metadata = {
-  title: "Data Is Not Context — Riche Zamor",
+  title: "Data Is Not Context — Riché Zamor",
   description:
-    "The Context Architecture Thesis by Riche Zamor: an AI system has four layers — Data, Retrieval, Context, Inference. The five-step process lives at the Context layer, the one most systems skip entirely.",
+    "The Context Architecture Thesis by Riché Zamor: an AI system has four layers — Data, Retrieval, Context, Inference. The five-step process lives at the Context layer, the one most systems skip entirely.",
   openGraph: {
-    title: "Data Is Not Context — Riche Zamor",
+    title: "Data Is Not Context — Riché Zamor",
     description:
-      "The Context Architecture Thesis by Riche Zamor: an AI system has four layers — Data, Retrieval, Context, Inference. The five-step process (curate, synthesize, consolidate, prioritize, store) lives at the Context layer that sits between Retrieval and Inference.",
+      "The Context Architecture Thesis by Riché Zamor: an AI system has four layers — Data, Retrieval, Context, Inference. The five-step process (curate, synthesize, consolidate, prioritize, store) lives at the Context layer that sits between Retrieval and Inference.",
     url: "https://richezamor.com/thesis",
     type: "article",
     images: ["https://richezamor.com/og-image.png"],
-    siteName: "Riche Zamor",
+    siteName: "Riché Zamor",
   },
   twitter: {
     card: "summary_large_image",
     site: "@richezamor",
-    title: "Data Is Not Context — Riche Zamor",
+    title: "Data Is Not Context — Riché Zamor",
     description:
       "The thesis on why AI systems need a Context layer between Retrieval and Inference — and the five steps that live there.",
     images: ["https://richezamor.com/og-image.png"],
@@ -40,7 +40,7 @@ export default function ThesisPage() {
         name: "What is context architecture?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Context architecture is the practice of designing the informational environment that surrounds AI systems — shaping what they know, how they retrieve it, and how that knowledge is structured for human decision-making. The term was coined by Riche Zamor.",
+          text: "Context architecture is the practice of designing the informational environment that surrounds AI systems — shaping what they know, how they retrieve it, and how that knowledge is structured for human decision-making. The term was coined by Riché Zamor.",
         },
       },
       {
@@ -96,7 +96,7 @@ export default function ThesisPage() {
         name: "Who coined context architecture?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Riche Zamor coined the term 'context architecture' based on two decades of building AI products at companies including Suzy, Grandstage, Helm Labs, and IBM.",
+          text: "Riché Zamor coined the term 'context architecture' based on two decades of building AI products at companies including Suzy, Grandstage, Helm Labs, and IBM.",
         },
       },
     ],
@@ -127,12 +127,12 @@ export default function ThesisPage() {
     headline: "Data Is Not Context — The Context Architecture Thesis",
     author: {
       "@type": "Person",
-      name: "Riche Zamor",
+      name: "Riché Zamor",
       url: "https://richezamor.com",
     },
     publisher: {
       "@type": "Person",
-      name: "Riche Zamor",
+      name: "Riché Zamor",
     },
     url: "https://richezamor.com/thesis",
     datePublished: "2026-04-06",
@@ -298,7 +298,7 @@ export default function ThesisPage() {
             <div className="thesis-built-header reveal">
               <div className="thesis-prose-label">What I&apos;ve Built</div>
               <h2>Who coined context architecture?</h2>
-              <p className="answer-summary">Riche Zamor coined the term &ldquo;context architecture&rdquo; based on two decades of building AI products that turn raw data into decision-ready context. He&apos;s not making this argument from the sidelines.</p>
+              <p className="answer-summary">Riché Zamor coined the term &ldquo;context architecture&rdquo; based on two decades of building AI products that turn raw data into decision-ready context. He&apos;s not making this argument from the sidelines.</p>
             </div>
             <div className="thesis-built-grid">
               {builtCards.map((card) => (

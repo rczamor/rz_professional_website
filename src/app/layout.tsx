@@ -27,9 +27,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Riche Zamor — VP of Product. 2x Founder. Context Architect.",
+  title: "Riché Zamor — VP of Product. 2x Founder. Context Architect.",
   description:
-    "Riche Zamor is a context architect and VP of Product who designs how organizations structure knowledge for AI-driven decision-making.",
+    "Riché Zamor is a context architect and VP of Product who designs how organizations structure knowledge for AI-driven decision-making.",
 };
 
 export default function RootLayout({

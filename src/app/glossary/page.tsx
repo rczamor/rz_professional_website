@@ -4,24 +4,24 @@ import type { Metadata } from "next";
 import { glossaryTerms } from "@/content/glossary";
 
 export const metadata: Metadata = {
-  title: "Glossary — Context Architecture Terms | Riche Zamor",
+  title: "Glossary — Context Architecture Terms | Riché Zamor",
   description:
-    "Definitions of key terms in context architecture by Riche Zamor: context mapping, knowledge flow design, curation, synthesis, consolidation, and more.",
+    "Definitions of key terms in context architecture by Riché Zamor: context mapping, knowledge flow design, curation, synthesis, consolidation, and more.",
   openGraph: {
-    title: "Glossary — Context Architecture Terms | Riche Zamor",
+    title: "Glossary — Context Architecture Terms | Riché Zamor",
     description:
-      "Definitions of key terms in context architecture by Riche Zamor.",
+      "Definitions of key terms in context architecture by Riché Zamor.",
     url: "https://richezamor.com/glossary",
     type: "website",
     images: ["https://richezamor.com/og-image.png"],
-    siteName: "Riche Zamor",
+    siteName: "Riché Zamor",
   },
   twitter: {
     card: "summary_large_image",
     site: "@richezamor",
-    title: "Glossary — Context Architecture Terms | Riche Zamor",
+    title: "Glossary — Context Architecture Terms | Riché Zamor",
     description:
-      "Definitions of key terms in context architecture by Riche Zamor.",
+      "Definitions of key terms in context architecture by Riché Zamor.",
     images: ["https://richezamor.com/og-image.png"],
   },
   alternates: { canonical: "https://richezamor.com/glossary" },
@@ -33,7 +33,7 @@ export default function GlossaryPage() {
     "@type": "DefinedTermSet",
     name: "Context Architecture Glossary",
     description:
-      "Key terms and definitions from the field of context architecture, as defined by Riche Zamor.",
+      "Key terms and definitions from the field of context architecture, as defined by Riché Zamor.",
     url: "https://richezamor.com/glossary",
     hasDefinedTerm: glossaryTerms.map((t) => ({
       "@type": "DefinedTerm",

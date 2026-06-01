@@ -5,22 +5,22 @@ import type { Metadata } from "next";
 import { featuredProject, projects } from "@/content/projects";
 
 export const metadata: Metadata = {
-  title: "Projects & Prototypes — Riche Zamor",
+  title: "Projects & Prototypes — Riché Zamor",
   description:
-    "Side projects and prototypes by Riche Zamor — AI experiments, context architecture tools, and things built to test ideas.",
+    "Side projects and prototypes by Riché Zamor — AI experiments, context architecture tools, and things built to test ideas.",
   openGraph: {
-    title: "Projects & Prototypes — Riche Zamor",
+    title: "Projects & Prototypes — Riché Zamor",
     description:
-      "Side projects and prototypes by Riche Zamor — AI experiments, context architecture tools, and things built to test ideas.",
+      "Side projects and prototypes by Riché Zamor — AI experiments, context architecture tools, and things built to test ideas.",
     url: "https://richezamor.com/projects",
     type: "website",
     images: ["https://richezamor.com/og-image.png"],
-    siteName: "Riche Zamor",
+    siteName: "Riché Zamor",
   },
   twitter: {
     card: "summary_large_image",
     site: "@richezamor",
-    title: "Projects & Prototypes — Riche Zamor",
+    title: "Projects & Prototypes — Riché Zamor",
     description:
       "Side projects and prototypes — things I build to learn, test ideas, and scratch itches.",
     images: ["https://richezamor.com/og-image.png"],

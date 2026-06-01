@@ -3,22 +3,22 @@ import Footer from "@/components/Footer";
 import { caseStudies } from "@/content/work";
 
 export const metadata = {
-  title: "Work — Riche Zamor",
+  title: "Work — Riché Zamor",
   description:
-    "Riche Zamor's track record building AI products at Suzy, Grandstage, Helm Labs, and IBM — 300% growth, $3.25M pipeline, and $10M+ revenue impact.",
+    "Riché Zamor's track record building AI products at Suzy, Grandstage, Helm Labs, and IBM — 300% growth, $3.25M pipeline, and $10M+ revenue impact.",
   openGraph: {
-    title: "Work — Riche Zamor",
+    title: "Work — Riché Zamor",
     description:
-      "Riche Zamor's track record building AI products at Suzy, Grandstage, Helm Labs, and IBM — 300% growth, $3.25M pipeline, and $10M+ revenue impact.",
+      "Riché Zamor's track record building AI products at Suzy, Grandstage, Helm Labs, and IBM — 300% growth, $3.25M pipeline, and $10M+ revenue impact.",
     url: "https://richezamor.com/work",
     type: "website",
     images: ["https://richezamor.com/og-image.png"],
-    siteName: "Riche Zamor",
+    siteName: "Riché Zamor",
   },
   twitter: {
     card: "summary_large_image",
     site: "@richezamor",
-    title: "Work — Riche Zamor",
+    title: "Work — Riché Zamor",
     description: "Track record of building AI products at scale.",
     images: ["https://richezamor.com/og-image.png"],
   },

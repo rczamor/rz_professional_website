@@ -17,6 +17,7 @@
     "@types/d3": "^7.4.3",
     "@types/mdx": "^2.0.13",
     "@types/topojson-client": "^3.1.5",
+    "ai": "^6.0.193",
     "d3": "^7.9.0",
     "gsap": "^3.14.2",
     "next": "16.2.1",
@@ -34,5 +35,8 @@
     "eslint-config-next": "16.2.1",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "overrides": {
+    "postcss": "^8.5.10"
   }
 }

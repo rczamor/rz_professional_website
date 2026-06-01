@@ -6,22 +6,22 @@ import { getAllArticles } from "@/lib/articles";
 import ThinkingArticles from "./ThinkingArticles";
 
 export const metadata: Metadata = {
-  title: "Thinking in Public — Riche Zamor",
+  title: "Thinking in Public — Riché Zamor",
   description:
-    "Articles and insights on context architecture, AI product strategy, and leadership by Riche Zamor.",
+    "Articles and insights on context architecture, AI product strategy, and leadership by Riché Zamor.",
   openGraph: {
-    title: "Thinking in Public — Riche Zamor",
+    title: "Thinking in Public — Riché Zamor",
     description:
-      "Articles and insights on context architecture, AI product strategy, and leadership by Riche Zamor.",
+      "Articles and insights on context architecture, AI product strategy, and leadership by Riché Zamor.",
     url: "https://richezamor.com/thinking",
     type: "website",
     images: ["https://richezamor.com/og-image.png"],
-    siteName: "Riche Zamor",
+    siteName: "Riché Zamor",
   },
   twitter: {
     card: "summary_large_image",
     site: "@richezamor",
-    title: "Thinking in Public — Riche Zamor",
+    title: "Thinking in Public — Riché Zamor",
     description:
       "Essays and frameworks on context intelligence, product management, and leadership.",
     images: ["https://richezamor.com/og-image.png"],

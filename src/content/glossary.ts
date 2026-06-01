@@ -4,7 +4,7 @@ export const glossaryTerms: GlossaryTerm[] = [
   {
     term: "Context Architecture",
     definition:
-      "The practice of designing the informational environment that surrounds AI systems — shaping what they know, how they retrieve it, and how that knowledge is structured for human decision-making. Coined by Riche Zamor.",
+      "The practice of designing the informational environment that surrounds AI systems — shaping what they know, how they retrieve it, and how that knowledge is structured for human decision-making. Coined by Riché Zamor.",
   },
   {
     term: "Curation",
@@ -59,7 +59,7 @@ export const glossaryTerms: GlossaryTerm[] = [
   {
     term: "Four-Layer AI System Stack",
     definition:
-      "Riche Zamor’s framing of an AI system as four layers — Data, Retrieval, Context, Inference. Data stores. Retrieval reaches. Context generates meaning. Inference decides. The five-step process lives entirely at the Context layer. Most AI systems route Retrieval straight into Inference and skip the Context layer entirely.",
+      "Riché Zamor’s framing of an AI system as four layers — Data, Retrieval, Context, Inference. Data stores. Retrieval reaches. Context generates meaning. Inference decides. The five-step process lives entirely at the Context layer. Most AI systems route Retrieval straight into Inference and skip the Context layer entirely.",
   },
   {
     term: "Data Layer",

@@ -22,21 +22,21 @@ export async function generateMetadata({
   if (!article) return {};
 
   return {
-    title: `${article.title} — Riche Zamor`,
+    title: `${article.title} — Riché Zamor`,
     description: article.excerpt,
     keywords: article.keywords,
     openGraph: {
-      title: `${article.title} — Riche Zamor`,
+      title: `${article.title} — Riché Zamor`,
       description: article.excerpt,
       url: `https://richezamor.com/thinking/${slug}`,
       type: "article",
       images: ["https://richezamor.com/og-image.png"],
-      siteName: "Riche Zamor",
+      siteName: "Riché Zamor",
     },
     twitter: {
       card: "summary_large_image",
       site: "@richezamor",
-      title: `${article.title} — Riche Zamor`,
+      title: `${article.title} — Riché Zamor`,
       description: article.excerpt,
       images: ["https://richezamor.com/og-image.png"],
     },

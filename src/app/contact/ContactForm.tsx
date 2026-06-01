@@ -71,7 +71,7 @@ export default function ContactForm() {
       <form
         onSubmit={handleSubmit}
         toolname="submit_contact_inquiry"
-        tooldescription="Submit a contact inquiry to Riche Zamor for advisory, board, speaking, or networking"
+        tooldescription="Submit a contact inquiry to Riché Zamor for advisory, board, speaking, or networking"
       >
         <div className="form-two-column">
           <div className="form-group">

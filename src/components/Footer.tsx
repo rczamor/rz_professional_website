@@ -3,7 +3,7 @@ export default function Footer() {
     <footer>
       <div className="container">
         <div className="footer-inner">
-          <div className="footer-brand">Riche Zamor</div>
+          <div className="footer-brand">Riché Zamor</div>
           <div className="footer-links">
             <a href="https://linkedin.com/in/richezamorjr/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             <a href="https://x.com/richezamor" target="_blank" rel="noopener noreferrer">X</a>

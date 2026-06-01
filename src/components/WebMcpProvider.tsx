@@ -30,9 +30,9 @@ export default function WebMcpProvider() {
     // Content retrieval tools
     mc.registerTool({
       name: "get_professional_profile",
-      description: "Get Riche Zamor's structured professional profile including bio, current role, social links, and expertise areas",
+      description: "Get Riché Zamor's structured professional profile including bio, current role, social links, and expertise areas",
       handler: () => ({
-        name: "Riche Zamor",
+        name: "Riché Zamor",
         title: "VP of Product",
         tagline: "2x Founder. Context Architect.",
         expertise: ["Product Management", "AI Products", "Context Architecture", "Startup Leadership"],
@@ -65,7 +65,7 @@ export default function WebMcpProvider() {
 
     mc.registerTool({
       name: "get_case_studies",
-      description: "Get Riche Zamor's professional case studies from Suzy, Grandstage, Helm Labs, IBM, and Phase2",
+      description: "Get Riché Zamor's professional case studies from Suzy, Grandstage, Helm Labs, IBM, and Phase2",
       parameters: {
         type: "object",
         properties: {
@@ -83,7 +83,7 @@ export default function WebMcpProvider() {
 
     mc.registerTool({
       name: "get_articles",
-      description: "Get article metadata from Riche Zamor's Thinking in Public blog. Navigate to /thinking to see all articles.",
+      description: "Get article metadata from Riché Zamor's Thinking in Public blog. Navigate to /thinking to see all articles.",
       parameters: {
         type: "object",
         properties: {
@@ -115,7 +115,7 @@ export default function WebMcpProvider() {
 
     mc.registerTool({
       name: "get_projects",
-      description: "Get Riche Zamor's side projects and prototypes",
+      description: "Get Riché Zamor's side projects and prototypes",
       parameters: {
         type: "object",
         properties: {
@@ -133,20 +133,20 @@ export default function WebMcpProvider() {
 
     mc.registerTool({
       name: "get_speaking_topics",
-      description: "Get Riche Zamor's speaking topics and talk descriptions",
+      description: "Get Riché Zamor's speaking topics and talk descriptions",
       handler: () => speakingEntries,
     });
 
     mc.registerTool({
       name: "get_career_timeline",
-      description: "Get Riche Zamor's career timeline from 2006 to present",
+      description: "Get Riché Zamor's career timeline from 2006 to present",
       handler: () => timelineEntries,
     });
 
     // Action tools
     mc.registerTool({
       name: "submit_contact_inquiry",
-      description: "Submit a contact inquiry to Riche Zamor for advisory, board, speaking, or networking",
+      description: "Submit a contact inquiry to Riché Zamor for advisory, board, speaking, or networking",
       parameters: {
         type: "object",
         properties: {
@@ -182,7 +182,7 @@ export default function WebMcpProvider() {
 
     mc.registerTool({
       name: "subscribe_newsletter",
-      description: "Subscribe to The Context Layer newsletter by Riche Zamor",
+      description: "Subscribe to The Context Layer newsletter by Riché Zamor",
       parameters: {
         type: "object",
         properties: {
@@ -198,7 +198,7 @@ export default function WebMcpProvider() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               fields: [{ name: "email", value: params.email }],
-              context: { pageUri: "https://richezamor.com", pageName: "Riche Zamor" },
+              context: { pageUri: "https://richezamor.com", pageName: "Riché Zamor" },
             }),
           }
         );

@@ -17,22 +17,22 @@ import JourneyMapWrapper from "@/components/about/JourneyMapWrapper";
 import AboutPhoto from "@/components/about/AboutPhoto";
 
 export const metadata: Metadata = {
-  title: "About — Riche Zamor",
+  title: "About — Riché Zamor",
   description:
-    "About Riche Zamor — context architect, VP of Product, 2x founder, and author of the Context Architecture Thesis.",
+    "About Riché Zamor — context architect, VP of Product, 2x founder, and author of the Context Architecture Thesis.",
   openGraph: {
-    title: "About — Riche Zamor",
+    title: "About — Riché Zamor",
     description:
-      "About Riche Zamor — context architect, VP of Product, 2x founder, and author of the Context Architecture Thesis.",
+      "About Riché Zamor — context architect, VP of Product, 2x founder, and author of the Context Architecture Thesis.",
     url: "https://richezamor.com/about",
     type: "website",
     images: ["https://richezamor.com/og-image.png"],
-    siteName: "Riche Zamor",
+    siteName: "Riché Zamor",
   },
   twitter: {
     card: "summary_large_image",
     site: "@richezamor",
-    title: "About — Riche Zamor",
+    title: "About — Riché Zamor",
     description:
       "AI product leader with 20 years of experience building systems that turn raw data into decision-ready context.",
     images: ["https://richezamor.com/og-image.png"],

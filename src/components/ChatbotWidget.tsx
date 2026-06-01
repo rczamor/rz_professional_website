@@ -2,28 +2,18 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 
-function escapeHtml(text: string): string {
-  const map: Record<string, string> = {
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#039;",
-  };
-  return text.replace(/[&<>"']/g, (c) => map[c]);
-}
-
 const SUGGESTIONS = [
   "What is context architecture?",
   "Tell me about the thesis",
   "What's Riché's background?",
 ];
 
-const BOT_RESPONSE = `The Context Layer Engine is currently in development. In the meantime, you can explore Riché's <a href="/thesis" style="color: var(--chatbot-accent); text-decoration: underline;">thesis</a>, <a href="/work" style="color: var(--chatbot-accent); text-decoration: underline;">work history</a>, or <a href="/contact" style="color: var(--chatbot-accent); text-decoration: underline;">get in touch</a> directly.`;
+const GENERIC_ERROR =
+  "Sorry — I couldn't reach the assistant just now. Please try again in a moment, or get in touch via the contact page.";
 
 type Message = {
   role: "user" | "bot";
-  html: string;
+  text: string;
 };
 
 export default function ChatbotWidget() {
@@ -31,10 +21,12 @@ export default function ChatbotWidget() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [showWelcome, setShowWelcome] = useState(true);
   const [isTyping, setIsTyping] = useState(false);
+  const [isStreaming, setIsStreaming] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const widgetRef = useRef<HTMLDivElement>(null);
   const messagesRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const abortRef = useRef<AbortController | null>(null);
 
   const scrollToBottom = useCallback(() => {
     if (messagesRef.current) {
@@ -43,21 +35,85 @@ export default function ChatbotWidget() {
   }, []);
 
   const sendMessage = useCallback(
-    (text: string) => {
+    async (text: string) => {
       const trimmed = text.trim();
-      if (!trimmed) return;
+      if (!trimmed || isStreaming) return;
 
       setShowWelcome(false);
-      setMessages((prev) => [...prev, { role: "user", html: escapeHtml(trimmed) }]);
       setInputValue("");
       setIsTyping(true);
+      setIsStreaming(true);
 
-      setTimeout(() => {
+      // Build the conversation payload from prior turns + this user message.
+      const history = messages.map((m) => ({
+        role: m.role === "bot" ? ("assistant" as const) : ("user" as const),
+        content: m.text,
+      }));
+      const payload = [...history, { role: "user" as const, content: trimmed }];
+
+      setMessages((prev) => [...prev, { role: "user", text: trimmed }]);
+
+      const controller = new AbortController();
+      abortRef.current = controller;
+
+      try {
+        const res = await fetch("/api/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ messages: payload }),
+          signal: controller.signal,
+        });
+
+        if (!res.ok || !res.body) {
+          let msg = GENERIC_ERROR;
+          try {
+            const data = await res.json();
+            if (data?.error) msg = data.error;
+          } catch {
+            /* keep generic */
+          }
+          setIsTyping(false);
+          setMessages((prev) => [...prev, { role: "bot", text: msg }]);
+          return;
+        }
+
+        const reader = res.body.getReader();
+        const decoder = new TextDecoder();
+        let acc = "";
+        let started = false;
+
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          acc += decoder.decode(value, { stream: true });
+          if (!started) {
+            started = true;
+            setIsTyping(false);
+            setMessages((prev) => [...prev, { role: "bot", text: acc }]);
+          } else {
+            setMessages((prev) => {
+              const next = [...prev];
+              next[next.length - 1] = { role: "bot", text: acc };
+              return next;
+            });
+          }
+        }
+
+        if (!started) {
+          // Stream closed with no content.
+          setIsTyping(false);
+          setMessages((prev) => [...prev, { role: "bot", text: GENERIC_ERROR }]);
+        }
+      } catch (err) {
+        if ((err as Error)?.name === "AbortError") return;
         setIsTyping(false);
-        setMessages((prev) => [...prev, { role: "bot", html: BOT_RESPONSE }]);
-      }, 1500);
+        setMessages((prev) => [...prev, { role: "bot", text: GENERIC_ERROR }]);
+      } finally {
+        setIsStreaming(false);
+        abortRef.current = null;
+      }
     },
-    []
+    [messages, isStreaming]
   );
 
   // Auto-scroll
@@ -69,6 +125,11 @@ export default function ChatbotWidget() {
   useEffect(() => {
     if (isOpen) inputRef.current?.focus();
   }, [isOpen]);
+
+  // Abort any in-flight request on unmount
+  useEffect(() => {
+    return () => abortRef.current?.abort();
+  }, []);
 
   // Close on Escape
   useEffect(() => {
@@ -145,7 +206,7 @@ export default function ChatbotWidget() {
         {/* Header */}
         <div className="chatbot-header">
           <div className="chatbot-title">
-            Context Layer Engine
+            Ask Riché
             <span className="chatbot-beta-badge">beta</span>
           </div>
           <button
@@ -167,9 +228,9 @@ export default function ChatbotWidget() {
               </div>
               <div style={{ flex: 1 }}>
                 <div className="chatbot-bubble">
-                  Hi! I&apos;m Riché&apos;s Context Layer Engine — an AI grounded in his
-                  knowledge base, writing, and frameworks. Ask me about context
-                  architecture, AI product strategy, or Riché&apos;s work.
+                  Hi! I&apos;m Riché&apos;s site assistant — a context management system
+                  grounded in his knowledge base, writing, and frameworks. Ask me about
+                  context architecture, AI product strategy, or Riché&apos;s work.
                 </div>
                 <div className="chatbot-suggestions">
                   {SUGGESTIONS.map((s) => (
@@ -196,13 +257,12 @@ export default function ChatbotWidget() {
               )}
               {msg.role === "bot" ? (
                 <div style={{ flex: 1 }}>
-                  <div
-                    className="chatbot-bubble"
-                    dangerouslySetInnerHTML={{ __html: msg.html }}
-                  />
+                  <div className="chatbot-bubble" style={{ whiteSpace: "pre-wrap" }}>
+                    {msg.text}
+                  </div>
                 </div>
               ) : (
-                <div className="chatbot-bubble">{msg.html}</div>
+                <div className="chatbot-bubble">{msg.text}</div>
               )}
             </div>
           ))}
@@ -242,6 +302,7 @@ export default function ChatbotWidget() {
             className="chatbot-send-btn"
             type="button"
             aria-label="Send message"
+            disabled={isStreaming}
             onClick={() => sendMessage(inputValue)}
           >
             <span className="material-symbols-outlined">send</span>

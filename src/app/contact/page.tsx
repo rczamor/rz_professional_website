@@ -5,22 +5,22 @@ import ContactForm from "./ContactForm";
 import { engagementCards } from "@/content/contact";
 
 export const metadata: Metadata = {
-  title: "Get in Touch — Riche Zamor",
+  title: "Get in Touch — Riché Zamor",
   description:
-    "Get in touch with Riche Zamor to discuss context architecture, AI product strategy, advisory, or speaking opportunities.",
+    "Get in touch with Riché Zamor to discuss context architecture, AI product strategy, advisory, or speaking opportunities.",
   openGraph: {
-    title: "Get in Touch — Riche Zamor",
+    title: "Get in Touch — Riché Zamor",
     description:
-      "Get in touch with Riche Zamor to discuss context architecture, AI product strategy, advisory, or speaking opportunities.",
+      "Get in touch with Riché Zamor to discuss context architecture, AI product strategy, advisory, or speaking opportunities.",
     url: "https://richezamor.com/contact",
     type: "website",
     images: ["https://richezamor.com/og-image.png"],
-    siteName: "Riche Zamor",
+    siteName: "Riché Zamor",
   },
   twitter: {
     card: "summary_large_image",
     site: "@richezamor",
-    title: "Get in Touch — Riche Zamor",
+    title: "Get in Touch — Riché Zamor",
     description:
       "Reach out for advisory, board positions, speaking engagements, or to connect.",
     images: ["https://richezamor.com/og-image.png"],
