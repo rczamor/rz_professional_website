@@ -28,3 +28,5 @@ export { default as EKGTrace } from "./EKGTrace";
 export { default as AgentArch } from "./AgentArch";
 export { default as SystemOverview } from "./SystemOverview";
 export { default as BrainLoopComparison } from "./BrainLoopComparison";
+export { default as FloorTable } from "./FloorTable";
+export { default as MarketMap } from "./MarketMap";

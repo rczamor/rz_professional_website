@@ -1,0 +1,190 @@
+import {
+  ProgressBar,
+  SectionLabel,
+  StoryBlock,
+  MarketMap,
+  FloorTable,
+} from "@/components/article/think_components";
+import { FLOORS } from "./floors";
+
+export const metadata = {
+  title: "The AI Software Market Map: Pick Your Floor",
+  slug: "ai-software-market-map",
+  excerpt:
+    "Four companies you already pay for just made the same move. The AI software stack is sorting into five floors. Here is the map, and how to pick yours.",
+  pillar: "context-intelligence",
+  date: "June 3, 2026",
+  readTime: "14 min read",
+  badge: "Deep Dive",
+  badgeVariant: "product",
+  featured: true,
+  keywords: [
+    "ai software market map",
+    "agent data platform",
+    "context engine",
+    "agentic ai stack",
+    "pick your floor",
+    "context engineering",
+    "context layer",
+    "ai software stack",
+    "ai agent stack",
+  ],
+  faq: [
+    {
+      question: "What is an agent data platform?",
+      answer:
+        "An agent data platform is a SaaS incumbent that exposes its entire platform to agents via API and MCP, on top of a data asset built through years of customer lock-in. Notion, Salesforce, HubSpot, and Monday lead the floor — each made an explicit, shipped move to make every operation callable by an agent. Exposing that data to agents does not lower switching costs. It raises them.",
+    },
+    {
+      question: "What is a context engine, and how is it different from a vector database?",
+      answer:
+        "A context engine is the layer that sits between raw data and the model. It does five things: it curates what is relevant, synthesizes it, consolidates it, prioritizes it, and stores the result so the model reaches for it first. Data stores hold information and retrieval fetches it; the context layer decides what actually reaches the model, in what form, at what moment.",
+    },
+    {
+      question: "Which AI software layer has the strongest moat?",
+      answer:
+        "It varies by floor. On inference and infrastructure the moat is the compute pipeline and distribution, not the model. On agent data platforms it is the data asset that agent access compounds. On agent management and orchestration it is the audit log. On data providers built for agents it is the decade-deep data graph held by incumbents. The context engine floor has no clear leader yet — it is still in its naming phase.",
+    },
+    {
+      question: "What could stop the AI software shift?",
+      answer:
+        "Five forces could slow or redirect it: compute and energy (capital is flowing, but the power grid is the constraint), regulation (a mixed patchwork of state and EU AI Act rules), data and privacy (twenty state laws and sharpening enforcement), geopolitics (chip export controls and a sovereign-AI surge), and the macro picture (the software index is down about 28 percent from its September peak against a capex bill that has to start paying for itself).",
+    },
+  ],
+}
+
+<ProgressBar />
+
+<StoryBlock dropcap>
+Between April 15 and May 21, four companies you already pay for quietly changed what they are.
+
+Salesforce shipped Headless 360 and Marc Benioff said the API is now the UI. Notion launched a developer platform and pitched itself as the place agents and humans work from one interface. HubSpot's product chief published a commitment to full API parity, writing that no capability should live only behind a UI. Monday relaunched as an AI work platform and gave agents their own signup flow, the same way a new hire gets an account.
+
+Four moves. Five weeks. One pattern. Each company took the business data it already owns and made it callable by an agent, with no human in the interface.
+
+That same pattern is playing out on every layer of the AI software stack at once. And it is sorting the market into floors. If you build or buy software right now, the most useful question you can ask is which floor your product lives on, because the companies that know the answer are pulling away from the ones that do not.
+
+I spend my time on the layer that decides what context reaches a model, so I have watched this whole reorganization from that vantage. Here is the map it produces. Five floors. Four of them are settled enough to name with confidence. The fifth is still forming. On each one I will name who is leading, who is fighting for it, and what actually holds the position.
+</StoryBlock>
+
+<MarketMap />
+
+_All figures below are point-in-time as of early June 2026, and estimates are marked with an asterisk. The tier calls, leader, challenger, and follower, are reads on market position, scale, and momentum. They are not judgments of any company's architecture._
+
+<SectionLabel>Floor 1 / Inference & Infrastructure</SectionLabel>
+
+## Floor 1: inference and infrastructure
+
+The foundation models and the compute that serves them.
+
+Three companies lead this floor on every axis that matters: frontier capability, revenue in the tens of billions, and the deepest contracted compute. Anthropic crossed a 30 billion dollar revenue run-rate this spring and was reportedly past 45 billion by late May, growing roughly 80x year over year. OpenAI filed confidentially for an IPO in May at an 852 billion dollar valuation. Google runs the only full stack in the business, from its own TPU silicon up through Gemini and Vertex to the consumer surfaces. Underneath all three sits NVIDIA, the substrate that gates what everyone else can build and when. Its 20 billion dollar absorption of Groq's inference IP late last year is the clearest sign of that gravity.
+
+Below the leaders, the floor splits. The hyperscaler platforms, AWS Bedrock, Google Vertex, and Azure AI Foundry, lead as distribution rather than as model makers. Bedrock alone serves Claude to more than a hundred thousand customers. A row of challengers each leads on a single axis without the full set: xAI on raw compute, Mistral on European sovereignty, Cohere on private enterprise deployment, DeepSeek on cost, Cerebras and CoreWeave on the economics of the hardware itself. CoreWeave is really a leader of the compute sub-floor, on a contracted backlog just under 100 billion dollars. Then the followers, the names that ran hard and reset: Groq after the NVIDIA deal absorbed its team, SambaNova after a recapitalization.
+
+Two things are true on this floor at the same time. The model layer is commoditizing, and the compute layer is consolidating. The capability gap between the top models shrinks every quarter. The contracts for power and chips do not. To keep serving demand, Anthropic signed a compute deal worth around 45 billion dollars, paying more than a billion a month through 2029. So the moat here is not the model anymore. It is the compute pipeline and the distribution. Foundation models are becoming what EC2 was in 2008. Essential, expensive, and not where the margin ends up living.
+
+The people setting the terms are Dario Amodei and Sam Altman, who wrote the compute-financing playbook, Demis Hassabis, who runs the only silicon-to-surface lab, and Jensen Huang, whose GPU roadmap is everyone else's release schedule. The tell that the labs already know the model is not the moat: Anthropic and OpenAI both spent the spring shipping tools to manage agents, not just models. They are climbing the stack. Which brings us to the floors they are climbing toward.
+
+<FloorTable floor={FLOORS[0]} />
+
+<SectionLabel>Floor 2 / Agent Data Platforms</SectionLabel>
+
+## Floor 2: agent data platforms
+
+This is the floor those four April moves were about. The bucket used to be called data stores, and 18 months ago it meant vector databases. Pinecone, Weaviate, Chroma. That layer still exists, but it got demoted to a primitive. Pinecone explored a sale north of 2 billion dollars last year. The memory startups, Mem0, Letta, Zep, are components now, not platforms. The action moved to the incumbents.
+
+Notion, Salesforce, HubSpot, and Monday lead this floor, for one reason: each made an explicit, shipped, named move to expose its entire platform to agents inside a single 90-day window, on top of a data asset that took years of customer lock-in to build. Salesforce is the system of record for revenue operations. HubSpot holds a cross-customer intelligence layer across nearly 300,000 customers. Notion owns the workspace. Monday owns the project layer. The play is identical: expose every operation as an API or an MCP tool, and invite every agent runtime in.
+
+Behind them, a strong row of challengers is repositioning broader platforms rather than leading with the agent-data pitch: Atlassian for how software gets built, Microsoft for Dataverse plus Graph plus Fabric inside any Microsoft estate, Snowflake and Databricks for governed access to the enterprise data lake, ServiceNow for the workflow record. The line between a leader and a challenger here is not the data. It is whether the company made exposing that data to agents the headline or a footnote. The followers, Intercom, Airtable, Box, Zendesk, have credible agent surfaces and narrower data.
+
+Here is the part most people miss. Exposing your data to agents does not lower switching costs. It raises them. Once a customer's agents are wired into Salesforce's schema, leaving Salesforce means rewiring every agent. The data was always the moat. Agent access is how that moat compounds. Watch Ivan Zhao at Notion, Marc Benioff at Salesforce, Duncan Lennox at HubSpot, and Roy Mann at Monday all push that same line in public, and watch Sridhar Ramaswamy at Snowflake treat agent-data governance as strategic enough to buy a company for it.
+
+<FloorTable floor={FLOORS[1]} />
+
+<SectionLabel>Floor 3 / Context Engines</SectionLabel>
+
+## Floor 3: context engines
+
+Now the floor nobody owns yet. And the one I find most interesting, because the naming fight is happening in real time.
+
+Between May 4 and May 23, eight vendors named a context or memory layer. Pinecone, then Anthropic and ServiceNow on the same day, then Celonis, Redis, Google, Salesforce, and Tencent. Eighteen days. Every one defined it differently. ServiceNow grounds context in workflow history. Google scopes memory to identity. Anthropic runs consolidation on a schedule. Redis emphasizes real-time retrieval. Pinecone compiles knowledge before inference. They are not describing the same thing, but they are all reaching for the same word.
+
+A context engine is the layer that sits between raw data and the model. It does five things: it curates what is relevant, synthesizes it, consolidates it, prioritizes it, and stores the result so the model reaches for it first. Data stores hold information. Retrieval fetches it. The context layer decides what actually reaches the model, in what form, at what moment.
+
+There is no clear leader, and the reason is structural. The category name itself was coined and argued over in the same quarter. Philipp Schmid at Google wrote the definition most people now cite. Harrison Chase at LangChain popularized it. Andrej Karpathy framed it from the model side. Even Tobias Lütke endorsed it over "prompt engineering." The players with the most data, Glean at 300 million dollars in revenue and ServiceNow, bundle context inside a larger product. The purest standalone bets, Mem0 on developer reach, Zep on benchmarks, and Letta on the memory-first harness Charles Packer and Sarah Wooders built out of the MemGPT work, have strong technical stories and venture-scale revenue. By scale Glean looks like the leader. By data depth ServiceNow does. Among the pure-plays the lead changes depending on whether you weight reach, benchmarks, or the boldness of the claim. Nobody sits at the top on scale, completeness, and consumability at once.
+
+I have spent the last year building and running one of these for my own work, so I will say it plainly: almost nothing does all five steps well yet. Most do one or two and label the rest. That is not a knock on any vendor. It is what a category looks like before it has settled on what the job even is. Which is why a buyer needs a way through. Do not trust the label. Walk a real workflow through all five steps and ask, for each tool, which steps it owns today, which it borrows, and which you will still have to build yourself.
+
+That question is a discipline. It deserves a name, the same way Cassie Kozyrkov named Decision Intelligence. She did not invent a new technology. She named the work that sat above the tools, so people could get good at it on purpose. Context architecture is that name for this floor. Context engineering, the term Schmid and Karpathy use, is the implementation craft. The architecture is the decision layer above it: which pattern serves which user, which workflow, which outcome. The engineers implement. The architect decides.
+
+<FloorTable floor={FLOORS[2]} />
+
+<SectionLabel>Floor 4 / Agent Management & Orchestration</SectionLabel>
+
+## Floor 4: agent management and orchestration
+
+The control plane. Where agents get built, deployed, watched, and governed in production. This is the most contested floor on the map, because the labs are claiming it directly.
+
+Four companies lead, each combining scale, a shipped control-plane surface, and a real governance posture. Cursor rebuilt its entire product this spring around running many agents in parallel, crossed 2 billion dollars in revenue, and raised at a 50 billion dollar valuation. OpenAI shipped Codex to more than three million weekly users, then released Symphony, which turns a project board like Linear into a control plane for agents. Anthropic shipped the most complete loop of the three: build, evaluate with Outcomes, self-improve with Dreaming, plus fleet monitoring. Microsoft is the only one streaming agent audit logs straight into enterprise security tooling at scale.
+
+The challengers run deep. Cognition, whose Devin writes most of Cognition's own code. Replit. Sierra, Bret Taylor's company, marked at nearly 16 billion dollars. LangChain's LangGraph as the de facto open-source runtime. n8n, which SAP just invested in at 5.2 billion. The followers own one slice, usually evaluation and observability: Braintrust, Arize, Galileo. That eval sub-layer is being valued as a standalone moat on its own, which tells you how much governance is about to matter.
+
+Two things worth holding onto. First, Floor 4 is colliding with Floor 2. When Notion calls itself an orchestration layer and Salesforce calls Agentforce its "system of agency," those are Floor 2 companies reaching up into Floor 4. Bret Taylor founding Sierra while chairing OpenAI's board is the same blurring at the level of one person. The contested prize is which layer becomes the system of record for agent activity, because that is also the governance moat.
+
+Second, the real moat on this floor is the audit log. Enterprises are not going to let agents run unsupervised, and there is a hard regulatory clock: the EU AI Act's high-risk obligations, including tamper-evident logging, carry penalties up to 35 million euros or 7 percent of global turnover. Microsoft and GitHub have the most complete posture today, streaming agent logs into security tooling with months of retention. Whoever owns the record of what every agent did, and can hand it to a compliance team, owns the switching cost. The operators to watch are Michael Truell at Cursor, Scott Wu at Cognition, and Bret Taylor at Sierra. Governance is not a feature on this floor. It is the moat.
+
+<FloorTable floor={FLOORS[3]} />
+
+<SectionLabel>Floor 5 / Data Providers for Agents</SectionLabel>
+
+## Floor 5: data providers built for agents
+
+The fifth floor is real, but it is still forming, so I am holding it a little more loosely than the others.
+
+The old model is Apollo and ZoomInfo. A salesperson logs in, builds a list, exports a CSV, drops it into a sequencer. A human consumes the data through a UI. The emerging model is different: vertical data that an agent queries and acts on directly, with no UI in the middle. Sales intelligence, hiring data, financial filings, public records, each delivered agent-natively.
+
+The temptation is to call this a startup story. It mostly is not. The leaders here are the incumbents that repositioned successfully. ZoomInfo is the clearest case: it exposed its 300-million-contact graph as an agent-callable resource in Claude's directory, even as its core revenue went flat and it cut headcount. Apollo is the fast follower with the cleanest full agent loop, from search to enrich to sequence. AlphaSense leads the finance vertical on a corpus of premium documents you cannot rebuild with a wrapper. The one new entrant that reached leader scale is Clay, at roughly 100 million dollars in revenue and a 3.1 billion dollar valuation.
+
+But Clay is the asterisk on the whole floor. Its own product runs on more than a hundred other providers' data underneath it, ZoomInfo and Apollo among them. Its moat is the workflow and the enrichment logic, not the data. So the challengers split in two: the ones with data and a partial agent story (6sense, Lusha, Demandbase) and the ones with slick autonomous execution but no proprietary data of their own (11x, Artisan, and in finance Hebbia, which pairs reasoning agents with the customer's own corpus rather than a database it owns). The followers are the incumbents not repositioning at all: Cognism, Clearbit now folded into HubSpot, and LinkedIn Sales Navigator, which holds the largest contact graph of anyone and keeps it closed to agents.
+
+The data moat is decisive here, and it sits with the incumbents. ZoomInfo's graph, Apollo's 230 million contacts, AlphaSense's premium-document library, each took a decade and hundreds of millions to build. The likely equilibrium is one of two. Either the incumbents make their data agent-consumable, which ZoomInfo and Apollo are already doing, and the new entrants become dependent layers on top of them. Or the new entrants win enough workflow lock-in that customers pay them to orchestrate incumbent data, which compresses incumbent pricing. Either way the floor stays a category. The open question is whether the winners are data-native or workflow-native. Kareem Amin at Clay, Henry Schuck at ZoomInfo, and Jack Kokko at AlphaSense are the people working out the answer in public.
+
+<FloorTable floor={FLOORS[4]} />
+
+<SectionLabel>The Squeeze</SectionLabel>
+
+## The squeeze
+
+Put the five floors together and the strategic picture gets sharp.
+
+The companies pulling ahead picked a floor and went deep. The companies in trouble tried to own several at once and got out-executed on each. And the companies with no clear floor are quietly being repriced as commodity infrastructure underneath whoever wins.
+
+Salesforce, interestingly, drew almost this exact map themselves. They describe a four-layer agentic enterprise: a system of context, a system of work, a system of agency, a system of engagement. It is the clearest articulation any incumbent has published, and it overlaps with this one almost cleanly. What their map does not name is the context engine as its own layer. In their framing, context is just data plus business logic. The five-step job that sits between data and inference is there, but it is unnamed and spread across the stack. That gap is the whole point. The floor that has not been claimed, and has not even settled on a name, is the one where there is the most to build.
+
+<SectionLabel>What Could Stall This</SectionLabel>
+
+## What could stall this
+
+A map like this makes the shift look inevitable. It is not. The transition is real, but it can be slowed or redirected by forces that have nothing to do with which vendor has the better product. Five are worth watching.
+
+Compute and energy is the first, and it cuts both ways. Capital and chips are flowing. Combined 2026 capex across the four hyperscalers runs to roughly 725 billion dollars, up about 77 percent on last year, and deals like Anthropic's roughly 45 billion dollar compute commitment show the money is there. The brake is physical. Data-center interconnection queues now run years, more than 300 state-level data-center bills were filed in early 2026, and Denmark's grid operator paused new connections in May. The nuclear and small-reactor deals being signed commit gigawatts but deliver no electricity before 2027. Compute is the accelerant. The power grid is the constraint.
+
+Regulation is the second, and it is genuinely mixed. Three state frontier-AI laws are now live or scheduled: California's SB 53, Texas TRAIGA, and New York's RAISE Act. The federal posture runs the other way, an executive order pushing to preempt state AI laws, though it cannot displace them without Congress. In Europe, the high-risk obligations of the AI Act slipped from August 2026 to December 2027, a relief valve for vendors and a moving target for anyone building compliance in now. No jurisdiction has issued binding rules specific to agents yet. The patchwork itself is a cost, and that cost favors large incumbents over small entrants.
+
+Data and privacy is the third. Twenty states now have comprehensive privacy laws in effect, and enforcement is sharpening. California's 12.75 million dollar settlement with GM in May was the first data-minimization action of its size. The rules for agent-to-agent data access are undefined, which slows exactly the machine-to-machine data flow this whole shift runs on. And the training-data fight is moving from inputs to outputs, which is where the next wave of litigation lands.
+
+Geopolitics is the fourth. Chip export policy has whipsawed, with mid-tier chips loosening and frontier-class silicon staying tightly controlled, hardening a split supply chain. At the same time, sovereign-AI spending is surging past 100 billion dollars in 2026, with national buildouts in the UAE, Saudi Arabia, France, and India. That accelerates the global buildout and fragments the stack along national lines at once.
+
+The fifth force is already visible in public markets. The main software index is down about 28 percent from its September peak, and individual names are worse, some down closer to half. Yet enterprise IT spending is still forecast to grow about 13 percent this year, with the growth shifting toward AI-native software. The bear case is the gap between roughly 725 billion dollars of capex and the revenue to justify it, a shortfall some put near 600 billion dollars a year. The bull case is that AI investment is still under half a percent of US GDP, against more than twice that at the dot-com peak. Both can be true. The re-rating you are watching is partly the market sorting winners by floor in real time.
+
+<SectionLabel>What Could Blindside You</SectionLabel>
+
+## What could blindside you
+
+If you operate on one of these floors, the risks that matter are not the ones on this quarter's scorecard. They are the asymmetric ones.
+
+The first is getting bundled from above before you reach escape velocity. A Floor 2 platform absorbs your Floor 5 data into its own ingestion, or a Floor 4 runtime folds your Floor 3 context in as a feature. The floor stays a category. You become a dependent layer. The second is commoditization from below, faster than you modeled, when an open-weight model or a cost collapse erodes a floor that looked safe. The third is specific to Floor 3: if one vendor's word for the context layer wins the buyer conversation, everyone who named a different thing is stranded mid-sentence. That is a linguistic risk, not a product one, and it is real. The fourth is a governance line flipping from nice-to-have to mandatory overnight, the day an audit-log requirement or a privacy action rewards the compliant and punishes the fast. The fifth is compute or capital access tightening, which strands the buildout-dependent and the not-yet-profitable. The sixth, the one a single-floor specialist can never fully answer, is a floor-spanning incumbent that can afford to lose money on your floor because its data and distribution pay for the war.
+
+The through-line under all six is the same. The durable question is not whether your product is good. It is whether you own something on your floor that the floor above cannot absorb and the floor below cannot turn into a commodity.
+
+So here is what to bring to your next planning meeting. Not a feature list. That one question, asked honestly about your own floor. If you can answer it, you have picked your floor. If you cannot, the market is about to pick it for you.

@@ -2198,3 +2198,298 @@
     border-bottom: 1px dashed var(--border-subtle);
   }
 }
+
+/* ============================================================
+   Tier chips — shared by MarketMap + FloorTable
+   leader = accent · challenger = neutral · follower/primitive = dim
+   ============================================================ */
+.think-tier-chip {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding: 4px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+}
+.think-tier-chip[data-tier="leader"] {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+.think-tier-chip[data-tier="challenger"] {
+  color: var(--text-secondary);
+  border-color: var(--border-hover);
+  background: var(--bg-secondary);
+}
+.think-tier-chip[data-tier="follower"] {
+  color: var(--text-tertiary);
+  border-color: var(--border-subtle);
+  background: transparent;
+}
+
+/* ============================================================
+   MarketMap — interactive consolidated table
+   ============================================================ */
+.think-marketmap {
+  margin: 72px 0;
+}
+.think-marketmap-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.think-marketmap-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.think-marketmap-tab {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--text-tertiary);
+  padding: 7px 13px;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+.think-marketmap-tab:hover {
+  color: var(--text-secondary);
+  border-color: var(--border-hover);
+}
+.think-marketmap-tab.is-active {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+.think-marketmap-search input {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-primary);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  padding: 8px 16px;
+  min-width: 240px;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+.think-marketmap-search input:focus {
+  border-color: var(--accent);
+}
+.think-marketmap-search input::placeholder {
+  color: var(--text-tertiary);
+}
+.think-marketmap-scroll {
+  overflow-x: auto;
+  border: 1px solid var(--border-subtle);
+  border-radius: 18px;
+  background:
+    radial-gradient(900px 380px at 50% 0%, var(--accent-glow), transparent 60%),
+    var(--bg-card);
+  position: relative;
+  isolation: isolate;
+}
+.think-marketmap-scroll::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+  opacity: 0.55;
+  z-index: 1;
+}
+.think-marketmap-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.think-marketmap-table thead th {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  text-align: left;
+  padding: 16px 18px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-subtle);
+  white-space: nowrap;
+}
+.think-marketmap-table tbody td,
+.think-marketmap-table tbody th {
+  padding: 15px 18px;
+  border-bottom: 1px solid var(--border-subtle);
+  vertical-align: middle;
+  text-align: left;
+}
+.think-marketmap-table tbody tr:last-child td,
+.think-marketmap-table tbody tr:last-child th {
+  border-bottom: none;
+}
+.think-marketmap-table tbody tr:hover td,
+.think-marketmap-table tbody tr:hover th {
+  background: var(--bg-card-hover);
+}
+.think-marketmap-floorcell {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  white-space: nowrap;
+}
+.think-marketmap-floornum {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent);
+}
+.think-marketmap-floorlabel {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--text-tertiary);
+}
+.think-marketmap-company {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  min-width: 180px;
+}
+.think-marketmap-tag {
+  display: inline-block;
+  margin-left: 8px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  padding: 2px 7px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  vertical-align: middle;
+}
+.think-marketmap-scale {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+.think-marketmap-move {
+  color: var(--text-secondary);
+  min-width: 280px;
+  line-height: 1.45;
+}
+.think-marketmap-empty {
+  text-align: center;
+  color: var(--text-tertiary);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 32px 18px;
+}
+.think-marketmap-note {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--text-tertiary);
+  margin-top: 16px;
+  max-width: 640px;
+}
+
+/* ============================================================
+   FloorTable — static per-floor roster (no-JS fallback)
+   ============================================================ */
+.think-floortable {
+  margin: 36px 0 8px;
+}
+.think-floortable-scroll {
+  overflow-x: auto;
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  background: var(--bg-card);
+}
+.think-floortable-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.think-floortable-table thead th {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  text-align: left;
+  padding: 14px 16px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-subtle);
+  white-space: nowrap;
+}
+.think-floortable-table tbody td,
+.think-floortable-table tbody th {
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--border-subtle);
+  vertical-align: middle;
+  text-align: left;
+}
+.think-floortable-table tbody tr:last-child td,
+.think-floortable-table tbody tr:last-child th {
+  border-bottom: none;
+}
+.think-floortable-company {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  min-width: 170px;
+}
+.think-floortable-group {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+}
+.think-floortable-scale {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+.think-floortable-move {
+  color: var(--text-secondary);
+  min-width: 260px;
+  line-height: 1.45;
+}
+.think-floortable-note {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-style: normal;
+  line-height: 1.6;
+  color: var(--text-tertiary);
+  margin-top: 12px;
+}
+
+@media (max-width: 640px) {
+  .think-marketmap-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .think-marketmap-search input {
+    width: 100%;
+  }
+}
