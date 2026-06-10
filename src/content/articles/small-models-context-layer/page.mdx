@@ -1,0 +1,44 @@
+import { ProgressBar, StoryBlock } from "@/components/article/think_components";
+
+export const metadata = {
+  title: "The models are getting smaller. The context layer's job just got bigger.",
+  slug: "small-models-context-layer",
+  excerpt:
+    "Small language models with the right context are starting to deliver real utility. WWDC showed the models. The context layer that feeds them is the open question.",
+  pillar: "context-intelligence",
+  date: "June 10, 2026",
+  readTime: "5 min read",
+  badge: "Deep Dive",
+}
+
+<ProgressBar />
+
+<StoryBlock dropcap>
+Watch Monday's Siri demos again and ask which questions ever need to leave the phone. "Find the hotel confirmation buried in my email" doesn't. Neither does anything touching your photos, your messages, or whatever's on screen. Those run on Apple's own models, on the device: a dense 3-billion-parameter workhorse and, on its newest silicon, a 20-billion-parameter sparse model that activates just 1 to 4 billion parameters per prompt. The questions that need the world, the hard reasoning and deep knowledge, climb out to the cloud, to a custom 1.2-trillion-parameter Gemini that Apple licenses from Google.
+
+The rental got the headlines. It's the least interesting part of the keynote. Nobody needs to own a frontier model to ship a serious AI product anymore. Cursor built its coding model on an open Kimi base, spent its budget on the training around it, and is competing with labs that built theirs from scratch. Make-vs-buy is settled. The open questions live elsewhere.
+</StoryBlock>
+
+## What Apple showed, and what it didn't
+
+Here's what Apple actually put on stage, and what it didn't. It named a capability, "personal context understanding," and drew the same line all morning: world knowledge is what the model knows about everything, personal context is what the system knows about you. It showed behaviors. It showed models. What never made the stage is the machinery that builds personal context. How it gets curated out of a decade of mail and photos. Whether anything synthesizes across sources, consolidates over time, or ranks what matters for the decision in front of you. What gets retired as stale. Where it all lives. The architecture of that system is unknown, and it's the part that decides whether the demos hold up in month six.
+
+Worth being precise here, because the two are getting conflated everywhere this week. A small model running locally is an inference component. A context layer is the system that feeds it. Apple shipped the first and named the second. Shipping one tells you nothing about the quality of the other.
+
+What the demos do demonstrate is the part that matters: a model in the single-digit billions, handed the right slice of someone's life, covers a real share of daily asks. When a request outgrows it, the system escalates. Small models with the right context are starting to deliver actual utility, and when they can't, they borrow a bigger brain. That relationship, not the rental, is the architecture story of the keynote.
+
+## Small language models as libraries
+
+A year ago I wrote that models kept getting smaller and we were headed toward a world where every app runs language models natively. That week, Google had shipped a model that ran on a phone and Alibaba shipped one that ran on a laptop. What I'd sharpen now: small models are headed toward the role libraries play in software. Not one giant dependency every feature routes through. Several small models embedded in the application, each the first responder for its slice of the work, with a large model as the escalation path. Google's hybrid inference API already ships this shape, routing between Nano on the device and Gemini in the cloud, and calls its own routing logic an initial solution. Microsoft runs the Windows Settings agent on a 330-million-parameter model sitting on the NPU. The inference layer most applications take for granted, one big model behind every feature, is starting to fragment.
+
+## Why smaller models need a bigger context layer
+
+And that's exactly what makes the context layer's job bigger. A trillion-parameter model carries most of the world in its weights and can paper over lazy context. A 3-billion-parameter model can't. The smaller the model, the more of the understanding has to arrive as context, and the tighter the budget it arrives under: fewer tokens, less latency, a battery to respect. Data is not context, and at three billion parameters the difference stops being philosophical. What you choose to leave out becomes the difference between a model that feels prescient and one that feels broken.
+
+## Are models and context being co-designed?
+
+There's a question underneath this I keep turning over. The mechanics already point toward model and context being co-designed rather than independent. Apple's 20B model picks which parameters to load based on the request itself. Its earlier on-device models swapped specialized adapters in and out per task. The small models are distilled from the big ones, shaped by them before a single user prompt arrives. How far does that go? Do we end up with model components tuned to the specific shapes of context an application expects to feed them? I don't know yet. It's the question I'd be asking if I were building on this stack.
+
+I spent years building a system in this shape for market intelligence, and the model was never the problem. The work, nearly all of it, lived in what surrounded the model: deciding what the system kept, what it ignored, and what it needed to know at the moment of a decision. Smaller models don't shrink that work. They concentrate it.
+
+So if you're planning an AI product right now, two assumptions worth building on. The inference layer fragments: many small models close to the user, large ones behind them. The context system becomes the part that determines whether any of it is useful, because the less a model knows about the world, the more the system around it has to know about the user. That's context architecture, the work most teams still file under plumbing. Apple showed you the models on Monday. The system that feeds them is still offstage, at Apple and everywhere else. The next five years get decided on that layer.
