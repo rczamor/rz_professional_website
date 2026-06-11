@@ -160,14 +160,15 @@
 }
 
 /* Opener spacing — the deck (`.think-article-deck`) is the lead paragraph; the
-   article body must open the same controlled distance beneath it on EVERY
-   article. `<ProgressBar />` renders a `position: fixed` `.think-progress` as the
-   literal first child of `.article-prose`, so a naive `.think-story:first-child`
-   never matches and the opener keeps its intrinsic 80px top padding — the "odd
-   gap" under the deck. Match BOTH the no-progress-bar case and the real
-   progress-bar-first case so the first in-flow block always sheds its top space.
-   Enforced pattern — see .spec/design.md › Article page rhythm. Do NOT rely on
-   `:first-child` alone here; the fixed progress bar defeats it. */
+   article body must open the same controlled distance (24px, the deck's
+   margin-bottom) beneath it on EVERY article. ProgressBar is rendered once by
+   ArticleLayout — OUTSIDE `.article-prose` — so the opener is the prose's first
+   child and `:first-child` strips its intrinsic 80px top padding cleanly.
+   History: ProgressBar used to sit inline in every MDX body; its fixed
+   `.think-progress` was then the literal first child and silently defeated
+   `:first-child`, opening a ~104px gap under the deck. The `.think-progress +`
+   form below is kept as defense-in-depth in case a progress bar is ever placed
+   inline again. See .spec/design.md › Article page rhythm. */
 .article-prose > .think-story:first-child,
 .article-prose > .think-progress:first-child + .think-story {
   padding-top: 0;

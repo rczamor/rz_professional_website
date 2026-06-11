@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import ProgressBar from "@/components/article/think_components/ProgressBar";
 import type { ArticleFAQ as ArticleFAQItem, ArticleMetadata } from "@/content/types";
 import {
   buildArticleBreadcrumbSchema,
@@ -62,6 +63,10 @@ export default function ArticleLayout({ metadata, children }: ArticleLayoutProps
   return (
     <>
       <Nav activePage="thinking" />
+      {/* Rendered once here (not per-article in MDX) so the fixed
+          `.think-progress` never lands inside `.article-prose` and the opener
+          stays the prose's first child. See .spec/design.md › Article page rhythm. */}
+      <ProgressBar />
       <main id="main-content">
         <article>
           <header className="think-hero">
