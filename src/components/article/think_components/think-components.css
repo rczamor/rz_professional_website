@@ -33,8 +33,12 @@
   margin-bottom: 24px;
 }
 /* First section label doesn't need the top break — the hero/deck already
-   provides the air above it. */
-.article-prose > .think-section-label:first-child {
+   provides the air above it. ProgressBar's fixed `.think-progress` is the literal
+   first child, so match the progress-bar-first case too (same opener-spacing fix
+   as `.think-story` in article.css; see .spec/design.md › Article page rhythm).
+   Do NOT rely on `:first-child` alone — the fixed progress bar defeats it. */
+.article-prose > .think-section-label:first-child,
+.article-prose > .think-progress:first-child + .think-section-label {
   margin-top: 0;
 }
 @media (max-width: 860px) {

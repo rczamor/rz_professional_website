@@ -159,9 +159,17 @@
   }
 }
 
-/* When the first prose child is a think-story (dropcap opener), let it
-   provide its own top breathing room. */
-.article-prose > .think-story:first-child {
+/* Opener spacing — the deck (`.think-article-deck`) is the lead paragraph; the
+   article body must open the same controlled distance beneath it on EVERY
+   article. `<ProgressBar />` renders a `position: fixed` `.think-progress` as the
+   literal first child of `.article-prose`, so a naive `.think-story:first-child`
+   never matches and the opener keeps its intrinsic 80px top padding — the "odd
+   gap" under the deck. Match BOTH the no-progress-bar case and the real
+   progress-bar-first case so the first in-flow block always sheds its top space.
+   Enforced pattern — see .spec/design.md › Article page rhythm. Do NOT rely on
+   `:first-child` alone here; the fixed progress bar defeats it. */
+.article-prose > .think-story:first-child,
+.article-prose > .think-progress:first-child + .think-story {
   padding-top: 0;
 }
 
