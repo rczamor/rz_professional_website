@@ -20,7 +20,7 @@
     "ai": "^6.0.193",
     "d3": "^7.9.0",
     "gsap": "^3.14.2",
-    "next": "16.2.1",
+    "next": "^16.2.7",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "topojson-client": "^3.1.0",
@@ -32,7 +32,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.2.1",
+    "eslint-config-next": "^16.2.7",
     "tailwindcss": "^4",
     "typescript": "^5"
   },

@@ -21,7 +21,7 @@ Riché Zamor is a context architect and VP of Product who designs how organizati
 - GitHub: https://github.com/rczamor
 
 ## Ask Riché / Sia
-Sia — Riché's Context Engine — powers the chatbot. The chatbot is in development; there is no public chat API endpoint at this time. The current widget is a UI preview only. For inquiries, use https://richezamor.com/contact.
+Ask Riché is a live AI assistant grounded in Riché's writing, frameworks, and knowledge base. It runs on Claude Sonnet via Vercel AI Gateway at /api/chat (POST, streaming). Ask it about context architecture, Riché's work, or anything on the site. For direct inquiries, use https://richezamor.com/contact.
 
 ## Full Content
 For complete site content, see: https://richezamor.com/llms-full.txt
