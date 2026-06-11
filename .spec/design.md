@@ -360,6 +360,42 @@ Three families, no exceptions:
 - **Spacing scale** — 4-based: `4, 8, 12, 16, 20, 24, 28, 32, 40, 48, 60, 80, 100, 120, 160`.
   Prefer these values; avoid arbitrary gaps like `19px`.
 
+### Article page rhythm
+
+Every `/thinking/:slug` page (`ArticleLayout` + an MDX body) shares one vertical
+rhythm. Keep it identical across articles — the top of the page is where drift
+shows first.
+
+- **Structure** — `think-hero` (eyebrow · title · meta), a hairline divider, then
+  `.article-body` → `.think-article-deck` (the excerpt, the lead paragraph) →
+  `.article-prose` (the MDX body).
+- **Opener contract** — the MDX body opens with `<ProgressBar />` then a
+  `<StoryBlock dropcap>` (or a `<SectionLabel>` / `##`). `ProgressBar` renders a
+  `position: fixed` `.think-progress` that is the **literal first child** of
+  `.article-prose` but takes **no flow space**. The deck is the lead; the body
+  must open exactly **24px** (the deck's `margin-bottom`) beneath it on every
+  article.
+- **The first-child trap** — because `.think-progress` is the real first DOM
+  child, a naive `.article-prose > .opener:first-child` neutralizer **never
+  matches**, so the opener keeps its intrinsic top space (`.think-story` carries
+  `padding: 80px 0`) and a ~104px gap opens under the deck. Any rule that strips
+  an opener's top space **must** match both forms:
+
+  ```css
+  .article-prose > .think-story:first-child,                     /* no progress bar */
+  .article-prose > .think-progress:first-child + .think-story {  /* progress bar present */
+    padding-top: 0;
+  }
+  ```
+
+  Live rules: `.think-story` opener in `src/styles/article.css`; `.think-section-label`
+  opener twin in `think-components.css`. Register every new top-spaced opener in
+  both selectors.
+- **Block rhythm** — between major blocks the vertical break is large and
+  deliberate: `.think-story` / pullquotes carry `80–100px` padding, section labels
+  `80px` top margin, `h2` `16px/24px`. Only the **first** block sheds its top
+  space; interior breaks stay.
+
 ## Elevation & Depth
 
 Shadows are intentionally small — depth comes from **border + hover wash**,
@@ -546,6 +582,10 @@ Motion has one job: **tell the user the surface is alive without distracting the
 - Keep cards bordered and lightly shadowed. Depth comes from borders +
   hover wash, not from drop-shadow.
 - Add `data-reveal` and let `ScrollReveal` handle the entrance.
+- Open every article with `<ProgressBar />` then a `<StoryBlock dropcap>`, and
+  let the deck carry the lead so the body opens 24px beneath it (see *Article
+  page rhythm*). New top-spaced opener component? Register it in BOTH
+  opener-spacing selectors (`article.css` + `think-components.css`).
 
 ### ❌ Don't
 
@@ -567,6 +607,11 @@ Motion has one job: **tell the user the surface is alive without distracting the
   breaks legibility in Day and Dawn.
 - Don't add a new theme without defining the full token set
   (`--bg-primary` through `--canvas-line` + nav-bg pair + shadow pair).
+- Don't neutralize an article opener's top spacing with `:first-child` alone —
+  `ProgressBar`'s fixed `.think-progress` is the real first child and silently
+  defeats it (this opened a ~104px gap under the deck on *every* article). And
+  don't paper over it with an ad-hoc top margin on the first body block; fix the
+  opener-spacing rule instead.
 
 ## Accessibility
 
@@ -600,3 +645,8 @@ The live tokens and rules in this spec live in:
 - `2026-04-22` — initial spec, authored the day after Google Labs published
   the open-source DESIGN.md format. Tokens extracted verbatim from
   `globals.css`.
+- `2026-06-10` — added *Article page rhythm* and hardened the opener-spacing
+  enforcement after a dead `:first-child` neutralizer (defeated by
+  `ProgressBar`'s fixed `.think-progress`) left a ~104px gap under the deck on
+  every `/thinking` article. Rules in `article.css` + `think-components.css` now
+  match the progress-bar-first case.
