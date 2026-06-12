@@ -7,14 +7,14 @@ on:
       base_url:
         description: "Base URL to smoke test"
         required: false
-        default: "https://richezamor.com"
+        default: "https://www.richezamor.com"
 
 jobs:
   smoke:
     if: github.event_name != 'deployment_status' || (github.event.deployment_status.state == 'success' && github.event.deployment.environment == 'Production')
     runs-on: ubuntu-latest
     env:
-      SMOKE_BASE_URL: ${{ github.event.inputs.base_url || 'https://richezamor.com' }}
+      SMOKE_BASE_URL: ${{ github.event.inputs.base_url || 'https://www.richezamor.com' }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v4

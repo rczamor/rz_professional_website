@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const DEFAULT_BASE_URL = "https://richezamor.com";
+const DEFAULT_BASE_URL = "https://www.richezamor.com";
 const ROOT = process.cwd();
 const ARTICLES_DIR = path.join(ROOT, "src/content/articles");
 const STATIC_PATHS = ["/", "/thinking", "/thesis", "/about", "/work"];

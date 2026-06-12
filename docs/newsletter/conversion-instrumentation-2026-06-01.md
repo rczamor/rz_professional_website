@@ -45,13 +45,13 @@ canonical tagged URLs when configuring each placement (TRZ-651 / TRZ-652 / TRZ-6
 
 | # | Surface | Tagged URL |
 | --- | --- | --- |
-| 1 | LinkedIn first-comment auto-CTA (per post) | `https://richezamor.com/?utm_source=linkedin&utm_medium=first-comment&utm_campaign=newsletter&utm_content=<YYYYMMDD>` |
-| 2 | LinkedIn Featured card | `https://richezamor.com/?utm_source=linkedin&utm_medium=featured&utm_campaign=newsletter&utm_content=profile-card` |
-| 3 | LinkedIn headline link | `https://richezamor.com/?utm_source=linkedin&utm_medium=headline&utm_campaign=newsletter&utm_content=profile` |
-| 4 | LinkedIn About-section link | `https://richezamor.com/?utm_source=linkedin&utm_medium=profile-link&utm_campaign=newsletter&utm_content=about` |
-| 5 | X bio link | `https://richezamor.com/?utm_source=x&utm_medium=bio&utm_campaign=newsletter&utm_content=profile` |
-| 6 | Podcast show notes | `https://richezamor.com/?utm_source=podcast&utm_medium=post-body&utm_campaign=newsletter&utm_content=<show-slug>` |
-| 7 | Press / earned mention | `https://richezamor.com/?utm_source=press&utm_medium=post-body&utm_campaign=newsletter&utm_content=<outlet-slug>` |
+| 1 | LinkedIn first-comment auto-CTA (per post) | `https://www.richezamor.com/?utm_source=linkedin&utm_medium=first-comment&utm_campaign=newsletter&utm_content=<YYYYMMDD>` |
+| 2 | LinkedIn Featured card | `https://www.richezamor.com/?utm_source=linkedin&utm_medium=featured&utm_campaign=newsletter&utm_content=profile-card` |
+| 3 | LinkedIn headline link | `https://www.richezamor.com/?utm_source=linkedin&utm_medium=headline&utm_campaign=newsletter&utm_content=profile` |
+| 4 | LinkedIn About-section link | `https://www.richezamor.com/?utm_source=linkedin&utm_medium=profile-link&utm_campaign=newsletter&utm_content=about` |
+| 5 | X bio link | `https://www.richezamor.com/?utm_source=x&utm_medium=bio&utm_campaign=newsletter&utm_content=profile` |
+| 6 | Podcast show notes | `https://www.richezamor.com/?utm_source=podcast&utm_medium=post-body&utm_campaign=newsletter&utm_content=<show-slug>` |
+| 7 | Press / earned mention | `https://www.richezamor.com/?utm_source=press&utm_medium=post-body&utm_campaign=newsletter&utm_content=<outlet-slug>` |
 
 **On-site surfaces (no UTM — inline forms, captured by placement label in GA4):**
 

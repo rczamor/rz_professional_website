@@ -12,9 +12,9 @@ export const metadata: Metadata = {
     title: "Projects & Prototypes — Riché Zamor",
     description:
       "Side projects and prototypes by Riché Zamor — AI experiments, context architecture tools, and things built to test ideas.",
-    url: "https://richezamor.com/projects",
+    url: "https://www.richezamor.com/projects",
     type: "website",
-    images: ["https://richezamor.com/og-image.png"],
+    images: ["https://www.richezamor.com/og-image.png"],
     siteName: "Riché Zamor",
   },
   twitter: {
@@ -23,9 +23,9 @@ export const metadata: Metadata = {
     title: "Projects & Prototypes — Riché Zamor",
     description:
       "Side projects and prototypes — things I build to learn, test ideas, and scratch itches.",
-    images: ["https://richezamor.com/og-image.png"],
+    images: ["https://www.richezamor.com/og-image.png"],
   },
-  alternates: { canonical: "https://richezamor.com/projects" },
+  alternates: { canonical: "https://www.richezamor.com/projects" },
 };
 
 export default function ProjectsPage() {

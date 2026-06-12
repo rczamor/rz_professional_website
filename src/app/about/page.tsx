@@ -24,9 +24,9 @@ export const metadata: Metadata = {
     title: "About — Riché Zamor",
     description:
       "About Riché Zamor — context architect, VP of Product, 2x founder, and author of the Context Architecture Thesis.",
-    url: "https://richezamor.com/about",
+    url: "https://www.richezamor.com/about",
     type: "website",
-    images: ["https://richezamor.com/og-image.png"],
+    images: ["https://www.richezamor.com/og-image.png"],
     siteName: "Riché Zamor",
   },
   twitter: {
@@ -35,9 +35,9 @@ export const metadata: Metadata = {
     title: "About — Riché Zamor",
     description:
       "AI product leader with 20 years of experience building systems that turn raw data into decision-ready context.",
-    images: ["https://richezamor.com/og-image.png"],
+    images: ["https://www.richezamor.com/og-image.png"],
   },
-  alternates: { canonical: "https://richezamor.com/about" },
+  alternates: { canonical: "https://www.richezamor.com/about" },
 };
 
 export default function AboutPage() {
