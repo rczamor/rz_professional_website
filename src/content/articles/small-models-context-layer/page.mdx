@@ -1,4 +1,4 @@
-import { ProgressBar, StoryBlock } from "@/components/article/think_components";
+import { StoryBlock } from "@/components/article/think_components";
 
 export const metadata = {
   title: "The models are getting smaller. The context layer's job just got bigger.",
@@ -10,8 +10,6 @@ export const metadata = {
   readTime: "6 min read",
   badge: "Deep Dive",
 }
-
-<ProgressBar />
 
 <StoryBlock dropcap>
 Watch Monday's Siri demos again and ask which questions ever need to leave the phone. "Find the hotel confirmation buried in my email" doesn't. Neither does anything touching your photos, your messages, or whatever's on screen. Those run on Apple's own models, on the device: a dense 3-billion-parameter workhorse and, on its newest silicon, a 20-billion-parameter sparse model that activates just 1 to 4 billion parameters per prompt. The questions that need the world, the hard reasoning and deep knowledge, climb out to the cloud, to a custom 1.2-trillion-parameter Gemini that Apple licenses from Google.

@@ -369,21 +369,23 @@ shows first.
 - **Structure** — `think-hero` (eyebrow · title · meta), a hairline divider, then
   `.article-body` → `.think-article-deck` (the excerpt, the lead paragraph) →
   `.article-prose` (the MDX body).
-- **Opener contract** — the MDX body opens with `<ProgressBar />` then a
-  `<StoryBlock dropcap>` (or a `<SectionLabel>` / `##`). `ProgressBar` renders a
-  `position: fixed` `.think-progress` that is the **literal first child** of
-  `.article-prose` but takes **no flow space**. The deck is the lead; the body
-  must open exactly **24px** (the deck's `margin-bottom`) beneath it on every
-  article.
-- **The first-child trap** — because `.think-progress` is the real first DOM
-  child, a naive `.article-prose > .opener:first-child` neutralizer **never
-  matches**, so the opener keeps its intrinsic top space (`.think-story` carries
-  `padding: 80px 0`) and a ~104px gap opens under the deck. Any rule that strips
-  an opener's top space **must** match both forms:
+- **Opener contract** — the MDX body opens directly with a `<StoryBlock dropcap>`
+  (or a `<SectionLabel>` / `##`). **`<ProgressBar />` is NOT in the MDX** — it is
+  rendered once by `ArticleLayout`, outside `.article-prose`, so the opener is the
+  prose's first child. The deck is the lead; the body must open exactly **24px**
+  (the deck's `margin-bottom`) beneath it on every article.
+- **The first-child trap (why ProgressBar is hoisted)** — when `<ProgressBar />`
+  was inline in every MDX body, its fixed `.think-progress` was the **literal
+  first child** of `.article-prose`, so `.opener:first-child` **never matched**,
+  the opener kept its intrinsic top space (`.think-story` carries `padding: 80px
+  0`), and a ~104px gap opened under the deck. Hoisting ProgressBar into the
+  layout removes the trap at the source — `:first-child` now strips the opener's
+  top padding cleanly. The opener-spacing rules also keep a `.think-progress +
+  opener` form as defense-in-depth:
 
   ```css
-  .article-prose > .think-story:first-child,                     /* no progress bar */
-  .article-prose > .think-progress:first-child + .think-story {  /* progress bar present */
+  .article-prose > .think-story:first-child,                     /* normal: ProgressBar hoisted */
+  .article-prose > .think-progress:first-child + .think-story {  /* defensive: inline progress bar */
     padding-top: 0;
   }
   ```
@@ -582,10 +584,11 @@ Motion has one job: **tell the user the surface is alive without distracting the
 - Keep cards bordered and lightly shadowed. Depth comes from borders +
   hover wash, not from drop-shadow.
 - Add `data-reveal` and let `ScrollReveal` handle the entrance.
-- Open every article with `<ProgressBar />` then a `<StoryBlock dropcap>`, and
-  let the deck carry the lead so the body opens 24px beneath it (see *Article
-  page rhythm*). New top-spaced opener component? Register it in BOTH
-  opener-spacing selectors (`article.css` + `think-components.css`).
+- Open every article directly with a `<StoryBlock dropcap>` and let the deck
+  carry the lead so the body opens 24px beneath it (see *Article page rhythm*).
+  `ProgressBar` is rendered once by `ArticleLayout` — never per-article. New
+  top-spaced opener component? Register it in BOTH opener-spacing selectors
+  (`article.css` + `think-components.css`).
 
 ### ❌ Don't
 
@@ -607,10 +610,10 @@ Motion has one job: **tell the user the surface is alive without distracting the
   breaks legibility in Day and Dawn.
 - Don't add a new theme without defining the full token set
   (`--bg-primary` through `--canvas-line` + nav-bg pair + shadow pair).
-- Don't neutralize an article opener's top spacing with `:first-child` alone —
-  `ProgressBar`'s fixed `.think-progress` is the real first child and silently
-  defeats it (this opened a ~104px gap under the deck on *every* article). And
-  don't paper over it with an ad-hoc top margin on the first body block; fix the
+- Don't add `<ProgressBar />` to an article's MDX — it's hoisted to
+  `ArticleLayout`. An inline one re-enters `.article-prose` as the first child and
+  reintroduces the first-child trap (a ~104px gap under the deck). And don't paper
+  over opener spacing with an ad-hoc top margin on the first body block; fix the
   opener-spacing rule instead.
 
 ## Accessibility
@@ -649,4 +652,6 @@ The live tokens and rules in this spec live in:
   enforcement after a dead `:first-child` neutralizer (defeated by
   `ProgressBar`'s fixed `.think-progress`) left a ~104px gap under the deck on
   every `/thinking` article. Rules in `article.css` + `think-components.css` now
-  match the progress-bar-first case.
+  match the progress-bar-first case. Follow-up: hoisted `<ProgressBar />` out of
+  the MDX into `ArticleLayout` so the opener is the prose's first child and the
+  trap can't recur; the `.think-progress +` selectors remain as defense-in-depth.
