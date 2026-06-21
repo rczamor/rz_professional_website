@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7B7FE4"/>
+      <stop offset="100%" stop-color="#7c5cfc"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#7B7FE4" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#7B7FE4" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#050508"/>
+  <ellipse cx="1010" cy="315" rx="380" ry="320" fill="url(#glow)"/>
+  <rect x="0" y="0" width="1200" height="5" fill="url(#bar)"/>
+
+  <g fill="none">
+    <circle cx="1010" cy="315" r="150" stroke="#7B7FE4" opacity="0.12"/>
+    <circle cx="1010" cy="315" r="96" stroke="#7c5cfc" opacity="0.10"/>
+  </g>
+  <g stroke="#7c5cfc" stroke-width="1" opacity="0.4">
+    <line x1="1010" y1="315" x2="900" y2="208"/>
+    <line x1="1010" y1="315" x2="1122" y2="238"/>
+    <line x1="1010" y1="315" x2="1088" y2="432"/>
+    <line x1="1010" y1="315" x2="912" y2="402"/>
+  </g>
+  <g fill="#7B7FE4">
+    <circle cx="1010" cy="315" r="7"/>
+    <circle cx="900" cy="208" r="5"/>
+    <circle cx="1122" cy="238" r="5"/>
+    <circle cx="1088" cy="432" r="5"/>
+    <circle cx="912" cy="402" r="5"/>
+  </g>
+
+  <text x="90" y="250" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#7B7FE4" letter-spacing="4" font-weight="700">WRITING</text>
+  <text x="88" y="334" font-family="Helvetica, Arial, sans-serif" font-size="72" font-weight="800" fill="#f0f0f5" letter-spacing="-2">Thinking in Public</text>
+  <text x="90" y="390" font-family="Helvetica, Arial, sans-serif" font-size="27" fill="rgba(240,240,245,0.62)">Essays on context, AI products, and leadership.</text>
+  <text x="90" y="432" font-family="Helvetica, Arial, sans-serif" font-size="19" fill="rgba(240,240,245,0.38)">New writing on how to build AI that actually works.</text>
+
+  <circle cx="95" cy="556" r="4" fill="url(#bar)"/>
+  <text x="110" y="561" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="rgba(240,240,245,0.4)" letter-spacing="1">richezamor.com/thinking</text>
+</svg>
