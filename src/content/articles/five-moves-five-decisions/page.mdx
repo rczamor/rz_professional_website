@@ -1,0 +1,120 @@
+import {
+  SectionLabel,
+  StoryBlock,
+  Pullquote,
+  CardGrid,
+  Close,
+} from "@/components/article/think_components";
+
+export const metadata = {
+  title: "Five Engineering Moves, Five Architectural Decisions",
+  slug: "five-moves-five-decisions",
+  excerpt:
+    "An engineer once asked me whether we should add a caching layer to cut latency. Good question, wrong altitude — we hadn't yet decided which context should persist at all. Lance Martin's context-engineering taxonomy gives engineers five moves on a context window. Each one has an architectural decision that should come first. The move is reversible in an afternoon; the decision shapes the product for a year.",
+  pillar: "product-management",
+  date: "May 28, 2026",
+  readTime: "6 min read",
+  badge: "Framework",
+  badgeVariant: "product",
+  featured: false,
+  comingSoon: false,
+  keywords: [
+    "context engineering",
+    "context architecture",
+    "offload reduce retrieve isolate cache",
+    "context window management",
+    "ai product decisions",
+    "lance martin context engineering",
+  ],
+  faq: [
+    {
+      question: "What are the five context-engineering moves?",
+      answer:
+        "Lance Martin's taxonomy names five moves an engineer can make on a context window: offload (push context into a file, tool, or store), reduce (compress, summarize, or truncate), retrieve (fetch on demand), isolate (separate context streams), and cache (store and reuse). It's the cleanest menu of moves available — but it's a menu, and most teams order from it before deciding what should be on it.",
+    },
+    {
+      question: "What is the difference between an engineering move and an architectural decision?",
+      answer:
+        "An engineering move is reversible in an afternoon — you can add a cache, swap retrieval for summarization, change a truncation rule. The architectural decision underneath it shapes the product for a year: what context belongs outside the model, which fidelity loss is acceptable for which user, which streams must never mix. The move answers “how”; the decision answers “which, for whom, and why.”",
+    },
+    {
+      question: "What is Context Architecture?",
+      answer:
+        "Context Architecture is the decision layer above context engineering: deciding which engineering move serves which user, workflow, and outcome, rather than picking moves implicitly by whoever touched the code last. Engineers pick from the menu; architects decide what's on the menu and why.",
+    },
+  ],
+}
+
+<StoryBlock dropcap>
+An engineer I worked with once asked whether we should add a caching layer to cut latency. Good question. Wrong altitude.
+
+The real question was which context should persist at all, and we hadn't decided that yet. Caching was an answer to a decision nobody had made.
+</StoryBlock>
+
+That gap is everywhere right now. Lance Martin at LangChain has the cleanest taxonomy I've seen for context engineering: five moves an engineer can make on a context window. Offload, reduce, retrieve, isolate, cache.
+
+But a taxonomy of moves is a menu. And most teams are ordering off the menu before anyone decided what should be on it.
+
+<SectionLabel>01 / The Reframe</SectionLabel>
+
+## Five moves, five decisions
+
+Here's the reframe I use. Every engineering move has an architectural decision that should come first.
+
+<CardGrid
+  cards={[
+    {
+      num: "01",
+      title: "Offload → what belongs outside the model?",
+      body: "Offload pushes context out of the model into a file, a tool, a store. The decision underneath: what context belongs outside the model entirely? Get it wrong and you've offloaded the one thing the model needed in-window.",
+    },
+    {
+      num: "02",
+      title: "Reduce → which fidelity loss, for whom?",
+      body: "Reduce compresses, summarizes, or truncates. The decision: which fidelity loss is acceptable, and for which user? A summary that's fine for a casual query is malpractice for a clinician.",
+    },
+    {
+      num: "03",
+      title: "Retrieve → what's worth the fetch?",
+      body: "Retrieve fetches on demand. The decision: what's actually worth the latency and cost of fetching? Retrieval feels free. It isn't.",
+    },
+    {
+      num: "04",
+      title: "Isolate → which streams must never mix?",
+      body: "Isolate separates context streams. The decision: which streams must never mix? In my own context system, the briefing-ingestion stream and the publishing stream stay walled off on purpose. Cross-contamination there doesn't crash anything. It quietly makes the output worse.",
+    },
+    {
+      num: "05",
+      title: "Cache → what persists vs. recomputes?",
+      body: "Cache stores and reuses. The decision: what should persist versus get recomputed? Most teams answer this one by accident. My system writes consolidated context on a schedule instead of recomputing it at query time — that's a stance on what context is, not a performance tweak.",
+    },
+  ]}
+/>
+
+<Pullquote
+  quote="The move is reversible in an afternoon. The decision shapes the product for a year."
+/>
+
+<SectionLabel>02 / The Altitude</SectionLabel>
+
+## This is what I mean by Context Architecture
+
+Not a new tool. A different altitude. The engineering moves are well documented and getting better every month. The decisions about which move serves which user, workflow, and outcome are still being made implicitly, by whoever touched the code last.
+
+That's the same mistake as the caching question that opened this piece. The engineer wasn't wrong to ask about a cache. He was asking a "how" question before anyone had answered the "which, for whom, and why" question above it. When the decision is unmade, the move fills the vacuum — and now your product's behavior is an accident of implementation order.
+
+The five decisions are also where [the five-step context loop](/thinking/what-is-a-context-layer) actually gets designed. Curate, synthesize, consolidate, prioritize, store: each of those steps is a stack of decisions about offloading, reducing, retrieving, isolating, and caching. [Data isn't context until those decisions are made well](/thinking/data-is-not-context).
+
+<SectionLabel>03 / The Practice</SectionLabel>
+
+## Run the decisions before you pick the moves
+
+Engineers pick from the menu. Architects decide what's on the menu and why. The taxonomy is genuinely good — keep using it. Just run it in the right order.
+
+Before you add the cache, decide what should persist. Before you reduce, decide whose fidelity you're willing to spend. Before you retrieve, decide whether the answer is worth the round trip. The moves take an afternoon either way. The decisions are what you'll be living with a year from now.
+
+<Close kicker="The discipline" heading="Run the five decisions before you pick the five moves.">
+A move made without its decision isn't architecture. It's whoever touched the code last, setting product strategy by accident.
+
+The taxonomy tells you what you *can* do to a context window. The architecture decides what you *should* — for this user, this workflow, this outcome. That second altitude is the job, and almost nobody is standing at it yet.
+</Close>
