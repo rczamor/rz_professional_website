@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     site: "@richezamor",
     title: "Thinking in Public — Riché Zamor",
     description:
-      "Essays and frameworks on context intelligence, product management, and leadership.",
+      "Essays and frameworks on context architecture, AI product strategy, and leadership.",
     images: ["https://richezamor.com/og-image.png"],
   },
   alternates: { canonical: "https://richezamor.com/thinking" },
