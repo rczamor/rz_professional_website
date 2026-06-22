@@ -1,0 +1,94 @@
+import {
+  SectionLabel,
+  StoryBlock,
+  Pullquote,
+  Close,
+} from "@/components/article/think_components";
+
+export const metadata = {
+  title: "You Can Clone the Agent. You Can't Clone the Taste.",
+  slug: "you-cant-clone-the-taste",
+  excerpt:
+    "Salesforce paid $3.6B for Fin, the company that used to be Intercom. Read the headline and you'll assume it bought agent technology. It didn't — it already has Agentforce and frontier models. Benioff led with the team. That ordering is the whole story: the model is the commodity now, and the judgment about what to build with it is the part you can't download.",
+  pillar: "leadership",
+  date: "June 15, 2026",
+  readTime: "5 min read",
+  badge: "Hot Take",
+  badgeVariant: "leadership",
+  featured: false,
+  comingSoon: false,
+  keywords: [
+    "salesforce intercom acquisition",
+    "fin intercom salesforce",
+    "ai team as asset",
+    "product judgment moat",
+    "model commoditization",
+    "ai acquisition strategy",
+    "product taste",
+  ],
+  faq: [
+    {
+      question: "Why did Salesforce buy Fin (Intercom) if it already has Agentforce?",
+      answer:
+        "Because the technology was never the gap. Salesforce already has Agentforce and access to frontier models. Marc Benioff's own statement led with the team — \"an incredible AI team that will complement Agentforce\" — and named the technology second. The $3.6B bought 15 years of accumulated product judgment about what to build and what to kill, which lives in Intercom's culture, not its codebase.",
+    },
+    {
+      question: "What does it mean that the model is a commodity?",
+      answer:
+        "It means wiring up a capable agent is no longer the hard part — anyone can do it this year with off-the-shelf models. What stays scarce is the judgment sitting on top: which problems are worth solving, which patterns serve which user, what to ship and what to kill. When the model is interchangeable, the durable value is the architecture of decisions around it.",
+    },
+    {
+      question: "How do you tell if an AI product's value is real or a wrapper?",
+      answer:
+        "Take the model out and look at what's left. If the product is still valuable without the specific model behind it, that value was always the architecture — the judgment about what to build. If almost nothing is left, you bought a wrapper around someone else's model.",
+    },
+  ],
+}
+
+<StoryBlock dropcap>
+Salesforce is paying $3.6 billion for Fin, the company that used to be Intercom.
+
+Read the headline and you'll assume Salesforce bought agent technology. It didn't. It already has Agentforce. It already has frontier models. The technology was never the gap.
+</StoryBlock>
+
+Look at what Marc Benioff actually said. He led with the team: an incredible AI team that will complement Agentforce. The technology came second.
+
+That ordering is the whole story.
+
+<SectionLabel>01 / The Commodity</SectionLabel>
+
+## The model is becoming the cheap part
+
+Anyone can wire up an agent this year. The models are good, they're available, and the gap between the top ones narrows every quarter. If your product's edge is that you connected an LLM to your data, that edge has a shelf life measured in months. I've made [the same argument about the whole AI software stack](/thinking/ai-software-market-map): the model layer is commoditizing, and the durable positions are everywhere else.
+
+What stays scarce is the judgment sitting on top of the model. Which problems are worth solving. Which patterns serve which user. What to ship, and — harder — what to kill. That judgment is the architecture. Intercom spent fifteen years building it, and it lives in their product culture, not in their codebase.
+
+<Pullquote
+  quote="You can clone the agent. You can't clone the taste."
+/>
+
+<SectionLabel>02 / The Asset</SectionLabel>
+
+## What $3.6B actually bought
+
+Not the model, which depreciates. The judgment about what to build with it, which doesn't.
+
+This is why Benioff's ordering matters. Salesforce didn't need Fin's inference stack; it has better. It didn't need the agent framework; it ships one. It needed the accumulated taste of a team that has spent a decade and a half deciding what a good support product feels like — the thousand small calls that don't show up in any architecture diagram and can't be reverse-engineered from the running software.
+
+You can read the cap table two ways. Either Salesforce overpaid for a customer-service tool, or it paid market rate for the one input that's getting scarcer as everything else gets cheaper. Benioff's statement tells you which read is his.
+
+<SectionLabel>03 / The Test</SectionLabel>
+
+## Take the model out and look at what's left
+
+Here's the diagnostic I'd run on any AI product, including your own.
+
+Take the model out. Mentally swap the LLM behind it for a different one, or none at all. Look at what remains. If it's still valuable — the workflows, the data, the judgment about what to surface and when — then that value was always the architecture, and the model was just the engine. If almost nothing is left, you bought a wrapper, and so will anyone who acquires you.
+
+The teams that survive the commoditization of the model are the ones whose value never lived in the model to begin with. That's not a comforting message if you've been treating "we use the best model" as a moat. It's a clarifying one. The work that compounds is the taste: the decisions about which problems deserve a solution and which features deserve to die.
+
+<Close kicker="The bottom line" heading="The model depreciates. The judgment about what to build with it doesn't.">
+Salesforce just wrote a $3.6B check that says the same thing. Not for the technology — it had that. For the taste, which it couldn't build fast enough on its own and can't download from anyone.
+
+You can clone the agent. You still can't clone the taste.
+</Close>

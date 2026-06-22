@@ -1,0 +1,121 @@
+import {
+  SectionLabel,
+  StoryBlock,
+  Pullquote,
+  CardGrid,
+  Close,
+} from "@/components/article/think_components";
+
+export const metadata = {
+  title: "The Birthplace Test: Every Method Is Downstream of the Org That Birthed It",
+  slug: "the-birthplace-test",
+  excerpt:
+    "In 2025 a startup co-founder told me we were adopting Shape Up. The whole evaluation: his YC batchmates swore by it. There wasn't a second name on the list. Shape Up's load-bearing condition isn't the six-week cycle — it's leadership that can make a bet and leave it alone for six weeks. He couldn't leave one alone for two days. Every method is downstream of the org that birthed it.",
+  pillar: "product-management",
+  date: "June 11, 2026",
+  readTime: "7 min read",
+  badge: "Framework",
+  badgeVariant: "product",
+  featured: false,
+  comingSoon: false,
+  keywords: [
+    "shape up methodology",
+    "product development process",
+    "dual track scrum",
+    "agile cargo culting",
+    "the birthplace test",
+    "product operating model",
+    "basecamp shape up",
+  ],
+  faq: [
+    {
+      question: "What is the Birthplace Test?",
+      answer:
+        "The Birthplace Test is a precondition check to run before adopting any methodology. Three steps: (1) trace the birthplace — who wrote it down, at what company, in what year, to solve what internal problem; (2) list the conditions the method depends on, including what leadership must commit to; (3) count your mismatches against observed behavior, not aspiration. It produces a method matched to the org you actually run, not the one you'd like to be running.",
+    },
+    {
+      question: "Why doesn't Shape Up work for most teams?",
+      answer:
+        "Shape Up was written inside Basecamp in 2019, and Basecamp's conditions are all over it: ~60 people, profitable for two decades, founder-controlled, self-serve product, no enterprise sales motion forcing forward promises. Those conditions let Basecamp skip the backlog, let unfinished work die, and leave a six-week bet alone until the cycle ends. Most orgs run a roadmap as a forward commitment for legitimate reasons, so they can't adopt the part of Shape Up that actually makes it distinctive.",
+    },
+    {
+      question: "What does “every method is downstream of the org that birthed it” mean?",
+      answer:
+        "It means a methodology encodes the conditions of the company that created it. Scrum traces to 1986 hardware teams at Honda and Canon; XP came out of one Chrysler payroll project. The mechanics are local to their birthplace. What transfers is the discipline, not the specific ceremony — so whether you can run a method is downstream of your org, not the method's popularity.",
+    },
+  ],
+}
+
+<StoryBlock dropcap>
+In 2025 a startup co-founder told me we were adopting Shape Up. The whole evaluation: his YC batchmates swore by it.
+
+When I asked what else he'd considered, there wasn't a second name on the list.
+</StoryBlock>
+
+The company didn't have a methodology problem. It moved slowly and rarely talked to customers. I was brought in to build the opposite muscle: ship small, ship often, learn from what shipped.
+
+Shape Up was the wrong fit, and I didn't need to run it to know.
+
+<SectionLabel>01 / The Conditions Travel With The Method</SectionLabel>
+
+## Basecamp's conditions are all over Shape Up
+
+Ryan Singer wrote Shape Up inside Basecamp in 2019, and Basecamp's conditions are all over the method. Around 60 people. Profitable for two decades. Founder-controlled, self-serve product, no enterprise sales motion forcing forward promises. Those conditions let Basecamp do the distinctive things: skip the backlog, let unfinished work die, and above all, make a six-week bet and leave the team alone until the cycle ends.
+
+We needed shipping cadence and customer contact measured in days, not six-week blocks. So we never tried Shape Up. We started with dual-track Scrum instead — my call, because the fastest fix for a team that doesn't talk to customers is a discovery track that never stops. He went along with it.
+
+Two days into the first sprint, he abandoned it. A week later we decided to part ways.
+
+<SectionLabel>02 / The Tell</SectionLabel>
+
+## The load-bearing condition was never the cycle
+
+Here's the part that stuck with me. Dual-track Scrum and Shape Up share most of their DNA: small batches, short feedback loops, shipping to learn. He walked away from the lighter commitment after two days while pushing for the method whose entire premise is leaving a bet alone for six weeks.
+
+The YC social proof told him what to adopt. It couldn't tell him whether his org could hold it.
+
+<Pullquote
+  quote="Shape Up's load-bearing condition isn't the six-week cycle. It's leadership that can make a bet and leave it alone for six weeks. He couldn't leave one alone for two days."
+/>
+
+That's the general failure. Adopting a pattern without its preconditions is cargo-culting. You take the practice and leave its conditions behind, and then you're confused when the same ceremony that produced focus somewhere else produces theater for you.
+
+<SectionLabel>03 / The Test</SectionLabel>
+
+## Run the Birthplace Test first
+
+I now run what I call the Birthplace Test before adopting any method.
+
+<CardGrid
+  cards={[
+    {
+      num: "01",
+      title: "Trace the birthplace",
+      body: "Who wrote it down, at what company, in what year, to solve what internal problem. Scrum's name traces to a 1986 paper about Honda and Canon hardware teams. XP came out of one Chrysler payroll project. The mechanics are local to where they were born.",
+    },
+    {
+      num: "02",
+      title: "List the conditions it depends on",
+      body: "Stage, funding pressure, customer motion, team seniority, and what leadership must commit to. For Shape Up: the power to refuse forward commitments, and the restraint to leave a bet alone for six weeks.",
+    },
+    {
+      num: "03",
+      title: "Count your mismatches against behavior, not aspiration",
+      body: "The evidence is usually already in. At this startup, the process commitment lasted two days. That's the real reading — not the org chart you wish you had.",
+    },
+  ]}
+/>
+
+There's a nuance worth keeping load-bearing: this isn't anti-roadmap zealotry. A roadmap buys real things — a forward promise sales can sell against, a coordination surface for a big org. The reason most teams can't let unfinished work die is that they run a roadmap for legitimate reasons, and the roadmap is a forward commitment, so work can't roll off. That's not a process flaw. It's a trade you made on purpose, and the Birthplace Test just makes the trade explicit before you import a method that assumes you didn't make it.
+
+<SectionLabel>04 / The Same Discipline</SectionLabel>
+
+## This is how I think about everything, including AI
+
+It's the same discipline I apply to context patterns in AI systems. [RAG isn't good or bad](/thinking/data-is-not-context); it's good under specific conditions, and the job is knowing whether you have them. Engineers implement the pattern. Architects decide which pattern serves which preconditions — user, workflow, business. A method, a memory architecture, a retrieval strategy: each one is downstream of the conditions it was born into, and adopting it blind is the same mistake every time.
+
+<Close kicker="The bottom line" heading="The Birthplace Test costs an afternoon.">
+The co-founder wasn't wrong to want structure. He picked an answer built for a company that looked nothing like his, on the strength of who else was using it.
+
+Every method is downstream of the org that birthed it. Whether you can run it is downstream of yours. Trace the birthplace, list the conditions, count the mismatches against what your org actually does — and you'll get a method matched to the company you run, not the one you'd like to be running.
+</Close>
