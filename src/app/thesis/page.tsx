@@ -14,7 +14,7 @@ export const metadata = {
     title: "Data Is Not Context — Riché Zamor",
     description:
       "The Context Architecture Thesis by Riché Zamor: an AI system has four layers — Data, Retrieval, Context, Inference. The five-step process (curate, synthesize, consolidate, prioritize, store) lives at the Context layer that sits between Retrieval and Inference.",
-    url: "https://richezamor.com/thesis",
+    url: "https://www.richezamor.com/thesis",
     type: "article",
     images: ["https://richezamor.com/og/thesis.png"],
     siteName: "Riché Zamor",
@@ -27,7 +27,7 @@ export const metadata = {
       "The thesis on why AI systems need a Context layer between Retrieval and Inference — and the five steps that live there.",
     images: ["https://richezamor.com/og/thesis.png"],
   },
-  alternates: { canonical: "https://richezamor.com/thesis" },
+  alternates: { canonical: "https://www.richezamor.com/thesis" },
 };
 
 export default function ThesisPage() {
@@ -110,13 +110,13 @@ export default function ThesisPage() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://richezamor.com",
+        item: "https://www.richezamor.com",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "The Context Architecture Thesis",
-        item: "https://richezamor.com/thesis",
+        item: "https://www.richezamor.com/thesis",
       },
     ],
   };
@@ -128,13 +128,13 @@ export default function ThesisPage() {
     author: {
       "@type": "Person",
       name: "Riché Zamor",
-      url: "https://richezamor.com",
+      url: "https://www.richezamor.com",
     },
     publisher: {
       "@type": "Person",
       name: "Riché Zamor",
     },
-    url: "https://richezamor.com/thesis",
+    url: "https://www.richezamor.com/thesis",
     datePublished: "2026-04-06",
     dateModified: "2026-05-07",
     description:

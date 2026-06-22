@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: "Thinking in Public — Riché Zamor",
     description:
       "Articles and insights on context architecture, AI product strategy, and leadership by Riché Zamor.",
-    url: "https://richezamor.com/thinking",
+    url: "https://www.richezamor.com/thinking",
     type: "website",
     images: ["https://richezamor.com/og/thinking.png"],
     siteName: "Riché Zamor",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
       "Essays and frameworks on context intelligence, product management, and leadership.",
     images: ["https://richezamor.com/og/thinking.png"],
   },
-  alternates: { canonical: "https://richezamor.com/thinking" },
+  alternates: { canonical: "https://www.richezamor.com/thinking" },
 };
 
 export default async function ThinkingPage() {

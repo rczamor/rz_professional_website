@@ -24,7 +24,7 @@ export default function ContactForm() {
         { name: "message", value: (data.get("message") as string).trim() },
       ],
       context: {
-        pageUri: "https://richezamor.com/contact",
+        pageUri: "https://www.richezamor.com/contact",
         pageName: "Contact — Riché Zamor",
       },
     };

@@ -5,14 +5,14 @@
 Riché Zamor is a context architect and VP of Product who designs how organizations structure knowledge for AI-driven decision-making. He coined the term "context architecture" — a five-step framework (curate, synthesize, consolidate, prioritize, store intelligently) for turning raw data into decision-ready context.
 
 ## Pages
-- Home: https://richezamor.com/
-- Thesis (Data Is Not Context): https://richezamor.com/thesis
-- Work (Case Studies): https://richezamor.com/work
-- About: https://richezamor.com/about
-- Thinking (Articles): https://richezamor.com/thinking
-- Projects: https://richezamor.com/projects
-- Glossary: https://richezamor.com/glossary
-- Contact: https://richezamor.com/contact
+- Home: https://www.richezamor.com/
+- Thesis (Data Is Not Context): https://www.richezamor.com/thesis
+- Work (Case Studies): https://www.richezamor.com/work
+- About: https://www.richezamor.com/about
+- Thinking (Articles): https://www.richezamor.com/thinking
+- Projects: https://www.richezamor.com/projects
+- Glossary: https://www.richezamor.com/glossary
+- Contact: https://www.richezamor.com/contact
 
 ## Contact
 - Email: connect@richezamor.com
@@ -21,7 +21,7 @@ Riché Zamor is a context architect and VP of Product who designs how organizati
 - GitHub: https://github.com/rczamor
 
 ## Ask Riché / Sia
-Ask Riché is a live AI assistant grounded in Riché's writing, frameworks, and knowledge base. It runs on Claude Sonnet via Vercel AI Gateway at /api/chat (POST, streaming). Ask it about context architecture, Riché's work, or anything on the site. For direct inquiries, use https://richezamor.com/contact.
+Ask Riché is a live AI assistant grounded in Riché's writing, frameworks, and knowledge base. It runs on Claude Sonnet via Vercel AI Gateway at /api/chat (POST, streaming). Ask it about context architecture, Riché's work, or anything on the site. For direct inquiries, use https://www.richezamor.com/contact.
 
 ## Full Content
-For complete site content, see: https://richezamor.com/llms-full.txt
+For complete site content, see: https://www.richezamor.com/llms-full.txt

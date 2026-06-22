@@ -26,7 +26,7 @@ export const metadata: Metadata = {
       "20 years turning raw data into decision-ready context. VP of Product, 2x founder, and author of the Context Architecture thesis. See the work →",
     url: "https://richezamor.com/about",
     type: "website",
-    images: ["https://richezamor.com/og-image.png"],
+    images: ["https://www.richezamor.com/og-image.png"],
     siteName: "Riché Zamor",
   },
   twitter: {
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
       "20 years building AI products that turn raw data into decision-ready context. VP of Product, 2x founder, author of the Context Architecture thesis.",
     images: ["https://richezamor.com/og-image.png"],
   },
-  alternates: { canonical: "https://richezamor.com/about" },
+  alternates: { canonical: "https://www.richezamor.com/about" },
 };
 
 export default function AboutPage() {

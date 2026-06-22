@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     title: "Riché Zamor — VP of Product. 2x Founder. Context Architect.",
     description:
       "Riché Zamor is a context architect and VP of Product who designs how organizations structure knowledge for AI-driven decision-making.",
-    url: "https://richezamor.com/",
+    url: "https://www.richezamor.com/",
     type: "website",
     images: ["https://richezamor.com/og/home.png"],
     siteName: "Riché Zamor",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     images: ["https://richezamor.com/og/home.png"],
   },
   alternates: {
-    canonical: "https://richezamor.com/",
+    canonical: "https://www.richezamor.com/",
   },
 };
 

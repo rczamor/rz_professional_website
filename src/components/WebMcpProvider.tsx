@@ -37,7 +37,7 @@ export default function WebMcpProvider() {
         tagline: "2x Founder. Context Architect.",
         expertise: ["Product Management", "AI Products", "Context Architecture", "Startup Leadership"],
         social: socialLinks,
-        website: "https://richezamor.com",
+        website: "https://www.richezamor.com",
       }),
     });
 
@@ -93,7 +93,7 @@ export default function WebMcpProvider() {
       handler: (params) => {
         // Articles are loaded server-side; direct agent to the thinking page
         void params;
-        return { message: "Navigate to /thinking to browse articles by pillar", url: "https://richezamor.com/thinking" };
+        return { message: "Navigate to /thinking to browse articles by pillar", url: "https://www.richezamor.com/thinking" };
       },
     });
 
@@ -172,7 +172,7 @@ export default function WebMcpProvider() {
                 { name: "inquiry_type", value: params.inquiry_type },
                 { name: "message", value: params.message },
               ],
-              context: { pageUri: "https://richezamor.com/contact", pageName: "Contact — Riché Zamor" },
+              context: { pageUri: "https://www.richezamor.com/contact", pageName: "Contact — Riché Zamor" },
             }),
           }
         );
@@ -198,7 +198,7 @@ export default function WebMcpProvider() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               fields: [{ name: "email", value: params.email }],
-              context: { pageUri: "https://richezamor.com", pageName: "Riché Zamor" },
+              context: { pageUri: "https://www.richezamor.com", pageName: "Riché Zamor" },
             }),
           }
         );
