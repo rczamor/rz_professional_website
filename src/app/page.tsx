@@ -23,7 +23,7 @@ export const metadata: Metadata = {
       "Riché Zamor is a context architect and VP of Product who designs how organizations structure knowledge for AI-driven decision-making.",
     url: "https://richezamor.com/",
     type: "website",
-    images: ["https://richezamor.com/og-image.png"],
+    images: ["https://richezamor.com/og/home.png"],
     siteName: "Riché Zamor",
   },
   twitter: {
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     title: "Riché Zamor — VP of Product. 2x Founder. Context Architect.",
     description:
       "Building AI products that turn raw data into decision-ready context. The architecture most teams skip is the problem I keep solving.",
-    images: ["https://richezamor.com/og-image.png"],
+    images: ["https://richezamor.com/og/home.png"],
   },
   alternates: {
     canonical: "https://richezamor.com/",
