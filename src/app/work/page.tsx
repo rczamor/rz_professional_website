@@ -3,14 +3,14 @@ import Footer from "@/components/Footer";
 import { caseStudies } from "@/content/work";
 
 export const metadata = {
-  title: "Work — Riché Zamor",
+  title: "Work — Suzy, Grandstage, Helm Labs, IBM | Riché Zamor",
   description:
-    "Riché Zamor's track record building AI products at Suzy, Grandstage, Helm Labs, and IBM — 300% growth, $3.25M pipeline, and $10M+ revenue impact.",
+    "AI product case studies across Suzy, Grandstage, Helm Labs, and IBM — 300% growth, $3.25M pipeline, $10M+ revenue impact. See the throughline →",
   openGraph: {
-    title: "Work — Riché Zamor",
+    title: "Work — Suzy, Grandstage, Helm Labs, IBM | Riché Zamor",
     description:
-      "Riché Zamor's track record building AI products at Suzy, Grandstage, Helm Labs, and IBM — 300% growth, $3.25M pipeline, and $10M+ revenue impact.",
-    url: "https://www.richezamor.com/work",
+      "AI product case studies across Suzy, Grandstage, Helm Labs, and IBM — 300% growth, $3.25M pipeline, $10M+ revenue impact. See the throughline →",
+    url: "https://richezamor.com/work",
     type: "website",
     images: ["https://www.richezamor.com/og-image.png"],
     siteName: "Riché Zamor",
@@ -18,9 +18,10 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     site: "@richezamor",
-    title: "Work — Riché Zamor",
-    description: "Track record of building AI products at scale.",
-    images: ["https://www.richezamor.com/og-image.png"],
+    title: "Work — Suzy, Grandstage, Helm Labs, IBM | Riché Zamor",
+    description:
+      "AI product case studies — 300% growth, $3.25M pipeline, $10M+ revenue impact across Suzy, Grandstage, Helm Labs, and IBM.",
+    images: ["https://richezamor.com/og-image.png"],
   },
   alternates: { canonical: "https://www.richezamor.com/work" },
 };

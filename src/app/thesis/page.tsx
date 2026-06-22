@@ -16,7 +16,7 @@ export const metadata = {
       "The Context Architecture Thesis by Riché Zamor: an AI system has four layers — Data, Retrieval, Context, Inference. The five-step process (curate, synthesize, consolidate, prioritize, store) lives at the Context layer that sits between Retrieval and Inference.",
     url: "https://www.richezamor.com/thesis",
     type: "article",
-    images: ["https://www.richezamor.com/og-image.png"],
+    images: ["https://richezamor.com/og/thesis.png"],
     siteName: "Riché Zamor",
   },
   twitter: {
@@ -25,7 +25,7 @@ export const metadata = {
     title: "Data Is Not Context — Riché Zamor",
     description:
       "The thesis on why AI systems need a Context layer between Retrieval and Inference — and the five steps that live there.",
-    images: ["https://www.richezamor.com/og-image.png"],
+    images: ["https://richezamor.com/og/thesis.png"],
   },
   alternates: { canonical: "https://www.richezamor.com/thesis" },
 };

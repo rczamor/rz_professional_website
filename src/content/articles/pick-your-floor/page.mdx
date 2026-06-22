@@ -1,0 +1,115 @@
+import {
+  SectionLabel,
+  StoryBlock,
+  Pullquote,
+  CardGrid,
+  Close,
+} from "@/components/article/think_components";
+
+export const metadata = {
+  title: "Pick Your Floor: One Question Per Floor",
+  slug: "pick-your-floor",
+  excerpt:
+    "The AI software market is sorting into five floors, from raw inference up to agent-native data. Naming them is easy. Holding one is not. Each floor has exactly one question that decides whether you can actually hold a position there — and most teams answer for the floor they wish they were on, not the one they're standing on.",
+  pillar: "product-management",
+  date: "June 4, 2026",
+  readTime: "5 min read",
+  badge: "Framework",
+  badgeVariant: "product",
+  featured: false,
+  comingSoon: false,
+  keywords: [
+    "ai software stack",
+    "ai market map",
+    "pick your floor",
+    "defensibility framework",
+    "ai moat",
+    "context engine",
+    "agent data platform",
+  ],
+  faq: [
+    {
+      question: "What are the five floors of the AI software stack?",
+      answer:
+        "From the bottom up: Floor 1, inference and infrastructure; Floor 2, agent data platforms; Floor 3, context engines; Floor 4, orchestration; Floor 5, agent-native data. Each floor is a distinct position in the stack with a different basis for defensibility.",
+    },
+    {
+      question: "How do you know if you can defend a position on your floor?",
+      answer:
+        "Each floor has one decisive question. Floor 1: do you control compute or distribution? Floor 2: does opening your data to agents raise switching costs? Floor 3: do you own all five context steps or one labeled as five? Floor 4: do you own the audit log? Floor 5: is your data proprietary and years deep, or rented? The unifying test: you hold a floor only if you own something the floor above can't absorb and the floor below can't commoditize.",
+    },
+    {
+      question: "Why do most teams misjudge their floor?",
+      answer:
+        "Because they answer the defensibility question for the floor they wish they were on, not the one they're standing on. A thin app on someone else's data platform answers as if it owns the data; a context vendor that does one step well answers as if it does all five. The question only helps if you answer it honestly about your actual position.",
+    },
+  ],
+}
+
+<StoryBlock dropcap>
+The AI software market is sorting into five floors, from raw inference up to agent-native data. I [mapped the whole thing — the named players on every floor and the forces that could stall the shift — in the market map](/thinking/ai-software-market-map).
+
+Naming the floors is easy. Holding one is not.
+</StoryBlock>
+
+Here is the test. Each floor has one question that decides whether you can actually hold a position there. Most teams answer for the floor they wish they were on, not the one they are standing on.
+
+<SectionLabel>01 / The Questions</SectionLabel>
+
+## One decision question per floor
+
+<CardGrid
+  cards={[
+    {
+      num: "01",
+      title: "Inference & Infrastructure",
+      body: "Do you control compute or distribution? Control neither and you're renting your position from someone who does.",
+    },
+    {
+      num: "02",
+      title: "Agent Data Platforms",
+      body: "When you open your data to agents, do switching costs go up or down? If wiring agents into your schema doesn't make you harder to leave, you're a thin app on someone else's data.",
+    },
+    {
+      num: "03",
+      title: "Context Engines",
+      body: "For a real workflow, do you own all five context steps — curation, synthesis, consolidation, prioritization, storage — or do you own one and label the other four? This floor goes to whoever does all five, not whoever names it first.",
+    },
+    {
+      num: "04",
+      title: "Orchestration",
+      body: "Do you own the record of what every agent did — the one a compliance team can audit? Here, governance is the moat, not the feature set.",
+    },
+    {
+      num: "05",
+      title: "Agent-Native Data",
+      body: "Is your data proprietary and years deep, or are you orchestrating data you rent from the floor's incumbents? Workflow wins deals. Data wins the war.",
+    },
+  ]}
+/>
+
+<SectionLabel>02 / The Pattern</SectionLabel>
+
+## One test underneath all five
+
+The pattern underneath every floor is the same. You hold a floor only if you own something the floor above cannot absorb and the floor below cannot turn into a commodity. The question just looks different depending on where you stand.
+
+<Pullquote
+  quote="You hold a floor only if you own something the floor above can't absorb and the floor below can't turn into a commodity."
+/>
+
+Floor 3 is the one I spend my time on, so I'll be blunt about it. "We have a context layer" is the most over-claimed sentence in the category right now. The honest version of the Floor 3 question is whether you run [all five steps of the context loop](/thinking/what-is-a-context-layer) for a real workflow, or whether you do retrieval well and call the other four steps "context." The floor goes to whoever does all five. Naming it first buys you a press cycle, not a position.
+
+<SectionLabel>03 / The Honesty</SectionLabel>
+
+## Answer for the floor you're on
+
+The framework only works if you answer for your actual floor, not your aspirational one. The thin app answers the Floor 2 question as though it owns the data. The retrieval vendor answers the Floor 3 question as though it does all five steps. The wrapper answers the Floor 1 question as though distribution is a roadmap item rather than a thing you either have or don't.
+
+That self-deception is the expensive part. The market will answer the question for you eventually — in pricing power, in who gets bundled, in who gets repriced as commodity infrastructure. Better to answer it honestly now, while you can still act on the answer.
+
+<Close kicker="The exercise" heading="Of these five, which question is the hardest to answer honestly about your own floor?">
+That difficulty is the signal. The floor whose question makes you flinch is usually the one you're standing on without a defensible position.
+
+Bring that one question to your next planning meeting. Not a feature list. The question for your floor, asked honestly. If you can answer it, you've picked your floor. If you can't, the market is about to pick it for you.
+</Close>

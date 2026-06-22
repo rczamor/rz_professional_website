@@ -17,14 +17,14 @@ import JourneyMapWrapper from "@/components/about/JourneyMapWrapper";
 import AboutPhoto from "@/components/about/AboutPhoto";
 
 export const metadata: Metadata = {
-  title: "About — Riché Zamor",
+  title: "About Riché Zamor — Context Architect & VP of Product",
   description:
-    "About Riché Zamor — context architect, VP of Product, 2x founder, and author of the Context Architecture Thesis.",
+    "20 years turning raw data into decision-ready context. VP of Product, 2x founder, and author of the Context Architecture thesis. See the work →",
   openGraph: {
-    title: "About — Riché Zamor",
+    title: "About Riché Zamor — Context Architect & VP of Product",
     description:
-      "About Riché Zamor — context architect, VP of Product, 2x founder, and author of the Context Architecture Thesis.",
-    url: "https://www.richezamor.com/about",
+      "20 years turning raw data into decision-ready context. VP of Product, 2x founder, and author of the Context Architecture thesis. See the work →",
+    url: "https://richezamor.com/about",
     type: "website",
     images: ["https://www.richezamor.com/og-image.png"],
     siteName: "Riché Zamor",
@@ -32,10 +32,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     site: "@richezamor",
-    title: "About — Riché Zamor",
+    title: "About Riché Zamor — Context Architect & VP of Product",
     description:
-      "AI product leader with 20 years of experience building systems that turn raw data into decision-ready context.",
-    images: ["https://www.richezamor.com/og-image.png"],
+      "20 years building AI products that turn raw data into decision-ready context. VP of Product, 2x founder, author of the Context Architecture thesis.",
+    images: ["https://richezamor.com/og-image.png"],
   },
   alternates: { canonical: "https://www.richezamor.com/about" },
 };
