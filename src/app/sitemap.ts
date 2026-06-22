@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { getAllArticles } from "@/lib/articles";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = "https://richezamor.com";
+  const baseUrl = "https://www.richezamor.com";
   const lastModified = new Date("2026-04-29");
 
   const articles = await getAllArticles();

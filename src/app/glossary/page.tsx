@@ -11,9 +11,9 @@ export const metadata: Metadata = {
     title: "Glossary — Context Architecture Terms | Riché Zamor",
     description:
       "Definitions of key terms in context architecture by Riché Zamor.",
-    url: "https://richezamor.com/glossary",
+    url: "https://www.richezamor.com/glossary",
     type: "website",
-    images: ["https://richezamor.com/og-image.png"],
+    images: ["https://www.richezamor.com/og-image.png"],
     siteName: "Riché Zamor",
   },
   twitter: {
@@ -22,9 +22,9 @@ export const metadata: Metadata = {
     title: "Glossary — Context Architecture Terms | Riché Zamor",
     description:
       "Definitions of key terms in context architecture by Riché Zamor.",
-    images: ["https://richezamor.com/og-image.png"],
+    images: ["https://www.richezamor.com/og-image.png"],
   },
-  alternates: { canonical: "https://richezamor.com/glossary" },
+  alternates: { canonical: "https://www.richezamor.com/glossary" },
 };
 
 export default function GlossaryPage() {
@@ -34,7 +34,7 @@ export default function GlossaryPage() {
     name: "Context Architecture Glossary",
     description:
       "Key terms and definitions from the field of context architecture, as defined by Riché Zamor.",
-    url: "https://richezamor.com/glossary",
+    url: "https://www.richezamor.com/glossary",
     hasDefinedTerm: glossaryTerms.map((t) => ({
       "@type": "DefinedTerm",
       name: t.term,

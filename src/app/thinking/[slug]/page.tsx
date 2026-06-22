@@ -28,9 +28,9 @@ export async function generateMetadata({
     openGraph: {
       title: `${article.title} — Riché Zamor`,
       description: article.excerpt,
-      url: `https://richezamor.com/thinking/${slug}`,
+      url: `https://www.richezamor.com/thinking/${slug}`,
       type: "article",
-      images: ["https://richezamor.com/og-image.png"],
+      images: ["https://www.richezamor.com/og-image.png"],
       siteName: "Riché Zamor",
     },
     twitter: {
@@ -38,9 +38,9 @@ export async function generateMetadata({
       site: "@richezamor",
       title: `${article.title} — Riché Zamor`,
       description: article.excerpt,
-      images: ["https://richezamor.com/og-image.png"],
+      images: ["https://www.richezamor.com/og-image.png"],
     },
-    alternates: { canonical: `https://richezamor.com/thinking/${slug}` },
+    alternates: { canonical: `https://www.richezamor.com/thinking/${slug}` },
   };
 }
 

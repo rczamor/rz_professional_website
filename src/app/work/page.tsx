@@ -10,9 +10,9 @@ export const metadata = {
     title: "Work — Riché Zamor",
     description:
       "Riché Zamor's track record building AI products at Suzy, Grandstage, Helm Labs, and IBM — 300% growth, $3.25M pipeline, and $10M+ revenue impact.",
-    url: "https://richezamor.com/work",
+    url: "https://www.richezamor.com/work",
     type: "website",
-    images: ["https://richezamor.com/og-image.png"],
+    images: ["https://www.richezamor.com/og-image.png"],
     siteName: "Riché Zamor",
   },
   twitter: {
@@ -20,9 +20,9 @@ export const metadata = {
     site: "@richezamor",
     title: "Work — Riché Zamor",
     description: "Track record of building AI products at scale.",
-    images: ["https://richezamor.com/og-image.png"],
+    images: ["https://www.richezamor.com/og-image.png"],
   },
-  alternates: { canonical: "https://richezamor.com/work" },
+  alternates: { canonical: "https://www.richezamor.com/work" },
 };
 
 export default function WorkPage() {

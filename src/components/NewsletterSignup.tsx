@@ -67,7 +67,7 @@ export default function NewsletterSignup({ buttonText = "Subscribe", className =
     const utmFields = Object.entries(utms).map(([name, value]) => ({ name, value }));
 
     const context: Record<string, string> = {
-      pageUri: `https://richezamor.com${pathname}`,
+      pageUri: `https://www.richezamor.com${pathname}`,
       pageName: document.title,
     };
     // hutk ties the submission to HubSpot's tracked session, which captures UTMs
