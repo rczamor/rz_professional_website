@@ -27,6 +27,6 @@ export default function robots(): MetadataRoute.Robots {
         // Add via public/robots.txt if needed
       },
     ],
-    sitemap: "https://richezamor.com/sitemap.xml",
+    sitemap: "https://www.richezamor.com/sitemap.xml",
   };
 }
