@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function HelloPage() {
   return (
     <>
-      <Nav />
+      <Nav activePage="home" />
       <main id="main-content">
         <section className="hero hero-centered">
           <div className="container">
