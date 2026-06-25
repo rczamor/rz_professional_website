@@ -20,11 +20,12 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
       {
-        // Rate-limit aggressive SEO bots
+        // Rate-limit aggressive SEO bots. `crawlDelay` is supported per-rule in
+        // MetadataRoute.Robots (see node_modules/next/dist/docs/.../robots.md),
+        // so this carries over the directive the retired public/robots.txt held.
         userAgent: ["AhrefsBot", "SemrushBot"],
         allow: "/",
-        // Note: crawl-delay not supported in MetadataRoute.Robots
-        // Add via public/robots.txt if needed
+        crawlDelay: 10,
       },
     ],
     sitemap: "https://www.richezamor.com/sitemap.xml",
