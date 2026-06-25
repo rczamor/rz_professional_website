@@ -1,0 +1,131 @@
+import {
+  StoryBlock,
+  SectionLabel,
+  Pullquote,
+  Close,
+} from "@/components/article/think_components";
+
+export const metadata = {
+  title: "Breaking Model Dependency: LLM Failover for AI Products",
+  slug: "breaking-model-dependency",
+  excerpt:
+    "A major model outage exposed the cost of hardcoding one LLM. Why single-model dependency is a retention risk, and three ways to add failover to your AI product.",
+  pillar: "context-intelligence",
+  date: "June 24, 2026",
+  readTime: "6 min read",
+  badge: "Deep Dive",
+  featured: false,
+  comingSoon: false,
+  keywords: [
+    "LLM failover",
+    "model provider failover",
+    "LLM gateway",
+    "multi-model routing",
+    "single point of failure AI",
+    "LiteLLM fallback",
+    "OpenRouter",
+    "AI product resilience",
+    "model dependency",
+  ],
+  faq: [
+    {
+      question: "What happened in the June 2026 Claude outage?",
+      answer:
+        "On June 23, 2026, Claude returned errors across the API, Claude Code, and the apps for about three hours, and Downdetector logged more than 8,000 reports. It was the latest in a run that month after a larger outage on June 2. Anthropic's status page put 90-day uptime around 99.1 percent for the apps — roughly twenty hours of downtime a quarter, against the 99.9 percent most enterprise contracts expect. The point isn't Anthropic specifically: every major provider has its own outages, and OpenAI and Google have had theirs.",
+    },
+    {
+      question: "Why is single-model dependency a retention risk?",
+      answer:
+        "An outage is a broken moment that hits every active user at once. Three hours of downtime is recoverable, but the customer who shows up, hits a broken experience, and quietly decides your product is unreliable usually is not. The trust an AI product earns is fragile and does not survive many broken moments, so a provider outage reads less like an SRE metric and more like a retention event.",
+    },
+    {
+      question: "How do you add model failover to an AI product?",
+      answer:
+        "There are three approaches, in rising order of how much you build yourself. First, auto-detection and rerouting: watch your primary provider's health and reroute to a backup when it starts failing. Second, an LLM proxy or gateway: put one gateway in front of every model call so swapping a model becomes a config change — LiteLLM does this open-source with ordered fallback chains, and Portkey, Bifrost, and Vercel's AI Gateway sell managed versions. Third, outsource routing entirely: OpenRouter-style platforms put hundreds of models behind one endpoint. For most teams the honest build-versus-buy answer is buy.",
+    },
+    {
+      question: "What can go wrong with LLM failover?",
+      answer:
+        "A gateway with no redundancy of its own just relocates the single point of failure to your router, so give the router its own redundancy. Failover is also not a clean substitution: your backup model has different prompts, formatting, and tool behavior, so a request that still succeeds can come back degraded — the same broken moment that churns users, served this time by you. Test the fallback path like a real one, and if you route simpler requests to a cheaper model to save money, do it with evals so you don't trade a visible outage for an invisible quality leak.",
+    },
+    {
+      question: "How do you start breaking model dependency this week?",
+      answer:
+        "Map where your product depends on a single model. For each dependency, answer out loud with your team what happens when that provider is down. Then make the build-versus-buy call on a gateway. The same routing layer that gives you failover is also where context selection lives, so the resilience work doubles as the foundation for your context architecture.",
+    },
+  ],
+}
+
+<StoryBlock dropcap>
+Yesterday morning, Claude started returning errors. Not for a handful of users. Across the API, Claude Code, the apps, all of it, for about three hours. Downdetector logged more than 8,000 reports before it cleared. If your product calls Claude anywhere in the critical path, your product had a bad morning too.
+
+It was the latest in a run of Claude outages this month, after a big one on June 2 and several shorter ones since. Anthropic's own status page puts 90-day uptime around 99.1 percent for the apps, roughly twenty hours of downtime a quarter, against the 99.9 percent most enterprise contracts ask for. The gap is real, and Anthropic is not unusual. Every major provider has its own outages. OpenAI and Google have had theirs. Build on a single provider and their worst day becomes yours.
+</StoryBlock>
+
+Some products barely felt yesterday. Those were the ones that had stopped treating the model as a fixed dependency and started treating it as one they could swap.
+
+<SectionLabel>01 / The Real Cost</SectionLabel>
+
+## An outage isn't an SRE metric. It's a retention event.
+
+Here is what the uptime numbers miss. Three hours of downtime is recoverable. The customer who showed up during those three hours, hit a broken experience, and quietly decided your product is unreliable, usually is not.
+
+I learned this at the market intelligence company I co-founded. We were early, the product was good, and we were losing users I couldn't explain. When I dug in, the pattern was simple. A single bad answer was often enough. One confidently wrong result, and that user never came back. They didn't complain. They just left. We put real money into evaluation and observability so we could catch bad output before a user did. Retention recovered. The lesson stuck harder than the fix: with an AI product, the margin for a broken moment is thinner than anything I had worked on before.
+
+I have watched the same thing since, at companies far better resourced than mine. The trust an AI product earns is fragile, and it does not survive many broken moments. An outage is a broken moment that hits every active user at once. So the right way to read yesterday is not as an SRE metric. It is a retention event.
+
+<Pullquote quote="Three hours of downtime is recoverable. A churned customer usually is not." />
+
+<SectionLabel>02 / The Question</SectionLabel>
+
+## The question isn't which model is best. It's what happens when it's down.
+
+That reframes the question every team building on these models should ask. Not "which model is best," which is close to settled and changes every few months anyway, but "what does my product do when that model is down?"
+
+If the honest answer is "it's down too," you have a single point of failure, and you chose it. Thoughtworks put it plainly after the June outage: hardcoding one provider's endpoint was reasonable in the early days, and in 2026 it has become a real threat to business continuity. The fix is not a better model. It is an architecture that does not depend on any one of them staying up.
+
+A few weeks ago I argued that almost nobody switches models for quality, because the context and the workflow keep you where you are. Failover is the opposite case. You are not switching because something better arrived. You are switching because the thing you are on stopped responding. Commitment to a primary model and the ability to fail off it are not in tension.
+
+<SectionLabel>03 / The Pattern</SectionLabel>
+
+## Treat the model as infrastructure, and swap it when it fails.
+
+The teams ahead of this already moved. Shopify is the clearest example. Rather than standardizing on a single AI tool or model, it standardized the layer underneath: a central proxy that every AI request flows through before it reaches a provider like OpenAI, Anthropic, or Google. Its head of engineering gave the reason in one line: we don't know yet which company, or workflow, or model is going to win. So they built so that none of them has to. The model became infrastructure, and you swap infrastructure when it fails.
+
+This is becoming the default shape: a serious AI product routes each request, falls over to a backup when the primary stops responding, and treats the model as a runtime decision, not a constant compiled into the app.
+
+<SectionLabel>04 / The Three Paths</SectionLabel>
+
+## Three ways to break model dependency
+
+There are three ways to get there, in rising order of how much you build yourself.
+
+First, auto-detection and rerouting. You watch the health of your primary provider, and when it starts failing, timing out, or rate-limiting, you reroute to a backup. It is the least you can do, and you own the logic. The cost is maintaining it.
+
+Second, an LLM proxy. You put one gateway in front of every model call. Your app talks to the gateway, the gateway talks to the providers, and swapping a model becomes a config change instead of a code change. Open-source LiteLLM does this across a hundred-plus providers with ordered fallback chains: try this one, then that one, then the next. Buy a managed version like Portkey, Bifrost, or Vercel's AI Gateway, or build your own, which is the Shopify path.
+
+Third, outsource the routing entirely. Platforms like OpenRouter sit in front of hundreds of models from dozens of providers behind one endpoint, so failover and model choice become someone else's problem. Fastest to stand up, least control over what happens underneath.
+
+<SectionLabel>05 / The Failure Modes</SectionLabel>
+
+## Where failover quietly goes wrong
+
+None of this is free, and the failure modes matter, because a sloppy version recreates the problem you were solving.
+
+A gateway with no redundancy of its own just relocates the single point of failure. Now the thing that can take everything down is your router. Give it its own redundancy.
+
+Failover is not a clean substitution. Your backup model has different habits: different prompts, different formatting, different tool behavior. A request that succeeds against it can still come back worse. "Still up" can quietly mean "up and degraded," and a degraded answer is the same broken moment that churned my users, except this time you served it to yourself. Test the fallback path like a real one, not a someday-maybe.
+
+And if you route simpler or failed requests to a cheaper model to save money, do it with evals, or you trade a visible outage for an invisible quality leak that is harder to notice and harder to win back.
+
+<SectionLabel>06 / The Work</SectionLabel>
+
+## The work you can start this week
+
+So here is the work, and you can start it this week. Map where your product depends on a single model. For each dependency, answer out loud, with your team, what happens when that provider is down. Then make the build-versus-buy call on a gateway. For most teams the honest answer is buy, because the mature options already solved failover.
+
+One thing you notice once that layer exists. Putting a router between your product and the models hands you a new decision on every request: which model, and what that model gets to see. The first half is resilience. The second half is [context architecture](/thinking/small-models-context-layer). The same layer that gives you failover is where context selection lives, and the teams that build it for uptime will find they have built the place that decides context quality too.
+
+<Close kicker="The read" heading="The model is rented. The layer around it is yours.">
+The model is not the hard part anymore. It is rented, it is swappable, and yesterday it was down. The part that is yours is everything around it: the layer that decides which model answers, what it sees, and what your product does when the answer doesn't come.
+</Close>
