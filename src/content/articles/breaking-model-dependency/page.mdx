@@ -31,7 +31,7 @@ export const metadata = {
     {
       question: "What happened in the June 2026 Claude outage?",
       answer:
-        "On June 23, 2026, Claude returned errors across the API, Claude Code, and the apps for about three hours, and Downdetector logged more than 8,000 reports. It was the latest in a run that month after a larger outage on June 2. Anthropic's status page put 90-day uptime around 99.1 percent for the apps — roughly twenty hours of downtime a quarter, against the 99.9 percent most enterprise contracts expect. The point isn't Anthropic specifically: every major provider has its own outages, and OpenAI and Google have had theirs.",
+        "On June 23, 2026, Claude returned errors across the API, Claude Code, and the apps for about three hours, and Downdetector logged more than 8,000 reports. It was the latest in a run that month after a larger outage on June 2. Anthropic's status page put 90-day uptime around 99.1 percent for the apps, roughly twenty hours of downtime a quarter, against the 99.9 percent most enterprise contracts expect. The point isn't Anthropic specifically: every major provider has its own outages, and OpenAI and Google have had theirs.",
     },
     {
       question: "Why is single-model dependency a retention risk?",
@@ -41,12 +41,12 @@ export const metadata = {
     {
       question: "How do you add model failover to an AI product?",
       answer:
-        "There are three approaches, in rising order of how much you build yourself. First, auto-detection and rerouting: watch your primary provider's health and reroute to a backup when it starts failing. Second, an LLM proxy or gateway: put one gateway in front of every model call so swapping a model becomes a config change — LiteLLM does this open-source with ordered fallback chains, and Portkey, Bifrost, and Vercel's AI Gateway sell managed versions. Third, outsource routing entirely: OpenRouter-style platforms put hundreds of models behind one endpoint. For most teams the honest build-versus-buy answer is buy.",
+        "There are three approaches, in rising order of how much you build yourself. First, auto-detection and rerouting: watch your primary provider's health and reroute to a backup when it starts failing. Second, an LLM proxy or gateway: put one gateway in front of every model call so swapping a model becomes a config change. LiteLLM does this open-source with ordered fallback chains, and Portkey, Bifrost, and Vercel's AI Gateway sell managed versions. Third, outsource routing entirely: OpenRouter-style platforms put hundreds of models behind one endpoint. For most teams the honest build-versus-buy answer is buy.",
     },
     {
       question: "What can go wrong with LLM failover?",
       answer:
-        "A gateway with no redundancy of its own just relocates the single point of failure to your router, so give the router its own redundancy. Failover is also not a clean substitution: your backup model has different prompts, formatting, and tool behavior, so a request that still succeeds can come back degraded — the same broken moment that churns users, served this time by you. Test the fallback path like a real one, and if you route simpler requests to a cheaper model to save money, do it with evals so you don't trade a visible outage for an invisible quality leak.",
+        "A gateway with no redundancy of its own just relocates the single point of failure to your router, so give the router its own redundancy. Failover is also not a clean substitution: your backup model has different prompts, formatting, and tool behavior, so a request that still succeeds can come back degraded, the same broken moment that churns users, served this time by you. Test the fallback path like a real one, and if you route simpler requests to a cheaper model to save money, do it with evals so you don't trade a visible outage for an invisible quality leak.",
     },
     {
       question: "How do you start breaking model dependency this week?",
@@ -124,7 +124,11 @@ And if you route simpler or failed requests to a cheaper model to save money, do
 
 So here is the work, and you can start it this week. Map where your product depends on a single model. For each dependency, answer out loud, with your team, what happens when that provider is down. Then make the build-versus-buy call on a gateway. For most teams the honest answer is buy, because the mature options already solved failover.
 
-One thing you notice once that layer exists. Putting a router between your product and the models hands you a new decision on every request: which model, and what that model gets to see. The first half is resilience. The second half is [context architecture](/thinking/small-models-context-layer). The same layer that gives you failover is where context selection lives, and the teams that build it for uptime will find they have built the place that decides context quality too.
+<SectionLabel>07 / The Next Layer</SectionLabel>
+
+## Failover keeps you up. Routing decides which model answers.
+
+Everything above is about staying up. None of it decides which model should handle a given request, only that some model does. That next decision is where routing gets sophisticated. Once the layer exists, you can send each request to the model best suited to it: cheap tasks to a small model, hard reasoning to a frontier model. Predictive routers like RouteLLM and NotDiamond learn that choice from data. A cascade tries the cheap model first and escalates only when the answer falls short. In an agent, the planner can pick the model for each step. Be careful with the claims, though. Letting a model pick its own model mostly does not work yet, and current routers often do not beat simply using the best single model, so treat this as an optimization you measure, not a feature you assume. The reason to build toward it anyway is the same reason the rest of this matters: choosing which model handles a request, based on what the request is, is a context decision. That is [context architecture](/thinking/small-models-context-layer), and the layer you built for uptime is where it lives.
 
 <Close kicker="The read" heading="The model is rented. The layer around it is yours.">
 The model is not the hard part anymore. It is rented, it is swappable, and yesterday it was down. The part that is yours is everything around it: the layer that decides which model answers, what it sees, and what your product does when the answer doesn't come.
