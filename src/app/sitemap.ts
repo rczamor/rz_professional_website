@@ -3,67 +3,80 @@ import { getAllArticles } from "@/lib/articles";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://www.richezamor.com";
-  const lastModified = new Date("2026-04-29");
+
+  // Last site-wide structural update to the core pages (the June 2026 canonical
+  // host + Context Architect positioning sweep). Replaces a previously hardcoded
+  // April date that left every core URL reporting a stale `lastmod` to crawlers.
+  const coreLastModified = new Date("2026-06-21");
 
   const articles = await getAllArticles();
-  const articleEntries: MetadataRoute.Sitemap = articles
-    .filter((a) => !a.comingSoon)
-    .map((a) => {
-      const parsed = Date.parse(a.date);
-      return {
-        url: `${baseUrl}/thinking/${a.slug}`,
-        lastModified: isNaN(parsed) ? lastModified : new Date(parsed),
-        changeFrequency: "monthly" as const,
-        priority: a.featured ? 0.8 : 0.6,
-      };
-    });
+  const published = articles.filter((a) => !a.comingSoon);
+
+  // Content-surfacing pages (home, the /thinking index) track the newest
+  // published article automatically, so shipping an article keeps their
+  // `lastmod` honest without a manual edit.
+  const newestContentTime = published.reduce((latest, a) => {
+    const parsed = Date.parse(a.date);
+    return Number.isNaN(parsed) ? latest : Math.max(latest, parsed);
+  }, coreLastModified.getTime());
+  const latestContent = new Date(newestContentTime);
+
+  const articleEntries: MetadataRoute.Sitemap = published.map((a) => {
+    const parsed = Date.parse(a.date);
+    return {
+      url: `${baseUrl}/thinking/${a.slug}`,
+      lastModified: Number.isNaN(parsed) ? coreLastModified : new Date(parsed),
+      changeFrequency: "monthly" as const,
+      priority: a.featured ? 0.8 : 0.6,
+    };
+  });
 
   return [
     {
       url: baseUrl,
-      lastModified,
+      lastModified: latestContent,
       changeFrequency: "weekly",
       priority: 1.0,
     },
     {
       url: `${baseUrl}/thesis`,
-      lastModified,
+      lastModified: coreLastModified,
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/work`,
-      lastModified,
+      lastModified: coreLastModified,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/thinking`,
-      lastModified,
+      lastModified: latestContent,
       changeFrequency: "weekly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/about`,
-      lastModified,
+      lastModified: coreLastModified,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${baseUrl}/projects`,
-      lastModified,
+      lastModified: coreLastModified,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${baseUrl}/glossary`,
-      lastModified,
+      lastModified: coreLastModified,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${baseUrl}/contact`,
-      lastModified,
+      lastModified: coreLastModified,
       changeFrequency: "yearly",
       priority: 0.5,
     },
