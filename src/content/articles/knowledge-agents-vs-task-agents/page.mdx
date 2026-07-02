@@ -1,0 +1,144 @@
+import {
+  SectionLabel,
+  StoryBlock,
+  Pullquote,
+  Close,
+  CardGrid,
+  Dyptich,
+} from "@/components/article/think_components";
+
+export const metadata = {
+  title: "Knowledge Agents vs Task Agents: Scoping Agent Identity",
+  slug: "knowledge-agents-vs-task-agents",
+  excerpt:
+    "Two kinds of agents, knowledge and task, and why scoping an agent's identity is becoming core to the PRD. A product leader's take on designing a team of agents.",
+  pillar: "product-management",
+  date: "July 1, 2026",
+  readTime: "5 min read",
+  badge: "Deep Dive",
+  badgeVariant: "product",
+  featured: false,
+  keywords: [
+    "knowledge agents vs task agents",
+    "knowledge agent",
+    "task agent",
+    "agent design for product managers",
+    "scoping agent identity",
+    "designing a team of agents",
+    "agent identity in the prd",
+    "least privilege ai agents",
+  ],
+  faq: [
+    {
+      question: "What's the difference between a knowledge agent and a task agent?",
+      answer:
+        "A knowledge agent holds deep domain expertise and advises or coaches; a task agent is scoped to a practice area with tight tool and data access and does the work. Expertise vs productivity.",
+    },
+    {
+      question: "Should you build a single agent or multiple agents?",
+      answer:
+        "OpenAI recommends starting with one and splitting only when it strains; Anthropic found multi-agent delegation wins on parallelizable research; Cognition warns multi-agent setups fragment context; LangChain's split is that reading work parallelizes and writing work doesn't.",
+    },
+    {
+      question: "What does least privilege mean for AI agents?",
+      answer:
+        "Granting an agent only the access its job requires and nothing more, so an over-permissioned agent can't act beyond its scope.",
+    },
+  ],
+}
+
+<StoryBlock dropcap>
+At Suzy we build agents that help consumer brands make better decisions. It's the daily work of a brand or insights manager, run as agile research instead of a six-week study. Lately I've been mapping the next phase of that system, and one question keeps coming back that I don't think has a settled answer.
+
+Should an agent do the work for you, or teach you to do it yourself?
+</StoryBlock>
+
+<SectionLabel>01 / The Question</SectionLabel>
+
+## Should an agent do the work, or teach you to do it?
+
+Both are real products. Both are useful. And the choice between them isn't a detail. It shapes what you build, who you build it for, and how much authority you give it.
+
+<SectionLabel>02 / The Labs</SectionLabel>
+
+## How the labs argue about agent structure
+
+There are real schools of thought on how to structure agents, and they don't agree.
+
+<CardGrid
+  cards={[
+    {
+      num: "01",
+      title: "OpenAI",
+      body: "Start with one agent and split only when it strains. If you split, pick between a manager that keeps control or peers that hand off.",
+    },
+    {
+      num: "02",
+      title: "Anthropic",
+      body: "The opposite can pay off. A lead agent handing parallel work to sub-agents beat a single agent on open-ended research.",
+    },
+    {
+      num: "03",
+      title: "Cognition",
+      body: "The team behind Devin pushed back in a post titled \"Don't Build Multi-Agents,\" arguing parallel agents fragment context and start making conflicting decisions.",
+    },
+    {
+      num: "04",
+      title: "LangChain",
+      body: "The reconciliation I find most useful: reading work like research splits across agents cleanly, writing work like producing one coherent artifact doesn't.",
+    },
+  ]}
+/>
+
+None of them is wrong. They're answering a different question than the one I keep landing on.
+
+<Pullquote quote="Theirs is how to divide the work. Mine is what kind of agent you're building in the first place." />
+
+<SectionLabel>03 / The Lens</SectionLabel>
+
+## Two vectors: expertise and productivity
+
+Here's the lens I've found more useful. I think about agents on two vectors: expertise and productivity.
+
+<Dyptich
+  left={{
+    label: "Knowledge agent",
+    content:
+      "Sits on the expertise vector. Its job is to know something deeply. It's governed by a knowledge base that gets better over time, and at the far end it can learn and tune itself. It knows a domain deeply and can coach someone through a decision instead of making it for them. It advises. It teaches.",
+  }}
+  right={{
+    label: "Task agent",
+    content:
+      "Sits on the productivity vector. Its job is to get something done. You scope it to a practice area, and that scoping earns you something concrete: tight, specific access to tools, data systems, and context, instead of handing every agent in the platform the same broad access. The narrower the role, the safer the grant.",
+  }}
+/>
+
+The reason to want both inside a vertical platform is that organizations aren't uniform. On any given day, one person wants the work done now and handed back finished. Another wants to learn by doing it with help. Different skill levels, different resources, different moments. A platform that can only do the work, or only coach, has to pick one of those users and disappoint the other. A platform with both can do the job when that's what's needed, and teach the job when that's what's wanted. Neither is the wrong mode.
+
+<SectionLabel>04 / The PRD</SectionLabel>
+
+## Agent identity belongs in the PRD
+
+This matters for product managers specifically, and not in an abstract way.
+
+I think the user story is fading. Something is taking its place in the requirements we write: the identity of the agent. And the PRD isn't a document anymore. It's a build asset. You feed it to the agents that build the product, and they build against it directly. What used to be a spec a team read and interpreted is now the raw material a system consumes.
+
+That changes what you're doing when you write one. When you put an agent's identity in a PRD, you aren't describing the product. You're giving the builder the thing it builds from. Get the identity wrong there and you haven't written a fuzzy doc. You've mis-specified the agent that ships.
+
+So the skill I keep coming back to is scoping an agent's identity well. What is the job, or the small set of jobs, it's responsible for? And how do you draw a clean line between this agent and the next one, so their roles don't overlap and conflict?
+
+The more I sit with that, the more it looks like a problem product managers have never actually had to solve. It's organizational design. Building [a team of agents](/thinking/composition-of-an-agent-team) is a lot like designing how a company operates: roles, responsibilities, who reports to whom, who's allowed to touch what. I don't think there's a product framework for this yet.
+
+<SectionLabel>05 / The Guardrails</SectionLabel>
+
+## Least privilege: what an agent shouldn't know
+
+There's a governance layer under all of this that's easy to skip and expensive to get wrong. A good agent doesn't just need to know things. It needs to know what it isn't allowed to know, and what it isn't allowed to do. The security world has a name for the principle: least privilege. You grant an agent only the access its job requires, and nothing more. An agent built to read customer data has no business with write access to a financial system.
+
+The failure mode isn't hypothetical. There's a widely cited case of an email agent that deleted hundreds of messages after its constraints were lost mid-task. Once the guardrails were gone, it just operated with all the access it happened to have. That's what an unscoped agent is. Not malicious, just permissioned for more than its job.
+
+Here's the part I find genuinely interesting. Security teams say a distinct agent identity is the foundation of access control. The requirements I described a minute ago start from that same object: agent identity. The PM defining who an agent is, and the security engineer scoping what it's allowed to reach, are describing the same thing from two ends. Which is another reason identity belongs in the PRD from the start. It's what the build runs on.
+
+<Close kicker="The open problem" heading="Designing a team of agents the way you'd design an organization.">
+I don't have the framework yet. Designing a team of agents the way you'd design an organization, with clear roles, boundaries, and access, is the problem I'm actually trying to work out. I'm not convinced anyone has the model for it yet. Sounds like a post for tomorrow.
+</Close>
