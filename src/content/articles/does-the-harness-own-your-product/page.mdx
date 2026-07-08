@@ -1,0 +1,124 @@
+import {
+  SectionLabel,
+  StoryBlock,
+  Pullquote,
+  Close,
+  CardGrid,
+  ComparisonGrid,
+} from "@/components/article/think_components";
+
+export const metadata = {
+  title: "If an AI Harness Decides When Your Product Is Useful, Does It Own You?",
+  slug: "does-the-harness-own-your-product",
+  excerpt:
+    "a16z says AI agents are pushing enterprise software headless. The cannibalization risk SaaS companies are underestimating: giving up not the screen, but the decision about when your product is useful.",
+  pillar: "context-intelligence",
+  date: "July 7, 2026",
+  readTime: "6 min read",
+  badge: "Signal",
+  badgeVariant: "product",
+  featured: false,
+  keywords: [
+    "headless saas",
+    "ai harness",
+    "context layer",
+    "ai agent orchestration",
+    "saas cannibalization risk",
+    "who owns the context layer",
+    "agent orchestration risk for saas",
+    "exposing workflows to ai agents",
+  ],
+  faq: [
+    {
+      question: "What does it mean for enterprise software to go \"headless\"?",
+      answer:
+        "Headless means the user interface stops being where value gets created. An AI harness like Claude or Codex becomes the place a user expresses intent, and the underlying SaaS product becomes a capability the harness calls through an API rather than the surface someone works in directly.",
+    },
+    {
+      question: "What is the cannibalization risk SaaS companies face from AI agents?",
+      answer:
+        "It's not losing the screen. It's losing the decision about when your product is useful. An external harness that assembles context, sequences work, and selects vendors is also the layer deciding which product gets called, when, and how its output reaches the user.",
+    },
+    {
+      question: "How should a SaaS company decide what to expose to external AI agents?",
+      answer:
+        "Draw a deliberate boundary between the capabilities you expose to external harnesses and the context and orchestration you retain. Expose too little and agents route around you. Expose too much and the harness absorbs the judgment that made your product easier to use and harder to replace.",
+    },
+  ],
+}
+
+<StoryBlock dropcap>
+a16z put out a podcast this week arguing that AI agents are going to push enterprise software headless, moving value away from the UI and into data and execution. I agree with the direction. I've been arguing something close to it myself. But listening to it, I kept snagging on a risk I don't think most SaaS companies are pricing in yet, because it's the exact decision I'm sitting with in my own day job right now: how much of a workflow do you hand to an external agent before you've handed away the product.
+</StoryBlock>
+
+<SectionLabel>01 / The Argument</SectionLabel>
+
+## Headless is the right direction. It's also incomplete.
+
+The a16z case is simple. As AI agents get better at doing the work directly, the interface matters less. Value moves into the data a system holds and the actions it can execute. Screens become optional. I think that's correct as far as it goes.
+
+What it leaves out is what happens to the layer that used to sit inside the UI: judgment. Every SaaS product I've worked on encodes a point of view about what to show, in what order, when to block an action, and when a decision needs a human instead of a workflow rule. That judgment doesn't just evaporate when the screen disappears. It has to live somewhere. The question is whether it stays with the product that built it, or moves to whichever harness the user is now talking to.
+
+<SectionLabel>02 / The Real Risk</SectionLabel>
+
+## You're not giving up the screen. You're giving up the decision.
+
+If Claude, Codex, or another external harness becomes the place a user expresses intent, the SaaS product isn't just losing its interface. It's losing the decision about when it gets used at all.
+
+Here's the sequence. The harness sees the request. It assembles context across systems, decides which vendor creates value for this particular ask, sequences the work across however many tools that requires, then presents the result back to the user. The underlying product doesn't get consulted on any of that. It waits for an API call and does what it's told.
+
+<CardGrid
+  cards={[
+    {
+      num: "01",
+      title: "Intent",
+      body: "The harness is where the user states what they want. That used to happen inside your product.",
+    },
+    {
+      num: "02",
+      title: "Context",
+      body: "The harness pulls from every system the user touches, not just yours, to understand the request.",
+    },
+    {
+      num: "03",
+      title: "Selection",
+      body: "The harness decides which vendor or capability is the right one to call for this moment.",
+    },
+    {
+      num: "04",
+      title: "Presentation",
+      body: "The harness decides how the result reaches the user. Your product's output is a component now.",
+    },
+  ]}
+/>
+
+Every platform team is already making a version of this decision, whether they've named it or not: how much of the workflow to expose to external agents. Expose too little and agents route around you, calling a competitor's API instead. Expose too much and the harness absorbs the exact orchestration that made your product easier to use and harder to replace.
+
+<Pullquote quote="The UI was never just buttons. Good product design encodes judgment. Give away that orchestration and your product becomes a capability provider competing for calls it no longer controls." />
+
+<SectionLabel>03 / Data Isn't the Moat</SectionLabel>
+
+## The harness may own something more valuable than your data
+
+Data still matters, obviously. But I think the more valuable asset is shifting to whoever controls the context layer, the system that decides which piece of data matters in a given moment and why.
+
+<ComparisonGrid
+  beforeLabel="Salesforce"
+  afterLabel="Claude, as the harness"
+  before={["Knows the customer record", "Owns the system of record for one domain", "Sees what happens inside its own product"]}
+  after={["Sees the record, the inbox, the calendar, support history, and billing activity", "Sees the user's current intent in the moment they express it", "Decides which system matters for this specific request"]}
+/>
+
+Salesforce having the record was the moat for two decades. It still matters. It just isn't the whole game anymore, because the harness sitting across every system the user touches is the one deciding when the record even gets consulted.
+
+<SectionLabel>04 / The Boundary</SectionLabel>
+
+## Headless is inevitable. Surrender is not.
+
+I don't think the answer is refusing to expose anything, and I don't think it's exposing everything and hoping distribution through the harness makes up for it. It's a deliberate boundary: which capabilities you're willing to hand to external agents, and which context and orchestration you retain because that's where your product's judgment actually lives.
+
+Get that boundary wrong in either direction and you lose. Too closed, and agents route around you entirely. Too open, and you've handed the harness the exact thing that made a customer choose you over the alternative, then you're negotiating for API calls on someone else's terms.
+
+<Close kicker="The question" heading="Do you still own your product, or does the harness?">
+This is the practitioner version of the question I keep circling: how much workflow value do you expose to Claude, Codex, and whatever comes after them, without surrendering the streamlined experience that's the actual reason someone picked your product. Headless is coming regardless. Whether you still own what's underneath it is a decision, not an accident.
+</Close>
