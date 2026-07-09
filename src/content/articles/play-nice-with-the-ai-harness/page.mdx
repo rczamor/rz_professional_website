@@ -1,0 +1,141 @@
+import {
+  SectionLabel,
+  StoryBlock,
+  Pullquote,
+  Close,
+  CardGrid,
+} from "@/components/article/think_components";
+
+export const metadata = {
+  title: "Play Nice with the AI Harness. Compete Below It.",
+  slug: "play-nice-with-the-ai-harness",
+  excerpt:
+    "There are two ways to lose to an AI harness: resist it and get routed around, or surrender and get absorbed. The dual posture that avoids both, the four offensive moves that work below the harness layer, and the one test for what to expose versus what to defend.",
+  pillar: "context-intelligence",
+  date: "July 8, 2026",
+  readTime: "4 min read",
+  badge: "Deep Dive",
+  badgeVariant: "product",
+  featured: false,
+  keywords: [
+    "ai harness",
+    "headless saas strategy",
+    "ai harness disintermediation",
+    "vertical ai moat",
+    "foundation model commoditization",
+    "context orchestration layer",
+    "dual posture ai strategy",
+    "compete below the ai harness",
+  ],
+  faq: [
+    {
+      question: "What are the two ways SaaS companies lose to an AI harness?",
+      answer:
+        "Resist the harness and it routes around you, calling a competitor's capability instead. Surrender to it and it absorbs you, taking on the orchestration and context that made your product hard to replace. Most companies treat this as one decision, fight or fold, when it's actually two postures held at once.",
+    },
+    {
+      question: "What is the dual posture for surviving the AI harness era?",
+      answer:
+        "Play nice at the layer the harness owns, and play offense at the layers it can't. Expose your capabilities to Claude, Copilot, and ChatGPT to take the distribution they've built. Retain and deepen the context, customization, and workflow depth underneath, because that's where a generalist harness structurally can't follow.",
+    },
+    {
+      question: "What are the four offensive moves for competing below the harness?",
+      answer:
+        "Orchestrate the context you serve instead of handing the harness raw data. Deepen your product with customer-specific customization, integrations, and workflows until you're expensive to remove. Meet the industry where it stands, in language, distribution, and relationships a horizontal plugin doesn't have. Race up the stack to own the system of work before the labs push into it.",
+    },
+    {
+      question: "How do you decide what to expose to an AI harness versus what to defend?",
+      answer:
+        "Run one test on every capability: is it general, or is it specific to this customer and built up over time? Can a lab ship it once, or does it have to be rebuilt account by account? General and shippable capabilities should be exposed for the distribution. Specific, accumulated capabilities should be retained and deepened.",
+    },
+  ],
+}
+
+<StoryBlock dropcap>
+There are two ways to lose to an AI harness.
+</StoryBlock>
+
+A harness is the app where work now starts, like Claude Desktop, Codex, or ChatGPT. You state your intent. It decides which models and which products get called to deliver the result.
+
+Resist it, and it routes around you. Surrender to it, and it absorbs you.
+
+Most SaaS companies are stuck debating which of those mistakes to make. The premise underneath the debate is that [enterprise software is going headless](/thinking/saas-isnt-dying-its-being-demoted). a16z made the case cleanly: the screen goes to the harness, most of them run by the foundation labs, and your product becomes the thing the harness calls.
+
+The premise is right. Both responses to it are wrong.
+
+They share one error. They treat headless as a single decision. Fight or fold.
+
+It isn't one decision. It's two postures held at the same time. Play nice at the layer the harness owns. Play offense at the layers it can't.
+
+<SectionLabel>01 / The Concession</SectionLabel>
+
+## Playing nice is not surrender
+
+Conceding the front end feels like losing. It isn't. It's distribution.
+
+The harnesses are becoming where people express intent. That is the new top of the funnel. A product the agents route through reaches more work than a product that waits for someone to open a tab.
+
+So make yourself easy to call. Expose your capabilities. Ride the surfaces the labs are building, Copilot, Claude, ChatGPT, and take the reach they spent billions to create. Use their models. Do not spend capital fighting a model war against companies with more compute and more funding than you will ever raise.
+
+None of that is surrender. It becomes surrender only if you give away what sits underneath the front end.
+
+<SectionLabel>02 / The Offense</SectionLabel>
+
+## Playing offense where the harness is weak
+
+The harness has a structural weakness, and it is exactly where a focused company should attack.
+
+The harness is a generalist. Broad by construction, shallow by consequence. It starts cold on every request and knows nothing specific about your customer until something tells it. That is the opening. Four moves.
+
+Orchestrate the context you serve. A generic harness with a broad connector gets raw data and has to re-derive its meaning every single time. A product that sits between that data and the harness can do something better. It can synthesize. Serve pre-processed, domain-shaped signal instead of raw records, and the harness gets a better answer calling you than it gets routing around you. You stop being a data source. You become the thing that makes the harness smarter. That flips the dependency.
+
+Next, deepen until you are expensive to remove. Customization to one customer's structure. Integrations that translate what they pull, not just connect to it. Workflows that encode how the work actually gets done. A compliance posture built for the industry instead of bolted on afterward. None of this ships once from a lab. It accumulates, per customer, over years. Harvey runs on the same foundation models anyone can call through an API, and it is worth eleven billion dollars because of everything built around them.
+
+Then meet the industry where it stands. Know how the field talks about its own work. Sell where it buys. Put people inside the accounts when that is what success takes. A lab shipping a horizontal plugin does not do this. Not yet.
+
+Last, race up the stack. As the labs push down into the application layer, [move up into owning the system of work](/thinking/ai-software-market-map) before they arrive. Own the process, not just the feature.
+
+<CardGrid
+  cards={[
+    {
+      num: "01",
+      title: "Orchestrate context",
+      body: "Serve pre-processed, domain-shaped signal instead of raw records. Become the thing that makes the harness smarter, not a data source it queries.",
+    },
+    {
+      num: "02",
+      title: "Deepen until expensive to remove",
+      body: "Customer-specific customization, translating integrations, encoded workflows, industry-built compliance. Accumulates per customer, over years.",
+    },
+    {
+      num: "03",
+      title: "Meet the industry where it stands",
+      body: "Speak the field's language, sell where it buys, put people inside the accounts. A horizontal plugin from a lab doesn't do this.",
+    },
+    {
+      num: "04",
+      title: "Race up the stack",
+      body: "As labs push down into the application layer, move up into owning the system of work before they arrive.",
+    },
+  ]}
+/>
+
+<SectionLabel>03 / The Boundary</SectionLabel>
+
+## The line keeps moving
+
+There is an honest catch. The boundary is not fixed.
+
+Expose too little and agents route around you. Expose too much and the harness absorbs the experience that made your product hard to replace. You do not set that line once and defend it. You redraw it as the harnesses get more capable and the labs push further into your territory. Anthropic already shipped a legal plugin. The vertically focused services arms are coming.
+
+So [the question was never whether the harness owns you](/thinking/does-the-harness-own-your-product). It is which parts of you the harness can reach.
+
+That comes down to one test, run on every capability you have.
+
+Ask two things. Is this general, or is it specific to this customer and built up over time? Can a lab ship it once, or does it have to be rebuilt account by account?
+
+<Pullquote quote="General and shippable: expose it, and take the distribution. Specific and accumulated: retain it, deepen it, and make yourself the thing the harness cannot reassemble on its own." />
+
+<Close kicker="The line" heading="Draw it well and headless becomes a distribution channel.">
+Draw it wrong in either direction, and headless becomes the thing that ends you. Routed around, or absorbed.
+</Close>
