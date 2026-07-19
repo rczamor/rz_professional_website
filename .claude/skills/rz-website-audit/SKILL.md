@@ -1,3 +1,23 @@
+---
+name: rz-website-audit
+version: 0.2.0
+description: >
+  Use this skill whenever Riché invokes /rz-website-audit, asks to "run the
+  website audit", "run the weekly site review", "audit richezamor.com", or
+  when the Cowork shortcut fires the Sunday 8pm trigger with the body
+  "Run the rz-website-audit skill." Also invoke for any request that mentions
+  website audit, website QA, website scorecard, AI citation tracking,
+  website regression check, weekly site review of richezamor.com, SEO
+  health check, AIO health check, or competitor benchmarking against
+  richezamor.com. This is the orchestrating skill that runs the full weekly
+  audit across SEO (S1–S7 atomic), AIO (A1–A7 atomic), Traffic & Engagement,
+  Usability, Design, Brand, Technical QA, the Ask Riché chatbot, Keyword
+  Research, and Competitor Benchmarking. Produces a Notion page in the
+  Weekly Website Audits database, creates up to 5 P0/P1 Linear tasks in the
+  Brand project with spaced due dates Mon–Fri, and pings #brand in Slack
+  with a one-line traffic-light headline.
+---
+
 # Website Audit — Riché Zamor
 
 Weekly site audit of richezamor.com. Runs every Sunday at 8pm America/New_York via Claude Cowork shortcut, or manually via `/rz-website-audit` in Claude Code. Produces a structured Notion page, issues up to 5 prioritized Linear tasks, and posts a single-line headline to Slack.
@@ -20,11 +40,39 @@ The audit is a tactical skill. It does not own SEO methodology or brand voice. I
 
 **SEO and keyword research are owned by `rz-growth-marketing`.** Pull from `corpus/growth/seo/` for keyword research methodology, SERP review protocol, topic clusters, the monthly Keyword Planner workflow, and the Target Keywords DB schema. The audit's S1–S7 atomic dimensions and K1–K5 keyword-research category dimensions reference this corpus; they do NOT redefine SEO concepts.
 
-**GSC data is sourced from BigQuery, not Ahrefs.** The audit reads the GSC bulk export at `rz-analytics-495304.searchconsole.*` (tables: `searchdata_url_impression`, `searchdata_site_impression`, `ExportLog`). The export is forward-only: ~48 hours after Search Console's bulk-export setting was enabled, daily snapshots arrive; there is no historical backfill. S1/S3/K2 require ~28 days of accumulated data before they can fire meaningfully. Anonymized rows in the export are URL-only — query strings are not retained — so anonymized-keyword recovery is out of scope at this stack tier.
-
 **Brand voice is owned by `rz-copywriting`.** Pull from `corpus/voice/` for the fatal-fifteen AI-tells list, voice anti-patterns, terminology rules, and the 50/30/20 domain balance frame. The audit's B1–B5 brand checks are detection rules ON TOP of the voice canon; they do NOT redefine voice rules.
 
 If a dimension entry's text contradicts these source-of-truth corpora, the source-of-truth corpora win. Surface the contradiction in `rz-self-improve` for cleanup.
+
+## Tooling scope (v0.2.0) — zero Ahrefs
+
+The audit runs on a deliberately narrow tool stack. **Ahrefs is no longer a dependency.** Anything not listed is out of scope.
+
+**GSC data — BigQuery bulk export.**
+
+- Project: `rz-analytics-495304`
+- Dataset: `searchconsole`
+- Primary tables: `searchdata_url_impression` (URL-level), `searchdata_site_impression` (site-aggregated)
+- MCP: `mcp__d6df0178-7cc7-4d35-8fc0-2144d7aced61__execute_sql_readonly` (BigQuery)
+- Standard partition: `data_date` (date-partitioned)
+- Standard metrics: `impressions`, `clicks`, `sum_position` (divide by impressions for avg position)
+
+The four queries the audit runs at Step 2 are documented in `references/step-2-parallel-data-collection.md` and replace the prior `gsc-keywords`, `gsc-pages`, `gsc-performance-history`, `gsc-anonymous-queries` Ahrefs calls.
+
+**Lighthouse + lychee — delegated to Claude Code Routines.** The skill does NOT run Lighthouse or lychee inline. It reads their latest run output from the Routine artifacts directory.
+
+**Keyword research — manual.** The audit consumes (1) the Notion Target Keywords DB (whose volumes are refreshed monthly by Riché via the manual Keyword Planner workflow — see `corpus/growth/seo/keyword-planner-monthly.md` and Linear TRZ-883), and (2) live `web_search` for K3 SERP review.
+
+**Backlinks — dropped from weekly scope.** GSC's bulk export does not include the Links report. S8 (backlink loss) has been removed from the weekly dimension list pending a decision on the replacement source (GSC Links API direct, manual quarterly Links download, or accept the gap). See `references/quarterly-rebaseline.md` for the placeholder.
+
+**Explicitly out of scope (was Ahrefs, now removed):**
+
+- All `gsc-*` Ahrefs endpoints → BigQuery
+- `keywords-explorer-*` → manual (TRZ-883 monthly + `web_search` live)
+- `serp-overview` → manual `web_search` per `serp-review-protocol.md`
+- `site-explorer-all-backlinks`, `site-explorer-backlinks-stats`, `site-explorer-referring-domains` → S8 deferred, see above
+- `site-explorer-organic-competitors` → new-competitor surfacing happens via `web_search` during quarterly rebaseline
+- Inline Lighthouse / lychee → Claude Code Routines
 
 ## Load from corpus
 
@@ -51,6 +99,7 @@ Read these in order before running. The corpus carries the actual audit logic; t
 - `corpus/website-audit/dimensions/seo/s5-metadata-completeness.md`
 - `corpus/website-audit/dimensions/seo/s6-structured-data.md`
 - `corpus/website-audit/dimensions/seo/s7-internal-linking.md`
+- ~~`corpus/website-audit/dimensions/seo/s8-backlink-loss.md`~~ — **deferred** (see Tooling scope; needs new source decision)
 
 **AIO atomic dimensions**
 - `corpus/website-audit/dimensions/aio/a1-citation-absence.md`
@@ -105,38 +154,47 @@ DOMAIN_BALANCE_TARGET       = 50% Context Layer / 30% PM / 20% Leadership
 KEYWORD_PLANNER_STALE_DAYS  = 30
 SERP_ANALYSIS_TOP_N         = 5
 QUARTERLY_REBASELINE_MONTHS = January, April, July, October (first Sunday)
+GSC_BQ_PROJECT              = rz-analytics-495304
+GSC_BQ_DATASET              = searchconsole
+GSC_BQ_URL_TABLE            = searchdata_url_impression
+GSC_BQ_SITE_TABLE           = searchdata_site_impression
+LIGHTHOUSE_ARTIFACT_DIR     = ~/Documents/Claude/Routines/lighthouse/latest/
+LYCHEE_ARTIFACT_DIR         = ~/Documents/Claude/Routines/lychee/latest/
 ```
 
 ## Process
 
 ### Step 1 — Bootstrap
 Per `methodology/bootstrap.md`:
-1. Verify required MCP connectors are reachable (Notion, Linear, Slack, Vercel, Tavily, BigQuery).
-2. Read prior audit page from Weekly Audits DS for diff baseline.
-3. Read Target Keywords DB and Competitors DB into memory.
-4. Initialize empty findings buffer for each dimension.
+1. Verify required MCP connectors are reachable: Notion, Linear, Slack, Vercel, BigQuery. Confirm the BigQuery service-account has read access to `{GSC_BQ_PROJECT}.{GSC_BQ_DATASET}` by listing tables.
+2. Verify the Lighthouse + lychee Claude Code Routines have produced a fresh artifact in their respective dirs within the last 24 hours. If stale, log `routine_stale=<routine>` and continue with degraded scoring on that dimension.
+3. Read prior audit page from Weekly Audits DS for diff baseline.
+4. Read Target Keywords DB and Competitors DB into memory.
+5. Initialize empty findings buffer for each dimension.
 
 ### Step 2 — Parallel data collection
 Per `methodology/parallel-data-collection.md`. Concurrent fetches:
-- GSC data via BigQuery bulk export at `rz-analytics-495304.searchconsole.*` (positions, CTR, impressions, anonymized URL-level rows)
-- richezamor.com crawl: every page in sitemap, fetch + render-without-JS check + indexability heuristics (HTTP status, robots.txt allowance, canonical correctness, orphan detection — feeds S4)
-- AIO 20-query set across the LLMs Riché tracks
-- Competitors DB benchmarks per `competitor-benchmarking/read-protocol.md` (~30 min, the longest block)
-- Vercel deployment status and recent build logs
+- **GSC via BigQuery** — four queries against `{GSC_BQ_PROJECT}.{GSC_BQ_DATASET}` (full SQL in `references/step-2-parallel-data-collection.md`).
+- **richezamor.com crawl** — every page in sitemap, fetch + render-without-JS check.
+- **AIO 20-query set** across the LLMs Riché tracks.
+- **Lightweight competitor check** — for each Competitors DB row: URL alive (HEAD), content shipped this week (RSS or sitemap diff). Full benchmark moved to quarterly.
+- **Vercel deployment health** + recent build logs (read-only).
+- **Lighthouse + lychee** — **read latest artifact** from `LIGHTHOUSE_ARTIFACT_DIR` / `LYCHEE_ARTIFACT_DIR`. Do NOT invoke them inline.
+- **K3 SERP review** — manual `web_search` per `serp-review-protocol.md` on the top `SERP_ANALYSIS_TOP_N` priority terms.
 
 ### Step 3 — Run dimensions
 For each dimension corpus entry, evaluate against collected data. Write findings to the buffer with severity (P0/P1/P2) per `methodology/severity-scoring.md`. Order:
 
-1. SEO S1–S7 (atomic — each is its own corpus entry)
+1. SEO S1–S7 (atomic — each is its own corpus entry). S8 (backlink loss) is **deferred** pending source decision.
 2. AIO A1–A7 (atomic)
 3. Traffic & Engagement T1–T5 (single corpus entry)
 4. Usability U1–U4 (single corpus entry)
 5. Design D1–D5 (single corpus entry)
 6. Brand B1–B5 (single corpus entry)
-7. Technical QA Q1–Q9 (single corpus entry)
+7. Technical QA Q1–Q9 (single corpus entry — Performance metrics read from Lighthouse Routine artifact; link integrity from lychee Routine artifact)
 8. Chatbot C1–C5 (single corpus entry)
-9. Keyword Research K1–K5 (single corpus entry; SERP review per `serp-review-protocol.md` runs here)
-10. Competitor Benchmarking deltas (writes back to Competitors DB then surfaces deltas)
+9. Keyword Research K1–K5 (single corpus entry; K3 SERP review uses the `web_search` results from Step 2)
+10. Competitor Benchmarking deltas — **lightweight weekly only**. Full re-benchmark happens in the quarterly rebaseline.
 
 ### Step 4 — Assemble report
 Per `methodology/report-assembly.md`. Build the 15-section audit page in memory. Compute headline color per the rules in `databases/weekly-audits-schema.md`. Do not write to Notion yet.
@@ -151,27 +209,29 @@ Single write to Weekly Audits DS using NOTION_AUDIT_DS_ID. Include the Linear TR
 Per `methodology/slack-notification.md`. One-line headline to SLACK_CHANNEL with traffic-light emoji, task count, and a link to the Notion audit page.
 
 ### Step 8 — Update Target Keywords DB
-Write back `Current Position` and `Last Checked` for every Researching/Targeting/Ranking row processed. Fire status promotions (Ranking → Won) per the 4-week confirmation rule in `corpus/growth/seo/target-keywords-schema.md`.
+Write back `Current Position` and `Last Checked` for every Researching/Targeting/Ranking row processed. Fire status promotions (Ranking → Won) per the 4-week confirmation rule in `corpus/growth/seo/target-keywords-schema.md`. **Do NOT touch `Monthly Volume` or `Volume Last Updated`** — those are owned by the monthly Keyword Planner refresh task (TRZ-883).
 
 ### Step 9 — Update Competitors DB
-Already handled in Step 2's competitor block, but confirm `Last Audited` updated on every row touched.
+Lightweight `Last Audited` + `URL Alive` + `Shipped This Week` only. Tier/positioning/full benchmark fields are owned by the quarterly rebaseline.
 
 ## Quarterly rebaseline
 
 On the first Sunday of January, April, July, and October, the audit additionally:
-- Re-scores all 14 competitors regardless of tier
+- Re-scores all 14 competitors regardless of tier (full benchmark per `competitor-benchmarking/what-gets-benchmarked.md`)
 - Reviews Won and Deprioritized rows in Target Keywords DB for any needed status changes
 - Logs a quarterly summary section at the top of the audit page
+- Surfaces new-competitor candidates via `web_search` for tier-assignment review
 
-The constant `QUARTERLY_REBASELINE_MONTHS` flags this; bootstrap reads it.
+See `references/quarterly-rebaseline.md` for detail.
 
 ## What this skill does NOT do
 
 - It does not draft or publish content. K3 fires issue Linear tasks; Riché writes the article via `/rz-draft-content`.
-- It does not refresh Keyword Planner volumes. That's Riché's monthly manual workflow per `corpus/growth/seo/keyword-planner-monthly.md`.
+- It does not refresh Keyword Planner volumes. That's Riché's monthly manual workflow per `corpus/growth/seo/keyword-planner-monthly.md` (operationalized as Linear TRZ-883).
 - It does not re-tier competitors. Tier changes are a quarterly Riché decision.
 - It does not auto-fix any issues it finds. It diagnoses, scores, and issues tasks. Fixes happen via separate skills or manual Riché work.
-- It does not run Lighthouse via the official Lighthouse CLI. It approximates Lighthouse scoring from public-web signals only, weighted 40/20/20/20 per `competitor-benchmarking/what-gets-benchmarked.md`.
+- It does not run Lighthouse or lychee inline. Both run as Claude Code Routines on their own schedule; the audit reads the latest artifact.
+- It does not call Ahrefs. GSC data comes from BigQuery; keyword research is manual; backlinks are deferred.
 
 ## Cross-skill connections
 
@@ -186,3 +246,8 @@ The constant `QUARTERLY_REBASELINE_MONTHS` flags this; bootstrap reads it.
 - `rz-copywriting` — B1 (voice) findings reference rz-copywriting's voice rules. The audit detects voice drift; rz-copywriting fixes it.
 - `rz-graphic-design` — D5 (OG images) findings reference rz-graphic-design when an article ships without proper OG asset.
 - `rz-self-improve` — runs as the SessionEnd hook in retrospective mode; logs any audit-time exceptions for next-run improvement.
+
+**Sibling Routines (the audit reads their artifacts):**
+
+- `lighthouse` Claude Code Routine — produces `~/Documents/Claude/Routines/lighthouse/latest/`. Owned by Routine schedule, not this skill.
+- `lychee` Claude Code Routine — produces `~/Documents/Claude/Routines/lychee/latest/`. Owned by Routine schedule, not this skill.
