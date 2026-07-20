@@ -87,7 +87,7 @@ Consulting practice with J&J, Northwell Health, Twitter, Reddit, Memorial Sloan 
 
 - **Sia** (In Development): Personal knowledge system demonstrating the five-step context generation architecture. Built with FastAPI, Neon Postgres + pgvector, Ollama, and Langfuse.
 - **Ascend** (Live): Career growth SaaS built entirely with AI coding tools. https://ascend.careers
-- **Blocade** (Live): Political fundraising system for local campaigns. https://blocade.app
+- **Blocade** (Live): Political fundraising system for local campaigns. https://blocade.co
 - **AI Topic Trend Analyzer** (Prototype): Analyzes trending topics in AI discourse.
 - **Hubspot AI Dashboard** (Prototype): AI-powered onboarding and analytics dashboard.
 - **Recipe Remix** (Live): Creative cooking tool. https://recipe-remix.app

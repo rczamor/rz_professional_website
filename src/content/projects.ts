@@ -22,7 +22,7 @@ export const projects: ProjectCard[] = [
     status: "Live",
     description:
       "A political fundraising system for local campaigns. Streamlined tools for grassroots campaign finance and donor management.",
-    link: "https://blocade.app",
+    link: "https://blocade.co",
   },
   {
     title: "AI Topic Trend Analyzer",
