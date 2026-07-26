@@ -10,7 +10,7 @@ export const metadata = {
     title: "Work — Suzy, Grandstage, Helm Labs, IBM | Riché Zamor",
     description:
       "AI product case studies across Suzy, Grandstage, Helm Labs, and IBM — 300% growth, $3.25M pipeline, $10M+ revenue impact. See the throughline →",
-    url: "https://richezamor.com/work",
+    url: "https://www.richezamor.com/work",
     type: "website",
     siteName: "Riché Zamor",
   },

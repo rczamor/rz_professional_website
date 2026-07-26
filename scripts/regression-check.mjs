@@ -402,6 +402,37 @@ async function checkPillarArticles() {
   }
 }
 
+// ── TRZ-2119 ────────────────────────────────────────────────────────────────
+/**
+ * Every absolute URL the site publishes about itself must name one host.
+ * Apex and www both resolving means Google indexes two URLs per page and
+ * splits ranking signals between them, which is what TRZ-2119 measured.
+ * `og:url` pointing at apex while `rel=canonical` points at www is exactly
+ * that contradiction, emitted by us rather than inferred by Google.
+ */
+async function checkCanonicalHost() {
+  const bareApex = /https:\/\/richezamor\.com/g;
+
+  for (const path of ["/", "/about", "/thesis", "/work", "/thinking", "/contact"]) {
+    const html = await get(path);
+    const head = html.slice(0, html.indexOf("</head>") + 7);
+    const strays = head.match(bareApex) || [];
+    record(
+      `TRZ-2119 ${path} metadata uses the www host only`,
+      strays.length === 0,
+      strays.length ? `${strays.length} bare-apex URL(s) in <head>` : ""
+    );
+
+    const canonical = head.match(/<link[^>]+rel="canonical"[^>]+href="([^"]+)"/i)?.[1];
+    const ogUrl = metaContent(head, "property", "og:url");
+    record(
+      `TRZ-2119 ${path} og:url agrees with rel=canonical`,
+      !ogUrl || !canonical || new URL(ogUrl).host === new URL(canonical).host,
+      `og:url=${ogUrl} vs canonical=${canonical}`
+    );
+  }
+}
+
 // ── Sitewide invariants (regression guard) ──────────────────────────────────
 async function checkSitewide(slugs) {
   for (const path of ["/", "/about", "/thesis", "/work", "/thinking", "/contact"]) {
@@ -452,6 +483,7 @@ async function main() {
   await checkTerminology();
   await checkPillarSignals();
   await checkPillarArticles();
+  await checkCanonicalHost();
   await checkSitewide(slugs);
 
   const failed = results.filter((r) => !r.ok);
