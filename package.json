@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "smoke:canonical": "node scripts/smoke-canonical-urls.mjs"
+    "smoke:canonical": "node scripts/smoke-canonical-urls.mjs",
+    "test:regression": "node scripts/regression-check.mjs",
+    "test": "npm run lint && npm run build && npm run test:regression"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",

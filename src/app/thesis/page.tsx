@@ -5,6 +5,7 @@ import ThesisCanvasAnimations from "@/components/ThesisCanvasAnimations";
 import ScrollReveal from "@/components/ScrollReveal";
 import "@/styles/thesis.css";
 import { aiSystemLayers, thesisSteps, builtCards } from "@/content/thesis";
+import { buildHowToSchema, safeJsonLd } from "@/lib/seo";
 
 export const metadata = {
   title: "Data Is Not Context — Riché Zamor",
@@ -101,6 +102,8 @@ export default function ThesisPage() {
       },
     ],
   };
+
+  const howToJsonLd = buildHowToSchema(thesisSteps);
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -341,15 +344,19 @@ export default function ThesisPage() {
 
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(faqJsonLd) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(articleJsonLd) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(howToJsonLd) }}
       />
     </>
   );

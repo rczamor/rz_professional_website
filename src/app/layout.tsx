@@ -10,7 +10,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 import NavScroll from "@/components/NavScroll";
 import TopBanner from "@/components/TopBanner";
 import WebMcpProvider from "@/components/WebMcpProvider";
-import { buildPersonSchema, safeJsonLd } from "@/lib/seo";
+import { buildPersonSchema, safeJsonLd, siteUrl } from "@/lib/seo";
 
 const bricolage = Bricolage_Grotesque({
   weight: ["400", "500", "600", "700", "800"],
@@ -27,6 +27,11 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  // Required for file-convention OG images: without it Next resolves the
+  // generated `opengraph-image` routes against localhost in local builds and
+  // against the per-deployment Vercel URL in production, so scrapers would
+  // fetch an origin that isn't the canonical one.
+  metadataBase: new URL(siteUrl),
   title: "Riché Zamor — VP of Product. 2x Founder. Context Architect.",
   description:
     "Riché Zamor is a context architect and VP of Product who designs how organizations structure knowledge for AI-driven decision-making.",

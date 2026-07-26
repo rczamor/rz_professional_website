@@ -9,6 +9,10 @@ export interface ArticleMetadata {
   excerpt: string;
   pillar: "context-intelligence" | "product-management" | "leadership";
   date: string;
+  /** Last substantive edit. Falls back to `date` when unset. Feeds the
+   *  Article schema's `dateModified`, the freshness signal LLMs use to break
+   *  ties between sources covering the same ground. */
+  updatedDate?: string;
   readTime: string;
   badge: string;
   badgeVariant?: "product" | "leadership";

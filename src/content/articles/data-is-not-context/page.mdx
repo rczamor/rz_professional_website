@@ -4,6 +4,7 @@ export const metadata = {
   excerpt: "The AI industry is obsessed with retrieval — how to get the right chunks into the context window. But retrieval is downstream. If what you're retrieving was never curated, synthesized, consolidated, prioritized, or stored intelligently, your RAG pipeline is just efficiently delivering noise. This essay defines the five-step architecture that turns raw data into decision-ready context.",
   pillar: "context-intelligence",
   date: "April 8, 2026",
+  updatedDate: "July 26, 2026",
   readTime: "8 min read",
   badge: "Context Architecture",
   featured: false,
@@ -29,15 +30,17 @@ The right question is: *How do we make the information worth retrieving in the f
 
 ## The Five-Step Architecture
 
-Turning raw data into decision-ready context requires five distinct operations:
+Capture is the price of entry — you can't reason over signals you never collected. But collection isn't context. Turning raw data into decision-ready context requires five distinct operations on top of it:
 
-1. **Capture** — Collect signals from every relevant source
-2. **Curate** — Filter noise from signal using domain expertise
-3. **Synthesize** — Combine signals into coherent narratives
-4. **Consolidate** — Resolve conflicts and create single sources of truth
-5. **Activate** — Deliver context at the moment of decision
+1. **Curate** — Filter noise from signal using domain expertise, driven by session and user intent
+2. **Synthesize** — Combine signals into coherent narratives no single source contained
+3. **Consolidate** — Resolve conflicts and create single sources of truth over time
+4. **Prioritize** — Rank by relevance to the decision at hand
+5. **Store Intelligently** — Persist decision-ready context with priority-aware indexing
 
 Each step compounds. Skip one, and the downstream steps inherit noise instead of signal.
+
+All five live at the [Context layer](/thesis) — between Retrieval and Inference — which is the layer most systems skip entirely.
 
 The same loop turns up in how the brain handles memory — [curation maps to attention, consolidation to sleep](/thinking/context-layer-loop-brain).
 

@@ -1,6 +1,39 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
+
+const noopSubscribe = () => () => {};
+
+/**
+ * False while server-rendering and through the hydration pass, true afterwards.
+ *
+ * This is what lets the markup carry the real stat values while the browser
+ * still gets the count-up animation: `useSyncExternalStore` is allowed to
+ * return a different value on the server than on the client without tripping a
+ * hydration mismatch, and it flips without a setState-in-effect cascade.
+ */
+function useHydrated(): boolean {
+  return useSyncExternalStore(
+    noopSubscribe,
+    () => true,
+    () => false
+  );
+}
+
+/** Live `prefers-reduced-motion` subscription — a genuine external store. */
+function usePrefersReducedMotion(): boolean {
+  const subscribe = useCallback((onChange: () => void) => {
+    const mql = window.matchMedia("(prefers-reduced-motion: reduce)");
+    mql.addEventListener("change", onChange);
+    return () => mql.removeEventListener("change", onChange);
+  }, []);
+
+  return useSyncExternalStore(
+    subscribe,
+    () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    () => false
+  );
+}
 
 interface Stat {
   end: number;
@@ -24,11 +57,22 @@ const statsRow2: Stat[] = [
   { end: 1400, suffix: " lb", label: "Powerlifting Total" },
 ];
 
+/**
+ * Renders the true value in the server HTML and animates only in the browser.
+ *
+ * The stats are the page's credibility proof points, and crawlers that don't
+ * execute JS (GPTBot, PerplexityBot) read the markup as-is — so a counter that
+ * starts life at `0` publishes actively wrong numbers rather than merely
+ * missing ones. The count-up is layered on top as progressive enhancement.
+ */
 function useCountUp(end: number, trigger: boolean, duration = 1500) {
   const [count, setCount] = useState(0);
+  const hydrated = useHydrated();
+  const reducedMotion = usePrefersReducedMotion();
+  const animates = hydrated && !reducedMotion;
 
   useEffect(() => {
-    if (!trigger) return;
+    if (!animates || !trigger) return;
 
     let current = 0;
     const increment = end / (duration / 16);
@@ -43,9 +87,10 @@ function useCountUp(end: number, trigger: boolean, duration = 1500) {
     }, 16);
 
     return () => clearInterval(interval);
-  }, [trigger, end, duration]);
+  }, [animates, trigger, end, duration]);
 
-  return count;
+  // Until the animation owns the number, show the real one.
+  return animates && trigger ? count : end;
 }
 
 function StatItem({
@@ -61,7 +106,11 @@ function StatItem({
     <div>
       <div className="about-stat-number">
         {stat.prefix}
-        {count.toLocaleString()}
+        {/* Pinned locale: the server formats with Node's locale and the client
+            with the visitor's. Now that the pre-animation value is the real
+            number rather than 0, an unpinned toLocaleString ("1,400" vs
+            "1.400") would desync hydration. */}
+        {count.toLocaleString("en-US")}
         {stat.suffix}
       </div>
       <div className="about-stat-label">{stat.label}</div>
@@ -75,6 +124,9 @@ export function AnimatedStats() {
   const [row1Visible, setRow1Visible] = useState(false);
   const [row2Visible, setRow2Visible] = useState(false);
 
+  // No fallback needed when IntersectionObserver is unavailable: `useCountUp`
+  // renders the real value until the animation actually takes over, so a
+  // trigger that never fires degrades to the correct numbers.
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
