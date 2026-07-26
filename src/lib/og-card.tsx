@@ -22,10 +22,16 @@ const ACCENT = "#7B7FE4";
 const ACCENT_ALT = "#7c5cfc";
 const TEXT = "#f0f0f5";
 
-/** Satori has no text-overflow support, so long strings are trimmed by hand. */
+/**
+ * Satori has no text-overflow support, so long strings are trimmed by hand.
+ * Cuts on a word boundary — a mid-word truncation ("still s…") reads as a bug
+ * on a card whose whole job is looking deliberate.
+ */
 function clamp(text: string, max: number): string {
   if (text.length <= max) return text;
-  return `${text.slice(0, max - 1).trimEnd()}…`;
+  const cut = text.slice(0, max);
+  const lastSpace = cut.lastIndexOf(" ");
+  return `${(lastSpace > max * 0.6 ? cut.slice(0, lastSpace) : cut).replace(/[\s,;:.—-]+$/, "")}…`;
 }
 
 interface OgCardOptions {
@@ -50,11 +56,13 @@ function NodeGraph() {
   ];
 
   return (
+    // Spans the full canvas so the motif's absolute coordinates land where the
+    // hand-authored cards put them; a cropped viewBox clipped it mid-circle.
     <svg
-      width="400"
-      height="630"
-      viewBox="610 0 400 630"
-      style={{ position: "absolute", top: 0, right: 0 }}
+      width={OG_SIZE.width}
+      height={OG_SIZE.height}
+      viewBox={`0 0 ${OG_SIZE.width} ${OG_SIZE.height}`}
+      style={{ position: "absolute", top: 0, left: 0 }}
     >
       <circle cx={cx} cy={cy} r="150" fill="none" stroke={ACCENT} opacity="0.12" />
       <circle cx={cx} cy={cy} r="96" fill="none" stroke={ACCENT_ALT} opacity="0.1" />

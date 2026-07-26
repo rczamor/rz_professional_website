@@ -38,7 +38,13 @@ function normalize(html) {
 
 async function get(path) {
   const res = await fetch(new URL(path, BASE), {
-    headers: { "user-agent": "rz-regression-check" },
+    headers: {
+      "user-agent": "rz-regression-check",
+      // Protected Vercel previews need the bypass cookie from a share link.
+      ...(process.env.REGRESSION_COOKIE
+        ? { cookie: process.env.REGRESSION_COOKIE }
+        : {}),
+    },
   });
   if (!res.ok) throw new Error(`${path} → HTTP ${res.status}`);
   return normalize(await res.text());
@@ -234,12 +240,17 @@ async function checkOgImages(slugs) {
     const og = metaContent(html, "property", "og:image");
     if (!og || og.includes("/og-image.png")) generic.push(slug);
     else seen.set(slug, og);
-    // A card URL on localhost or a per-deploy preview origin is dead to every
-    // scraper. This is what an unset `metadataBase` produces.
-    if (og && !og.startsWith(CANONICAL_ORIGIN)) wrongOrigin.push(`${slug} → ${og}`);
+    // A relative or localhost card URL is dead to every scraper — that is what
+    // an unset `metadataBase` produces. Preview deployments are the one benign
+    // exception: Next deliberately swaps metadataBase for the deployment origin
+    // when VERCEL_ENV=preview (see resolve-url.js) so preview cards resolve
+    // against the preview itself, so accept the origin under test too.
+    if (og && !og.startsWith(CANONICAL_ORIGIN) && !og.startsWith(BASE)) {
+      wrongOrigin.push(`${slug} → ${og}`);
+    }
   }
   record(
-    "og:image URLs are absolute against the canonical origin",
+    "og:image URLs are absolute against the canonical (or deployment) origin",
     wrongOrigin.length === 0,
     wrongOrigin.length ? wrongOrigin.slice(0, 3).join("; ") : ""
   );
