@@ -14,7 +14,6 @@ export const metadata: Metadata = {
       "Get in touch with Riché Zamor to discuss context architecture, AI product strategy, advisory, or speaking opportunities.",
     url: "https://www.richezamor.com/contact",
     type: "website",
-    images: ["https://www.richezamor.com/og-image.png"],
     siteName: "Riché Zamor",
   },
   twitter: {
@@ -23,7 +22,6 @@ export const metadata: Metadata = {
     title: "Get in Touch — Riché Zamor",
     description:
       "Reach out for advisory, board positions, speaking engagements, or to connect.",
-    images: ["https://www.richezamor.com/og-image.png"],
   },
   alternates: { canonical: "https://www.richezamor.com/contact" },
 };

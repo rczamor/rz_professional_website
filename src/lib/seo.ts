@@ -1,4 +1,4 @@
-import type { ArticleMetadata } from "@/content/types";
+import type { ArticleMetadata, ThesisStep } from "@/content/types";
 import { ogImage, siteName, siteUrl, twitterHandle } from "@/content/seo";
 
 export const personId = `${siteUrl}/#person`;
@@ -61,6 +61,29 @@ export function buildPersonSchema() {
   };
 }
 
+/**
+ * `ProfilePage` for /about. The root layout already emits the bare `Person`
+ * node on every route, so repeating it here would just duplicate an @id. What
+ * /about was actually missing is the page-level statement that *this* page is
+ * the canonical page about that person — `mainEntity` is that statement. The
+ * full entity is inlined (rather than an @id-only reference) so parsers that
+ * don't merge nodes across script blocks still resolve a complete Person.
+ */
+export function buildAboutProfileSchema() {
+  const aboutUrl = `${siteUrl}/about`;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "@id": `${aboutUrl}#profilepage`,
+    url: aboutUrl,
+    name: "About Riché Zamor — Context Architect & VP of Product",
+    inLanguage: "en-US",
+    isPartOf: { "@id": websiteId },
+    mainEntity: buildPersonEntity(),
+  };
+}
+
 export function buildArticleSchema(metadata: ArticleMetadata) {
   const articleUrl = `${siteUrl}/thinking/${metadata.slug}`;
 
@@ -73,6 +96,7 @@ export function buildArticleSchema(metadata: ArticleMetadata) {
     author: { "@id": personId },
     publisher: { "@id": personId },
     datePublished: toISODate(metadata.date),
+    dateModified: toISODate(metadata.updatedDate ?? metadata.date),
     url: articleUrl,
     image: ogImage,
     inLanguage: "en-US",
@@ -83,6 +107,37 @@ export function buildArticleSchema(metadata: ArticleMetadata) {
     ...(metadata.keywords && metadata.keywords.length > 0
       ? { keywords: metadata.keywords.join(", ") }
       : {}),
+  };
+}
+
+/**
+ * `HowTo` markup for the five-step context-generation pipeline. LLMs
+ * preferentially cite HowTo-marked-up content for procedural queries ("how do I
+ * implement context generation"), and this is the site's strongest procedural
+ * asset. Steps are read from `thesisSteps` so the schema can never drift from
+ * the rendered copy.
+ */
+export function buildHowToSchema(steps: ThesisStep[]) {
+  const thesisUrl = `${siteUrl}/thesis`;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "@id": `${thesisUrl}#howto`,
+    name: "The Five-Step Context Generation Process",
+    description:
+      "How to turn retrieved data into decision-ready context at the Context layer of an AI system — curate, synthesize, consolidate, prioritize, and store intelligently.",
+    author: { "@id": personId },
+    inLanguage: "en-US",
+    // No `totalTime`/`supply`/`tool`: this is an architectural process, not a
+    // timed recipe, and asserting a duration would be inventing data.
+    step: steps.map((s) => ({
+      "@type": "HowToStep",
+      position: s.number,
+      name: s.title,
+      text: s.description,
+      url: `${thesisUrl}#steps`,
+    })),
   };
 }
 

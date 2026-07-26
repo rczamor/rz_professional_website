@@ -15,6 +15,7 @@ export const metadata = {
     "RAG is a retrieval pattern. A context layer is the architecture around it. The difference is why your pipeline can fetch the right chunks and still ship the wrong answer.",
   pillar: "context-intelligence",
   date: "June 24, 2026",
+  updatedDate: "July 26, 2026",
   readTime: "8 min read",
   badge: "Framework",
   featured: false,
@@ -30,6 +31,13 @@ export const metadata = {
     "decision-ready context",
   ],
   faq: [
+    {
+      // Phrased as the literal head term so the FAQPage entry matches the
+      // query verbatim, not just semantically. See TRZ-1586.
+      question: "Context layer vs RAG: what's the difference?",
+      answer:
+        "A context layer and RAG operate at different levels of the stack. RAG is a retrieval tactic — embed a query, fetch the nearest chunks, paste them into the prompt. A context layer is an architectural tier that sits between Retrieval and Inference and turns whatever was retrieved into decision-ready context: curating it, synthesizing across sources, consolidating conflicts, prioritizing by the decision at hand, and storing the result. RAG optimizes what gets fetched. The context layer determines what the fetched material means. A system can have excellent RAG and no context layer at all — that is the most common failure mode in production AI products.",
+    },
     {
       question: "What is the difference between a context layer and RAG?",
       answer:

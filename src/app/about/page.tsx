@@ -15,6 +15,7 @@ import {
 import { AnimatedStats } from "@/components/about/AnimatedStats";
 import JourneyMapWrapper from "@/components/about/JourneyMapWrapper";
 import AboutPhoto from "@/components/about/AboutPhoto";
+import { buildAboutProfileSchema, safeJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "About Riché Zamor — Context Architect & VP of Product",
@@ -26,7 +27,6 @@ export const metadata: Metadata = {
       "20 years turning raw data into decision-ready context. VP of Product, 2x founder, and author of the Context Architecture thesis. See the work →",
     url: "https://richezamor.com/about",
     type: "website",
-    images: ["https://www.richezamor.com/og-image.png"],
     siteName: "Riché Zamor",
   },
   twitter: {
@@ -35,7 +35,6 @@ export const metadata: Metadata = {
     title: "About Riché Zamor — Context Architect & VP of Product",
     description:
       "20 years building AI products that turn raw data into decision-ready context. VP of Product, 2x founder, author of the Context Architecture thesis.",
-    images: ["https://richezamor.com/og-image.png"],
   },
   alternates: { canonical: "https://www.richezamor.com/about" },
 };
@@ -244,6 +243,14 @@ export default function AboutPage() {
       </main>
 
       <Footer />
+
+      {/* /about is the canonical page for Riché-as-entity. Shares the
+          `#person` @id with the layout node and home @graph, so all three
+          resolve to one entity. */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(buildAboutProfileSchema()) }}
+      />
     </>
   );
 }

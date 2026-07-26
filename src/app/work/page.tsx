@@ -12,7 +12,6 @@ export const metadata = {
       "AI product case studies across Suzy, Grandstage, Helm Labs, and IBM — 300% growth, $3.25M pipeline, $10M+ revenue impact. See the throughline →",
     url: "https://richezamor.com/work",
     type: "website",
-    images: ["https://www.richezamor.com/og-image.png"],
     siteName: "Riché Zamor",
   },
   twitter: {
@@ -21,7 +20,6 @@ export const metadata = {
     title: "Work — Suzy, Grandstage, Helm Labs, IBM | Riché Zamor",
     description:
       "AI product case studies — 300% growth, $3.25M pipeline, $10M+ revenue impact across Suzy, Grandstage, Helm Labs, and IBM.",
-    images: ["https://richezamor.com/og-image.png"],
   },
   alternates: { canonical: "https://www.richezamor.com/work" },
 };

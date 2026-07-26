@@ -30,7 +30,6 @@ export async function generateMetadata({
       description: article.excerpt,
       url: `https://www.richezamor.com/thinking/${slug}`,
       type: "article",
-      images: ["https://www.richezamor.com/og-image.png"],
       siteName: "Riché Zamor",
     },
     twitter: {
@@ -38,7 +37,6 @@ export async function generateMetadata({
       site: "@richezamor",
       title: `${article.title} — Riché Zamor`,
       description: article.excerpt,
-      images: ["https://www.richezamor.com/og-image.png"],
     },
     alternates: { canonical: `https://www.richezamor.com/thinking/${slug}` },
   };
