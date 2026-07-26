@@ -8,9 +8,43 @@ export const metadata = {
   readTime: "8 min read",
   badge: "Context Architecture",
   featured: false,
+  keywords: [
+    "data is not context",
+    "context architecture",
+    "decision-ready context",
+    "five-step context generation",
+    "context layer",
+    "why RAG fails",
+    "data vs context AI",
+    "context engineering",
+  ],
+  faq: [
+    {
+      question: "What does 'data is not context' mean?",
+      answer:
+        "Data is raw material — documents, records, telemetry, transcripts. Context is what that material becomes once it has been curated, synthesized, consolidated, prioritized, and stored for a specific decision. Retrieving data and putting it in a prompt does not turn it into context; it just moves it. The distinction matters because AI systems reason over whatever they are handed, so handing them unprocessed data produces confident answers built on noise.",
+    },
+    {
+      question: "What is the difference between data and context in AI systems?",
+      answer:
+        "Data is stored; context is generated. Data lives at the Data layer and is reached through Retrieval. Context is produced at the Context layer, which sits between Retrieval and Inference and runs five operations on what retrieval returns: curate, synthesize, consolidate, prioritize, and store intelligently. Most AI systems route Retrieval straight into Inference, which means they never generate context at all — they just relocate data.",
+    },
+    {
+      question: "Why does my AI product work in a demo and fail in production?",
+      answer:
+        "Because demos are built on small, clean, low-conflict corpora where retrieval alone is sufficient. Production corpora are large, contradictory, and stale in places. Without a context layer to resolve conflicts, merge duplicates, prune what is no longer true, and rank by the decision at hand, the same retrieval pipeline that looked precise in the demo starts surfacing plausible, well-formatted, wrong answers.",
+    },
+    {
+      question: "What are the five steps that turn data into context?",
+      answer:
+        "Curate — filter noise from signal using domain expertise, driven by session and user intent. Synthesize — combine signals into narratives no single source contained. Consolidate — resolve conflicts and create single sources of truth over time. Prioritize — rank by relevance to the decision at hand. Store intelligently — persist decision-ready context with priority-aware indexing. Each step compounds, so skipping one means every downstream step inherits noise instead of signal.",
+    },
+  ],
 }
 
 # Data Is Not Context
+
+**Data is not context.** Data is raw material — documents, records, telemetry, transcripts. Context is what that material becomes after it has been curated, synthesized, consolidated, prioritized, and stored for a specific decision. Moving data into a prompt does not convert it into context; it just relocates it.
 
 The AI industry is obsessed with retrieval — how to get the right chunks into the context window. But retrieval is downstream.
 

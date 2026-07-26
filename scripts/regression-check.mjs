@@ -344,6 +344,53 @@ async function checkPillarSignals() {
   );
 }
 
+// ── TRZ-1338 ────────────────────────────────────────────────────────────────
+/**
+ * Each pillar article must carry the entity signals AI answer engines use when
+ * deciding what to cite: an FAQPage block, the target query leading the
+ * keywords list, and a definition early enough to be the extracted quote.
+ */
+async function checkPillarArticles() {
+  const pillars = [
+    { slug: "data-is-not-context", query: "data is not context", define: "data is not context" },
+    { slug: "context-layer-vs-rag", query: "context layer vs rag", define: "context layer" },
+    { slug: "what-is-a-context-layer", query: "context layer", define: "context layer" },
+  ];
+
+  for (const { slug, query, define } of pillars) {
+    const html = await get(`/thinking/${slug}`);
+
+    const faq = findType(jsonLdBlocks(html), "FAQPage");
+    record(
+      `TRZ-1338 ${slug} renders FAQPage schema`,
+      Boolean(faq?.mainEntity?.length),
+      faq ? "" : "no FAQPage block in rendered HTML"
+    );
+
+    const article = findType(jsonLdBlocks(html), "Article");
+    const first = (article?.keywords ?? "").split(",")[0].trim().toLowerCase();
+    record(
+      `TRZ-1338 ${slug} leads keywords with its target query`,
+      first === query,
+      `keywords[0] = "${first}", expected "${query}"`
+    );
+
+    // Prose only, first ~150 words, matching what an extractor would quote.
+    const body = html
+      .replace(/<script[\s\S]*?<\/script>/g, " ")
+      .replace(/<style[\s\S]*?<\/style>/g, " ")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+    const opening = body.split(" ").slice(0, 220).join(" ").toLowerCase();
+    record(
+      `TRZ-1338 ${slug} states its definition up front`,
+      opening.includes(define),
+      `"${define}" absent from the opening prose`
+    );
+  }
+}
+
 // ── Sitewide invariants (regression guard) ──────────────────────────────────
 async function checkSitewide(slugs) {
   for (const path of ["/", "/about", "/thesis", "/work", "/thinking", "/contact"]) {
@@ -393,6 +440,7 @@ async function main() {
   await checkSsrArticleComponents();
   await checkTerminology();
   await checkPillarSignals();
+  await checkPillarArticles();
   await checkSitewide(slugs);
 
   const failed = results.filter((r) => !r.ok);

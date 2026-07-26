@@ -83,7 +83,9 @@ async function main() {
     });
 
     let chunks = 0;
-    for await (const _ of result.textStream) chunks += 1;
+    for await (const part of result.textStream) {
+      if (part.length) chunks += 1;
+    }
     assert.ok(chunks > 1, `expected multiple chunks, got ${chunks}`);
   });
 
