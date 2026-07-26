@@ -15,7 +15,7 @@ export const metadata: Metadata = {
       "Articles and insights on context architecture, AI product strategy, and leadership by Riché Zamor.",
     url: "https://www.richezamor.com/thinking",
     type: "website",
-    images: ["https://richezamor.com/og/thinking.png"],
+    images: ["https://www.richezamor.com/og/thinking.png"],
     siteName: "Riché Zamor",
   },
   twitter: {
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     title: "Thinking in Public — Riché Zamor",
     description:
       "Essays and frameworks on context intelligence, product management, and leadership.",
-    images: ["https://richezamor.com/og/thinking.png"],
+    images: ["https://www.richezamor.com/og/thinking.png"],
   },
   alternates: { canonical: "https://www.richezamor.com/thinking" },
 };

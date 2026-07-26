@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     title: "About Riché Zamor — Context Architect & VP of Product",
     description:
       "20 years turning raw data into decision-ready context. VP of Product, 2x founder, and author of the Context Architecture thesis. See the work →",
-    url: "https://richezamor.com/about",
+    url: "https://www.richezamor.com/about",
     type: "website",
     siteName: "Riché Zamor",
   },
