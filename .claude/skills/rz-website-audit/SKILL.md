@@ -1,3 +1,22 @@
+---
+name: rz-website-audit
+description: >
+  Use this skill whenever Riché invokes /rz-website-audit, asks to "run the
+  website audit", "run the weekly site review", "audit richezamor.com", or
+  when the Cowork shortcut fires the Sunday 8pm trigger with the body
+  "Run the rz-website-audit skill." Also invoke for any request that mentions
+  website audit, website QA, website scorecard, AI citation tracking,
+  website regression check, weekly site review of richezamor.com, SEO
+  health check, AIO health check, or competitor benchmarking against
+  richezamor.com. This is the orchestrating skill that runs the full weekly
+  audit across SEO (S1–S7 atomic), AIO (A1–A7 atomic), Traffic & Engagement,
+  Usability, Design, Brand, Technical QA, the Ask Riché chatbot, Keyword
+  Research, and Competitor Benchmarking. Produces a Notion page in the
+  Weekly Website Audits database, creates up to 5 P0/P1 Linear tasks in the
+  Brand project with spaced due dates Mon–Fri, and pings #brand in Slack
+  with a one-line traffic-light headline.
+---
+
 # Website Audit — Riché Zamor
 
 Weekly site audit of richezamor.com. Runs every Sunday at 8pm America/New_York via Claude Cowork shortcut, or manually via `/rz-website-audit` in Claude Code. Produces a structured Notion page, issues up to 5 prioritized Linear tasks, and posts a single-line headline to Slack.
