@@ -14,6 +14,7 @@
 import assert from "node:assert/strict";
 import { streamText } from "ai";
 import { MockLanguageModelV4 } from "ai/test";
+import { textStreamResponseOrError } from "../src/lib/chat-stream.ts";
 
 const results = [];
 
@@ -53,6 +54,19 @@ function mockModel(text = "Riché frames context as an architectural layer.") {
     }),
   });
 }
+
+/** A model whose call is rejected the way the AI Gateway rejects a disallowed model. */
+function rejectingModel() {
+  return new MockLanguageModelV4({
+    doStream: async () => {
+      const err = new Error("Free tier users do not have access to this model.");
+      err.statusCode = 403;
+      throw err;
+    },
+  });
+}
+
+const quiet = () => {};
 
 async function main() {
   console.log("Ask Riché chat-route streaming smoke test\n");
@@ -97,6 +111,34 @@ async function main() {
       abortSignal: controller.signal,
     });
     await new Response(result.toTextStreamResponse().body).text();
+  });
+
+  await check("route helper streams the full answer with a 200", async () => {
+    const result = streamText({
+      model: mockModel("one two three"),
+      messages: [{ role: "user", content: "hi" }],
+      onError: quiet,
+    });
+    const response = await textStreamResponseOrError(result.fullStream, quiet);
+    assert.equal(response.status, 200, `expected 200, got ${response.status}`);
+    const text = await response.text();
+    assert.equal(text, "one two three ", `unexpected body: ${JSON.stringify(text)}`);
+  });
+
+  await check("gateway rejection becomes a 502 with a readable error, not an empty 200", async () => {
+    const result = streamText({
+      model: rejectingModel(),
+      messages: [{ role: "user", content: "hi" }],
+      onError: quiet,
+    });
+    let logged = null;
+    const response = await textStreamResponseOrError(result.fullStream, (_m, err) => {
+      logged = err;
+    });
+    assert.equal(response.status, 502, `expected 502, got ${response.status}`);
+    const data = await response.json();
+    assert.ok(data.error && data.error.length > 0, "502 body has no error message");
+    assert.match(String(logged?.message), /Free tier/, "gateway error was not logged");
   });
 
   const failed = results.filter((r) => !r.ok);
