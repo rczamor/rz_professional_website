@@ -13,6 +13,7 @@ import {
 
 interface ArticleLayoutProps {
   metadata: ArticleMetadata;
+  related?: ArticleMetadata[];
   children: React.ReactNode;
 }
 
@@ -54,7 +55,31 @@ function ArticleFAQ({ items, slug }: { items?: ArticleFAQItem[]; slug: string })
   );
 }
 
-export default function ArticleLayout({ metadata, children }: ArticleLayoutProps) {
+function RelatedArticles({ items, slug }: { items?: ArticleMetadata[]; slug: string }) {
+  if (!items || items.length === 0) return null;
+
+  const headingId = `${slug}-related`;
+
+  return (
+    <section className="article-related" aria-labelledby={headingId}>
+      <h2 id={headingId} className="article-related-title">
+        Related thinking
+      </h2>
+      <ul className="article-related-list">
+        {items.map((item) => (
+          <li key={item.slug} className="article-related-item">
+            <Link href={`/thinking/${item.slug}`}>
+              <span className="article-related-pillar">{pillarLabel(item.pillar)}</span>
+              <span className="article-related-name">{item.title}</span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+export default function ArticleLayout({ metadata, related, children }: ArticleLayoutProps) {
   const isoDate = toISODate(metadata.date);
   const articleJsonLd = buildArticleSchema(metadata);
   const breadcrumbJsonLd = buildArticleBreadcrumbSchema(metadata);
@@ -109,6 +134,7 @@ export default function ArticleLayout({ metadata, children }: ArticleLayoutProps
                 {children}
               </div>
               <ArticleFAQ items={metadata.faq} slug={metadata.slug} />
+              <RelatedArticles items={related} slug={metadata.slug} />
             </div>
           </section>
         </article>
