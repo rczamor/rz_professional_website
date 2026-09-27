@@ -14,11 +14,11 @@ import {
 } from "@/content/home";
 
 export const metadata: Metadata = {
-  title: "Riché Zamor — VP of Product. 2x Founder. Context Architect.",
+  title: "Riché Zamor — VP of Product, 2x Founder, Context Architect",
   description:
     "Riché Zamor is a context architect and VP of Product who designs how organizations structure knowledge for AI-driven decision-making.",
   openGraph: {
-    title: "Riché Zamor — VP of Product. 2x Founder. Context Architect.",
+    title: "Riché Zamor — VP of Product, 2x Founder, Context Architect",
     description:
       "Riché Zamor is a context architect and VP of Product who designs how organizations structure knowledge for AI-driven decision-making.",
     url: "https://www.richezamor.com/",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     site: "@richezamor",
-    title: "Riché Zamor — VP of Product. 2x Founder. Context Architect.",
+    title: "Riché Zamor — VP of Product, 2x Founder, Context Architect",
     description:
       "Building AI products that turn raw data into decision-ready context. The architecture most teams skip is the problem I keep solving.",
     images: ["https://www.richezamor.com/og/home.png"],

@@ -7,6 +7,9 @@ export interface ArticleMetadata {
   title: string;
   slug: string;
   excerpt: string;
+  /** SERP snippet, ≤160 chars. Falls back to `excerpt`, which is written for
+   *  the article deck and listing cards and usually runs longer. */
+  description?: string;
   pillar: "context-intelligence" | "product-management" | "leadership";
   date: string;
   /** Last substantive edit. Falls back to `date` when unset. Feeds the

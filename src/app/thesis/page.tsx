@@ -10,7 +10,7 @@ import { buildHowToSchema, safeJsonLd } from "@/lib/seo";
 export const metadata = {
   title: "Data Is Not Context — Riché Zamor",
   description:
-    "The Context Architecture Thesis by Riché Zamor: an AI system has four layers — Data, Retrieval, Context, Inference. The five-step process lives at the Context layer, the one most systems skip entirely.",
+    "The Context Architecture Thesis: AI systems have four layers (Data, Retrieval, Context, Inference). Five steps live in the Context layer, the one most skip.",
   openGraph: {
     title: "Data Is Not Context — Riché Zamor",
     description:
