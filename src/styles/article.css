@@ -234,6 +234,72 @@
   margin: 0;
 }
 
+/* "Related thinking": plain links in server HTML so every article keeps
+   inbound and outbound internal links for crawlers. Sits under the FAQ with
+   the same measure and divider. */
+.article-related {
+  max-width: 720px;
+  margin: 88px auto 0;
+  padding-top: 48px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.article-related-title {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--text-primary);
+  margin: 0 0 24px;
+}
+
+.article-related-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.article-related-item a {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 20px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: border-color 0.2s ease;
+}
+
+.article-related-item a:hover,
+.article-related-item a:focus-visible {
+  border-color: var(--accent);
+  outline: none;
+}
+
+.article-related-pillar {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.article-related-name {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+@media (max-width: 400px) {
+  .article-related-item a {
+    padding: 14px 16px;
+  }
+}
+
 /* Centered wrapper for standalone widgets embedded in articles (e.g. the
    Five-Step Pipeline widget from the homepage). Stacks the widget with an
    optional CTA button beneath it. Margins use the 4-based spacing scale

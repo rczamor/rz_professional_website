@@ -15,12 +15,43 @@ export const metadata = {
   slug: "building-a-14-agent-software-factory",
   excerpt:
     "While on paternity leave I stood up fourteen agents on a single $50/mo VPS, watched three vendor moves break my plan in seven days, and learned that the infrastructure is not the moat.",
+  description:
+    "Fourteen AI agents on one $50/mo VPS, built on paternity leave. Three vendor moves broke the plan in a week, and proved the infrastructure isn't the moat.",
   pillar: "context-intelligence",
   date: "April 22, 2026",
   readTime: "10 min read",
   badge: "Case Study",
   badgeVariant: "product",
   featured: false,
+  keywords: [
+    "ai software factory",
+    "multi-agent system",
+    "agent memory architecture",
+    "self-hosted ai agents",
+    "open-source llm agents",
+  ],
+  faq: [
+    {
+      question: "What does it take to run a 14-agent software factory?",
+      answer:
+        "One $50/mo VPS with one-click installs: ten containerized execution agents, Postgres for agent memory, Slack for coordination, Langfuse for evals, GrowthBook for experiments, and n8n as the router. Four Claude Code Routines run the strategic layer off the box. The plumbing took an afternoon.",
+    },
+    {
+      question: "Why split an agent team into a strategic layer and an execution layer?",
+      answer:
+        "Work shape. Strategic work is rare, document-shaped, and high-leverage, so it earns the expensive model. Execution work is frequent, decision-shaped, and bounded, so it runs on an open-source workhorse. The layers coordinate through Linear ticket state and Notion artifacts, never direct calls.",
+    },
+    {
+      question: "How should AI agents store memory?",
+      answer:
+        "Match memory to work shape. Rows for decisions: execution agents write short, frequent handoffs and blockers to a Postgres table partitioned by app. Documents for research: strategic agents stay stateless and write every decision to Notion, so you can audit what they decided weeks later.",
+    },
+    {
+      question: "Is infrastructure the moat for an AI agent team?",
+      answer:
+        "No. A single VPS now runs what took a quarter of DevOps work two years ago. The work that matters is the architecture, the prompts, and the evals, plus reading vendor and model constraints fast enough to redesign when they change mid-build.",
+    },
+  ],
 }
 
 <StoryBlock dropcap>

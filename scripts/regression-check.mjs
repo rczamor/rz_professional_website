@@ -433,6 +433,108 @@ async function checkCanonicalHost() {
   }
 }
 
+// ── TRZ-2766 / TRZ-2287 ─────────────────────────────────────────────────────
+/** Undo the entity escaping React applies to text in <title> and attributes. */
+function decodeEntities(text) {
+  return text
+    .replace(/&amp;/g, "&")
+    .replace(/&quot;/g, '"')
+    .replace(/&#x27;|&#39;/g, "'")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">");
+}
+
+/**
+ * Google cuts titles past ~60 characters and descriptions past ~160, so a
+ * longer one loses its ending in the SERP snippet (or gets rewritten).
+ * Marketing pages are held to both limits; articles to the description limit,
+ * since their headlines are editorial and the byline suffix already drops
+ * off when it would push past 60.
+ */
+async function checkMetadataLengths(slugs) {
+  const TITLE_MAX = 60;
+  const DESC_MAX = 160;
+  const read = (html) => ({
+    title: decodeEntities(html.match(/<title>([\s\S]*?)<\/title>/i)?.[1] ?? ""),
+    description: decodeEntities(metaContent(html, "name", "description") ?? ""),
+  });
+
+  for (const path of ["/", "/about", "/thesis", "/work", "/thinking", "/contact"]) {
+    const { title, description } = read(await get(path));
+    record(
+      `TRZ-2766 ${path} title ≤${TITLE_MAX} chars`,
+      title.length > 0 && title.length <= TITLE_MAX,
+      `${title.length} chars: "${title}"`
+    );
+    record(
+      `TRZ-2766 ${path} meta description ≤${DESC_MAX} chars`,
+      description.length > 0 && description.length <= DESC_MAX,
+      `${description.length} chars`
+    );
+  }
+
+  const long = [];
+  for (const slug of slugs) {
+    const { description } = read(await get(`/thinking/${slug}`));
+    if (!description || description.length > DESC_MAX) {
+      long.push(`${slug} (${description.length})`);
+    }
+  }
+  record(
+    `TRZ-2287 all ${slugs.length} article meta descriptions ≤${DESC_MAX} chars`,
+    long.length === 0,
+    long.length ? `over limit: ${long.join(", ")}` : ""
+  );
+}
+
+// ── TRZ-2288 ────────────────────────────────────────────────────────────────
+async function checkFactoryFaq() {
+  const html = await get("/thinking/building-a-14-agent-software-factory");
+  const faq = findType(jsonLdBlocks(html), "FAQPage");
+  record(
+    "TRZ-2288 building-a-14-agent-software-factory renders FAQPage schema",
+    Boolean(faq?.mainEntity?.length),
+    faq ? "" : "no FAQPage block in rendered HTML"
+  );
+}
+
+// ── TRZ-2767 ────────────────────────────────────────────────────────────────
+/**
+ * Rebuild the internal link graph the way the audit does: raw-HTML
+ * `href="/thinking/<slug>"` extraction, self-links excluded, each target
+ * counted once per source. Every article needs ≥3 inbound and ≥3 outbound.
+ */
+async function checkInternalLinkGraph(slugs) {
+  const MIN = 3;
+  const known = new Set(slugs);
+  const outbound = new Map();
+  const inbound = new Map(slugs.map((s) => [s, 0]));
+
+  for (const slug of slugs) {
+    const html = await get(`/thinking/${slug}`);
+    const targets = new Set(
+      [...html.matchAll(/href="\/thinking\/([a-z0-9-]+)\/?(?:#[^"]*)?"/g)]
+        .map((m) => m[1])
+        .filter((t) => t !== slug && known.has(t))
+    );
+    outbound.set(slug, targets.size);
+    for (const t of targets) inbound.set(t, inbound.get(t) + 1);
+  }
+
+  const weak = slugs.filter((s) => outbound.get(s) < MIN || inbound.get(s) < MIN);
+  record(
+    `TRZ-2767 every article has ≥${MIN} inbound and ≥${MIN} outbound internal links`,
+    weak.length === 0,
+    weak.map((s) => `${s} (in ${inbound.get(s)}, out ${outbound.get(s)})`).join(", ")
+  );
+  const orphans = slugs.filter((s) => inbound.get(s) === 0);
+  record(
+    "TRZ-2767 no article has zero inbound internal links",
+    orphans.length === 0,
+    orphans.join(", ")
+  );
+}
+
 // ── Sitewide invariants (regression guard) ──────────────────────────────────
 async function checkSitewide(slugs) {
   for (const path of ["/", "/about", "/thesis", "/work", "/thinking", "/contact"]) {
@@ -484,6 +586,9 @@ async function main() {
   await checkPillarSignals();
   await checkPillarArticles();
   await checkCanonicalHost();
+  await checkMetadataLengths(slugs);
+  await checkFactoryFaq();
+  await checkInternalLinkGraph(slugs);
   await checkSitewide(slugs);
 
   const failed = results.filter((r) => !r.ok);

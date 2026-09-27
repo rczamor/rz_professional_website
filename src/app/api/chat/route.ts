@@ -1,4 +1,5 @@
 import { streamText, type ModelMessage } from "ai";
+import { textStreamResponseOrError, UNAVAILABLE_MESSAGE } from "@/lib/chat-stream";
 
 // Node.js runtime so we can keep simple in-memory rate limiting and avoid edge constraints.
 export const runtime = "nodejs";
@@ -87,14 +88,13 @@ export async function POST(req: Request): Promise<Response> {
       messages,
       temperature: 0.4,
       abortSignal: req.signal,
+      // Errors are handled (and logged) by textStreamResponseOrError.
+      onError: () => {},
     });
 
-    return result.toTextStreamResponse();
+    return await textStreamResponseOrError(result.fullStream);
   } catch (err) {
     console.error("[/api/chat] streamText failed:", err);
-    return Response.json(
-      { error: "The assistant is unavailable right now. Please try again shortly." },
-      { status: 502 }
-    );
+    return Response.json({ error: UNAVAILABLE_MESSAGE }, { status: 502 });
   }
 }

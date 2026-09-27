@@ -1,4 +1,4 @@
-import { getAllArticles } from "@/lib/articles";
+import { getAllArticles, getRelatedArticles } from "@/lib/articles";
 import ArticleLayout from "@/components/article/ArticleLayout";
 import type { Metadata } from "next";
 
@@ -21,13 +21,19 @@ export async function generateMetadata({
   const article = articles.find((a) => a.slug === slug);
   if (!article) return {};
 
+  // Google truncates titles past ~60 chars; drop the byline suffix rather than
+  // lose the headline itself when the two don't fit together.
+  const byline = `${article.title} — Riché Zamor`;
+  const title = byline.length <= 60 ? byline : article.title;
+  const description = article.description ?? article.excerpt;
+
   return {
-    title: `${article.title} — Riché Zamor`,
-    description: article.excerpt,
+    title,
+    description,
     keywords: article.keywords,
     openGraph: {
-      title: `${article.title} — Riché Zamor`,
-      description: article.excerpt,
+      title,
+      description,
       url: `https://www.richezamor.com/thinking/${slug}`,
       type: "article",
       siteName: "Riché Zamor",
@@ -35,8 +41,8 @@ export async function generateMetadata({
     twitter: {
       card: "summary_large_image",
       site: "@richezamor",
-      title: `${article.title} — Riché Zamor`,
-      description: article.excerpt,
+      title,
+      description,
     },
     alternates: { canonical: `https://www.richezamor.com/thinking/${slug}` },
   };
@@ -57,7 +63,7 @@ export default async function ArticlePage({
   );
 
   return (
-    <ArticleLayout metadata={article}>
+    <ArticleLayout metadata={article} related={getRelatedArticles(slug, articles)}>
       <Content />
     </ArticleLayout>
   );
