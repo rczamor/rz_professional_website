@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   // against the per-deployment Vercel URL in production, so scrapers would
   // fetch an origin that isn't the canonical one.
   metadataBase: new URL(siteUrl),
-  title: "Riché Zamor — VP of Product. 2x Founder. Context Architect.",
+  title: "Riché Zamor — VP of Product, 2x Founder, Context Architect",
   description:
     "Riché Zamor is a context architect and VP of Product who designs how organizations structure knowledge for AI-driven decision-making.",
 };
@@ -54,7 +54,7 @@ export default function RootLayout({
         <noscript>
           <style>{`.reveal { opacity: 1 !important; transform: none !important; }`}</style>
         </noscript>
-        {/* eslint-disable-next-line @next/next/no-page-custom-font -- App Router has no pages/_document.js; this Material Symbols variable font is loaded site-wide via the root layout */}
+        {/* eslint-disable-next-line @next/next/no-page-custom-font, @next/next/google-font-display -- App Router has no pages/_document.js, so this Material Symbols variable font loads site-wide from the root layout; display=block keeps icon ligature names from flashing as text */}
         <link
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block"
           rel="stylesheet"
